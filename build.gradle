@@ -1,17 +1,22 @@
 plugins {
-    id 'java'
+    id 'java-library'
     id 'idea'
     id 'io.spring.dependency-management' version '1.0.15.RELEASE'
     id 'org.springframework.boot' version '3.1.4'
 }
 
+ext {
+    VERSION_JAVA = '17'
+}
+
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
+        languageVersion = JavaLanguageVersion.of("${VERSION_JAVA}")
     }
 }
 
 group = 'org.misty'
+//noinspection GroovyUnusedAssignment
 archivesBaseName = 'misty-utils'
 version = '1.0-SNAPSHOT'
 
@@ -20,6 +25,8 @@ repositories {
 }
 
 dependencies {
+    implementation 'org.slf4j:slf4j-api'
+
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'ch.qos.logback:logback-classic'
 }

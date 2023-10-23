@@ -4,20 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1f797ea0-0038-4483-a970-d6a51ddc0a24" name="Changes" comment="Enhanced existing generic Functional Interfaces in native Java have been implemented.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/ex/ReentrantLockEx.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/ex/ReentrantLockExTest.java" afterDir="false" />
+    <list default="true" id="72d1699b-9396-4385-acec-59be1e8b4601" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/ex/verify/Judge.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/ex/verify/JudgeTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="ChangesViewManager">
-    <option name="groupingKeys">
-      <option value="module" />
-    </option>
   </component>
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
@@ -39,8 +37,6 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="package-info" />
-        <option value="Interface" />
         <option value="Class" />
         <option value="JUnit5 Test Class" />
       </list>
@@ -54,11 +50,17 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GithubDefaultAccount">
+    <option name="defaultAccountId" value="cc36d827-71b7-4129-8251-944d22f3e425" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 2
+  &quot;associatedIndex&quot;: 3
 }</component>
-  <component name="ProjectId" id="2WhUPqg7Ab4MXbgmLiZjJK2U8lf" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+  <component name="ProjectId" id="2X1RjkcP95pUWoCkeog3Q8qTFqa" />
+  <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
@@ -70,164 +72,98 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "com.google.cloudcode.ide_session_index": "20231017_0009",
+    "com.google.cloudcode.ide_session_index": "20231023_0001",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "git-widget-placeholder": "develop",
-    "last_opened_file_path": "C:/Users/aerylin/IdeaProjects/misty-utils/src/test/resources",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "onboarding.tips.debug.path": "C:/Users/aerylin/IdeaProjects/misty-utils/src/main/java/org/misty/Main.java",
-    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "File.Encoding",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\aerylin\IdeaProjects\misty-utils\src\test\resources" />
-    </key>
-    <key name="CreateTestDialog.Recents.Supers">
-      <recent name="" />
-    </key>
-    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
-      <recent name="org.misty.utils" />
-    </key>
-    <key name="CreateTestDialog.RecentsKey">
-      <recent name="org.misty.utils.ex" />
-      <recent name="org.misty.utils.ex.fi" />
-      <recent name="org.misty" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="org.misty.utils.ex.fi" />
-    </key>
-  </component>
-  <component name="RunManager" selected="JUnit.ReentrantLockExTest.use_supplier">
-    <configuration name="All in misty-utils.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="misty-utils.test" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="TEST_OBJECT" value="package" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+  <component name="RunManager" selected="JUnit.JudgeTest">
+    <configuration name="JudgeTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;org.misty.utils.ex.verify.JudgeTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
     </configuration>
-    <configuration name="ObjLongConsumerExTest.execute" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="JudgeTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="misty-utils.test" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.misty.utils.ex.fi.*" />
+          <option name="PATTERN" value="org.misty.utils.ex.verify.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="org.misty.utils.ex.fi" />
-      <option name="MAIN_CLASS_NAME" value="org.misty.utils.ex.fi.ObjLongConsumerExTest" />
-      <option name="METHOD_NAME" value="execute" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ReentrantLockExTest.use_fair" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="misty-utils.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.misty.utils.ex.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.misty.utils.ex" />
-      <option name="MAIN_CLASS_NAME" value="org.misty.utils.ex.ReentrantLockExTest" />
-      <option name="METHOD_NAME" value="use_fair" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ReentrantLockExTest.use_runnable" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="misty-utils.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.misty.utils.ex.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.misty.utils.ex" />
-      <option name="MAIN_CLASS_NAME" value="org.misty.utils.ex.ReentrantLockExTest" />
-      <option name="METHOD_NAME" value="use_runnable" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ReentrantLockExTest.use_supplier" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="misty-utils.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.misty.utils.ex.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.misty.utils.ex" />
-      <option name="MAIN_CLASS_NAME" value="org.misty.utils.ex.ReentrantLockExTest" />
-      <option name="METHOD_NAME" value="use_supplier" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="PACKAGE_NAME" value="org.misty.utils.ex.verify" />
+      <option name="MAIN_CLASS_NAME" value="org.misty.utils.ex.verify.JudgeTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ReentrantLockExTest.use_supplier" />
-        <item itemvalue="JUnit.ReentrantLockExTest.use_runnable" />
-        <item itemvalue="JUnit.ReentrantLockExTest.use_fair" />
-        <item itemvalue="JUnit.All in misty-utils.test" />
-        <item itemvalue="JUnit.ObjLongConsumerExTest.execute" />
+        <item itemvalue="JUnit.JudgeTest" />
+        <item itemvalue="Gradle.JudgeTest" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="1f797ea0-0038-4483-a970-d6a51ddc0a24" name="Changes" comment="" />
-      <created>1697184285108</created>
+      <changelist id="72d1699b-9396-4385-acec-59be1e8b4601" name="Changes" comment="" />
+      <created>1697794736240</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1697184285108</updated>
-      <workItem from="1697184286160" duration="4000" />
-      <workItem from="1697187005679" duration="1061000" />
-      <workItem from="1697188078601" duration="3207000" />
-      <workItem from="1697191479760" duration="969000" />
-      <workItem from="1697506640363" duration="3827000" />
-      <workItem from="1697514594265" duration="13766000" />
+      <updated>1697794736240</updated>
+      <workItem from="1697794737331" duration="43000" />
+      <workItem from="1698050929543" duration="181000" />
+      <workItem from="1698051130868" duration="615000" />
     </task>
-    <task id="LOCAL-00001" summary="initial">
-      <option name="closed" value="true" />
-      <created>1697192346478</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1697192346478</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Enhanced existing generic Functional Interfaces in native Java have been implemented.">
-      <option name="closed" value="true" />
-      <created>1697535978141</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1697535978141</updated>
-    </task>
-    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="initial" />
-    <MESSAGE value="Enhanced existing generic Functional Interfaces in native Java have been implemented." />
-    <option name="LAST_COMMIT_MESSAGE" value="Enhanced existing generic Functional Interfaces in native Java have been implemented." />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/misty_utils$JudgeTest.ic" NAME="JudgeTest Coverage Results" MODIFIED="1698051699401" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

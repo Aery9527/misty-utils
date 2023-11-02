@@ -101,7 +101,7 @@
       <recent name="org.misty.utils.ex.verify" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ThreadExTest">
+  <component name="RunManager" selected="JUnit.CharacterExTest.countChinese">
     <configuration name="JudgeTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -125,6 +125,22 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <RunAsTest>true</RunAsTest>
       <method v="2" />
+    </configuration>
+    <configuration name="CharacterExTest.countChinese" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="misty-utils.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.misty.utils.ex.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.misty.utils.ex" />
+      <option name="MAIN_CLASS_NAME" value="org.misty.utils.ex.CharacterExTest" />
+      <option name="METHOD_NAME" value="countChinese" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration name="CheckerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="misty-utils.test" />
@@ -158,6 +174,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.CharacterExTest.countChinese" />
         <item itemvalue="JUnit.ThreadExTest" />
         <item itemvalue="JUnit.CheckerTest" />
         <item itemvalue="Gradle.JudgeTest" />

@@ -4,13 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="72d1699b-9396-4385-acec-59be1e8b4601" name="Changes" comment="add Judge">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/ex/ThreadEx.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/_utils/AssertionsEx.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/ex/ThreadExTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/ex/verify/Judge.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/ex/verify/Checker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/ex/verify/JudgeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/ex/verify/CheckerTest.java" afterDir="false" />
+    <list default="true" id="72d1699b-9396-4385-acec-59be1e8b4601" name="Changes" comment="add Tracked">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/Watcher.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/WatcherTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,6 +78,7 @@
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "git-widget-placeholder": "develop",
+    "last_directory_selection": "C:/Users/aerylin/IdeaProjects/misty-utils/src/main/java/org/misty/utils",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -106,7 +103,7 @@
       <recent name="org.misty._utils" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.TrackedTest">
+  <component name="RunManager" selected="JUnit.WatcherTest">
     <configuration name="CharacterExTest.countChinese" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="misty-utils.test" />
       <extension name="coverage">
@@ -119,21 +116,6 @@
       <option name="MAIN_CLASS_NAME" value="org.misty.utils.ex.CharacterExTest" />
       <option name="METHOD_NAME" value="countChinese" />
       <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CheckerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="misty-utils.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.misty.utils.ex.verify.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.misty.utils.ex.verify" />
-      <option name="MAIN_CLASS_NAME" value="org.misty.utils.ex.verify.CheckerTest" />
-      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -184,13 +166,28 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="WatcherTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="misty-utils.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.misty.utils.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.misty.utils" />
+      <option name="MAIN_CLASS_NAME" value="org.misty.utils.WatcherTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.WatcherTest" />
         <item itemvalue="JUnit.TrackedTest" />
         <item itemvalue="JUnit.MathExTest.factorial" />
         <item itemvalue="JUnit.CharacterExTest.countChinese" />
         <item itemvalue="JUnit.ThreadExTest" />
-        <item itemvalue="JUnit.CheckerTest" />
       </list>
     </recent_temporary>
   </component>
@@ -210,7 +207,7 @@
       <workItem from="1698293111530" duration="2265000" />
       <workItem from="1698718543336" duration="1662000" />
       <workItem from="1698736164086" duration="608000" />
-      <workItem from="1698820131314" duration="803000" />
+      <workItem from="1698820131314" duration="1148000" />
     </task>
     <task id="LOCAL-00001" summary="add Judge">
       <option name="closed" value="true" />
@@ -220,7 +217,47 @@
       <option name="project" value="LOCAL" />
       <updated>1698051926029</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="change class name from Judge to Checker">
+      <option name="closed" value="true" />
+      <created>1698895405273</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1698895405273</updated>
+    </task>
+    <task id="LOCAL-00003" summary="add ThreadEx">
+      <option name="closed" value="true" />
+      <created>1698895415850</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1698895415850</updated>
+    </task>
+    <task id="LOCAL-00004" summary="add CharacterEx">
+      <option name="closed" value="true" />
+      <created>1698895507971</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1698895507971</updated>
+    </task>
+    <task id="LOCAL-00005" summary="add MathEx">
+      <option name="closed" value="true" />
+      <created>1698895558575</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1698895558575</updated>
+    </task>
+    <task id="LOCAL-00006" summary="add Tracked">
+      <option name="closed" value="true" />
+      <created>1698895663623</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1698895663623</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -239,7 +276,12 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add Judge" />
-    <option name="LAST_COMMIT_MESSAGE" value="add Judge" />
+    <MESSAGE value="change class name from Judge to Checker" />
+    <MESSAGE value="add ThreadEx" />
+    <MESSAGE value="add CharacterEx" />
+    <MESSAGE value="add MathEx" />
+    <MESSAGE value="add Tracked" />
+    <option name="LAST_COMMIT_MESSAGE" value="add Tracked" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/misty_utils$JudgeTest.ic" NAME="JudgeTest Coverage Results" MODIFIED="1698051751125" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="72d1699b-9396-4385-acec-59be1e8b4601" name="Changes" comment="add Combinations">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/BitFlag.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/BitFlagTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="72d1699b-9396-4385-acec-59be1e8b4601" name="Changes" comment="add BitFlag">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/LongFlag.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/LongFlagTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/BitFlag.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/IntFlag.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/BitFlagTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/IntFlagTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,22 +107,7 @@
       <recent name="org.misty._utils" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.BitFlagTest">
-    <configuration name="BitFlagTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="misty-utils.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.misty.utils.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.misty.utils" />
-      <option name="MAIN_CLASS_NAME" value="org.misty.utils.BitFlagTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.LongFlagTest">
     <configuration name="CombinationsTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="misty-utils.test" />
       <extension name="coverage">
@@ -152,7 +138,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TrackedTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="IntFlagTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="misty-utils.test" />
       <extension name="coverage">
         <pattern>
@@ -161,7 +147,22 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="org.misty.utils" />
-      <option name="MAIN_CLASS_NAME" value="org.misty.utils.TrackedTest" />
+      <option name="MAIN_CLASS_NAME" value="org.misty.utils.IntFlagTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LongFlagTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="misty-utils.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.misty.utils.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.misty.utils" />
+      <option name="MAIN_CLASS_NAME" value="org.misty.utils.LongFlagTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -184,11 +185,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.BitFlagTest" />
+        <item itemvalue="JUnit.LongFlagTest" />
+        <item itemvalue="JUnit.IntFlagTest" />
         <item itemvalue="JUnit.CombinationsTest" />
         <item itemvalue="JUnit.ExecutorSwitchTest" />
         <item itemvalue="JUnit.WatcherTest" />
-        <item itemvalue="JUnit.TrackedTest" />
       </list>
     </recent_temporary>
   </component>
@@ -209,7 +210,7 @@
       <workItem from="1698718543336" duration="1662000" />
       <workItem from="1698736164086" duration="608000" />
       <workItem from="1698820131314" duration="1322000" />
-      <workItem from="1698895878906" duration="1433000" />
+      <workItem from="1698895878906" duration="1905000" />
     </task>
     <task id="LOCAL-00001" summary="add Judge">
       <option name="closed" value="true" />
@@ -283,7 +284,15 @@
       <option name="project" value="LOCAL" />
       <updated>1698895847193</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="add BitFlag">
+      <option name="closed" value="true" />
+      <created>1698898160357</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1698898160357</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -310,7 +319,8 @@
     <MESSAGE value="add Watcher" />
     <MESSAGE value="add ExecutorSwitch" />
     <MESSAGE value="add Combinations" />
-    <option name="LAST_COMMIT_MESSAGE" value="add Combinations" />
+    <MESSAGE value="add BitFlag" />
+    <option name="LAST_COMMIT_MESSAGE" value="add BitFlag" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/misty_utils$JudgeTest.ic" NAME="JudgeTest Coverage Results" MODIFIED="1698051751125" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

@@ -1,21 +1,21 @@
 package org.misty.utils;
 
-public class BitFlag {
+public class IntFlag {
 
-    public static BitFlag create() {
-        return new BitFlag();
+    public static IntFlag create() {
+        return new IntFlag();
     }
 
-    public static BitFlag create(int flags) {
-        return new BitFlag(flags);
+    public static IntFlag create(int flags) {
+        return new IntFlag(flags);
     }
 
     private int flags = 0;
 
-    public BitFlag() {
+    public IntFlag() {
     }
 
-    public BitFlag(int flags) {
+    public IntFlag(int flags) {
         this.flags = flags;
     }
 

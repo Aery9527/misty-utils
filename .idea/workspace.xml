@@ -103,19 +103,18 @@
       <recent name="org.misty._utils" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ExecutorSwitchTest">
-    <configuration name="CharacterExTest.countChinese" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.CombinationsTest">
+    <configuration name="CombinationsTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="misty-utils.test" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.misty.utils.ex.*" />
+          <option name="PATTERN" value="org.misty.utils.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="org.misty.utils.ex" />
-      <option name="MAIN_CLASS_NAME" value="org.misty.utils.ex.CharacterExTest" />
-      <option name="METHOD_NAME" value="countChinese" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="PACKAGE_NAME" value="org.misty.utils" />
+      <option name="MAIN_CLASS_NAME" value="org.misty.utils.CombinationsTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -183,11 +182,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.CombinationsTest" />
         <item itemvalue="JUnit.ExecutorSwitchTest" />
         <item itemvalue="JUnit.WatcherTest" />
         <item itemvalue="JUnit.TrackedTest" />
         <item itemvalue="JUnit.MathExTest.factorial" />
-        <item itemvalue="JUnit.CharacterExTest.countChinese" />
       </list>
     </recent_temporary>
   </component>

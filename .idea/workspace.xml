@@ -4,18 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="72d1699b-9396-4385-acec-59be1e8b4601" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/ex/verify/Judge.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/ex/verify/JudgeTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="72d1699b-9396-4385-acec-59be1e8b4601" name="Changes" comment="add Judge">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/ex/ThreadEx.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/_utils/AssertionsEx.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/ex/ThreadExTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/ex/verify/Judge.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/ex/verify/Checker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/ex/verify/JudgeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/ex/verify/CheckerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager">
+    <option name="groupingKeys">
+      <option value="module" />
+    </option>
   </component>
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
@@ -73,7 +78,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "com.google.cloudcode.ide_session_index": "20231023_0001",
+    "com.google.cloudcode.ide_session_index": "20231101_0002",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "git-widget-placeholder": "develop",
@@ -88,7 +93,15 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="JUnit.JudgeTest">
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="org.misty.utils.ex.verify" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.ThreadExTest">
     <configuration name="JudgeTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -113,7 +126,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="JudgeTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CheckerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="misty-utils.test" />
       <extension name="coverage">
         <pattern>
@@ -122,7 +135,22 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="org.misty.utils.ex.verify" />
-      <option name="MAIN_CLASS_NAME" value="org.misty.utils.ex.verify.JudgeTest" />
+      <option name="MAIN_CLASS_NAME" value="org.misty.utils.ex.verify.CheckerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ThreadExTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="misty-utils.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.misty.utils.ex.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.misty.utils.ex" />
+      <option name="MAIN_CLASS_NAME" value="org.misty.utils.ex.ThreadExTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -130,7 +158,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.JudgeTest" />
+        <item itemvalue="JUnit.ThreadExTest" />
+        <item itemvalue="JUnit.CheckerTest" />
         <item itemvalue="Gradle.JudgeTest" />
       </list>
     </recent_temporary>
@@ -145,8 +174,23 @@
       <updated>1697794736240</updated>
       <workItem from="1697794737331" duration="43000" />
       <workItem from="1698050929543" duration="181000" />
-      <workItem from="1698051130868" duration="615000" />
+      <workItem from="1698051130868" duration="1571000" />
+      <workItem from="1698114348139" duration="1744000" />
+      <workItem from="1698205495163" duration="37000" />
+      <workItem from="1698293111530" duration="2265000" />
+      <workItem from="1698718543336" duration="1662000" />
+      <workItem from="1698736164086" duration="608000" />
+      <workItem from="1698820131314" duration="803000" />
     </task>
+    <task id="LOCAL-00001" summary="add Judge">
+      <option name="closed" value="true" />
+      <created>1698051926029</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1698051926029</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -163,7 +207,13 @@
       </map>
     </option>
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="add Judge" />
+    <option name="LAST_COMMIT_MESSAGE" value="add Judge" />
+  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/misty_utils$JudgeTest.ic" NAME="JudgeTest Coverage Results" MODIFIED="1698051699401" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/misty_utils$JudgeTest.ic" NAME="JudgeTest Coverage Results" MODIFIED="1698051751125" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>org.misty.utils.ex.verify.*</FILTER>
+    </SUITE>
   </component>
 </project>

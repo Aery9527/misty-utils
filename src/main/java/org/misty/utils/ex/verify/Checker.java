@@ -4,7 +4,7 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.Optional;
 
-public class Judge {
+public class Checker {
 
     @SuppressWarnings("rawtypes")
     public static boolean isNullOrEmpty(Object o) {

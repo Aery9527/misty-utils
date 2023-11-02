@@ -98,10 +98,15 @@
       <recent name="" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="org.misty.utils.ex" />
       <recent name="org.misty.utils.ex.verify" />
     </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.misty.utils.ex" />
+      <recent name="org.misty._utils" />
+    </key>
   </component>
-  <component name="RunManager" selected="JUnit.CharacterExTest.countChinese">
+  <component name="RunManager" selected="JUnit.MathExTest.factorial">
     <configuration name="JudgeTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -157,6 +162,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="MathExTest.factorial" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="misty-utils.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.misty.utils.ex.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.misty.utils.ex" />
+      <option name="MAIN_CLASS_NAME" value="org.misty.utils.ex.MathExTest" />
+      <option name="METHOD_NAME" value="factorial" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ThreadExTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="misty-utils.test" />
       <extension name="coverage">
@@ -174,6 +195,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.MathExTest.factorial" />
         <item itemvalue="JUnit.CharacterExTest.countChinese" />
         <item itemvalue="JUnit.ThreadExTest" />
         <item itemvalue="JUnit.CheckerTest" />

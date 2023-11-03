@@ -85,7 +85,6 @@ public class Permutations<ElementType> extends Combinatorics<ElementType, Permut
         }
     };
 
-
     public static <ElementType> Permutations<ElementType> of(ElementType... elements) {
         return new Permutations<>(Tracked.create(), Arrays.asList(elements), false);
     }
@@ -133,7 +132,9 @@ public class Permutations<ElementType> extends Combinatorics<ElementType, Permut
      * @return n^r
      */
     public static long numberOfRepeat(int n, int r) {
-        return (long) Math.pow(n, r);
+        return IntStream.range(0, r)
+                .mapToLong(i -> n)
+                .reduce(1, (a, b) -> a * n);
     }
 
     /**

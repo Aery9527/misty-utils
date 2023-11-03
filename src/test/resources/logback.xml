@@ -3,7 +3,7 @@
     <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
 
     <property name="CONSOLE_PATTERN"
-              value="%d{HH:mm:ss.SSS} ${LOG_LEVEL_PATTERN:-%5p} [%thread] %logger{0}.%M\\(%F:%L\\) : %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"/>
+              value="%d{HH:mm:ss.SSS} ${LOG_LEVEL_PATTERN:-%5p} [%thread] %logger{0}.%M\(%F:%L\) : %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"/>
 
     <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
@@ -15,10 +15,10 @@
         </encoder>
     </appender>
 
-    <root level="WARN">
+    <root level="INFO">
         <appender-ref ref="console"/>
     </root>
 
-    <logger name="org.aery" level="INFO"/>
+    <logger name="org.misty" level="DEBUG"/>
 
 </configuration>

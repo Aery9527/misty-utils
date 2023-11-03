@@ -4,19 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="72d1699b-9396-4385-acec-59be1e8b4601" name="Changes" comment="add LongFlag">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/flag/BitFlag.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/flag/DecimalFlag.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/flag/IntFlag.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/flag/LongFlag.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/flag/DecimalFlagTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/flag/IntFlagTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/flag/LongFlagTest.java" afterDir="false" />
+    <list default="true" id="72d1699b-9396-4385-acec-59be1e8b4601" name="Changes" comment="add BitFlag series">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/collection/ListElement.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/combinatorics/Combinations.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/combinatorics/Combinatorics.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/combinatorics/Permutations.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/collection/ListElementTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/combinatorics/CombinationsTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/combinatorics/CombinatoricsTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/combinatorics/PermutationsTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/IntFlag.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/LongFlag.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/IntFlagTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/LongFlagTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/Combinations.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/CombinationsTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/logback.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/logback.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,12 +84,12 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "com.google.cloudcode.ide_session_index": "20231103_0000",
+    "com.google.cloudcode.ide_session_index": "20231103_0001",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "git-widget-placeholder": "develop",
     "last_directory_selection": "C:/Users/aerylin/IdeaProjects/misty-utils/src/main/java/org/misty/utils",
-    "last_opened_file_path": "C:/Users/aerylin/IdeaProjects/misty-utils/src/main/java/org/misty/utils/flag",
+    "last_opened_file_path": "C:/Users/aerylin/IdeaProjects/misty-utils/src/main/java/org/misty/utils/combinatorics",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -103,32 +103,27 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\aerylin\IdeaProjects\misty-utils\src\main\java\org\misty\utils\combinatorics" />
       <recent name="C:\Users\aerylin\IdeaProjects\misty-utils\src\main\java\org\misty\utils\flag" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="org.misty.utils.combinatorics" />
+      <recent name="org.misty.utils.collection" />
       <recent name="org.misty.utils.flag" />
       <recent name="org.misty.utils" />
       <recent name="org.misty.utils.ex" />
-      <recent name="org.misty.utils.ex.verify" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.misty.utils.collection" />
       <recent name="org.misty.utils" />
       <recent name="org.misty.utils.ex" />
       <recent name="org.misty._utils" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.All in misty-utils.test">
-    <configuration name="All in misty-utils" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="misty-utils" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="TEST_OBJECT" value="package" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.PermutationsTest.withParallel">
     <configuration name="All in misty-utils.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="misty-utils.test" />
       <option name="PACKAGE_NAME" value="" />
@@ -137,47 +132,62 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="IntFlagTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CombinationsTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="misty-utils.test" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.misty.utils.*" />
+          <option name="PATTERN" value="org.misty.utils.combinatorics.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="org.misty.utils" />
-      <option name="MAIN_CLASS_NAME" value="org.misty.utils.IntFlagTest" />
+      <option name="PACKAGE_NAME" value="org.misty.utils.combinatorics" />
+      <option name="MAIN_CLASS_NAME" value="org.misty.utils.combinatorics.CombinationsTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LongFlagTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ListElementTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="misty-utils.test" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.misty.utils.*" />
+          <option name="PATTERN" value="org.misty.utils.collection.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="org.misty.utils" />
-      <option name="MAIN_CLASS_NAME" value="org.misty.utils.LongFlagTest" />
+      <option name="PACKAGE_NAME" value="org.misty.utils.collection" />
+      <option name="MAIN_CLASS_NAME" value="org.misty.utils.collection.ListElementTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LongFlagTest.reset" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PermutationsTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="misty-utils.test" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.misty.utils.flag.*" />
+          <option name="PATTERN" value="org.misty.utils.combinatorics.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="org.misty.utils.flag" />
-      <option name="MAIN_CLASS_NAME" value="org.misty.utils.flag.LongFlagTest" />
-      <option name="METHOD_NAME" value="reset" />
+      <option name="PACKAGE_NAME" value="org.misty.utils.combinatorics" />
+      <option name="MAIN_CLASS_NAME" value="org.misty.utils.combinatorics.PermutationsTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PermutationsTest.withParallel" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="misty-utils.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.misty.utils.combinatorics.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.misty.utils.combinatorics" />
+      <option name="MAIN_CLASS_NAME" value="org.misty.utils.combinatorics.PermutationsTest" />
+      <option name="METHOD_NAME" value="withParallel" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -185,11 +195,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.PermutationsTest.withParallel" />
+        <item itemvalue="JUnit.PermutationsTest" />
+        <item itemvalue="JUnit.CombinationsTest" />
+        <item itemvalue="JUnit.ListElementTest" />
         <item itemvalue="JUnit.All in misty-utils.test" />
-        <item itemvalue="JUnit.LongFlagTest.reset" />
-        <item itemvalue="JUnit.All in misty-utils" />
-        <item itemvalue="JUnit.LongFlagTest" />
-        <item itemvalue="JUnit.IntFlagTest" />
       </list>
     </recent_temporary>
   </component>
@@ -210,7 +220,8 @@
       <workItem from="1698718543336" duration="1662000" />
       <workItem from="1698736164086" duration="608000" />
       <workItem from="1698820131314" duration="1322000" />
-      <workItem from="1698895878906" duration="5045000" />
+      <workItem from="1698895878906" duration="5117000" />
+      <workItem from="1698998629681" duration="308000" />
     </task>
     <task id="LOCAL-00001" summary="add Judge">
       <option name="closed" value="true" />
@@ -300,7 +311,15 @@
       <option name="project" value="LOCAL" />
       <updated>1698898604286</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="add BitFlag series">
+      <option name="closed" value="true" />
+      <created>1698992863491</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1698992863491</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -329,7 +348,8 @@
     <MESSAGE value="add Combinations" />
     <MESSAGE value="add BitFlag" />
     <MESSAGE value="add LongFlag" />
-    <option name="LAST_COMMIT_MESSAGE" value="add LongFlag" />
+    <MESSAGE value="add BitFlag series" />
+    <option name="LAST_COMMIT_MESSAGE" value="add BitFlag series" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/misty_utils$JudgeTest.ic" NAME="JudgeTest Coverage Results" MODIFIED="1698051751125" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

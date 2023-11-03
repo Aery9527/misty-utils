@@ -1,4 +1,4 @@
-package org.misty.utils;
+package org.misty.utils.combinatorics;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -8,11 +8,28 @@ import org.slf4j.LoggerFactory;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.function.Supplier;
 
 class CombinationsTest {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
+
+    /**
+     * 測試重複組合數
+     */
+    @Test
+    public void numberOfRepeat() {
+        Assertions.assertThat(Combinations.numberOfRepeat(5, 3)).isEqualTo(35);
+        Assertions.assertThat(Combinations.numberOfRepeat(9, 5)).isEqualTo(1287);
+    }
+
+    /**
+     * 測試不重複組合數
+     */
+    @Test
+    public void numberOfUnique() {
+        Assertions.assertThat(Combinations.numberOfUnique(5, 3)).isEqualTo(10);
+        Assertions.assertThat(Combinations.numberOfUnique(9, 5)).isEqualTo(126);
+    }
 
     /**
      * 測試建構
@@ -51,37 +68,22 @@ class CombinationsTest {
     }
 
     /**
-     * 測試重複組合數
-     */
-    @Test
-    public void numberOfRepeat() {
-        Assertions.assertThat(Combinations.numberOfRepeat(5, 3)).isEqualTo(35);
-        Assertions.assertThat(Combinations.numberOfRepeat(9, 5)).isEqualTo(1287);
-    }
-
-    /**
-     * 測試不重複組合數
-     */
-    @Test
-    public void numberOfUnique() {
-        Assertions.assertThat(Combinations.numberOfUnique(5, 3)).isEqualTo(10);
-        Assertions.assertThat(Combinations.numberOfUnique(9, 5)).isEqualTo(126);
-    }
-
-    /**
      * 測試不中斷
      */
     @Test
     public void foreach_continue() {
+        int combinationSize = 2;
+        boolean repeat = true;
+
         Combinations<String> combinations = Combinations.of("A", "B", "C");
         List<List<String>> temp = new ArrayList<>();
-        boolean flag = combinations.foreach(2, true, (times, combination) -> {
+        boolean flag = combinations.foreach(combinationSize, repeat, (times, combination) -> {
             temp.add(combination);
-            return Combinations.FOREACH_CONTINUE;
+            return Combinatorics.FOREACH_CONTINUE;
         });
 
-        Assertions.assertThat(temp.size()).isEqualTo(6);
-        Assertions.assertThat(flag).isEqualTo(Combinations.FOREACH_CONTINUE);
+        Assertions.assertThat(temp.size()).isEqualTo(Combinations.numberOf(combinations.getElements().size(), combinationSize, repeat));
+        Assertions.assertThat(flag).isEqualTo(Combinatorics.FOREACH_CONTINUE);
     }
 
     /**
@@ -89,17 +91,19 @@ class CombinationsTest {
      */
     @Test
     public void foreach_break() {
+        int combinationSize = 2;
+        boolean repeat = true;
         int testCount = 2;
 
         Combinations<String> combinations = Combinations.of("A", "B", "C");
         List<List<String>> temp = new ArrayList<>();
-        boolean flag = combinations.foreach(2, true, (times, combination) -> {
+        boolean flag = combinations.foreach(combinationSize, repeat, (times, combination) -> {
             temp.add(combination);
-            return temp.size() < testCount ? Combinations.FOREACH_CONTINUE : Combinations.FOREACH_BREAK;
+            return temp.size() < testCount ? Combinatorics.FOREACH_CONTINUE : Combinatorics.FOREACH_BREAK;
         });
 
         Assertions.assertThat(temp.size()).isEqualTo(testCount);
-        Assertions.assertThat(flag).isEqualTo(Combinations.FOREACH_BREAK);
+        Assertions.assertThat(flag).isEqualTo(Combinatorics.FOREACH_BREAK);
     }
 
     /**
@@ -124,7 +128,7 @@ class CombinationsTest {
         Assertions.assertThat(temp.get(index++)).containsExactly("B", "C");
         Assertions.assertThat(temp.get(index++)).containsExactly("C", "C");
 
-        Assertions.assertThat(temp.size()).isEqualTo(Combinations.numberOfRepeat(combinations.getElements().size(), combinationSize));
+        Assertions.assertThat(temp.size()).isEqualTo(Combinations.numberOf(combinations.getElements().size(), combinationSize, repeat));
     }
 
     /**
@@ -146,7 +150,7 @@ class CombinationsTest {
         Assertions.assertThat(temp.get(index++)).containsExactly("A", "C");
         Assertions.assertThat(temp.get(index++)).containsExactly("B", "C");
 
-        Assertions.assertThat(temp.size()).isEqualTo(Combinations.numberOfUnique(combinations.getElements().size(), combinationSize));
+        Assertions.assertThat(temp.size()).isEqualTo(Combinations.numberOf(combinations.getElements().size(), combinationSize, repeat));
     }
 
     /**
@@ -187,14 +191,14 @@ class CombinationsTest {
             }
         });
 
-        printCombinations("expectedResult", combinationSize, expectedResult);
+        CombinatoricsTest.print("expectedResult", combinationSize, expectedResult);
 
         List<List<String>> actualResult = new ArrayList<>();
         combinations.foreachMostTimes(combinationSize, mostTimes, (times, combination) -> {
             actualResult.add(combination);
         });
 
-        printCombinations("actualResult", combinationSize, actualResult);
+        CombinatoricsTest.print("actualResult", combinationSize, actualResult);
 
         Assertions.assertThat(actualResult).containsExactlyElementsOf(expectedResult);
     }
@@ -219,14 +223,14 @@ class CombinationsTest {
             }
         });
 
-        printCombinations("expectedResult", combinationSize, expectedResult);
+        CombinatoricsTest.print("expectedResult", combinationSize, expectedResult);
 
         List<List<String>> actualResult = new ArrayList<>();
         combinations.foreachLeastTimes(combinationSize, leastTimes, (times, combination) -> {
             actualResult.add(combination);
         });
 
-        printCombinations("actualResult", combinationSize, actualResult);
+        CombinatoricsTest.print("actualResult", combinationSize, actualResult);
 
         Assertions.assertThat(actualResult).containsExactlyElementsOf(expectedResult);
     }
@@ -252,14 +256,14 @@ class CombinationsTest {
             }
         });
 
-        printCombinations("expectedResult", combinationSize, expectedResult);
+        CombinatoricsTest.print("expectedResult", combinationSize, expectedResult);
 
         List<List<String>> actualResult = new ArrayList<>();
         combinations.foreachTimes(combinationSize, mostTimes, leastTimes, (times, combination) -> {
             actualResult.add(combination);
         });
 
-        printCombinations("actualResult", combinationSize, actualResult);
+        CombinatoricsTest.print("actualResult", combinationSize, actualResult);
 
         Assertions.assertThat(actualResult).containsExactlyElementsOf(expectedResult);
     }
@@ -283,34 +287,6 @@ class CombinationsTest {
         combinations.waitFinish(); // 這裡要等待fork出去的thread都執行完再往下
 
         Assertions.assertThat(threads).doesNotContain(Thread.currentThread());
-    }
-
-    private void printCombinations(String title, int combinationSize, List<List<String>> list) {
-        System.out.println(title + "(" + list.size() + "):");
-
-        list.stream().reduce(new ArrayList<List<String>>(), (result, combination) -> {
-                    Supplier<List<String>> nextTarget = () -> {
-                        List<String> target = new ArrayList<>();
-                        result.add(target);
-                        return target;
-                    };
-
-                    List<String> target;
-                    if (result.isEmpty()) {
-                        target = nextTarget.get();
-                    } else {
-                        target = result.get(result.size() - 1);
-                        if (target.size() == combinationSize) {
-                            target = nextTarget.get();
-                        }
-                    }
-
-                    target.add(combination.toString());
-
-                    return result;
-                }, (result1, result2) -> null)
-                .forEach(result -> System.out.println(String.join(" ", result)));
-        System.out.println();
     }
 
 }

@@ -1,7 +1,7 @@
 package org.misty.utils.ex;
 
-import org.misty.utils.ex.fi.RunnableEx;
-import org.misty.utils.ex.fi.SupplierEx;
+import org.misty.utils.fi.RunnableEx;
+import org.misty.utils.fi.SupplierEx;
 
 import java.util.concurrent.locks.ReentrantLock;
 

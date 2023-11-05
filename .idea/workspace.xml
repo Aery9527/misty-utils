@@ -4,16 +4,110 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="72d1699b-9396-4385-acec-59be1e8b4601" name="Changes" comment="add Combinatorics" />
+    <list default="true" id="85a0b3b9-499c-4427-8178-fde3848053e3" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/sys/JvmInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/sys/JvmInfoTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/ExecutorSwitch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/ExecutorSwitch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/ex/ReentrantLockEx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/ex/ReentrantLockEx.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/ex/fi/BiConsumerEx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/BiConsumerEx.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/ex/fi/BiFunctionEx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/BiFunctionEx.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/ex/fi/BiPredicateEx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/BiPredicateEx.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/ex/fi/BinaryOperatorEx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/BinaryOperatorEx.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/ex/fi/BooleanSupplierEx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/BooleanSupplierEx.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/ex/fi/ConsumerEx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/ConsumerEx.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/ex/fi/DoubleBinaryOperatorEx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/DoubleBinaryOperatorEx.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/ex/fi/DoubleConsumerEx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/DoubleConsumerEx.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/ex/fi/DoubleFunctionEx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/DoubleFunctionEx.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/ex/fi/DoublePredicateEx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/DoublePredicateEx.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/ex/fi/DoubleSupplierEx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/DoubleSupplierEx.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/ex/fi/DoubleToIntFunctionEx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/DoubleToIntFunctionEx.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/ex/fi/DoubleToLongFunctionEx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/DoubleToLongFunctionEx.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/ex/fi/DoubleUnaryOperatorEx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/DoubleUnaryOperatorEx.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/ex/fi/FunctionEx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/FunctionEx.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/ex/fi/FunctionalInterfaceEx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/FunctionalInterfaceEx.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/ex/fi/IntBinaryOperatorEx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/IntBinaryOperatorEx.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/ex/fi/IntConsumerEx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/IntConsumerEx.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/ex/fi/IntFunctionEx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/IntFunctionEx.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/ex/fi/IntPredicateEx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/IntPredicateEx.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/ex/fi/IntSupplierEx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/IntSupplierEx.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/ex/fi/IntToDoubleFunctionEx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/IntToDoubleFunctionEx.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/ex/fi/IntToLongFunctionEx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/IntToLongFunctionEx.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/ex/fi/IntUnaryOperatorEx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/IntUnaryOperatorEx.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/ex/fi/LongBinaryOperatorEx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/LongBinaryOperatorEx.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/ex/fi/LongConsumerEx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/LongConsumerEx.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/ex/fi/LongFunctionEx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/LongFunctionEx.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/ex/fi/LongPredicateEx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/LongPredicateEx.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/ex/fi/LongSupplierEx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/LongSupplierEx.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/ex/fi/LongToDoubleFunctionEx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/LongToDoubleFunctionEx.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/ex/fi/LongToIntFunctionEx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/LongToIntFunctionEx.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/ex/fi/LongUnaryOperatorEx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/LongUnaryOperatorEx.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/ex/fi/ObjDoubleConsumerEx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/ObjDoubleConsumerEx.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/ex/fi/ObjIntConsumerEx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/ObjIntConsumerEx.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/ex/fi/ObjLongConsumerEx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/ObjLongConsumerEx.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/ex/fi/PredicateEx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/PredicateEx.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/ex/fi/RunnableEx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/RunnableEx.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/ex/fi/SupplierEx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/SupplierEx.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/ex/fi/ToDoubleBiFunctionEx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/ToDoubleBiFunctionEx.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/ex/fi/ToDoubleFunctionEx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/ToDoubleFunctionEx.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/ex/fi/ToIntBiFunctionEx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/ToIntBiFunctionEx.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/ex/fi/ToIntFunctionEx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/ToIntFunctionEx.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/ex/fi/ToLongBiFunctionEx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/ToLongBiFunctionEx.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/ex/fi/ToLongFunctionEx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/ToLongFunctionEx.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/ex/fi/UnaryOperatorEx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/UnaryOperatorEx.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/ex/fi/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/package-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/ex/verify/Checker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/verify/Checker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/ex/fi/BiConsumerExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/BiConsumerExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/ex/fi/BiFunctionExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/BiFunctionExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/ex/fi/BiPredicateExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/BiPredicateExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/ex/fi/BooleanSupplierExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/BooleanSupplierExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/ex/fi/ConsumerExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/ConsumerExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/ex/fi/DoubleBinaryOperatorExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/DoubleBinaryOperatorExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/ex/fi/DoubleConsumerExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/DoubleConsumerExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/ex/fi/DoubleFunctionExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/DoubleFunctionExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/ex/fi/DoublePredicateExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/DoublePredicateExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/ex/fi/DoubleSupplierExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/DoubleSupplierExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/ex/fi/DoubleToIntFunctionExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/DoubleToIntFunctionExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/ex/fi/DoubleToLongFunctionExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/DoubleToLongFunctionExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/ex/fi/DoubleUnaryOperatorExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/DoubleUnaryOperatorExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/ex/fi/FunctionExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/FunctionExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/ex/fi/FunctionalInterfaceExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/FunctionalInterfaceExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/ex/fi/IntBinaryOperatorExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/IntBinaryOperatorExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/ex/fi/IntConsumerExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/IntConsumerExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/ex/fi/IntFunctionExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/IntFunctionExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/ex/fi/IntPredicateExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/IntPredicateExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/ex/fi/IntSupplierExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/IntSupplierExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/ex/fi/IntToDoubleFunctionExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/IntToDoubleFunctionExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/ex/fi/IntToLongFunctionExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/IntToLongFunctionExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/ex/fi/IntUnaryOperatorExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/IntUnaryOperatorExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/ex/fi/LongBinaryOperatorExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/LongBinaryOperatorExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/ex/fi/LongConsumerExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/LongConsumerExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/ex/fi/LongFunctionExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/LongFunctionExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/ex/fi/LongPredicateExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/LongPredicateExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/ex/fi/LongSupplierExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/LongSupplierExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/ex/fi/LongToDoubleFunctionExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/LongToDoubleFunctionExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/ex/fi/LongToIntFunctionExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/LongToIntFunctionExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/ex/fi/LongUnaryOperatorExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/LongUnaryOperatorExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/ex/fi/ObjDoubleConsumerExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/ObjDoubleConsumerExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/ex/fi/ObjIntConsumerExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/ObjIntConsumerExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/ex/fi/ObjLongConsumerExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/ObjLongConsumerExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/ex/fi/PredicateExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/PredicateExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/ex/fi/RunnableExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/RunnableExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/ex/fi/SupplierExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/SupplierExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/ex/fi/ToDoubleBiFunctionExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/ToDoubleBiFunctionExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/ex/fi/ToDoubleFunctionExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/ToDoubleFunctionExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/ex/fi/ToIntBiFunctionExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/ToIntBiFunctionExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/ex/fi/ToIntFunctionExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/ToIntFunctionExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/ex/fi/ToLongBiFunctionExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/ToLongBiFunctionExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/ex/fi/ToLongFunctionExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/ToLongFunctionExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/ex/verify/CheckerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/verify/CheckerTest.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="ChangesViewManager">
-    <option name="groupingKeys">
-      <option value="module" />
-    </option>
   </component>
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
@@ -48,16 +142,13 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GithubDefaultAccount">
-    <option name="defaultAccountId" value="cc36d827-71b7-4129-8251-944d22f3e425" />
-  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 3
-}</component>
-  <component name="ProjectId" id="2X1RjkcP95pUWoCkeog3Q8qTFqa" />
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 1
+}]]></component>
+  <component name="ProjectId" id="2XkQboKrfSpKyekNyFZLrmsUNTp" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
@@ -66,123 +157,70 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;com.google.cloudcode.ide_session_index&quot;: &quot;20231103_0003&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;develop&quot;,
-    &quot;last_directory_selection&quot;: &quot;C:/Users/aerylin/IdeaProjects/misty-utils/src/main/java/org/misty/utils&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/aerylin/IdeaProjects/misty-utils/src/main/java/org/misty/utils/combinatorics&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;File.Encoding&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "com.google.cloudcode.ide_session_index": "20231105_0001",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "git-widget-placeholder": "develop",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\aerylin\IdeaProjects\misty-utils\src\main\java\org\misty\utils\combinatorics" />
-      <recent name="C:\Users\aerylin\IdeaProjects\misty-utils\src\main\java\org\misty\utils\flag" />
-    </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
-      <recent name="org.misty.utils.combinatorics" />
-      <recent name="org.misty.utils.collection" />
-      <recent name="org.misty.utils.flag" />
-      <recent name="org.misty.utils" />
-      <recent name="org.misty.utils.ex" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="org.misty.utils.collection" />
-      <recent name="org.misty.utils" />
-      <recent name="org.misty.utils.ex" />
-      <recent name="org.misty._utils" />
+      <recent name="org.misty.utils.sys" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.PermutationsTest.numberOfRepeat">
-    <configuration name="CombinationsTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="misty-utils.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.misty.utils.combinatorics.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.misty.utils.combinatorics" />
-      <option name="MAIN_CLASS_NAME" value="org.misty.utils.combinatorics.CombinationsTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+  <component name="RunManager" selected="JUnit.JvmInfoTest.getArguments">
+    <configuration name="JvmInfoTest.getArguments" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;org.misty.utils.sys.JvmInfoTest.getArguments&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
     </configuration>
-    <configuration name="ListElementTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="JvmInfoTest.getArguments" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="misty-utils.test" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.misty.utils.collection.*" />
+          <option name="PATTERN" value="org.misty.utils.sys.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="org.misty.utils.collection" />
-      <option name="MAIN_CLASS_NAME" value="org.misty.utils.collection.ListElementTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PermutationsTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="misty-utils.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.misty.utils.combinatorics.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.misty.utils.combinatorics" />
-      <option name="MAIN_CLASS_NAME" value="org.misty.utils.combinatorics.PermutationsTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PermutationsTest.numberOfRepeat" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="misty-utils.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.misty.utils.combinatorics.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.misty.utils.combinatorics" />
-      <option name="MAIN_CLASS_NAME" value="org.misty.utils.combinatorics.PermutationsTest" />
-      <option name="METHOD_NAME" value="numberOfRepeat" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PermutationsTest.withParallel" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="misty-utils.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.misty.utils.combinatorics.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.misty.utils.combinatorics" />
-      <option name="MAIN_CLASS_NAME" value="org.misty.utils.combinatorics.PermutationsTest" />
-      <option name="METHOD_NAME" value="withParallel" />
+      <option name="PACKAGE_NAME" value="org.misty.utils.sys" />
+      <option name="MAIN_CLASS_NAME" value="org.misty.utils.sys.JvmInfoTest" />
+      <option name="METHOD_NAME" value="getArguments" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -190,174 +228,24 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.PermutationsTest.numberOfRepeat" />
-        <item itemvalue="JUnit.PermutationsTest.withParallel" />
-        <item itemvalue="JUnit.PermutationsTest" />
-        <item itemvalue="JUnit.CombinationsTest" />
-        <item itemvalue="JUnit.ListElementTest" />
+        <item itemvalue="JUnit.JvmInfoTest.getArguments" />
+        <item itemvalue="Gradle.JvmInfoTest.getArguments" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="72d1699b-9396-4385-acec-59be1e8b4601" name="Changes" comment="" />
-      <created>1697794736240</created>
+      <changelist id="85a0b3b9-499c-4427-8178-fde3848053e3" name="Changes" comment="" />
+      <created>1699170672576</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1697794736240</updated>
-      <workItem from="1697794737331" duration="43000" />
-      <workItem from="1698050929543" duration="181000" />
-      <workItem from="1698051130868" duration="1571000" />
-      <workItem from="1698114348139" duration="1744000" />
-      <workItem from="1698205495163" duration="37000" />
-      <workItem from="1698293111530" duration="2265000" />
-      <workItem from="1698718543336" duration="1662000" />
-      <workItem from="1698736164086" duration="608000" />
-      <workItem from="1698820131314" duration="1322000" />
-      <workItem from="1698895878906" duration="5117000" />
-      <workItem from="1698998629681" duration="986000" />
+      <updated>1699170672576</updated>
+      <workItem from="1699170673771" duration="1272000" />
     </task>
-    <task id="LOCAL-00001" summary="add Judge">
-      <option name="closed" value="true" />
-      <created>1698051926029</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1698051926029</updated>
-    </task>
-    <task id="LOCAL-00002" summary="change class name from Judge to Checker">
-      <option name="closed" value="true" />
-      <created>1698895405273</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1698895405273</updated>
-    </task>
-    <task id="LOCAL-00003" summary="add ThreadEx">
-      <option name="closed" value="true" />
-      <created>1698895415850</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1698895415850</updated>
-    </task>
-    <task id="LOCAL-00004" summary="add CharacterEx">
-      <option name="closed" value="true" />
-      <created>1698895507971</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1698895507971</updated>
-    </task>
-    <task id="LOCAL-00005" summary="add MathEx">
-      <option name="closed" value="true" />
-      <created>1698895558575</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1698895558575</updated>
-    </task>
-    <task id="LOCAL-00006" summary="add Tracked">
-      <option name="closed" value="true" />
-      <created>1698895663623</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1698895663623</updated>
-    </task>
-    <task id="LOCAL-00007" summary="add Watcher">
-      <option name="closed" value="true" />
-      <created>1698895713354</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1698895713354</updated>
-    </task>
-    <task id="LOCAL-00008" summary="add ExecutorSwitch">
-      <option name="closed" value="true" />
-      <created>1698895772867</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1698895772867</updated>
-    </task>
-    <task id="LOCAL-00009" summary="add Combinations">
-      <option name="closed" value="true" />
-      <created>1698895847193</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1698895847193</updated>
-    </task>
-    <task id="LOCAL-00010" summary="add BitFlag">
-      <option name="closed" value="true" />
-      <created>1698898160357</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1698898160357</updated>
-    </task>
-    <task id="LOCAL-00011" summary="add LongFlag">
-      <option name="closed" value="true" />
-      <created>1698898604286</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1698898604286</updated>
-    </task>
-    <task id="LOCAL-00012" summary="add BitFlag series">
-      <option name="closed" value="true" />
-      <created>1698992863491</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1698992863491</updated>
-    </task>
-    <task id="LOCAL-00013" summary="add Combinatorics">
-      <option name="closed" value="true" />
-      <created>1698999059352</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1698999059352</updated>
-    </task>
-    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="add Judge" />
-    <MESSAGE value="change class name from Judge to Checker" />
-    <MESSAGE value="add ThreadEx" />
-    <MESSAGE value="add CharacterEx" />
-    <MESSAGE value="add MathEx" />
-    <MESSAGE value="add Tracked" />
-    <MESSAGE value="add Watcher" />
-    <MESSAGE value="add ExecutorSwitch" />
-    <MESSAGE value="add Combinations" />
-    <MESSAGE value="add BitFlag" />
-    <MESSAGE value="add LongFlag" />
-    <MESSAGE value="add BitFlag series" />
-    <MESSAGE value="add Combinatorics" />
-    <option name="LAST_COMMIT_MESSAGE" value="add Combinatorics" />
-  </component>
-  <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/misty_utils$JudgeTest.ic" NAME="JudgeTest Coverage Results" MODIFIED="1698051751125" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>org.misty.utils.ex.verify.*</FILTER>
-    </SUITE>
   </component>
 </project>

@@ -1,6 +1,6 @@
 package org.misty.utils;
 
-import org.misty.utils.ex.fi.IntConsumerEx;
+import org.misty.utils.fi.IntConsumerEx;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

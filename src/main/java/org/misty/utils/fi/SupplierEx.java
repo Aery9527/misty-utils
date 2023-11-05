@@ -1,0 +1,11 @@
+package org.misty.utils.fi;
+
+public interface SupplierEx<ReturnType> extends FunctionalInterfaceEx {
+
+    ReturnType handle() throws Exception;
+
+    default ReturnType execute() {
+        return FunctionalInterfaceEx.wrap(this);
+    }
+
+}

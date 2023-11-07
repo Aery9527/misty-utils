@@ -115,6 +115,16 @@ public class Combinations<ElementType> extends Combinatorics<ElementType, Combin
     }
 
     @Override
+    public long numberOfRepeat(int k) {
+        return numberOfRepeat(super.getListElements().size(), k);
+    }
+
+    @Override
+    public long numberOfUnique(int k) {
+        return numberOfUnique(super.getListElements().size(), k);
+    }
+
+    @Override
     protected boolean foreach(BiPredicate<Integer, List<ListElement<ElementType>>> combinationTester, int combinationSize, boolean repeat) {
         Predicate<List<ListElement<ElementType>>> combinationReceiver = super.buildReceiver(combinationTester);
 

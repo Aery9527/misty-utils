@@ -134,7 +134,7 @@ public class Permutations<ElementType> extends Combinatorics<ElementType, Permut
     public static long numberOfRepeat(int n, int r) {
         return IntStream.range(0, r)
                 .mapToLong(i -> n)
-                .reduce(1, (a, b) -> a * n);
+                .reduce(1, (a, b) -> a * b);
     }
 
     /**
@@ -153,6 +153,16 @@ public class Permutations<ElementType> extends Combinatorics<ElementType, Permut
     }
 
     @Override
+    public long numberOfRepeat(int k) {
+        return numberOfRepeat(super.getListElements().size(), k);
+    }
+
+    @Override
+    public long numberOfUnique(int k) {
+        return numberOfUnique(super.getListElements().size(), k);
+    }
+
+    @Override
     protected boolean foreach(BiPredicate<Integer, List<ListElement<ElementType>>> permutationTester, int permutationSize, boolean repeat) {
         List<ListElement<ElementType>> elements = super.getListElements();
 
@@ -162,7 +172,7 @@ public class Permutations<ElementType> extends Combinatorics<ElementType, Permut
                 .mapToObj(i -> (ListElement<ElementType>) null)
                 .collect(Collectors.toList());
 
-        IndexUsed indexUsed;
+        Permutations.IndexUsed indexUsed;
         if (repeat) {
             indexUsed = ALLOWED_REPEAT;
         } else if (elements.size() <= LongFlag.MAX_BIT) {
@@ -176,7 +186,7 @@ public class Permutations<ElementType> extends Combinatorics<ElementType, Permut
 
     protected boolean foreach(Predicate<List<ListElement<ElementType>>> permutationReceiver,
                               List<ListElement<ElementType>> permutationTemp,
-                              IndexUsed indexUsed,
+                              Permutations.IndexUsed indexUsed,
                               int tempIndex) {
         int permutationSize = permutationTemp.size();
         boolean lastPosition = tempIndex == permutationSize;

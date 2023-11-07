@@ -17,12 +17,18 @@ class PermutationsTest {
     public void numberOfRepeat() {
         Assertions.assertThat(Permutations.numberOfRepeat(5, 3)).isEqualTo(5 * 5 * 5);
         Assertions.assertThat(Permutations.numberOfRepeat(9, 4)).isEqualTo(9 * 9 * 9 * 9);
+
+        Assertions.assertThat(Permutations.of(1, 2, 3, 4, 5).numberOfRepeat(3)).isEqualTo(5 * 5 * 5);
+        Assertions.assertThat(Permutations.of(1, 2, 3, 4, 5, 6, 7, 8, 9).numberOfRepeat(4)).isEqualTo(9 * 9 * 9 * 9);
     }
 
     @Test
     public void numberOfUnique() {
         Assertions.assertThat(Permutations.numberOfUnique(5, 3)).isEqualTo(60);
         Assertions.assertThat(Permutations.numberOfUnique(9, 4)).isEqualTo(3024);
+
+        Assertions.assertThat(Permutations.of(1, 2, 3, 4, 5).numberOfUnique(3)).isEqualTo(60);
+        Assertions.assertThat(Permutations.of(1, 2, 3, 4, 5, 6, 7, 8, 9).numberOfUnique(4)).isEqualTo(3024);
     }
 
     /**
@@ -100,6 +106,33 @@ class PermutationsTest {
         Assertions.assertThat(flag).isEqualTo(Combinatorics.FOREACH_BREAK);
     }
 
+    @Test
+    public void collect_repeat() {
+        int permutationSize = 2;
+        boolean repeat = true;
+
+        for (int testTimes = 0; testTimes < 10; testTimes++) {
+            List<List<String>> expectedResult = Collections.synchronizedList(new ArrayList<>());
+            List<List<String>> actualResult = null;
+            try {
+                Permutations<String> permutations = Permutations.of("A", "B", "C").withParallel();
+
+                permutations.foreach(permutationSize, repeat, (times, permutation) -> {
+                    expectedResult.add(permutation);
+                });
+                permutations.waitFinish();
+
+                actualResult = permutations.collect(permutationSize, repeat);
+
+                Assertions.assertThat(actualResult).containsExactlyInAnyOrderElementsOf(expectedResult);
+            } catch (Throwable e) {
+                CombinatoricsTest.print("expectedResult", permutationSize, expectedResult);
+                CombinatoricsTest.print("actualResult", permutationSize, actualResult);
+                throw e;
+            }
+        }
+    }
+
     /**
      * 測試重複出現的排列
      */
@@ -126,6 +159,33 @@ class PermutationsTest {
         Assertions.assertThat(temp.get(index++)).containsExactly("C", "C");
 
         Assertions.assertThat(temp.size()).isEqualTo(Permutations.numberOf(permutations.getElements().size(), permutationSize, repeat));
+    }
+
+    @Test
+    public void collect_unique() {
+        int permutationSize = 2;
+        boolean repeat = false;
+
+        for (int testTimes = 0; testTimes < 10; testTimes++) {
+            List<List<String>> expectedResult = Collections.synchronizedList(new ArrayList<>());
+            List<List<String>> actualResult = null;
+            try {
+                Permutations<String> permutations = Permutations.of("A", "B", "C").withParallel();
+
+                permutations.foreach(permutationSize, repeat, (times, permutation) -> {
+                    expectedResult.add(permutation);
+                });
+                permutations.waitFinish();
+
+                actualResult = permutations.collect(permutationSize, repeat);
+
+                Assertions.assertThat(actualResult).containsExactlyInAnyOrderElementsOf(expectedResult);
+            } catch (Throwable e) {
+                CombinatoricsTest.print("expectedResult", permutationSize, expectedResult);
+                CombinatoricsTest.print("actualResult", permutationSize, actualResult);
+                throw e;
+            }
+        }
     }
 
     /**
@@ -160,7 +220,7 @@ class PermutationsTest {
     public void foreach_filter() {
         Permutations<String> permutations = Permutations.of("A", "B", "C");
         List<List<String>> temp = new ArrayList<>();
-        permutations.foreach(2, (times, permutation) -> { // filter
+        permutations.foreach(2, true, (times, permutation) -> { // filter
             return permutation.get(1).content.equals("B");
         }, (times, permutation) -> { // tester
             temp.add(permutation);
@@ -170,6 +230,33 @@ class PermutationsTest {
         Assertions.assertThat(temp.get(index++)).containsExactly("A", "B");
         Assertions.assertThat(temp.get(index++)).containsExactly("B", "B");
         Assertions.assertThat(temp.get(index++)).containsExactly("C", "B");
+    }
+
+    @Test
+    public void collectMostTimes() {
+        int permutationSize = 3;
+        int mostTimes = 2;
+
+        for (int testTimes = 0; testTimes < 10; testTimes++) {
+            List<List<String>> expectedResult = Collections.synchronizedList(new ArrayList<>());
+            List<List<String>> actualResult = null;
+            try {
+                Permutations<String> permutations = Permutations.of("A", "B", "C", "D", "E").withParallel();
+
+                permutations.foreachMostTimes(permutationSize, mostTimes, (times, permutation) -> {
+                    expectedResult.add(permutation);
+                });
+                permutations.waitFinish();
+
+                actualResult = permutations.collectMostTimes(permutationSize, mostTimes);
+
+                Assertions.assertThat(actualResult).containsExactlyInAnyOrderElementsOf(expectedResult);
+            } catch (Throwable e) {
+                CombinatoricsTest.print("expectedResult", permutationSize, expectedResult);
+                CombinatoricsTest.print("actualResult", permutationSize, actualResult);
+                throw e;
+            }
+        }
     }
 
     /**
@@ -204,6 +291,34 @@ class PermutationsTest {
         Assertions.assertThat(actualResult).containsExactlyElementsOf(expectedResult);
     }
 
+    @Test
+    public void collectLeastTimes() {
+        int permutationSize = 4;
+        int leastTimes = 2;
+
+        for (int testTimes = 0; testTimes < 10; testTimes++) {
+            List<List<String>> expectedResult = Collections.synchronizedList(new ArrayList<>());
+            List<List<String>> actualResult = null;
+            try {
+                Permutations<String> permutations = Permutations.of("A", "B", "C", "D", "E").withParallel();
+
+                permutations.foreachLeastTimes(permutationSize, leastTimes, (times, permutation) -> {
+                    expectedResult.add(permutation);
+                });
+                permutations.waitFinish();
+
+                actualResult = permutations.collectLeastTimes(permutationSize, leastTimes);
+
+                Assertions.assertThat(actualResult).containsExactlyInAnyOrderElementsOf(expectedResult);
+
+            } catch (Throwable e) {
+                CombinatoricsTest.print("expectedResult", permutationSize, expectedResult);
+                CombinatoricsTest.print("actualResult", permutationSize, actualResult);
+                throw e;
+            }
+        }
+    }
+
     /**
      * 測試一個元素最少只能出現次數
      */
@@ -234,6 +349,34 @@ class PermutationsTest {
         CombinatoricsTest.print("actualResult", permutationSize, actualResult);
 
         Assertions.assertThat(actualResult).containsExactlyElementsOf(expectedResult);
+    }
+
+    @Test
+    public void collectTimes() {
+        int permutationSize = 5;
+        int mostTimes = 3;
+        int leastTimes = 2;
+
+        for (int testTimes = 0; testTimes < 10; testTimes++) {
+            List<List<String>> expectedResult = Collections.synchronizedList(new ArrayList<>());
+            List<List<String>> actualResult = null;
+            try {
+                Permutations<String> permutations = Permutations.of("A", "B", "C", "D", "E", "F").withParallel();
+
+                permutations.foreachTimes(permutationSize, mostTimes, leastTimes, (times, permutation) -> {
+                    expectedResult.add(permutation);
+                });
+                permutations.waitFinish();
+
+                actualResult = permutations.collectTimes(permutationSize, mostTimes, leastTimes);
+
+                Assertions.assertThat(actualResult).containsExactlyInAnyOrderElementsOf(expectedResult);
+            } catch (Throwable e) {
+                CombinatoricsTest.print("expectedResult", permutationSize, expectedResult);
+                CombinatoricsTest.print("actualResult", permutationSize, actualResult);
+                throw e;
+            }
+        }
     }
 
     /**

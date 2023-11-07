@@ -88,14 +88,55 @@ public abstract class Combinatorics<ElementType, SelfType extends Combinatorics<
         return (SelfType) this;
     }
 
+    public List<List<ElementType>> collectMostTimes(int size, int mostTimes) {
+        List<List<ElementType>> result = buildCollectUsedList();
+        foreachMostTimes(size, mostTimes, (times, resultTemp) -> {
+            result.add(resultTemp);
+        });
+        waitFinish();
+        return result;
+    }
+
+    public List<List<ElementType>> collectLeastTimes(int size, int leastTimes) {
+        List<List<ElementType>> result = buildCollectUsedList();
+        foreachLeastTimes(size, leastTimes, (times, resultTemp) -> {
+            result.add(resultTemp);
+        });
+        waitFinish();
+        return result;
+    }
+
+    public List<List<ElementType>> collectTimes(int size, int mostTimes, int leastTimes) {
+        List<List<ElementType>> result = buildCollectUsedList();
+        foreachTimes(size, mostTimes, leastTimes, (times, resultTemp) -> {
+            result.add(resultTemp);
+        });
+        waitFinish();
+        return result;
+    }
+
+    public List<List<ElementType>> collect(int size, boolean repeat) {
+        return collect(size, repeat, (times, result) -> true);
+    }
+
+    public List<List<ElementType>> collect(int size, boolean repeat, BiPredicate<Integer, List<ListElement<ElementType>>> filter) {
+        List<List<ElementType>> result = buildCollectUsedList();
+        foreach(size, repeat, filter, (times, resultTemp) -> {
+            result.add(resultTemp);
+        });
+        waitFinish();
+        return result;
+    }
+
     /**
      * 參考 {@link #foreachMostTimes(int, int, BiPredicate)}
      */
-    public void foreachMostTimes(int size, int mostTimes, BiConsumer<Integer, List<ElementType>> tester) {
+    public SelfType foreachMostTimes(int size, int mostTimes, BiConsumer<Integer, List<ElementType>> tester) {
         foreachMostTimes(size, mostTimes, (times, result) -> {
             tester.accept(times, result);
             return FOREACH_CONTINUE;
         });
+        return (SelfType) this;
     }
 
     /**
@@ -108,11 +149,12 @@ public abstract class Combinatorics<ElementType, SelfType extends Combinatorics<
     /**
      * 參考 {@link #foreachLeastTimes(int, int, BiPredicate)}
      */
-    public void foreachLeastTimes(int size, int leastTimes, BiConsumer<Integer, List<ElementType>> tester) {
+    public SelfType foreachLeastTimes(int size, int leastTimes, BiConsumer<Integer, List<ElementType>> tester) {
         foreachLeastTimes(size, leastTimes, (times, result) -> {
             tester.accept(times, result);
             return FOREACH_CONTINUE;
         });
+        return (SelfType) this;
     }
 
     /**
@@ -125,11 +167,12 @@ public abstract class Combinatorics<ElementType, SelfType extends Combinatorics<
     /**
      * 參考 {@link #foreachTimes(int, int, int, BiPredicate)}
      */
-    public void foreachTimes(int size, int mostTimes, int leastTimes, BiConsumer<Integer, List<ElementType>> tester) {
+    public SelfType foreachTimes(int size, int mostTimes, int leastTimes, BiConsumer<Integer, List<ElementType>> tester) {
         foreachTimes(size, mostTimes, leastTimes, (times, result) -> {
             tester.accept(times, result);
             return FOREACH_CONTINUE;
         });
+        return (SelfType) this;
     }
 
     /**
@@ -140,7 +183,7 @@ public abstract class Combinatorics<ElementType, SelfType extends Combinatorics<
      * @return 參考 {@link #FOREACH_CONTINUE} 跟 {@link #FOREACH_BREAK}
      */
     public boolean foreachTimes(int size, int mostTimes, int leastTimes, BiPredicate<Integer, List<ElementType>> tester) {
-        return foreach(size, (times, result) -> { // filter
+        return foreach(size, true, (times, result) -> { // filter
             return result.stream()
                     .map(element -> element.index)
                     .reduce(new HashMap<Integer, AtomicInteger>(), (map, index) -> {
@@ -159,15 +202,17 @@ public abstract class Combinatorics<ElementType, SelfType extends Combinatorics<
     }
 
     /**
-     * 同 {@link #foreach(int, BiPredicate, BiPredicate)}, 只是預設全跑玩不會中斷, 參考 {@link #FOREACH_CONTINUE} 跟 {@link #FOREACH_BREAK}
+     * 同 {@link #foreach(int, boolean, BiPredicate, BiPredicate)}, 只是預設全跑玩不會中斷, 參考 {@link #FOREACH_CONTINUE} 跟 {@link #FOREACH_BREAK}
      */
-    public void foreach(int size,
-                        BiPredicate<Integer, List<ListElement<ElementType>>> filter,
-                        BiConsumer<Integer, List<ElementType>> tester) {
-        foreach(size, filter, (times, result) -> {
+    public SelfType foreach(int size,
+                            boolean repeat,
+                            BiPredicate<Integer, List<ListElement<ElementType>>> filter,
+                            BiConsumer<Integer, List<ElementType>> tester) {
+        foreach(size, repeat, filter, (times, result) -> {
             tester.accept(times, result);
             return FOREACH_CONTINUE;
         });
+        return (SelfType) this;
     }
 
     /**
@@ -177,22 +222,24 @@ public abstract class Combinatorics<ElementType, SelfType extends Combinatorics<
      * @return 參考 {@link #FOREACH_CONTINUE} 跟 {@link #FOREACH_BREAK}
      */
     public boolean foreach(int size,
+                           boolean repeat,
                            BiPredicate<Integer, List<ListElement<ElementType>>> filter,
                            BiPredicate<Integer, List<ElementType>> tester) {
         return foreach((times, result) -> { // tester
             boolean accept = filter.test(times, result);
             return accept ? tester.test(times, ListElement.unboxing(result)) : FOREACH_CONTINUE;
-        }, size, true);
+        }, size, repeat);
     }
 
     /**
      * 同 {@link #foreach(int, boolean, BiPredicate)}, 只是預設全跑玩不會中斷, 參考 {@link #FOREACH_CONTINUE} 跟 {@link #FOREACH_BREAK}
      */
-    public void foreach(int size, boolean repeat, BiConsumer<Integer, List<ElementType>> tester) {
+    public SelfType foreach(int size, boolean repeat, BiConsumer<Integer, List<ElementType>> tester) {
         foreach(size, repeat, (times, result) -> { // tester
             tester.accept(times, result);
             return FOREACH_CONTINUE;
         });
+        return (SelfType) this;
     }
 
     /**
@@ -207,6 +254,14 @@ public abstract class Combinatorics<ElementType, SelfType extends Combinatorics<
         return foreach((times, result) -> tester.test(times, ListElement.unboxing(result)), size, repeat);
     }
 
+    public long numberOf(int k, boolean repeat) {
+        return repeat ? numberOfRepeat(k) : numberOfUnique(k);
+    }
+
+    public abstract long numberOfRepeat(int k);
+
+    public abstract long numberOfUnique(int k);
+
     protected abstract boolean foreach(BiPredicate<Integer, List<ListElement<ElementType>>> tester, int size, boolean repeat);
 
     protected Predicate<List<ListElement<ElementType>>> buildReceiver(BiPredicate<Integer, List<ListElement<ElementType>>> tester) {
@@ -214,15 +269,15 @@ public abstract class Combinatorics<ElementType, SelfType extends Combinatorics<
             AtomicBoolean interruptFlag = new AtomicBoolean(false);
             Consumer<Boolean> interruptFlagUpdate = flag -> interruptFlag.compareAndSet(false, flag);
 
-            return combinationTemp -> {
+            return resultTemp -> {
                 if (interruptFlag.get()) {
                     return FOREACH_BREAK;
                 }
 
-                List<ListElement<ElementType>> combinationTempForParallel = Collections.unmodifiableList(new ArrayList<>(combinationTemp));
+                List<ListElement<ElementType>> resultTempForParallel = Collections.unmodifiableList(new ArrayList<>(resultTemp));
 
                 boolean executed = this.executorSwitch.run(times -> { // 這邊開始是fork出去別條thread執行的部分
-                    boolean interrupt = tester.test(times, combinationTempForParallel);
+                    boolean interrupt = tester.test(times, resultTempForParallel);
                     interruptFlagUpdate.accept(interrupt);
                 });
                 interruptFlagUpdate.accept(!executed);
@@ -232,12 +287,17 @@ public abstract class Combinatorics<ElementType, SelfType extends Combinatorics<
 
         } else {
             AtomicInteger times = new AtomicInteger(0);
-            return combinationTemp -> tester.test(times.incrementAndGet(), combinationTemp);
+            return resultTemp -> tester.test(times.incrementAndGet(), resultTemp);
         }
     }
 
     protected List<ListElement<ElementType>> getListElements() {
         return this.elements;
+    }
+
+    private List<List<ElementType>> buildCollectUsedList() {
+        List<List<ElementType>> list = new ArrayList<>(16);
+        return this.executorSwitch.isWithParallel() ? Collections.synchronizedList(list) : list;
     }
 
     public Tracked getTracked() {

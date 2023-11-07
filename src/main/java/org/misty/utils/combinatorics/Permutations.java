@@ -163,10 +163,10 @@ public class Permutations<ElementType> extends Combinatorics<ElementType, Permut
     }
 
     @Override
-    protected boolean foreach(BiPredicate<Integer, List<ListElement<ElementType>>> permutationTester, int permutationSize, boolean repeat) {
+    protected boolean foreach(BiPredicate<Integer, List<ListElement<ElementType>>> receiver, int permutationSize, boolean repeat) {
         List<ListElement<ElementType>> elements = super.getListElements();
 
-        Predicate<List<ListElement<ElementType>>> permutationReceiver = super.buildReceiver(permutationTester);
+        Predicate<List<ListElement<ElementType>>> permutationReceiver = super.buildReceiver(receiver);
 
         List<ListElement<ElementType>> temp = IntStream.rangeClosed(1, permutationSize)
                 .mapToObj(i -> (ListElement<ElementType>) null)

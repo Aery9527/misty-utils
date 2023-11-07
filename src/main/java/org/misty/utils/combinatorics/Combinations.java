@@ -125,8 +125,8 @@ public class Combinations<ElementType> extends Combinatorics<ElementType, Combin
     }
 
     @Override
-    protected boolean foreach(BiPredicate<Integer, List<ListElement<ElementType>>> combinationTester, int combinationSize, boolean repeat) {
-        Predicate<List<ListElement<ElementType>>> combinationReceiver = super.buildReceiver(combinationTester);
+    protected boolean foreach(BiPredicate<Integer, List<ListElement<ElementType>>> receiver, int combinationSize, boolean repeat) {
+        Predicate<List<ListElement<ElementType>>> combinationReceiver = super.buildReceiver(receiver);
 
         List<ListElement<ElementType>> temp = IntStream.rangeClosed(1, combinationSize)
                 .mapToObj(i -> (ListElement<ElementType>) null)

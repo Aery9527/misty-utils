@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="85a0b3b9-499c-4427-8178-fde3848053e3" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/combinatorics/Permutations.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/combinatorics/Permutations.java" afterDir="false" />
-    </list>
+    <list default="true" id="85a0b3b9-499c-4427-8178-fde3848053e3" name="Changes" comment="Combinatorics add collect series" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -52,6 +49,9 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GithubDefaultAccount">
+    <option name="defaultAccountId" value="cc36d827-71b7-4129-8251-944d22f3e425" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -72,7 +72,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;com.google.cloudcode.ide_session_index&quot;: &quot;20231105_0001&quot;,
+    &quot;com.google.cloudcode.ide_session_index&quot;: &quot;20231107_0000&quot;,
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
     &quot;git-widget-placeholder&quot;: &quot;develop&quot;,
@@ -95,7 +95,7 @@
       <recent name="org.misty.utils.sys" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.CombinationsTest">
+  <component name="RunManager" selected="JUnit.PermutationsTest">
     <configuration name="JvmInfoTest.getArguments" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -168,8 +168,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.CombinationsTest" />
         <item itemvalue="JUnit.PermutationsTest" />
+        <item itemvalue="JUnit.CombinationsTest" />
         <item itemvalue="JUnit.JvmInfoTest.getArguments" />
         <item itemvalue="Gradle.JvmInfoTest.getArguments" />
       </list>
@@ -184,11 +184,25 @@
       <option name="presentableId" value="Default" />
       <updated>1699170672576</updated>
       <workItem from="1699170673771" duration="1272000" />
+      <workItem from="1699343852453" duration="154000" />
     </task>
+    <task id="LOCAL-00001" summary="Combinatorics add collect series">
+      <option name="closed" value="true" />
+      <created>1699343995855</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1699343995855</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Combinatorics add collect series" />
+    <option name="LAST_COMMIT_MESSAGE" value="Combinatorics add collect series" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/misty_utils$JudgeTest.ic" NAME="JudgeTest Coverage Results" MODIFIED="1698051751125" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

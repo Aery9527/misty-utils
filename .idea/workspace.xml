@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="85a0b3b9-499c-4427-8178-fde3848053e3" name="Changes" comment="Combinatorics add collectFirst and collectMostAmount">
+    <list default="true" id="85a0b3b9-499c-4427-8178-fde3848053e3" name="Changes" comment="Combinatorics針對collect系列增加強制單緒的操作">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -206,7 +206,7 @@
       <workItem from="1699343852453" duration="154000" />
       <workItem from="1699344976374" duration="127000" />
       <workItem from="1699350019148" duration="3220000" />
-      <workItem from="1699428366381" duration="601000" />
+      <workItem from="1699428366381" duration="1303000" />
     </task>
     <task id="LOCAL-00001" summary="Combinatorics add collect series">
       <option name="closed" value="true" />
@@ -232,7 +232,15 @@
       <option name="project" value="LOCAL" />
       <updated>1699409782259</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Combinatorics針對collect系列增加強制單緒的操作">
+      <option name="closed" value="true" />
+      <created>1699429170580</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1699429170580</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -242,7 +250,8 @@
     <MESSAGE value="Combinatorics add collect series" />
     <MESSAGE value="adjust Combinatorics naming" />
     <MESSAGE value="Combinatorics add collectFirst and collectMostAmount" />
-    <option name="LAST_COMMIT_MESSAGE" value="Combinatorics add collectFirst and collectMostAmount" />
+    <MESSAGE value="Combinatorics針對collect系列增加強制單緒的操作" />
+    <option name="LAST_COMMIT_MESSAGE" value="Combinatorics針對collect系列增加強制單緒的操作" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/misty_utils$JudgeTest.ic" NAME="JudgeTest Coverage Results" MODIFIED="1698051751125" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

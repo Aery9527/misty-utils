@@ -5,13 +5,44 @@ import org.misty.utils.Tracked;
 import org.misty.utils.collection.ListElement;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.*;
+import java.util.stream.Collectors;
 
 public abstract class Combinatorics<ElementType, SelfType extends Combinatorics<ElementType, SelfType>> {
+
+    private interface SortMap<KeyType, ElementType> extends Map<KeyType, List<List<ElementType>>> {
+        void join(KeyType key, List<ElementType> result);
+
+        default SortMap<KeyType, ElementType> fillMissing(Set<KeyType> keys) {
+            keys.forEach(key -> putIfAbsent(key, Collections.emptyList()));
+            return this;
+        }
+
+        default Map<KeyType, List<List<ElementType>>> toMap() {
+            return Collections.unmodifiableMap(
+                    entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey, entry -> Collections.unmodifiableList(entry.getValue())))
+            );
+        }
+    }
+
+    private class SyncSortMap<KeyType> extends HashMap<KeyType, List<List<ElementType>>> implements SortMap<KeyType, ElementType> {
+        @Override
+        public void join(KeyType key, List<ElementType> result) {
+            super.computeIfAbsent(key, k -> new ArrayList<>(DEFAULT_SORT_LIST_SIZE)).add(result);
+        }
+    }
+
+    private class AsyncSortMap<KeyType> extends ConcurrentHashMap<KeyType, List<List<ElementType>>> implements SortMap<KeyType, ElementType> {
+        @Override
+        public void join(KeyType key, List<ElementType> result) {
+            super.computeIfAbsent(key, k -> Collections.synchronizedList(new ArrayList<>(DEFAULT_SORT_LIST_SIZE))).add(result);
+        }
+    }
 
     /**
      * 控制{@link #foreach(int, boolean, BiPredicate)}要中斷
@@ -24,6 +55,8 @@ public abstract class Combinatorics<ElementType, SelfType extends Combinatorics<
     public static final boolean FOREACH_CONTINUE = false;
 
     private static final int DEFAULT_COLLECT_LIST_SIZE = 16;
+
+    private static final int DEFAULT_SORT_LIST_SIZE = DEFAULT_COLLECT_LIST_SIZE / 2;
 
     private final Tracked tracked;
 
@@ -99,6 +132,53 @@ public abstract class Combinatorics<ElementType, SelfType extends Combinatorics<
     public SelfType waitFinish() {
         this.executorSwitch.waitFinish();
         return (SelfType) this;
+    }
+
+    /**
+     * 將排列/組合依照filterMap條件分類, 一個排列/組合可以分類到多個key中, 若只能分類到一個key中請使用 {@link #sortInFirst(int, boolean, Map)}
+     *
+     * @param size      排列/組合數量(k)
+     * @param repeat    同個元素是否可以重複出現
+     * @param filterMap 分類條件, key為分類名稱, value為分類條件
+     * @param <KeyType> 分類名稱型態
+     * @return 分類結果, key為分類名稱, value為符合該分類的排列/組合
+     */
+    public <KeyType> Map<KeyType, List<List<ElementType>>> sortInAll(int size, boolean repeat, Map<KeyType, BiPredicate<Integer, List<ElementType>>> filterMap) {
+        SortMap<KeyType, ElementType> sortResult = buildSortUsedMap();
+
+        foreach(size, repeat, (times, resultTemp) -> {
+            filterMap.entrySet().stream()
+                    .filter(entry -> entry.getValue().test(times, resultTemp))
+                    .map(Map.Entry::getKey)
+                    .forEach(key -> sortResult.join(key, resultTemp));
+        });
+        waitFinish();
+
+        return sortResult.fillMissing(filterMap.keySet()).toMap();
+    }
+
+    /**
+     * 將排列/組合依照filterMap條件分類, 一個排列/組合只會分類到一個key中, 若想要分類到多個key中請使用 {@link #sortInAll(int, boolean, Map)}
+     *
+     * @param size      排列/組合數量(k)
+     * @param repeat    同個元素是否可以重複出現
+     * @param filterMap 分類條件, key為分類名稱, value為分類條件
+     * @param <KeyType> 分類名稱型態
+     * @return 分類結果, key為分類名稱, value為符合該分類的排列/組合
+     */
+    public <KeyType> Map<KeyType, List<List<ElementType>>> sortInFirst(int size, boolean repeat, Map<KeyType, BiPredicate<Integer, List<ElementType>>> filterMap) {
+        SortMap<KeyType, ElementType> sortResult = buildSortUsedMap();
+
+        foreach(size, repeat, (times, resultTemp) -> {
+            filterMap.entrySet().stream()
+                    .filter(entry -> entry.getValue().test(times, resultTemp))
+                    .map(Map.Entry::getKey)
+                    .findFirst()
+                    .ifPresent(key -> sortResult.join(key, resultTemp));
+        });
+        waitFinish();
+
+        return sortResult.fillMissing(filterMap.keySet()).toMap();
     }
 
     /**
@@ -395,6 +475,10 @@ public abstract class Combinatorics<ElementType, SelfType extends Combinatorics<
         } finally {
             this.forceSerial = false;
         }
+    }
+
+    private <KeyType> SortMap<KeyType, ElementType> buildSortUsedMap() {
+        return this.executorSwitch.isWithParallel() ? new AsyncSortMap<>() : new SyncSortMap<>();
     }
 
     private List<List<ElementType>> buildCollectUsedList() {

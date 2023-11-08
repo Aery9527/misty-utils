@@ -2,12 +2,13 @@ package org.misty.utils.combinatorics;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Supplier;
 
 class CombinatoricsTest {
 
     public static void print(String title, int size, List<List<String>> list) {
-        System.out.println(title + "(" + list.size() + "):");
+        System.out.println(title + "(" + list.size() + ")");
 
         list.stream().reduce(new ArrayList<List<String>>(), (result, foreachResult) -> {
                     Supplier<List<String>> nextTarget = () -> {
@@ -32,6 +33,11 @@ class CombinatoricsTest {
                 }, (result1, result2) -> null)
                 .forEach(result -> System.out.println(String.join(" ", result)));
         System.out.println();
+    }
+
+    public static void print(String title, Map<String, List<List<String>>> map) {
+        String prefix = title + "(" + map.size() + ")";
+        map.forEach((key, value) -> print(prefix + ":key{" + key + "}", 5, value));
     }
 
 }

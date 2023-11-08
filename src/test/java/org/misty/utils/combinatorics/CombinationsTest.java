@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.BiPredicate;
 
 class CombinationsTest {
 
@@ -229,6 +230,91 @@ class CombinationsTest {
         int index = 0;
         Assertions.assertThat(temp.get(index++)).containsExactly("A", "B");
         Assertions.assertThat(temp.get(index++)).containsExactly("B", "B");
+    }
+
+    @Test
+    public void sortInAll() {
+        int combinationSize = 3;
+        boolean repeat = true;
+
+        Combinations<String> combinations = Combinations.of("A", "B", "C", "D", "E");
+
+        String containsA = "containsA";
+        String containsAorB = "containsAorB";
+        String empty = "empty";
+        Map<String, BiPredicate<Integer, List<String>>> sortMap = new LinkedHashMap<>();
+        sortMap.put(containsA, (times, combination) -> combination.contains("A"));
+        sortMap.put(containsAorB, (times, combination) -> combination.contains("A") || combination.contains("B"));
+        sortMap.put(empty, (times, combination) -> false);
+
+        Map<String, List<List<String>>> expectedMap = new LinkedHashMap<>();
+        sortMap.keySet().forEach(key -> expectedMap.put(key, new ArrayList<>()));
+        combinations.foreach(combinationSize, repeat, (times, result) -> {
+            sortMap.forEach((key, filter) -> {
+                if (filter.test(times, result)) {
+                    expectedMap.get(key).add(result);
+                }
+            });
+        });
+
+        CombinatoricsTest.print("expectedMap", expectedMap);
+
+        Runnable testAction = () -> {
+            Map<String, List<List<String>>> actualMap = combinations.sortInAll(combinationSize, repeat, sortMap);
+            Assertions.assertThat(actualMap.get(containsA)).containsExactlyInAnyOrderElementsOf(expectedMap.get(containsA));
+            Assertions.assertThat(actualMap.get(containsAorB)).containsExactlyInAnyOrderElementsOf(expectedMap.get(containsAorB));
+            Assertions.assertThat(actualMap.get(empty)).containsExactlyInAnyOrderElementsOf(expectedMap.get(empty));
+        };
+
+        combinations.withSerial();
+        testAction.run();
+
+        combinations.withParallel();
+        testAction.run();
+    }
+
+    @Test
+    public void sortInFirst() {
+        int combinationSize = 3;
+        boolean repeat = true;
+
+        Combinations<String> combinations = Combinations.of("A", "B", "C", "D", "E");
+
+        String containsA = "containsA";
+        String containsAorB = "containsAorB";
+        String empty = "empty";
+        Map<String, BiPredicate<Integer, List<String>>> sortMap = new LinkedHashMap<>();
+        sortMap.put(containsA, (times, combination) -> combination.contains("A"));
+        sortMap.put(containsAorB, (times, combination) -> combination.contains("A") || combination.contains("B"));
+        sortMap.put(empty, (times, combination) -> false);
+
+        Map<String, List<List<String>>> expectedMap = new LinkedHashMap<>();
+        sortMap.keySet().forEach(key -> expectedMap.put(key, new ArrayList<>()));
+        combinations.foreach(combinationSize, repeat, (times, result) -> {
+            Iterator<Map.Entry<String, BiPredicate<Integer, List<String>>>> iterator = sortMap.entrySet().iterator();
+            while (iterator.hasNext()) {
+                Map.Entry<String, BiPredicate<Integer, List<String>>> entry = iterator.next();
+                if (entry.getValue().test(times, result)) {
+                    expectedMap.get(entry.getKey()).add(result);
+                    break;
+                }
+            }
+        });
+
+        CombinatoricsTest.print("expectedMap", expectedMap);
+
+        Runnable testAction = () -> {
+            Map<String, List<List<String>>> actualMap = combinations.sortInFirst(combinationSize, repeat, sortMap);
+            Assertions.assertThat(actualMap.get(containsA)).containsExactlyInAnyOrderElementsOf(expectedMap.get(containsA));
+            Assertions.assertThat(actualMap.get(containsAorB)).containsExactlyInAnyOrderElementsOf(expectedMap.get(containsAorB));
+            Assertions.assertThat(actualMap.get(empty)).containsExactlyInAnyOrderElementsOf(expectedMap.get(empty));
+        };
+
+        combinations.withSerial();
+        testAction.run();
+
+        combinations.withParallel();
+        testAction.run();
     }
 
     @Test

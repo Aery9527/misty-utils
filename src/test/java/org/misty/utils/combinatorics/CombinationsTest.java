@@ -411,6 +411,60 @@ class CombinationsTest {
         Assertions.assertThat(actualResult).containsExactlyElementsOf(expectedResult);
     }
 
+    @Test
+    public void collectFirst() {
+        int combinationSize = 3;
+        boolean repeat = false;
+
+        Combinations<String> combinations = Combinations.shuffle("A", "B", "C", "D", "E", "F", "G", "H").withParallel();
+
+        List<List<String>> resultTemp = new ArrayList<>();
+        for (int testTimes = 0; testTimes < 20; testTimes++) {
+
+            Optional<List<String>> resultOptional = combinations.collectFirst(combinationSize, repeat, (times, combination) -> { // filter
+                return combination.stream().map(element -> element.content).anyMatch("A"::equals);
+            });
+
+            resultTemp.add(resultOptional.get());
+        }
+        CombinatoricsTest.print("resultTemp", 5, resultTemp);
+
+        for (int testTimes = 0; testTimes < 20; testTimes++) {
+            Optional<List<String>> resultOptional = combinations.collectFirst(combinationSize, repeat, (times, combination) -> { // filter
+                return combination.stream().map(element -> element.content).anyMatch(""::equals);
+            });
+
+            Assertions.assertThat(resultOptional.isPresent()).isFalse();
+        }
+    }
+
+    @Test
+    public void collectMostAmount() {
+        int combinationSize = 3;
+        int collectAmount = 3;
+        boolean repeat = false;
+
+        Combinations<String> combinations = Combinations.shuffle("A", "B", "C", "D", "E", "F", "G", "H").withParallel();
+
+        for (int testTimes = 0; testTimes < 20; testTimes++) {
+            List<List<String>> result = combinations.collectMostAmount(combinationSize, repeat, collectAmount, (times, combination) -> { // filter
+                return combination.stream().map(element -> element.content).anyMatch("A"::equals);
+            });
+
+            CombinatoricsTest.print("result[" + testTimes + "]", 5, result);
+
+            Assertions.assertThat(result.size()).isLessThanOrEqualTo(collectAmount);
+        }
+
+        for (int testTimes = 0; testTimes < 20; testTimes++) {
+            List<List<String>> result = combinations.collectMostAmount(combinationSize, repeat, collectAmount, (times, combination) -> { // filter
+                return combination.stream().map(element -> element.content).anyMatch(""::equals);
+            });
+
+            Assertions.assertThat(result).isEmpty();
+        }
+    }
+
     /**
      * 測試多執行緒併發處理
      */

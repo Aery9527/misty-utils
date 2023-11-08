@@ -4,13 +4,11 @@ import org.misty.utils.ExecutorSwitch;
 import org.misty.utils.Tracked;
 import org.misty.utils.collection.ListElement;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.BiConsumer;
 import java.util.function.BiPredicate;
 import java.util.function.Consumer;
@@ -31,7 +29,7 @@ public abstract class Combinatorics<ElementType, SelfType extends Combinatorics<
     private final Tracked tracked;
 
     /**
-     * 所有待測試物件集合
+     * 待排列/組合的物件母體
      */
     private final List<ListElement<ElementType>> elements;
 
@@ -110,6 +108,40 @@ public abstract class Combinatorics<ElementType, SelfType extends Combinatorics<
         List<List<ElementType>> result = buildCollectUsedList();
         foreachTimes(size, mostTimes, leastTimes, (times, resultTemp) -> {
             result.add(resultTemp);
+        });
+        waitFinish();
+        return result;
+    }
+
+    public Optional<List<ElementType>> collectFirst(int size, boolean repeat) {
+        return collectFirst(size, repeat, (times, result) -> true);
+    }
+
+    public Optional<List<ElementType>> collectFirst(int size, boolean repeat, BiPredicate<Integer, List<ListElement<ElementType>>> filter) {
+        AtomicReference<List<ElementType>> pickRef = new AtomicReference<>();
+        foreach(size, repeat, filter, (times, resultTemp) -> {
+            pickRef.compareAndSet(null, resultTemp);
+            return Combinatorics.FOREACH_BREAK;
+        });
+        waitFinish();
+        return Optional.ofNullable(pickRef.get());
+    }
+
+    public List<List<ElementType>> collectMostAmount(int size, boolean repeat, int mostAmount) {
+        return collectMostAmount(size, repeat, mostAmount, (times, result) -> true);
+    }
+
+    public List<List<ElementType>> collectMostAmount(int size, boolean repeat, int mostAmount, BiPredicate<Integer, List<ListElement<ElementType>>> filter) {
+        List<List<ElementType>> result = buildCollectUsedList();
+        AtomicInteger amountCounter = new AtomicInteger(0);
+        foreach(size, repeat, filter, (times, resultTemp) -> {
+            int count = amountCounter.incrementAndGet();
+            if (count <= mostAmount) {
+                result.add(resultTemp);
+                return Combinatorics.FOREACH_CONTINUE;
+            } else {
+                return Combinatorics.FOREACH_BREAK;
+            }
         });
         waitFinish();
         return result;
@@ -216,9 +248,9 @@ public abstract class Combinatorics<ElementType, SelfType extends Combinatorics<
     }
 
     /**
-     * @param size   排列/組合數量(k)
-     * @param filter 排列/組合過濾器, 先行過濾該排列/組合是否使用
-     * @param receiver 排列/組合測試器, 回傳值參考 {@link #FOREACH_CONTINUE} 跟 {@link #FOREACH_BREAK}
+     * @param size     排列/組合數量(k)
+     * @param filter   排列/組合過濾器, 先行過濾該排列/組合是否使用
+     * @param receiver 排列/組合接受器, 回傳值參考 {@link #FOREACH_CONTINUE} 跟 {@link #FOREACH_BREAK}
      * @return 參考 {@link #FOREACH_CONTINUE} 跟 {@link #FOREACH_BREAK}
      */
     public boolean foreach(int size,
@@ -245,9 +277,9 @@ public abstract class Combinatorics<ElementType, SelfType extends Combinatorics<
     /**
      * 跑出所有排列/組合
      *
-     * @param size   排列/組合數量(k)
-     * @param repeat 同個元素是否可以重複出現, true:H(n取k)=C(n+k-1取k)=(n+k-1)!/k!/(n-1)!|false:C(n取k)=n!/k!/(n-k)!
-     * @param receiver 排列/組合測試器, 回傳值參考 {@link #FOREACH_CONTINUE} 跟 {@link #FOREACH_BREAK}
+     * @param size     排列/組合數量(k)
+     * @param repeat   同個元素是否可以重複出現, true:H(n取k)=C(n+k-1取k)=(n+k-1)!/k!/(n-1)!|false:C(n取k)=n!/k!/(n-k)!
+     * @param receiver 排列/組合接受器, 回傳值參考 {@link #FOREACH_CONTINUE} 跟 {@link #FOREACH_BREAK}
      * @return 參考 {@link #FOREACH_CONTINUE} 跟 {@link #FOREACH_BREAK}
      */
     public boolean foreach(int size, boolean repeat, BiPredicate<Integer, List<ElementType>> receiver) {
@@ -277,6 +309,10 @@ public abstract class Combinatorics<ElementType, SelfType extends Combinatorics<
                 List<ListElement<ElementType>> resultTempForParallel = Collections.unmodifiableList(new ArrayList<>(resultTemp));
 
                 boolean executed = this.executorSwitch.run(times -> { // 這邊開始是fork出去別條thread執行的部分
+                    if (interruptFlag.get()) {
+                        return;
+                    }
+
                     boolean interrupt = receiver.test(times, resultTempForParallel);
                     interruptFlagUpdate.accept(interrupt);
                 });

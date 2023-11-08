@@ -49,6 +49,16 @@ public class Combinations<ElementType> extends Combinatorics<ElementType, Combin
         }
     };
 
+    /**
+     * 參考 {@link Combinatorics#FOREACH_BREAK}
+     */
+    public static final boolean FOREACH_BREAK = Combinatorics.FOREACH_BREAK;
+
+    /**
+     * 參考 {@link Combinatorics#FOREACH_CONTINUE}
+     */
+    public static final boolean FOREACH_CONTINUE = Combinatorics.FOREACH_CONTINUE;
+
     public static <ElementType> Combinations<ElementType> of(ElementType... elements) {
         return new Combinations<>(Tracked.create(), Arrays.asList(elements), false);
     }

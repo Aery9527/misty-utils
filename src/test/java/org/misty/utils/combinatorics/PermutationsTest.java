@@ -412,6 +412,60 @@ class PermutationsTest {
         Assertions.assertThat(actualResult).containsExactlyElementsOf(expectedResult);
     }
 
+    @Test
+    public void collectFirst() {
+        int permutationSize = 3;
+        boolean repeat = false;
+
+        Permutations<String> permutations = Permutations.shuffle("A", "B", "C", "D", "E", "F", "G", "H").withParallel();
+
+        List<List<String>> resultTemp = new ArrayList<>();
+        for (int testTimes = 0; testTimes < 20; testTimes++) {
+
+            Optional<List<String>> resultOptional = permutations.collectFirst(permutationSize, repeat, (times, permutation) -> { // filter
+                return permutation.get(0).content.equals("A");
+            });
+
+            resultTemp.add(resultOptional.get());
+        }
+        CombinatoricsTest.print("resultTemp", 5, resultTemp);
+
+        for (int testTimes = 0; testTimes < 20; testTimes++) {
+            Optional<List<String>> resultOptional = permutations.collectFirst(permutationSize, repeat, (times, permutation) -> { // filter
+                return permutation.stream().map(element -> element.content).anyMatch(""::equals);
+            });
+
+            Assertions.assertThat(resultOptional.isPresent()).isFalse();
+        }
+    }
+
+    @Test
+    public void collectMostAmount() {
+        int permutationSize = 3;
+        int collectAmount = 3;
+        boolean repeat = false;
+
+        Permutations<String> permutations = Permutations.shuffle("A", "B", "C", "D", "E", "F", "G", "H").withParallel();
+
+        for (int testTimes = 0; testTimes < 20; testTimes++) {
+            List<List<String>> result = permutations.collectMostAmount(permutationSize, repeat, collectAmount, (times, permutation) -> { // filter
+                return permutation.get(0).content.equals("A");
+            });
+
+            CombinatoricsTest.print("result[" + testTimes + "]", 5, result);
+
+            Assertions.assertThat(result.size()).isLessThanOrEqualTo(collectAmount);
+        }
+
+        for (int testTimes = 0; testTimes < 20; testTimes++) {
+            List<List<String>> result = permutations.collectMostAmount(permutationSize, repeat, collectAmount, (times, permutation) -> { // filter
+                return permutation.stream().map(element -> element.content).anyMatch(""::equals);
+            });
+
+            Assertions.assertThat(result).isEmpty();
+        }
+    }
+
     /**
      * 測試多執行緒併發處理
      */

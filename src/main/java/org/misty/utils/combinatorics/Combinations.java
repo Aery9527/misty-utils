@@ -135,23 +135,21 @@ public class Combinations<ElementType> extends Combinatorics<ElementType, Combin
     }
 
     @Override
-    protected boolean foreach(BiPredicate<Integer, List<ListElement<ElementType>>> receiver, int combinationSize, boolean repeat) {
-        Predicate<List<ListElement<ElementType>>> combinationReceiver = super.buildReceiver(receiver);
-
+    protected boolean doForeach(Predicate<List<ListElement<ElementType>>> receiver, int combinationSize, boolean repeat) {
         List<ListElement<ElementType>> temp = IntStream.rangeClosed(1, combinationSize)
                 .mapToObj(i -> (ListElement<ElementType>) null)
                 .collect(Collectors.toList());
 
         ForeachAction foreachAction = repeat ? FOREACH_REPEAT_ACTION : FOREACH_UNIQUE_ACTION;
 
-        return foreach(combinationReceiver, temp, foreachAction, 0, 0);
+        return doForeach(receiver, temp, foreachAction, 0, 0);
     }
 
-    protected boolean foreach(Predicate<List<ListElement<ElementType>>> combinationReceiver,
-                              List<ListElement<ElementType>> combinationTemp,
-                              ForeachAction foreachAction,
-                              int elementStartIndex,
-                              int tempIndex) {
+    protected boolean doForeach(Predicate<List<ListElement<ElementType>>> combinationReceiver,
+                                List<ListElement<ElementType>> combinationTemp,
+                                ForeachAction foreachAction,
+                                int elementStartIndex,
+                                int tempIndex) {
         int combinationSize = combinationTemp.size();
         boolean lastPosition = tempIndex == combinationSize;
         if (lastPosition) {
@@ -166,7 +164,7 @@ public class Combinations<ElementType> extends Combinatorics<ElementType, Combin
             ListElement<ElementType> element = elements.get(elementIndex);
             combinationTemp.set(tempIndex, element);
             int nextElementStartIndex = foreachAction.nextElementStartIndex(elements.size(), elementIndex);
-            boolean isBreak = foreach(combinationReceiver, combinationTemp, foreachAction, nextElementStartIndex, nextTempIndex);
+            boolean isBreak = doForeach(combinationReceiver, combinationTemp, foreachAction, nextElementStartIndex, nextTempIndex);
             if (isBreak) {
                 return FOREACH_BREAK;
             }

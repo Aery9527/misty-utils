@@ -173,10 +173,8 @@ public class Permutations<ElementType> extends Combinatorics<ElementType, Permut
     }
 
     @Override
-    protected boolean foreach(BiPredicate<Integer, List<ListElement<ElementType>>> receiver, int permutationSize, boolean repeat) {
+    protected boolean doForeach(Predicate<List<ListElement<ElementType>>> receiver, int permutationSize, boolean repeat) {
         List<ListElement<ElementType>> elements = super.getListElements();
-
-        Predicate<List<ListElement<ElementType>>> permutationReceiver = super.buildReceiver(receiver);
 
         List<ListElement<ElementType>> temp = IntStream.rangeClosed(1, permutationSize)
                 .mapToObj(i -> (ListElement<ElementType>) null)
@@ -191,13 +189,13 @@ public class Permutations<ElementType> extends Combinatorics<ElementType, Permut
             indexUsed = new Over62IndexUsed();
         }
 
-        return foreach(permutationReceiver, temp, indexUsed, 0);
+        return doForeach(receiver, temp, indexUsed, 0);
     }
 
-    protected boolean foreach(Predicate<List<ListElement<ElementType>>> permutationReceiver,
-                              List<ListElement<ElementType>> permutationTemp,
-                              Permutations.IndexUsed indexUsed,
-                              int tempIndex) {
+    protected boolean doForeach(Predicate<List<ListElement<ElementType>>> permutationReceiver,
+                                List<ListElement<ElementType>> permutationTemp,
+                                Permutations.IndexUsed indexUsed,
+                                int tempIndex) {
         int permutationSize = permutationTemp.size();
         boolean lastPosition = tempIndex == permutationSize;
         if (lastPosition) {
@@ -214,7 +212,7 @@ public class Permutations<ElementType> extends Combinatorics<ElementType, Permut
 
             ListElement<ElementType> element = elements.get(index);
             permutationTemp.set(tempIndex, element);
-            boolean isBreak = foreach(permutationReceiver, permutationTemp, indexUsed, tempIndex + 1);
+            boolean isBreak = doForeach(permutationReceiver, permutationTemp, indexUsed, tempIndex + 1);
 
             indexUsed.unuse(index);
 

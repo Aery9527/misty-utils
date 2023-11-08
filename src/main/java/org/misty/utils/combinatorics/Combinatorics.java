@@ -9,10 +9,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
-import java.util.function.BiConsumer;
-import java.util.function.BiPredicate;
-import java.util.function.Consumer;
-import java.util.function.Predicate;
+import java.util.function.*;
 
 public abstract class Combinatorics<ElementType, SelfType extends Combinatorics<ElementType, SelfType>> {
 
@@ -26,6 +23,8 @@ public abstract class Combinatorics<ElementType, SelfType extends Combinatorics<
      */
     public static final boolean FOREACH_CONTINUE = false;
 
+    private static final int DEFAULT_COLLECT_LIST_SIZE = 16;
+
     private final Tracked tracked;
 
     /**
@@ -33,9 +32,22 @@ public abstract class Combinatorics<ElementType, SelfType extends Combinatorics<
      */
     private final List<ListElement<ElementType>> elements;
 
+    /**
+     * {@link #elements}是否已經洗牌過
+     */
     private final boolean shuffle;
 
+    /**
+     * 執行緒切換器(用於切換使用單緒或多緒環境)
+     */
     private final ExecutorSwitch executorSwitch;
+
+    /**
+     * 是否強制使用單執行緒執行foreach, 主要使用在collect系列上, 由於他們都只是要將元素收集成List,
+     * 若{@link #executorSwitch}原本就設定了單緒則沒啥問題, 但若設定了使用多緒將會為了維持List的同步而造成效能損失及程式碼雜亂,
+     * 因此收集成List沒有額外的判斷時, 則強制採用單緒執行, 提高效能與程式碼維護性.
+     */
+    private boolean forceSerial = false;
 
     protected Combinatorics(Tracked tracked, List<ElementType> elements, boolean shuffle) {
         if (shuffle) {
@@ -81,42 +93,64 @@ public abstract class Combinatorics<ElementType, SelfType extends Combinatorics<
         return (SelfType) this;
     }
 
+    /**
+     * 參考 {@link ExecutorSwitch#waitFinish()}
+     */
     public SelfType waitFinish() {
         this.executorSwitch.waitFinish();
         return (SelfType) this;
     }
 
+    /**
+     * 同{@link #foreachMostTimes(int, int, BiConsumer)}, 只是將結果收集成List回傳, 強制採用單緒執行
+     */
     public List<List<ElementType>> collectMostTimes(int size, int mostTimes) {
-        List<List<ElementType>> result = buildCollectUsedList();
-        foreachMostTimes(size, mostTimes, (times, resultTemp) -> {
-            result.add(resultTemp);
+        return forceSerial(() -> {
+            List<List<ElementType>> result = buildCollectUsedList();
+            foreachMostTimes(size, mostTimes, (times, resultTemp) -> {
+                result.add(resultTemp);
+            });
+            return result;
         });
-        waitFinish();
-        return result;
     }
 
+    /**
+     * 同{@link #foreachLeastTimes(int, int, BiConsumer)}, 只是將結果收集成List回傳, 強制採用單緒執行
+     */
     public List<List<ElementType>> collectLeastTimes(int size, int leastTimes) {
-        List<List<ElementType>> result = buildCollectUsedList();
-        foreachLeastTimes(size, leastTimes, (times, resultTemp) -> {
-            result.add(resultTemp);
+        return forceSerial(() -> {
+            List<List<ElementType>> result = buildCollectUsedList();
+            foreachLeastTimes(size, leastTimes, (times, resultTemp) -> {
+                result.add(resultTemp);
+            });
+            return result;
         });
-        waitFinish();
-        return result;
     }
 
+    /**
+     * 同{@link #foreachTimes(int, int, int, BiConsumer)}, 只是將結果收集成List回傳, 強制採用單緒執行
+     */
     public List<List<ElementType>> collectTimes(int size, int mostTimes, int leastTimes) {
-        List<List<ElementType>> result = buildCollectUsedList();
-        foreachTimes(size, mostTimes, leastTimes, (times, resultTemp) -> {
-            result.add(resultTemp);
+        return forceSerial(() -> {
+            List<List<ElementType>> result = buildCollectUsedList();
+            foreachTimes(size, mostTimes, leastTimes, (times, resultTemp) -> {
+                result.add(resultTemp);
+            });
+            return result;
         });
-        waitFinish();
-        return result;
     }
 
+    /**
+     * 同{@link #collectFirst(int, boolean, BiPredicate)}, 只是filter永遠回傳true(表示全收集), 因此沒有任何判斷邏輯(不耗時)所以強制採用單執行緒
+     */
     public Optional<List<ElementType>> collectFirst(int size, boolean repeat) {
-        return collectFirst(size, repeat, (times, result) -> true);
+        return forceSerial(() -> collectFirst(size, repeat, (times, result) -> true));
     }
 
+    /**
+     * 同{@link #foreach(int, boolean, BiPredicate, BiPredicate)}, 只是回傳第一個找到的符合filter的組合或排序.
+     * 不強制採用單緒是因為這邊的filter是由外部執行, 它的動作耗時是不可預期的, 因此維持此實例當前{@link #executorSwitch}的設定.
+     */
     public Optional<List<ElementType>> collectFirst(int size, boolean repeat, BiPredicate<Integer, List<ListElement<ElementType>>> filter) {
         AtomicReference<List<ElementType>> pickRef = new AtomicReference<>();
         foreach(size, repeat, filter, (times, resultTemp) -> {
@@ -127,10 +161,17 @@ public abstract class Combinatorics<ElementType, SelfType extends Combinatorics<
         return Optional.ofNullable(pickRef.get());
     }
 
+    /**
+     * 同{@link #collectMostAmount(int, boolean, int, BiPredicate)}, 只是filter永遠回傳true(表示全收集), 因此沒有任何判斷邏輯(不耗時)所以強制採用單執行緒
+     */
     public List<List<ElementType>> collectMostAmount(int size, boolean repeat, int mostAmount) {
-        return collectMostAmount(size, repeat, mostAmount, (times, result) -> true);
+        return forceSerial(() -> collectMostAmount(size, repeat, mostAmount, (times, result) -> true));
     }
 
+    /**
+     * 同{@link #foreach(int, boolean, BiPredicate, BiPredicate)}, 只是回傳最多指定數量的符合filter的組合或排序.
+     * 不強制採用單緒是因為這邊的filter是由外部執行, 它的動作耗時是不可預期的, 因此維持此實例當前{@link #executorSwitch}的設定.
+     */
     public List<List<ElementType>> collectMostAmount(int size, boolean repeat, int mostAmount, BiPredicate<Integer, List<ListElement<ElementType>>> filter) {
         List<List<ElementType>> result = buildCollectUsedList();
         AtomicInteger amountCounter = new AtomicInteger(0);
@@ -147,10 +188,16 @@ public abstract class Combinatorics<ElementType, SelfType extends Combinatorics<
         return result;
     }
 
+    /**
+     * 同{@link #collect(int, boolean, BiPredicate)}, 只是filter永遠回傳true(表示全收集), 因此沒有任何判斷邏輯(不耗時)所以強制採用單執行緒
+     */
     public List<List<ElementType>> collect(int size, boolean repeat) {
-        return collect(size, repeat, (times, result) -> true);
+        return forceSerial(() -> collect(size, repeat, (times, result) -> true));
     }
 
+    /**
+     * 同{@link #foreach(int, boolean, BiPredicate, BiConsumer)}, 只是回傳所有符合filter的組合或排序.
+     */
     public List<List<ElementType>> collect(int size, boolean repeat, BiPredicate<Integer, List<ListElement<ElementType>>> filter) {
         List<List<ElementType>> result = buildCollectUsedList();
         foreach(size, repeat, filter, (times, resultTemp) -> {
@@ -257,7 +304,7 @@ public abstract class Combinatorics<ElementType, SelfType extends Combinatorics<
                            boolean repeat,
                            BiPredicate<Integer, List<ListElement<ElementType>>> filter,
                            BiPredicate<Integer, List<ElementType>> receiver) {
-        return foreach((times, result) -> { // receiver
+        return preForeach((times, result) -> { // receiver
             boolean accept = filter.test(times, result);
             return accept ? receiver.test(times, ListElement.unboxing(result)) : FOREACH_CONTINUE;
         }, size, repeat);
@@ -283,7 +330,7 @@ public abstract class Combinatorics<ElementType, SelfType extends Combinatorics<
      * @return 參考 {@link #FOREACH_CONTINUE} 跟 {@link #FOREACH_BREAK}
      */
     public boolean foreach(int size, boolean repeat, BiPredicate<Integer, List<ElementType>> receiver) {
-        return foreach((times, result) -> receiver.test(times, ListElement.unboxing(result)), size, repeat);
+        return preForeach((times, result) -> receiver.test(times, ListElement.unboxing(result)), size, repeat);
     }
 
     public long numberOf(int k, boolean repeat) {
@@ -294,10 +341,20 @@ public abstract class Combinatorics<ElementType, SelfType extends Combinatorics<
 
     public abstract long numberOfUnique(int k);
 
-    protected abstract boolean foreach(BiPredicate<Integer, List<ListElement<ElementType>>> receiver, int size, boolean repeat);
+    protected boolean preForeach(BiPredicate<Integer, List<ListElement<ElementType>>> receiver, int size, boolean repeat) {
+        return doForeach(buildReceiveController(receiver), size, repeat);
+    }
 
-    protected Predicate<List<ListElement<ElementType>>> buildReceiver(BiPredicate<Integer, List<ListElement<ElementType>>> receiver) {
-        if (this.executorSwitch.isWithParallel()) {
+    /**
+     * 實際跑出所有排列/組合的動作
+     */
+    protected abstract boolean doForeach(Predicate<List<ListElement<ElementType>>> receiver, int size, boolean repeat);
+
+    /**
+     * 主要用來控制是多緒還是單緒執行任務
+     */
+    protected Predicate<List<ListElement<ElementType>>> buildReceiveController(BiPredicate<Integer, List<ListElement<ElementType>>> receiver) {
+        if (this.executorSwitch.isWithParallel() && !this.forceSerial) {
             AtomicBoolean interruptFlag = new AtomicBoolean(false);
             Consumer<Boolean> interruptFlagUpdate = flag -> interruptFlag.compareAndSet(false, flag);
 
@@ -331,9 +388,22 @@ public abstract class Combinatorics<ElementType, SelfType extends Combinatorics<
         return this.elements;
     }
 
+    private <ReturnType> ReturnType forceSerial(Supplier<ReturnType> action) {
+        try {
+            this.forceSerial = true;
+            return action.get();
+        } finally {
+            this.forceSerial = false;
+        }
+    }
+
     private List<List<ElementType>> buildCollectUsedList() {
-        List<List<ElementType>> list = new ArrayList<>(16);
-        return this.executorSwitch.isWithParallel() ? Collections.synchronizedList(list) : list;
+        List<List<ElementType>> list = new ArrayList<>(DEFAULT_COLLECT_LIST_SIZE);
+        return this.executorSwitch.isWithParallel() && !this.forceSerial ? Collections.synchronizedList(list) : list;
+    }
+
+    protected ExecutorSwitch getExecutorSwitch() {
+        return executorSwitch;
     }
 
     public Tracked getTracked() {

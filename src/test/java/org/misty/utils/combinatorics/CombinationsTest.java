@@ -420,7 +420,6 @@ class CombinationsTest {
 
         List<List<String>> resultTemp = new ArrayList<>();
         for (int testTimes = 0; testTimes < 20; testTimes++) {
-
             Optional<List<String>> resultOptional = combinations.collectFirst(combinationSize, repeat, (times, combination) -> { // filter
                 return combination.stream().map(element -> element.content).anyMatch("A"::equals);
             });

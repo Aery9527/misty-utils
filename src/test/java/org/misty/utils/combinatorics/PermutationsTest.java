@@ -421,7 +421,6 @@ class PermutationsTest {
 
         List<List<String>> resultTemp = new ArrayList<>();
         for (int testTimes = 0; testTimes < 20; testTimes++) {
-
             Optional<List<String>> resultOptional = permutations.collectFirst(permutationSize, repeat, (times, permutation) -> { // filter
                 return permutation.get(0).content.equals("A");
             });

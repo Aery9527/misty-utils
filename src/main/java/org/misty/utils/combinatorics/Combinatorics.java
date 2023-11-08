@@ -135,6 +135,33 @@ public abstract class Combinatorics<ElementType, SelfType extends Combinatorics<
     }
 
     /**
+     * 同 {@link #sortInAll(int, boolean, Map)}, 只是多了一個將沒有任何filter匹配的排列/組合收集到unsortList中的功能
+     */
+    public <KeyType> Map<KeyType, List<List<ElementType>>> sortInAll(int size,
+                                                                     boolean repeat,
+                                                                     Map<KeyType, BiPredicate<Integer, List<ElementType>>> filterMap,
+                                                                     List<List<ElementType>> unsortList) {
+        SortMap<KeyType, ElementType> sortResult = buildSortUsedMap();
+
+        List<List<ElementType>> unsortListWrap = this.executorSwitch.isWithParallel() ? Collections.synchronizedList(unsortList) : unsortList;
+
+        foreach(size, repeat, (times, resultTemp) -> {
+            AtomicBoolean isMatch = new AtomicBoolean(false);
+            filterMap.entrySet().stream()
+                    .filter(entry -> entry.getValue().test(times, resultTemp))
+                    .map(Map.Entry::getKey)
+                    .peek(key -> isMatch.set(true))
+                    .forEach(key -> sortResult.join(key, resultTemp));
+            if (!isMatch.get()) {
+                unsortListWrap.add(resultTemp);
+            }
+        });
+        waitFinish();
+
+        return sortResult.fillMissing(filterMap.keySet()).toMap();
+    }
+
+    /**
      * 將排列/組合依照filterMap條件分類, 一個排列/組合可以分類到多個key中, 若只能分類到一個key中請使用 {@link #sortInFirst(int, boolean, Map)}
      *
      * @param size      排列/組合數量(k)
@@ -151,6 +178,34 @@ public abstract class Combinatorics<ElementType, SelfType extends Combinatorics<
                     .filter(entry -> entry.getValue().test(times, resultTemp))
                     .map(Map.Entry::getKey)
                     .forEach(key -> sortResult.join(key, resultTemp));
+        });
+        waitFinish();
+
+        return sortResult.fillMissing(filterMap.keySet()).toMap();
+    }
+
+    /**
+     * 同 {@link #sortInFirst(int, boolean, Map)}, 只是多了一個將沒有任何filter匹配的排列/組合收集到unsortList中的功能
+     */
+    public <KeyType> Map<KeyType, List<List<ElementType>>> sortInFirst(int size,
+                                                                       boolean repeat,
+                                                                       Map<KeyType, BiPredicate<Integer, List<ElementType>>> filterMap,
+                                                                       List<List<ElementType>> unsortList) {
+        SortMap<KeyType, ElementType> sortResult = buildSortUsedMap();
+
+        List<List<ElementType>> unsortListWrap = this.executorSwitch.isWithParallel() ? Collections.synchronizedList(unsortList) : unsortList;
+
+        foreach(size, repeat, (times, resultTemp) -> {
+            AtomicBoolean isMatch = new AtomicBoolean(false);
+            filterMap.entrySet().stream()
+                    .filter(entry -> entry.getValue().test(times, resultTemp))
+                    .map(Map.Entry::getKey)
+                    .peek(key -> isMatch.set(true))
+                    .findFirst()
+                    .ifPresent(key -> sortResult.join(key, resultTemp));
+            if (!isMatch.get()) {
+                unsortListWrap.add(resultTemp);
+            }
         });
         waitFinish();
 

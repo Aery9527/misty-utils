@@ -30,6 +30,10 @@ public class Watcher {
         return this;
     }
 
+    public String format() {
+        return TimeFormat.auto(through());
+    }
+
     public long getStartTime() {
         return startTime;
     }

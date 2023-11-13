@@ -4,8 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="85a0b3b9-499c-4427-8178-fde3848053e3" name="Changes" comment="Watcher add format method">
+    <list default="true" id="85a0b3b9-499c-4427-8178-fde3848053e3" name="Changes" comment="add CombinatoricsSorter">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/Tracked.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/Tracked.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/combinatorics/Combinatorics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/combinatorics/Combinatorics.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/combinatorics/CombinatoricsSorter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/combinatorics/CombinatoricsSorter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,39 +72,41 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;com.google.cloudcode.ide_session_index&quot;: &quot;20231109_0000&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;develop&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "com.google.cloudcode.ide_session_index": "20231113_0001",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "git-widget-placeholder": "develop",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="org.misty.utils.combinatorics" />
       <recent name="org.misty.utils" />
       <recent name="org.misty.utils.sys" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.misty.utils.combinatorics" />
       <recent name="org.misty.utils" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.All in misty-utils.test">
+  <component name="RunManager" selected="JUnit.CombinatoricsSorterTest.addFilter">
     <configuration name="All in misty-utils.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="misty-utils.test" />
       <option name="PACKAGE_NAME" value="" />
@@ -125,7 +130,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CombinationsTest.collectMostAmount" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CombinatoricsSorterTest.addFilter" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="misty-utils.test" />
       <extension name="coverage">
         <pattern>
@@ -134,8 +139,8 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="org.misty.utils.combinatorics" />
-      <option name="MAIN_CLASS_NAME" value="org.misty.utils.combinatorics.CombinationsTest" />
-      <option name="METHOD_NAME" value="collectMostAmount" />
+      <option name="MAIN_CLASS_NAME" value="org.misty.utils.combinatorics.CombinatoricsSorterTest" />
+      <option name="METHOD_NAME" value="addFilter" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -174,11 +179,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.CombinatoricsSorterTest.addFilter" />
         <item itemvalue="JUnit.All in misty-utils.test" />
         <item itemvalue="JUnit.TimeFormatTest.auto" />
         <item itemvalue="JUnit.PermutationsTest" />
         <item itemvalue="JUnit.CombinationsTest" />
-        <item itemvalue="JUnit.CombinationsTest.collectMostAmount" />
       </list>
     </recent_temporary>
   </component>
@@ -197,7 +202,8 @@
       <workItem from="1699428366381" duration="1399000" />
       <workItem from="1699435588949" duration="185000" />
       <workItem from="1699496407441" duration="1579000" />
-      <workItem from="1699844556395" duration="28000" />
+      <workItem from="1699844556395" duration="399000" />
+      <workItem from="1699847157588" duration="1221000" />
     </task>
     <task id="LOCAL-00001" summary="Combinatorics add collect series">
       <option name="closed" value="true" />
@@ -263,7 +269,15 @@
       <option name="project" value="LOCAL" />
       <updated>1699513691342</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="add CombinatoricsSorter">
+      <option name="closed" value="true" />
+      <created>1699844870574</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1699844870574</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -278,7 +292,8 @@
     <MESSAGE value="Combinatorics add sortInAll and sortInFirst with unsort feature" />
     <MESSAGE value="add TimeFormat" />
     <MESSAGE value="Watcher add format method" />
-    <option name="LAST_COMMIT_MESSAGE" value="Watcher add format method" />
+    <MESSAGE value="add CombinatoricsSorter" />
+    <option name="LAST_COMMIT_MESSAGE" value="add CombinatoricsSorter" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/misty_utils$JudgeTest.ic" NAME="JudgeTest Coverage Results" MODIFIED="1698051751125" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

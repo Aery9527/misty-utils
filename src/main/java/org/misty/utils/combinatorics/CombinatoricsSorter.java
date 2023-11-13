@@ -1,5 +1,7 @@
 package org.misty.utils.combinatorics;
 
+import org.misty.utils.Tracked;
+
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -12,6 +14,8 @@ public class CombinatoricsSorter<KeyType, ElementType> {
     private interface SortMap<KeyType, ElementType> extends Map<KeyType, List<List<ElementType>>> {
         void join(KeyType key, List<ElementType> result);
 
+        Tracked getTracked();
+
         default SortMap<KeyType, ElementType> fillMissing(Set<KeyType> keys) {
             keys.forEach(key -> putIfAbsent(key, Collections.emptyList()));
             return this;
@@ -20,10 +24,11 @@ public class CombinatoricsSorter<KeyType, ElementType> {
         default Map<KeyType, List<List<ElementType>>> toMap() {
             return Collections.unmodifiableMap(
                     entrySet().stream().collect(
-                            Collectors.toMap(Entry::getKey,
+                            Collectors.toMap(Map.Entry::getKey,
                                     entry -> Collections.unmodifiableList(entry.getValue()),
                                     (u, v) -> {
-                                        throw new IllegalStateException(String.format("Duplicate key %s", u));
+                                        String errorMsg = getTracked().say("Duplicate key %s", u);
+                                        throw new IllegalStateException(errorMsg);
                                     },
                                     LinkedHashMap::new)
                     )
@@ -36,6 +41,11 @@ public class CombinatoricsSorter<KeyType, ElementType> {
         public void join(KeyType key, List<ElementType> result) {
             super.computeIfAbsent(key, k -> new ArrayList<>(DEFAULT_SORT_LIST_SIZE)).add(result);
         }
+
+        @Override
+        public Tracked getTracked() {
+            return tracked;
+        }
     }
 
     private class AsyncSortMap extends ConcurrentHashMap<KeyType, List<List<ElementType>>> implements SortMap<KeyType, ElementType> {
@@ -43,13 +53,20 @@ public class CombinatoricsSorter<KeyType, ElementType> {
         public void join(KeyType key, List<ElementType> result) {
             super.computeIfAbsent(key, k -> Collections.synchronizedList(new ArrayList<>(DEFAULT_SORT_LIST_SIZE))).add(result);
         }
+
+        @Override
+        public Tracked getTracked() {
+            return tracked;
+        }
     }
 
     private static final int DEFAULT_SORT_LIST_SIZE = 8;
 
-    private Map<KeyType, BiPredicate<Integer, List<ElementType>>> filterMap;
+    private final Tracked tracked;
 
     private final Combinatorics<ElementType, ?> combinatorics;
+
+    private Map<KeyType, BiPredicate<Integer, List<ElementType>>> filterMap;
 
     /**
      * 是否允許覆蓋已存在的分類器
@@ -57,11 +74,25 @@ public class CombinatoricsSorter<KeyType, ElementType> {
     private boolean allowFilterCover = false;
 
     public CombinatoricsSorter(Combinatorics<ElementType, ?> combinatorics) {
+        this.tracked = combinatorics.getTracked().link("sorter");
+        this.combinatorics = combinatorics;
+        this.filterMap = new LinkedHashMap<>();
+    }
+
+    public CombinatoricsSorter(Combinatorics<ElementType, ?> combinatorics, String name) {
+        this.tracked = combinatorics.getTracked().linkWithRandom(name);
         this.combinatorics = combinatorics;
         this.filterMap = new LinkedHashMap<>();
     }
 
     public CombinatoricsSorter(Combinatorics<ElementType, ?> combinatorics, Map<KeyType, BiPredicate<Integer, List<ElementType>>> filterMap) {
+        this.tracked = combinatorics.getTracked().link("sorter");
+        this.combinatorics = combinatorics;
+        this.filterMap = filterMap;
+    }
+
+    public CombinatoricsSorter(Combinatorics<ElementType, ?> combinatorics, String name, Map<KeyType, BiPredicate<Integer, List<ElementType>>> filterMap) {
+        this.tracked = combinatorics.getTracked().linkWithRandom(name);
         this.combinatorics = combinatorics;
         this.filterMap = filterMap;
     }
@@ -73,7 +104,8 @@ public class CombinatoricsSorter<KeyType, ElementType> {
     public CombinatoricsSorter<KeyType, ElementType> addFilter(KeyType key, BiPredicate<Integer, List<ElementType>> filter) {
         BiPredicate<Integer, List<ElementType>> old = this.filterMap.put(key, filter);
         if (!this.allowFilterCover && old != null) {
-            throw new IllegalStateException("key(" + key + ") already exists");
+            String errorMsg = this.tracked.say("filter key(%s) already exists", key);
+            throw new IllegalStateException(errorMsg);
         }
         return this;
     }
@@ -200,8 +232,9 @@ public class CombinatoricsSorter<KeyType, ElementType> {
         return filterMap;
     }
 
-    public void setFilterMap(Map<KeyType, BiPredicate<Integer, List<ElementType>>> filterMap) {
+    public CombinatoricsSorter<KeyType, ElementType> setFilterMap(Map<KeyType, BiPredicate<Integer, List<ElementType>>> filterMap) {
         this.filterMap = filterMap;
+        return this;
     }
 
 }

@@ -17,11 +17,11 @@ class CombinatoricsSorterTest {
 
     @Test
     public void constructor() {
-        CombinatoricsSorter<String, String> sorter1 = new CombinatoricsSorter<>(null);
+        CombinatoricsSorter<String, String> sorter1 = new CombinatoricsSorter<>(Combinations.of());
         Assertions.assertThat(sorter1.getFilterMap()).isExactlyInstanceOf(LinkedHashMap.class);
 
         Map<String, BiPredicate<Integer, List<String>>> filterMap = new HashMap<>();
-        CombinatoricsSorter<String, String> sorter2 = new CombinatoricsSorter<>(null, filterMap);
+        CombinatoricsSorter<String, String> sorter2 = new CombinatoricsSorter<>(Permutations.of(), filterMap);
         Assertions.assertThat(sorter2.getFilterMap() == filterMap).isTrue();
     }
 
@@ -34,7 +34,7 @@ class CombinatoricsSorterTest {
         String key3 = "key3";
         BiPredicate<Integer, List<String>> filter3 = (times, elements) -> true;
 
-        CombinatoricsSorter<String, String> sorter = new CombinatoricsSorter<>(null);
+        CombinatoricsSorter<String, String> sorter = new CombinatoricsSorter<>(Combinations.of());
         sorter.addFilter(key1, filter1);
         sorter.addFilter(key2, filter2);
         sorter.addFilter(key3, filter3);

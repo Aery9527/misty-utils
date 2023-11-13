@@ -36,6 +36,13 @@ public class Tracked {
         this.msg = "TRACKED{" + this.id + '}';
     }
 
+    /**
+     * similar to {@link String#format(String, Object...)}
+     */
+    public String say(String format, Object... args) {
+        return say(String.format(format, args));
+    }
+
     public String say(String msg) {
         return this.msg + " " + msg;
     }

@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="85a0b3b9-499c-4427-8178-fde3848053e3" name="Changes" comment="add CombinatoricsSorter">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="85a0b3b9-499c-4427-8178-fde3848053e3" name="Changes" comment="CombinatoricsSorter add Tracked">
       <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/Tracked.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/Tracked.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/combinatorics/Combinatorics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/combinatorics/Combinatorics.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/combinatorics/CombinatoricsSorter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/combinatorics/CombinatoricsSorter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/TrackedTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/TrackedTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,26 +104,11 @@
       <recent name="org.misty.utils" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.CombinatoricsSorterTest.addFilter">
+  <component name="RunManager" selected="JUnit.TrackedTest.create_with_link">
     <configuration name="All in misty-utils.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="misty-utils.test" />
       <option name="PACKAGE_NAME" value="" />
       <option name="TEST_OBJECT" value="package" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CombinationsTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="misty-utils.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.misty.utils.combinatorics.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.misty.utils.combinatorics" />
-      <option name="MAIN_CLASS_NAME" value="org.misty.utils.combinatorics.CombinationsTest" />
-      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -177,13 +160,29 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="TrackedTest.create_with_link" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="misty-utils.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.misty.utils.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.misty.utils" />
+      <option name="MAIN_CLASS_NAME" value="org.misty.utils.TrackedTest" />
+      <option name="METHOD_NAME" value="create_with_link" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.TrackedTest.create_with_link" />
         <item itemvalue="JUnit.CombinatoricsSorterTest.addFilter" />
         <item itemvalue="JUnit.All in misty-utils.test" />
         <item itemvalue="JUnit.TimeFormatTest.auto" />
         <item itemvalue="JUnit.PermutationsTest" />
-        <item itemvalue="JUnit.CombinationsTest" />
       </list>
     </recent_temporary>
   </component>
@@ -203,7 +202,7 @@
       <workItem from="1699435588949" duration="185000" />
       <workItem from="1699496407441" duration="1579000" />
       <workItem from="1699844556395" duration="399000" />
-      <workItem from="1699847157588" duration="1221000" />
+      <workItem from="1699847157588" duration="2268000" />
     </task>
     <task id="LOCAL-00001" summary="Combinatorics add collect series">
       <option name="closed" value="true" />
@@ -277,7 +276,15 @@
       <option name="project" value="LOCAL" />
       <updated>1699844870574</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="CombinatoricsSorter add Tracked">
+      <option name="closed" value="true" />
+      <created>1699848991475</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1699848991475</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -293,7 +300,8 @@
     <MESSAGE value="add TimeFormat" />
     <MESSAGE value="Watcher add format method" />
     <MESSAGE value="add CombinatoricsSorter" />
-    <option name="LAST_COMMIT_MESSAGE" value="add CombinatoricsSorter" />
+    <MESSAGE value="CombinatoricsSorter add Tracked" />
+    <option name="LAST_COMMIT_MESSAGE" value="CombinatoricsSorter add Tracked" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/misty_utils$JudgeTest.ic" NAME="JudgeTest Coverage Results" MODIFIED="1698051751125" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

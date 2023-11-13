@@ -13,6 +13,16 @@ public class Tracked {
         return new Tracked(null, name, true);
     }
 
+    public static Tracked create(String name, String id) {
+        return new Tracked(null, name, id);
+    }
+
+    public static String random() {
+        String now = Long.toString(System.currentTimeMillis(), Character.MAX_RADIX);
+        String random = String.format("%04d", (int) (Math.random() * 1_0000));
+        return now + random;
+    }
+
     private final Optional<Tracked> parent;
 
     private final String id;
@@ -20,18 +30,15 @@ public class Tracked {
     private final String msg;
 
     private Tracked(Tracked parent, String name, boolean joinIdentifier) {
+        this(parent, name, joinIdentifier ? random() : "");
+    }
+
+    private Tracked(Tracked parent, String name, String random) {
         this.parent = Optional.ofNullable(parent);
 
         String id = parent == null ? "" : parent.id + "|";
-        id += name == null || name.isEmpty() ? "" : name + (joinIdentifier ? ":" : "");
-
-        if (joinIdentifier) {
-            String now = Long.toString(System.currentTimeMillis(), Character.MAX_RADIX);
-            String random = String.format("%04d", (int) (Math.random() * 1_0000));
-            this.id = id + now + random;
-        } else {
-            this.id = id;
-        }
+        id += name == null || name.isEmpty() ? "" : name + (random.isEmpty() ? "" : ":");
+        this.id = id + random;
 
         this.msg = "TRACKED{" + this.id + '}';
     }
@@ -48,19 +55,19 @@ public class Tracked {
     }
 
     public Tracked link(String name) {
-        return link(name, false);
+        return link(name, "");
     }
 
     public Tracked linkWithRandom(String name) {
-        return link(name, true);
+        return link(name, random());
     }
 
-    private Tracked link(String name, boolean joinIdentifier) {
+    public Tracked link(String name, String id) {
         if (name == null || name.isEmpty()) {
             throw new IllegalArgumentException("name is null or empty");
         }
 
-        return new Tracked(this, name, joinIdentifier);
+        return new Tracked(this, name, id);
     }
 
     @Override

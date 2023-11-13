@@ -32,7 +32,6 @@ class CombinatoricsTest {
                     return result;
                 }, (result1, result2) -> null)
                 .forEach(result -> System.out.println(String.join(" ", result)));
-        System.out.println();
     }
 
     public static void print(String title, Map<String, List<List<String>>> map) {

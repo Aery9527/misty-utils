@@ -1,6 +1,7 @@
 package org.misty.utils.verify;
 
 import java.math.BigDecimal;
+import java.util.Optional;
 
 public class Verifier {
 
@@ -10,6 +11,20 @@ public class Verifier {
     public interface Logic<DefaultExceptionType extends Exception> {
 
         <TargetType> VerifierThrown<TargetType, DefaultExceptionType> defaultThrown();
+
+        default void refuseNull(String term, Object arg) throws DefaultExceptionType {
+            refuseNull(term, arg, defaultThrown());
+        }
+
+        default <TargetType, ExceptionType extends Exception> void refuseNull(
+                String term,
+                TargetType arg,
+                VerifierThrown<TargetType, ExceptionType> thrown
+        ) throws ExceptionType {
+            if (arg == null || (arg instanceof Optional && !((Optional) arg).isPresent())) {
+                thrown.thrown(term, arg, "\"" + term + "\" can't be null");
+            }
+        }
 
         default void refuseNullOrEmpty(String term, Object arg) throws DefaultExceptionType {
             refuseNullOrEmpty(term, arg, defaultThrown());
@@ -491,6 +506,18 @@ public class Verifier {
             };
         }
     };
+
+    public static void refuseNull(String term, Object arg) throws IllegalArgumentException {
+        INSTANCE.refuseNull(term, arg);
+    }
+
+    public static <TargetType, ExceptionType extends Exception> void refuseNull(
+            String term,
+            TargetType arg,
+            VerifierThrown<TargetType, ExceptionType> thrown
+    ) throws ExceptionType {
+        INSTANCE.refuseNull(term, arg, thrown);
+    }
 
     public static void refuseNullOrEmpty(String term, Object arg) throws IllegalArgumentException {
         INSTANCE.refuseNullOrEmpty(term, arg);

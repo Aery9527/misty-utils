@@ -22,6 +22,45 @@ public class VerifierTest {
     }
 
     @Test
+    public void refuseNull() {
+        // 測試檢查通過的情況
+        Verifier.refuseNull("term", "");
+        Verifier.refuseNull("term", Collections.emptyList());
+        Verifier.refuseNull("term", Collections.emptyMap());
+        Verifier.refuseNull("term", new short[0]);
+        Verifier.refuseNull("term", new int[0]);
+        Verifier.refuseNull("term", new long[0]);
+        Verifier.refuseNull("term", new float[0]);
+        Verifier.refuseNull("term", new double[0]);
+        Verifier.refuseNull("term", new boolean[0]);
+        Verifier.refuseNull("term", new char[0]);
+        Verifier.refuseNull("term", new byte[0]);
+        Verifier.refuseNull("term", new Object[0]);
+        Verifier.refuseNull("term", Optional.of(""));
+
+        // 測試檢查不通過的情況
+        AssertionsEx.assertThrown(() -> Verifier.refuseNull("term", null)).isInstanceOf(IllegalArgumentException.class);
+
+        // 測試檢查通過的情況, 拋出非預設自定義錯誤
+        Verifier.refuseNull("term", "", thrown());
+        Verifier.refuseNull("term", Collections.emptyList(), thrown());
+        Verifier.refuseNull("term", Collections.emptyMap(), thrown());
+        Verifier.refuseNull("term", new short[0], thrown());
+        Verifier.refuseNull("term", new int[0], thrown());
+        Verifier.refuseNull("term", new long[0], thrown());
+        Verifier.refuseNull("term", new float[0], thrown());
+        Verifier.refuseNull("term", new double[0], thrown());
+        Verifier.refuseNull("term", new boolean[0], thrown());
+        Verifier.refuseNull("term", new char[0], thrown());
+        Verifier.refuseNull("term", new byte[0], thrown());
+        Verifier.refuseNull("term", new Object[0], thrown());
+        Verifier.refuseNull("term", Optional.of(""), thrown());
+
+        // 測試檢查不通過的情況, 拋出非預設自定義錯誤
+        AssertionsEx.assertThrown(() -> Verifier.refuseNull("term", null, thrown())).isInstanceOf(TestException.class);
+    }
+
+    @Test
     public void refuseNullOrEmpty() {
         // 測試檢查通過的情況
         Verifier.refuseNullOrEmpty("term", new Object());
@@ -54,6 +93,7 @@ public class VerifierTest {
         AssertionsEx.assertThrown(() -> Verifier.refuseNullOrEmpty("term", new byte[0])).isInstanceOf(IllegalArgumentException.class);
         AssertionsEx.assertThrown(() -> Verifier.refuseNullOrEmpty("term", new Object[0])).isInstanceOf(IllegalArgumentException.class);
         AssertionsEx.assertThrown(() -> Verifier.refuseNullOrEmpty("term", Optional.ofNullable(null))).isInstanceOf(IllegalArgumentException.class);
+        AssertionsEx.assertThrown(() -> Verifier.refuseNullOrEmpty("term", Optional.of(""))).isInstanceOf(IllegalArgumentException.class);
 
         // 測試檢查通過的情況, 拋出非預設自定義錯誤
         Verifier.refuseNullOrEmpty("term", new Object(), thrown());

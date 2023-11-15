@@ -8,8 +8,7 @@ import java.util.Collections;
 import java.util.Map;
 import java.util.Optional;
 
-@SuppressWarnings({"RedundantCast", "ConstantValue", "rawtypes", "OptionalAssignedToNull"})
-class CheckerTest {
+public class CheckerTest {
 
     @Test
     public void test_Object() {

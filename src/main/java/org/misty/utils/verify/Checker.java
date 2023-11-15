@@ -103,7 +103,7 @@ public class Checker {
             return true;
         }
 
-        if (o.isEmpty()) {
+        if (!o.isPresent()) {
             return true;
         }
 

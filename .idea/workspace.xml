@@ -4,8 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="85a0b3b9-499c-4427-8178-fde3848053e3" name="Changes" comment="add Verifier series">
+    <list default="true" id="85a0b3b9-499c-4427-8178-fde3848053e3" name="Changes" comment="Verifier add refuseNull method">
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/verify/BigDecimalRangeVerifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/verify/BigDecimalRangeVerifier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/verify/DoubleRangeVerifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/verify/DoubleRangeVerifier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/verify/FloatRangeVerifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/verify/FloatRangeVerifier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/verify/IntRangeVerifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/verify/IntRangeVerifier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/verify/LongRangeVerifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/verify/LongRangeVerifier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/verify/ShortRangeVerifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/verify/ShortRangeVerifier.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/verify/Verifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/verify/Verifier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/verify/BigDecimalRangeVerifierTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/verify/BigDecimalRangeVerifierTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/verify/DoubleRangeVerifierTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/verify/DoubleRangeVerifierTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/verify/FloatRangeVerifierTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/verify/FloatRangeVerifierTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/verify/IntRangeVerifierTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/verify/IntRangeVerifierTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/verify/LongRangeVerifierTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/verify/LongRangeVerifierTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/verify/ShortRangeVerifierTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/verify/ShortRangeVerifierTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/verify/VerifierTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/verify/VerifierTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -109,7 +121,15 @@
       <recent name="org.misty.utils" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.VerifierTest">
+  <component name="RunManager" selected="JUnit.All in misty-utils.test (1)">
+    <configuration name="All in misty-utils.test (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="misty-utils.test" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="All in misty-utils.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="misty-utils.test" />
       <option name="PACKAGE_NAME" value="" />
@@ -129,22 +149,6 @@
       <option name="PACKAGE_NAME" value="org.misty.utils.combinatorics" />
       <option name="MAIN_CLASS_NAME" value="org.misty.utils.combinatorics.CombinatoricsSorterTest" />
       <option name="METHOD_NAME" value="addFilter" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TimeFormatTest.auto" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="misty-utils.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.misty.utils.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.misty.utils" />
-      <option name="MAIN_CLASS_NAME" value="org.misty.utils.TimeFormatTest" />
-      <option name="METHOD_NAME" value="auto" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -183,11 +187,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.All in misty-utils.test (1)" />
         <item itemvalue="JUnit.VerifierTest" />
         <item itemvalue="JUnit.All in misty-utils.test" />
         <item itemvalue="JUnit.TrackedTest.create_with_link" />
         <item itemvalue="JUnit.CombinatoricsSorterTest.addFilter" />
-        <item itemvalue="JUnit.TimeFormatTest.auto" />
       </list>
     </recent_temporary>
   </component>
@@ -210,7 +214,7 @@
       <workItem from="1699847157588" duration="2909000" />
       <workItem from="1699948158537" duration="65000" />
       <workItem from="1699948385481" duration="140000" />
-      <workItem from="1699948535176" duration="2298000" />
+      <workItem from="1699948535176" duration="3090000" />
     </task>
     <task id="LOCAL-00001" summary="Combinatorics add collect series">
       <option name="closed" value="true" />
@@ -308,7 +312,15 @@
       <option name="project" value="LOCAL" />
       <updated>1700034860587</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Verifier add refuseNull method">
+      <option name="closed" value="true" />
+      <created>1700035833565</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1700035833565</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -327,7 +339,8 @@
     <MESSAGE value="CombinatoricsSorter add Tracked" />
     <MESSAGE value="adjust Tracked" />
     <MESSAGE value="add Verifier series" />
-    <option name="LAST_COMMIT_MESSAGE" value="add Verifier series" />
+    <MESSAGE value="Verifier add refuseNull method" />
+    <option name="LAST_COMMIT_MESSAGE" value="Verifier add refuseNull method" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/misty_utils$JudgeTest.ic" NAME="JudgeTest Coverage Results" MODIFIED="1698051751125" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

@@ -7,7 +7,7 @@ public class DoubleRangeVerifier extends Verifier {
     private final double max;
 
     public DoubleRangeVerifier(double min, double max) {
-        Verifier.requireDoubleLessThanInclusive("min", min, max);
+        Verifier.requireDoubleLessThanInclusive("min", min, "max", max);
         this.min = min;
         this.max = max;
     }
@@ -22,7 +22,7 @@ public class DoubleRangeVerifier extends Verifier {
             VerifierThrown<Double, ExceptionType> thrown
     ) throws ExceptionType {
         if (target < this.min || target > this.max) {
-            thrown.thrown(term, target, String.format("\"%s(%f)\" must be in range [%f, %f]", term, target, this.min, this.max));
+            thrown.thrown(term, target, String.format(Verifier.ErrorMsgFormat.REQUIRE_RANGE_INCLUSIVE, term, target, this.min, this.max));
         }
     }
 
@@ -36,7 +36,7 @@ public class DoubleRangeVerifier extends Verifier {
             VerifierThrown<Double, ExceptionType> thrown
     ) throws ExceptionType {
         if (target <= this.min || target >= this.max) {
-            thrown.thrown(term, target, String.format("\"%s(%f)\" must be in range (%f, %f)", term, target, this.min, this.max));
+            thrown.thrown(term, target, String.format(Verifier.ErrorMsgFormat.REQUIRE_RANGE_EXCLUSIVE, term, target, this.min, this.max));
         }
     }
 
@@ -50,7 +50,7 @@ public class DoubleRangeVerifier extends Verifier {
             VerifierThrown<Double, ExceptionType> thrown
     ) throws ExceptionType {
         if (target >= this.min && target <= this.max) {
-            thrown.thrown(term, target, String.format("\"%s(%f)\" can't be in range [%f, %f]", term, target, this.min, this.max));
+            thrown.thrown(term, target, String.format(Verifier.ErrorMsgFormat.REFUSE_RANGE_INCLUSIVE, term, target, this.min, this.max));
         }
     }
 
@@ -64,7 +64,7 @@ public class DoubleRangeVerifier extends Verifier {
             VerifierThrown<Double, ExceptionType> thrown
     ) throws ExceptionType {
         if (target > this.min && target < this.max) {
-            thrown.thrown(term, target, String.format("\"%s(%f)\" can't be in range (%f, %f)", term, target, this.min, this.max));
+            thrown.thrown(term, target, String.format(Verifier.ErrorMsgFormat.REFUSE_RANGE_EXCLUSIVE, term, target, this.min, this.max));
         }
     }
 

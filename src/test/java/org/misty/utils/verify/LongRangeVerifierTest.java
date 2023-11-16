@@ -10,95 +10,157 @@ public class LongRangeVerifierTest {
         LongRangeVerifier rangeVerifier = Verifier.ofRange(1L, 1L);
         rangeVerifier = Verifier.ofRange(1L, 2L);
 
-        AssertionsEx.assertThrown(() -> Verifier.ofRange(1L, 0L)).isInstanceOf(IllegalArgumentException.class);
+        AssertionsEx.assertThrown(() -> Verifier.ofRange(1L, 0L))
+                .hasMessageContaining(String.format(Verifier.ErrorMsgFormat.LESS_THAN_INCLUSIVE, "min", 1, "max", 0))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     public void requireInclusive() {
-        LongRangeVerifier rangeVerifier = Verifier.ofRange(1L, 3L);
+        String targetTerm = "targetTerm";
+        String errorMsgFormat = Verifier.ErrorMsgFormat.REQUIRE_RANGE_INCLUSIVE;
+        long min = 1;
+        long max = 3;
+
+        LongRangeVerifier rangeVerifier = Verifier.ofRange(min, max);
 
         // 測試檢查通過的情況
-        rangeVerifier.requireInclusive("term", 1);
-        rangeVerifier.requireInclusive("term", 2);
-        rangeVerifier.requireInclusive("term", 3);
+        rangeVerifier.requireInclusive(targetTerm, 1);
+        rangeVerifier.requireInclusive(targetTerm, 2);
+        rangeVerifier.requireInclusive(targetTerm, 3);
 
         // 測試檢查不通過的情況
-        AssertionsEx.assertThrown(() -> rangeVerifier.requireInclusive("term", 0)).isInstanceOf(IllegalArgumentException.class);
-        AssertionsEx.assertThrown(() -> rangeVerifier.requireInclusive("term", 4)).isInstanceOf(IllegalArgumentException.class);
+        AssertionsEx.assertThrown(() -> rangeVerifier.requireInclusive(targetTerm, 0))
+                .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 0, min, max))
+                .isInstanceOf(IllegalArgumentException.class);
+        AssertionsEx.assertThrown(() -> rangeVerifier.requireInclusive(targetTerm, 4))
+                .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 4, min, max))
+                .isInstanceOf(IllegalArgumentException.class);
 
         // 測試檢查通過的情況, 拋出非預設自定義錯誤
-        rangeVerifier.requireInclusive("term", 1, VerifierTest.thrown());
-        rangeVerifier.requireInclusive("term", 2, VerifierTest.thrown());
-        rangeVerifier.requireInclusive("term", 3, VerifierTest.thrown());
+        rangeVerifier.requireInclusive(targetTerm, 1, VerifierTest.thrown());
+        rangeVerifier.requireInclusive(targetTerm, 2, VerifierTest.thrown());
+        rangeVerifier.requireInclusive(targetTerm, 3, VerifierTest.thrown());
 
         // 測試檢查不通過的情況, 拋出非預設自定義錯誤
-        AssertionsEx.assertThrown(() -> rangeVerifier.requireInclusive("term", 0, VerifierTest.thrown())).isInstanceOf(VerifierTest.TestException.class);
-        AssertionsEx.assertThrown(() -> rangeVerifier.requireInclusive("term", 4, VerifierTest.thrown())).isInstanceOf(VerifierTest.TestException.class);
+        AssertionsEx.assertThrown(() -> rangeVerifier.requireInclusive(targetTerm, 0, VerifierTest.thrown()))
+                .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 0, min, max))
+                .isInstanceOf(VerifierTest.TestException.class);
+        AssertionsEx.assertThrown(() -> rangeVerifier.requireInclusive(targetTerm, 4, VerifierTest.thrown()))
+                .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 4, min, max))
+                .isInstanceOf(VerifierTest.TestException.class);
     }
 
     @Test
     public void requireExclusive() {
-        LongRangeVerifier rangeVerifier = Verifier.ofRange(1L, 3L);
+        String targetTerm = "targetTerm";
+        String errorMsgFormat = Verifier.ErrorMsgFormat.REQUIRE_RANGE_EXCLUSIVE;
+        long min = 1;
+        long max = 3;
+
+        LongRangeVerifier rangeVerifier = Verifier.ofRange(min, max);
 
         // 測試檢查通過的情況
-        rangeVerifier.requireExclusive("term", 2);
+        rangeVerifier.requireExclusive(targetTerm, 2);
 
         // 測試檢查不通過的情況
-        AssertionsEx.assertThrown(() -> rangeVerifier.requireExclusive("term", 0)).isInstanceOf(IllegalArgumentException.class);
-        AssertionsEx.assertThrown(() -> rangeVerifier.requireExclusive("term", 1)).isInstanceOf(IllegalArgumentException.class);
-        AssertionsEx.assertThrown(() -> rangeVerifier.requireExclusive("term", 3)).isInstanceOf(IllegalArgumentException.class);
-        AssertionsEx.assertThrown(() -> rangeVerifier.requireExclusive("term", 4)).isInstanceOf(IllegalArgumentException.class);
+        AssertionsEx.assertThrown(() -> rangeVerifier.requireExclusive(targetTerm, 0))
+                .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 0, min, max))
+                .isInstanceOf(IllegalArgumentException.class);
+        AssertionsEx.assertThrown(() -> rangeVerifier.requireExclusive(targetTerm, 1))
+                .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 1, min, max))
+                .isInstanceOf(IllegalArgumentException.class);
+        AssertionsEx.assertThrown(() -> rangeVerifier.requireExclusive(targetTerm, 3))
+                .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 3, min, max))
+                .isInstanceOf(IllegalArgumentException.class);
+        AssertionsEx.assertThrown(() -> rangeVerifier.requireExclusive(targetTerm, 4))
+                .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 4, min, max))
+                .isInstanceOf(IllegalArgumentException.class);
 
         // 測試檢查通過的情況, 拋出非預設自定義錯誤
-        rangeVerifier.requireExclusive("term", 2, VerifierTest.thrown());
+        rangeVerifier.requireExclusive(targetTerm, 2, VerifierTest.thrown());
 
         // 測試檢查不通過的情況, 拋出非預設自定義錯誤
-        AssertionsEx.assertThrown(() -> rangeVerifier.requireExclusive("term", 0, VerifierTest.thrown())).isInstanceOf(VerifierTest.TestException.class);
-        AssertionsEx.assertThrown(() -> rangeVerifier.requireExclusive("term", 1, VerifierTest.thrown())).isInstanceOf(VerifierTest.TestException.class);
-        AssertionsEx.assertThrown(() -> rangeVerifier.requireExclusive("term", 3, VerifierTest.thrown())).isInstanceOf(VerifierTest.TestException.class);
-        AssertionsEx.assertThrown(() -> rangeVerifier.requireExclusive("term", 4, VerifierTest.thrown())).isInstanceOf(VerifierTest.TestException.class);
+        AssertionsEx.assertThrown(() -> rangeVerifier.requireExclusive(targetTerm, 0, VerifierTest.thrown()))
+                .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 0, min, max))
+                .isInstanceOf(VerifierTest.TestException.class);
+        AssertionsEx.assertThrown(() -> rangeVerifier.requireExclusive(targetTerm, 1, VerifierTest.thrown()))
+                .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 1, min, max))
+                .isInstanceOf(VerifierTest.TestException.class);
+        AssertionsEx.assertThrown(() -> rangeVerifier.requireExclusive(targetTerm, 3, VerifierTest.thrown()))
+                .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 3, min, max))
+                .isInstanceOf(VerifierTest.TestException.class);
+        AssertionsEx.assertThrown(() -> rangeVerifier.requireExclusive(targetTerm, 4, VerifierTest.thrown()))
+                .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 4, min, max))
+                .isInstanceOf(VerifierTest.TestException.class);
     }
 
     @Test
     public void refuseInclusive() {
-        LongRangeVerifier rangeVerifier = Verifier.ofRange(1L, 3L);
+        String targetTerm = "targetTerm";
+        String errorMsgFormat = Verifier.ErrorMsgFormat.REFUSE_RANGE_INCLUSIVE;
+        long min = 1;
+        long max = 3;
+
+        LongRangeVerifier rangeVerifier = Verifier.ofRange(min, max);
 
         // 測試檢查通過的情況
-        rangeVerifier.refuseInclusive("term", 0);
-        rangeVerifier.refuseInclusive("term", 4);
+        rangeVerifier.refuseInclusive(targetTerm, 0);
+        rangeVerifier.refuseInclusive(targetTerm, 4);
 
         // 測試檢查不通過的情況
-        AssertionsEx.assertThrown(() -> rangeVerifier.refuseInclusive("term", 1)).isInstanceOf(IllegalArgumentException.class);
-        AssertionsEx.assertThrown(() -> rangeVerifier.refuseInclusive("term", 2)).isInstanceOf(IllegalArgumentException.class);
-        AssertionsEx.assertThrown(() -> rangeVerifier.refuseInclusive("term", 3)).isInstanceOf(IllegalArgumentException.class);
+        AssertionsEx.assertThrown(() -> rangeVerifier.refuseInclusive(targetTerm, 1))
+                .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 1, min, max))
+                .isInstanceOf(IllegalArgumentException.class);
+        AssertionsEx.assertThrown(() -> rangeVerifier.refuseInclusive(targetTerm, 2))
+                .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 2, min, max))
+                .isInstanceOf(IllegalArgumentException.class);
+        AssertionsEx.assertThrown(() -> rangeVerifier.refuseInclusive(targetTerm, 3))
+                .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 3, min, max))
+                .isInstanceOf(IllegalArgumentException.class);
 
         // 測試檢查通過的情況, 拋出非預設自定義錯誤
-        rangeVerifier.refuseInclusive("term", 0, VerifierTest.thrown());
-        rangeVerifier.refuseInclusive("term", 4, VerifierTest.thrown());
+        rangeVerifier.refuseInclusive(targetTerm, 0, VerifierTest.thrown());
+        rangeVerifier.refuseInclusive(targetTerm, 4, VerifierTest.thrown());
 
         // 測試檢查不通過的情況, 拋出非預設自定義錯誤
-        AssertionsEx.assertThrown(() -> rangeVerifier.refuseInclusive("term", 1, VerifierTest.thrown())).isInstanceOf(VerifierTest.TestException.class);
-        AssertionsEx.assertThrown(() -> rangeVerifier.refuseInclusive("term", 2, VerifierTest.thrown())).isInstanceOf(VerifierTest.TestException.class);
-        AssertionsEx.assertThrown(() -> rangeVerifier.refuseInclusive("term", 3, VerifierTest.thrown())).isInstanceOf(VerifierTest.TestException.class);
+        AssertionsEx.assertThrown(() -> rangeVerifier.refuseInclusive(targetTerm, 1, VerifierTest.thrown()))
+                .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 1, min, max))
+                .isInstanceOf(VerifierTest.TestException.class);
+        AssertionsEx.assertThrown(() -> rangeVerifier.refuseInclusive(targetTerm, 2, VerifierTest.thrown()))
+                .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 2, min, max))
+                .isInstanceOf(VerifierTest.TestException.class);
+        AssertionsEx.assertThrown(() -> rangeVerifier.refuseInclusive(targetTerm, 3, VerifierTest.thrown()))
+                .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 3, min, max))
+                .isInstanceOf(VerifierTest.TestException.class);
     }
 
     @Test
     public void refuseExclusive() {
-        LongRangeVerifier rangeVerifier = Verifier.ofRange(1L, 3L);
+        String targetTerm = "targetTerm";
+        String errorMsgFormat = Verifier.ErrorMsgFormat.REFUSE_RANGE_EXCLUSIVE;
+        long min = 1;
+        long max = 3;
+
+        LongRangeVerifier rangeVerifier = Verifier.ofRange(min, max);
 
         // 測試檢查通過的情況
-        rangeVerifier.refuseExclusive("term", 1);
-        rangeVerifier.refuseExclusive("term", 3);
+        rangeVerifier.refuseExclusive(targetTerm, 1);
+        rangeVerifier.refuseExclusive(targetTerm, 3);
 
         // 測試檢查不通過的情況
-        AssertionsEx.assertThrown(() -> rangeVerifier.refuseExclusive("term", 2)).isInstanceOf(IllegalArgumentException.class);
+        AssertionsEx.assertThrown(() -> rangeVerifier.refuseExclusive(targetTerm, 2))
+                .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 2, min, max))
+                .isInstanceOf(IllegalArgumentException.class);
 
         // 測試檢查通過的情況, 拋出非預設自定義錯誤
-        rangeVerifier.refuseExclusive("term", 1, VerifierTest.thrown());
-        rangeVerifier.refuseExclusive("term", 3, VerifierTest.thrown());
+        rangeVerifier.refuseExclusive(targetTerm, 1, VerifierTest.thrown());
+        rangeVerifier.refuseExclusive(targetTerm, 3, VerifierTest.thrown());
 
         // 測試檢查不通過的情況, 拋出非預設自定義錯誤
-        AssertionsEx.assertThrown(() -> rangeVerifier.refuseExclusive("term", 2, VerifierTest.thrown())).isInstanceOf(VerifierTest.TestException.class);
+        AssertionsEx.assertThrown(() -> rangeVerifier.refuseExclusive(targetTerm, 2, VerifierTest.thrown()))
+                .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 2, min, max))
+                .isInstanceOf(VerifierTest.TestException.class);
     }
 
 }

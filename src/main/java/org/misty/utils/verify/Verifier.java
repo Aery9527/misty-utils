@@ -22,7 +22,7 @@ public class Verifier {
                 VerifierThrown<TargetType, ExceptionType> thrown
         ) throws ExceptionType {
             if (arg == null || (arg instanceof Optional && !((Optional) arg).isPresent())) {
-                thrown.thrown(term, arg, "\"" + term + "\" can't be null");
+                thrown.thrown(term, arg, String.format(ErrorMsgFormat.REFUSE_NULL, term));
             }
         }
 
@@ -36,466 +36,944 @@ public class Verifier {
                 VerifierThrown<TargetType, ExceptionType> thrown
         ) throws ExceptionType {
             if (Checker.isNullOrEmpty(arg)) {
-                thrown.thrown(term, arg, "\"" + term + "\" can't be null or empty");
+                thrown.thrown(term, arg, String.format(ErrorMsgFormat.REFUSE_NULL_OR_EMPTY, term));
             }
         }
 
         default void requireShortMoreThanInclusive(
-                String term,
+                String targetTerm,
                 short target,
                 short limit
         ) throws DefaultExceptionType {
-            requireShortMoreThanInclusive(term, target, limit, defaultThrown());
+            requireShortMoreThanInclusive(targetTerm, target, "", limit, defaultThrown());
+        }
+
+        default void requireShortMoreThanInclusive(
+                String targetTerm,
+                short target,
+                String limitTerm,
+                short limit
+        ) throws DefaultExceptionType {
+            requireShortMoreThanInclusive(targetTerm, target, limitTerm, limit, defaultThrown());
         }
 
         default <ExceptionType extends Exception> void requireShortMoreThanInclusive(
-                String term,
+                String targetTerm,
                 short target,
                 short limit,
                 VerifierThrown<Short, ExceptionType> thrown
         ) throws ExceptionType {
+            requireShortMoreThanInclusive(targetTerm, target, "", limit, thrown);
+        }
+
+        default <ExceptionType extends Exception> void requireShortMoreThanInclusive(
+                String targetTerm,
+                short target,
+                String limitTerm,
+                short limit,
+                VerifierThrown<Short, ExceptionType> thrown
+        ) throws ExceptionType {
             if (target < limit) {
-                thrown.thrown(term, target, String.format("\"%s(%d)\" must be more than or equal to %d", term, target, limit));
+                thrown.thrown(targetTerm, target, String.format(ErrorMsgFormat.MORE_THAN_INCLUSIVE, targetTerm, target, limitTerm, limit));
             }
         }
 
         default void requireShortMoreThanExclusive(
-                String term,
+                String targetTerm,
                 short target,
                 short limit
         ) throws DefaultExceptionType {
-            requireShortMoreThanExclusive(term, target, limit, defaultThrown());
+            requireShortMoreThanExclusive(targetTerm, target, "", limit, defaultThrown());
+        }
+
+        default void requireShortMoreThanExclusive(
+                String targetTerm,
+                short target,
+                String limitTerm,
+                short limit
+        ) throws DefaultExceptionType {
+            requireShortMoreThanExclusive(targetTerm, target, limitTerm, limit, defaultThrown());
         }
 
         default <ExceptionType extends Exception> void requireShortMoreThanExclusive(
-                String term,
+                String targetTerm,
                 short target,
                 short limit,
                 VerifierThrown<Short, ExceptionType> thrown
         ) throws ExceptionType {
+            requireShortMoreThanExclusive(targetTerm, target, "", limit, thrown);
+        }
+
+        default <ExceptionType extends Exception> void requireShortMoreThanExclusive(
+                String targetTerm,
+                short target,
+                String limitTerm,
+                short limit,
+                VerifierThrown<Short, ExceptionType> thrown
+        ) throws ExceptionType {
             if (target <= limit) {
-                thrown.thrown(term, target, String.format("\"%s(%d)\" must be more than %d", term, target, limit));
+                thrown.thrown(targetTerm, target, String.format(ErrorMsgFormat.MORE_THAN_EXCLUSIVE, targetTerm, target, limitTerm, limit));
             }
         }
 
         default void requireShortLessThanInclusive(
-                String term,
+                String targetTerm,
                 short target,
                 short limit
         ) throws DefaultExceptionType {
-            requireShortLessThanInclusive(term, target, limit, defaultThrown());
+            requireShortLessThanInclusive(targetTerm, target, "", limit, defaultThrown());
+        }
+
+        default void requireShortLessThanInclusive(
+                String targetTerm,
+                short target,
+                String limitTerm,
+                short limit
+        ) throws DefaultExceptionType {
+            requireShortLessThanInclusive(targetTerm, target, limitTerm, limit, defaultThrown());
         }
 
         default <ExceptionType extends Exception> void requireShortLessThanInclusive(
-                String term,
+                String targetTerm,
                 short target,
                 short limit,
                 VerifierThrown<Short, ExceptionType> thrown
         ) throws ExceptionType {
+            requireShortLessThanInclusive(targetTerm, target, "", limit, thrown);
+        }
+
+        default <ExceptionType extends Exception> void requireShortLessThanInclusive(
+                String targetTerm,
+                short target,
+                String limitTerm,
+                short limit,
+                VerifierThrown<Short, ExceptionType> thrown
+        ) throws ExceptionType {
             if (target > limit) {
-                thrown.thrown(term, target, String.format("\"%s(%d)\" must be less than or equal to %d", term, target, limit));
+                thrown.thrown(targetTerm, target, String.format(ErrorMsgFormat.LESS_THAN_INCLUSIVE, targetTerm, target, limitTerm, limit));
             }
         }
 
         default void requireShortLessThanExclusive(
-                String term,
+                String targetTerm,
                 short target,
                 short limit
         ) throws DefaultExceptionType {
-            requireShortLessThanExclusive(term, target, limit, defaultThrown());
+            requireShortLessThanExclusive(targetTerm, target, "", limit, defaultThrown());
+        }
+
+        default void requireShortLessThanExclusive(
+                String targetTerm,
+                short target,
+                String limitTerm,
+                short limit
+        ) throws DefaultExceptionType {
+            requireShortLessThanExclusive(targetTerm, target, limitTerm, limit, defaultThrown());
         }
 
         default <ExceptionType extends Exception> void requireShortLessThanExclusive(
-                String term,
+                String targetTerm,
                 short target,
                 short limit,
                 VerifierThrown<Short, ExceptionType> thrown
         ) throws ExceptionType {
+            requireShortLessThanExclusive(targetTerm, target, "", limit, thrown);
+        }
+
+        default <ExceptionType extends Exception> void requireShortLessThanExclusive(
+                String targetTerm,
+                short target,
+                String limitTerm,
+                short limit,
+                VerifierThrown<Short, ExceptionType> thrown
+        ) throws ExceptionType {
             if (target >= limit) {
-                thrown.thrown(term, target, String.format("\"%s(%d)\" must be less than %d", term, target, limit));
+                thrown.thrown(targetTerm, target, String.format(ErrorMsgFormat.LESS_THAN_EXCLUSIVE, targetTerm, target, limitTerm, limit));
             }
         }
 
         default void requireIntMoreThanInclusive(
-                String term,
+                String targetTerm,
                 int target,
                 int limit
         ) throws DefaultExceptionType {
-            requireIntMoreThanInclusive(term, target, limit, defaultThrown());
+            requireIntMoreThanInclusive(targetTerm, target, "", limit, defaultThrown());
+        }
+
+        default void requireIntMoreThanInclusive(
+                String targetTerm,
+                int target,
+                String limitTerm,
+                int limit
+        ) throws DefaultExceptionType {
+            requireIntMoreThanInclusive(targetTerm, target, limitTerm, limit, defaultThrown());
         }
 
         default <ExceptionType extends Exception> void requireIntMoreThanInclusive(
-                String term,
+                String targetTerm,
                 int target,
                 int limit,
                 VerifierThrown<Integer, ExceptionType> thrown
         ) throws ExceptionType {
+            requireIntMoreThanInclusive(targetTerm, target, "", limit, thrown);
+        }
+
+        default <ExceptionType extends Exception> void requireIntMoreThanInclusive(
+                String targetTerm,
+                int target,
+                String limitTerm,
+                int limit,
+                VerifierThrown<Integer, ExceptionType> thrown
+        ) throws ExceptionType {
             if (target < limit) {
-                thrown.thrown(term, target, String.format("\"%s(%d)\" must be more than or equal to %d", term, target, limit));
+                thrown.thrown(targetTerm, target, String.format(ErrorMsgFormat.MORE_THAN_INCLUSIVE, targetTerm, target, limitTerm, limit));
             }
         }
 
         default void requireIntMoreThanExclusive(
-                String term,
+                String targetTerm,
                 int target,
                 int limit
         ) throws DefaultExceptionType {
-            requireIntMoreThanExclusive(term, target, limit, defaultThrown());
+            requireIntMoreThanExclusive(targetTerm, target, "", limit, defaultThrown());
+        }
+
+        default void requireIntMoreThanExclusive(
+                String targetTerm,
+                int target,
+                String limitTerm,
+                int limit
+        ) throws DefaultExceptionType {
+            requireIntMoreThanExclusive(targetTerm, target, limitTerm, limit, defaultThrown());
         }
 
         default <ExceptionType extends Exception> void requireIntMoreThanExclusive(
-                String term,
+                String targetTerm,
                 int target,
                 int limit,
                 VerifierThrown<Integer, ExceptionType> thrown
         ) throws ExceptionType {
+            requireIntMoreThanExclusive(targetTerm, target, "", limit, thrown);
+        }
+
+        default <ExceptionType extends Exception> void requireIntMoreThanExclusive(
+                String targetTerm,
+                int target,
+                String limitTerm,
+                int limit,
+                VerifierThrown<Integer, ExceptionType> thrown
+        ) throws ExceptionType {
             if (target <= limit) {
-                thrown.thrown(term, target, String.format("\"%s(%d)\" must be more than %d", term, target, limit));
+                thrown.thrown(targetTerm, target, String.format(ErrorMsgFormat.MORE_THAN_EXCLUSIVE, targetTerm, target, limitTerm, limit));
             }
         }
 
         default void requireIntLessThanInclusive(
-                String term,
+                String targetTerm,
                 int target,
                 int limit
         ) throws DefaultExceptionType {
-            requireIntLessThanInclusive(term, target, limit, defaultThrown());
+            requireIntLessThanInclusive(targetTerm, target, "", limit, defaultThrown());
+        }
+
+        default void requireIntLessThanInclusive(
+                String targetTerm,
+                int target,
+                String limitTerm,
+                int limit
+        ) throws DefaultExceptionType {
+            requireIntLessThanInclusive(targetTerm, target, limitTerm, limit, defaultThrown());
         }
 
         default <ExceptionType extends Exception> void requireIntLessThanInclusive(
-                String term,
+                String targetTerm,
                 int target,
                 int limit,
                 VerifierThrown<Integer, ExceptionType> thrown
         ) throws ExceptionType {
+            requireIntLessThanInclusive(targetTerm, target, "", limit, thrown);
+        }
+
+        default <ExceptionType extends Exception> void requireIntLessThanInclusive(
+                String targetTerm,
+                int target,
+                String limitTerm,
+                int limit,
+                VerifierThrown<Integer, ExceptionType> thrown
+        ) throws ExceptionType {
             if (target > limit) {
-                thrown.thrown(term, target, String.format("\"%s(%d)\" must be less than or equal to %d", term, target, limit));
+                thrown.thrown(targetTerm, target, String.format(ErrorMsgFormat.LESS_THAN_INCLUSIVE, targetTerm, target, limitTerm, limit));
             }
         }
 
         default void requireIntLessThanExclusive(
-                String term,
+                String targetTerm,
                 int target,
                 int limit
         ) throws DefaultExceptionType {
-            requireIntLessThanExclusive(term, target, limit, defaultThrown());
+            requireIntLessThanExclusive(targetTerm, target, "", limit, defaultThrown());
+        }
+
+        default void requireIntLessThanExclusive(
+                String targetTerm,
+                int target,
+                String limitTerm,
+                int limit
+        ) throws DefaultExceptionType {
+            requireIntLessThanExclusive(targetTerm, target, limitTerm, limit, defaultThrown());
         }
 
         default <ExceptionType extends Exception> void requireIntLessThanExclusive(
-                String term,
+                String targetTerm,
                 int target,
                 int limit,
                 VerifierThrown<Integer, ExceptionType> thrown
         ) throws ExceptionType {
+            requireIntLessThanExclusive(targetTerm, target, "", limit, thrown);
+        }
+
+        default <ExceptionType extends Exception> void requireIntLessThanExclusive(
+                String targetTerm,
+                int target,
+                String limitTerm,
+                int limit,
+                VerifierThrown<Integer, ExceptionType> thrown
+        ) throws ExceptionType {
             if (target >= limit) {
-                thrown.thrown(term, target, String.format("\"%s(%d)\" must be less than %d", term, target, limit));
+                thrown.thrown(targetTerm, target, String.format(ErrorMsgFormat.LESS_THAN_EXCLUSIVE, targetTerm, target, limitTerm, limit));
             }
         }
 
         default void requireLongMoreThanInclusive(
-                String term,
+                String targetTerm,
                 long target,
                 long limit
         ) throws DefaultExceptionType {
-            requireLongMoreThanInclusive(term, target, limit, defaultThrown());
+            requireLongMoreThanInclusive(targetTerm, target, "", limit, defaultThrown());
+        }
+
+        default void requireLongMoreThanInclusive(
+                String targetTerm,
+                long target,
+                String limitTerm,
+                long limit
+        ) throws DefaultExceptionType {
+            requireLongMoreThanInclusive(targetTerm, target, limitTerm, limit, defaultThrown());
         }
 
         default <ExceptionType extends Exception> void requireLongMoreThanInclusive(
-                String term,
+                String targetTerm,
                 long target,
                 long limit,
                 VerifierThrown<Long, ExceptionType> thrown
         ) throws ExceptionType {
+            requireLongMoreThanInclusive(targetTerm, target, "", limit, thrown);
+        }
+
+        default <ExceptionType extends Exception> void requireLongMoreThanInclusive(
+                String targetTerm,
+                long target,
+                String limitTerm,
+                long limit,
+                VerifierThrown<Long, ExceptionType> thrown
+        ) throws ExceptionType {
             if (target < limit) {
-                thrown.thrown(term, target, String.format("\"%s(%d)\" must be more than or equal to %d", term, target, limit));
+                thrown.thrown(targetTerm, target, String.format(ErrorMsgFormat.MORE_THAN_INCLUSIVE, targetTerm, target, limitTerm, limit));
             }
         }
 
         default void requireLongMoreThanExclusive(
-                String term,
+                String targetTerm,
                 long target,
                 long limit
         ) throws DefaultExceptionType {
-            requireLongMoreThanExclusive(term, target, limit, defaultThrown());
+            requireLongMoreThanExclusive(targetTerm, target, "", limit, defaultThrown());
+        }
+
+        default void requireLongMoreThanExclusive(
+                String targetTerm,
+                long target,
+                String limitTerm,
+                long limit
+        ) throws DefaultExceptionType {
+            requireLongMoreThanExclusive(targetTerm, target, limitTerm, limit, defaultThrown());
         }
 
         default <ExceptionType extends Exception> void requireLongMoreThanExclusive(
-                String term,
+                String targetTerm,
                 long target,
                 long limit,
                 VerifierThrown<Long, ExceptionType> thrown
         ) throws ExceptionType {
+            requireLongMoreThanExclusive(targetTerm, target, "", limit, thrown);
+        }
+
+        default <ExceptionType extends Exception> void requireLongMoreThanExclusive(
+                String targetTerm,
+                long target,
+                String limitTerm,
+                long limit,
+                VerifierThrown<Long, ExceptionType> thrown
+        ) throws ExceptionType {
             if (target <= limit) {
-                thrown.thrown(term, target, String.format("\"%s(%d)\" must be more than %d", term, target, limit));
+                thrown.thrown(targetTerm, target, String.format(ErrorMsgFormat.MORE_THAN_EXCLUSIVE, targetTerm, target, limitTerm, limit));
             }
         }
 
         default void requireLongLessThanInclusive(
-                String term,
+                String targetTerm,
                 long target,
                 long limit
         ) throws DefaultExceptionType {
-            requireLongLessThanInclusive(term, target, limit, defaultThrown());
+            requireLongLessThanInclusive(targetTerm, target, "", limit, defaultThrown());
+        }
+
+        default void requireLongLessThanInclusive(
+                String targetTerm,
+                long target,
+                String limitTerm,
+                long limit
+        ) throws DefaultExceptionType {
+            requireLongLessThanInclusive(targetTerm, target, limitTerm, limit, defaultThrown());
         }
 
         default <ExceptionType extends Exception> void requireLongLessThanInclusive(
-                String term,
+                String targetTerm,
                 long target,
                 long limit,
                 VerifierThrown<Long, ExceptionType> thrown
         ) throws ExceptionType {
+            requireLongLessThanInclusive(targetTerm, target, "", limit, thrown);
+        }
+
+        default <ExceptionType extends Exception> void requireLongLessThanInclusive(
+                String targetTerm,
+                long target,
+                String limitTerm,
+                long limit,
+                VerifierThrown<Long, ExceptionType> thrown
+        ) throws ExceptionType {
             if (target > limit) {
-                thrown.thrown(term, target, String.format("\"%s(%d)\" must be less than or equal to %d", term, target, limit));
+                thrown.thrown(targetTerm, target, String.format(ErrorMsgFormat.LESS_THAN_INCLUSIVE, targetTerm, target, limitTerm, limit));
             }
         }
 
         default void requireLongLessThanExclusive(
-                String term,
+                String targetTerm,
                 long target,
                 long limit
         ) throws DefaultExceptionType {
-            requireLongLessThanExclusive(term, target, limit, defaultThrown());
+            requireLongLessThanExclusive(targetTerm, target, "", limit, defaultThrown());
+        }
+
+        default void requireLongLessThanExclusive(
+                String targetTerm,
+                long target,
+                String limitTerm,
+                long limit
+        ) throws DefaultExceptionType {
+            requireLongLessThanExclusive(targetTerm, target, limitTerm, limit, defaultThrown());
         }
 
         default <ExceptionType extends Exception> void requireLongLessThanExclusive(
-                String term,
+                String targetTerm,
                 long target,
                 long limit,
                 VerifierThrown<Long, ExceptionType> thrown
         ) throws ExceptionType {
+            requireLongLessThanExclusive(targetTerm, target, "", limit, thrown);
+        }
+
+        default <ExceptionType extends Exception> void requireLongLessThanExclusive(
+                String targetTerm,
+                long target,
+                String limitTerm,
+                long limit,
+                VerifierThrown<Long, ExceptionType> thrown
+        ) throws ExceptionType {
             if (target >= limit) {
-                thrown.thrown(term, target, String.format("\"%s(%d)\" must be less than %d", term, target, limit));
+                thrown.thrown(targetTerm, target, String.format(ErrorMsgFormat.LESS_THAN_EXCLUSIVE, targetTerm, target, limitTerm, limit));
             }
         }
 
         default void requireFloatMoreThanInclusive(
-                String term,
+                String targetTerm,
                 float target,
                 float limit
         ) throws DefaultExceptionType {
-            requireFloatMoreThanInclusive(term, target, limit, defaultThrown());
+            requireFloatMoreThanInclusive(targetTerm, target, "", limit, defaultThrown());
+        }
+
+        default void requireFloatMoreThanInclusive(
+                String targetTerm,
+                float target,
+                String limitTerm,
+                float limit
+        ) throws DefaultExceptionType {
+            requireFloatMoreThanInclusive(targetTerm, target, limitTerm, limit, defaultThrown());
         }
 
         default <ExceptionType extends Exception> void requireFloatMoreThanInclusive(
-                String term,
+                String targetTerm,
                 float target,
                 float limit,
                 VerifierThrown<Float, ExceptionType> thrown
         ) throws ExceptionType {
+            requireFloatMoreThanInclusive(targetTerm, target, "", limit, thrown);
+        }
+
+        default <ExceptionType extends Exception> void requireFloatMoreThanInclusive(
+                String targetTerm,
+                float target,
+                String limitTerm,
+                float limit,
+                VerifierThrown<Float, ExceptionType> thrown
+        ) throws ExceptionType {
             if (target < limit) {
-                thrown.thrown(term, target, String.format("\"%s(%f)\" must be more than or equal to %f", term, target, limit));
+                thrown.thrown(targetTerm, target, String.format(ErrorMsgFormat.MORE_THAN_INCLUSIVE, targetTerm, target, limitTerm, limit));
             }
         }
 
         default void requireFloatMoreThanExclusive(
-                String term,
+                String targetTerm,
                 float target,
                 float limit
         ) throws DefaultExceptionType {
-            requireFloatMoreThanExclusive(term, target, limit, defaultThrown());
+            requireFloatMoreThanExclusive(targetTerm, target, "", limit, defaultThrown());
+        }
+
+        default void requireFloatMoreThanExclusive(
+                String targetTerm,
+                float target,
+                String limitTerm,
+                float limit
+        ) throws DefaultExceptionType {
+            requireFloatMoreThanExclusive(targetTerm, target, limitTerm, limit, defaultThrown());
         }
 
         default <ExceptionType extends Exception> void requireFloatMoreThanExclusive(
-                String term,
+                String targetTerm,
                 float target,
                 float limit,
                 VerifierThrown<Float, ExceptionType> thrown
         ) throws ExceptionType {
+            requireFloatMoreThanExclusive(targetTerm, target, "", limit, thrown);
+        }
+
+        default <ExceptionType extends Exception> void requireFloatMoreThanExclusive(
+                String targetTerm,
+                float target,
+                String limitTerm,
+                float limit,
+                VerifierThrown<Float, ExceptionType> thrown
+        ) throws ExceptionType {
             if (target <= limit) {
-                thrown.thrown(term, target, String.format("\"%s(%f)\" must be more than %f", term, target, limit));
+                thrown.thrown(targetTerm, target, String.format(ErrorMsgFormat.MORE_THAN_EXCLUSIVE, targetTerm, target, limitTerm, limit));
             }
         }
 
         default void requireFloatLessThanInclusive(
-                String term,
+                String targetTerm,
                 float target,
                 float limit
         ) throws DefaultExceptionType {
-            requireFloatLessThanInclusive(term, target, limit, defaultThrown());
+            requireFloatLessThanInclusive(targetTerm, target, "", limit, defaultThrown());
+        }
+
+        default void requireFloatLessThanInclusive(
+                String targetTerm,
+                float target,
+                String limitTerm,
+                float limit
+        ) throws DefaultExceptionType {
+            requireFloatLessThanInclusive(targetTerm, target, limitTerm, limit, defaultThrown());
         }
 
         default <ExceptionType extends Exception> void requireFloatLessThanInclusive(
-                String term,
+                String targetTerm,
                 float target,
                 float limit,
                 VerifierThrown<Float, ExceptionType> thrown
         ) throws ExceptionType {
+            requireFloatLessThanInclusive(targetTerm, target, "", limit, thrown);
+        }
+
+        default <ExceptionType extends Exception> void requireFloatLessThanInclusive(
+                String targetTerm,
+                float target,
+                String limitTerm,
+                float limit,
+                VerifierThrown<Float, ExceptionType> thrown
+        ) throws ExceptionType {
             if (target > limit) {
-                thrown.thrown(term, target, String.format("\"%s(%f)\" must be less than or equal to %f", term, target, limit));
+                thrown.thrown(targetTerm, target, String.format(ErrorMsgFormat.LESS_THAN_INCLUSIVE, targetTerm, target, limitTerm, limit));
             }
         }
 
         default void requireFloatLessThanExclusive(
-                String term,
+                String targetTerm,
                 float target,
                 float limit
         ) throws DefaultExceptionType {
-            requireFloatLessThanExclusive(term, target, limit, defaultThrown());
+            requireFloatLessThanExclusive(targetTerm, target, "", limit, defaultThrown());
+        }
+
+        default void requireFloatLessThanExclusive(
+                String targetTerm,
+                float target,
+                String limitTerm,
+                float limit
+        ) throws DefaultExceptionType {
+            requireFloatLessThanExclusive(targetTerm, target, limitTerm, limit, defaultThrown());
         }
 
         default <ExceptionType extends Exception> void requireFloatLessThanExclusive(
-                String term,
+                String targetTerm,
                 float target,
                 float limit,
                 VerifierThrown<Float, ExceptionType> thrown
         ) throws ExceptionType {
+            requireFloatLessThanExclusive(targetTerm, target, "", limit, thrown);
+        }
+
+        default <ExceptionType extends Exception> void requireFloatLessThanExclusive(
+                String targetTerm,
+                float target,
+                String limitTerm,
+                float limit,
+                VerifierThrown<Float, ExceptionType> thrown
+        ) throws ExceptionType {
             if (target >= limit) {
-                thrown.thrown(term, target, String.format("\"%s(%f)\" must be less than %f", term, target, limit));
+                thrown.thrown(targetTerm, target, String.format(ErrorMsgFormat.LESS_THAN_EXCLUSIVE, targetTerm, target, limitTerm, limit));
             }
         }
 
         default void requireDoubleMoreThanInclusive(
-                String term,
+                String targetTerm,
                 double target,
                 double limit
         ) throws DefaultExceptionType {
-            requireDoubleMoreThanInclusive(term, target, limit, defaultThrown());
+            requireDoubleMoreThanInclusive(targetTerm, target, "", limit, defaultThrown());
+        }
+
+        default void requireDoubleMoreThanInclusive(
+                String targetTerm,
+                double target,
+                String limitTerm,
+                double limit
+        ) throws DefaultExceptionType {
+            requireDoubleMoreThanInclusive(targetTerm, target, limitTerm, limit, defaultThrown());
         }
 
         default <ExceptionType extends Exception> void requireDoubleMoreThanInclusive(
-                String term,
+                String targetTerm,
                 double target,
+                double limit,
+                VerifierThrown<Double, ExceptionType> thrown
+        ) throws ExceptionType {
+            requireDoubleMoreThanInclusive(targetTerm, target, "", limit, thrown);
+        }
+
+        default <ExceptionType extends Exception> void requireDoubleMoreThanInclusive(
+                String targetTerm,
+                double target,
+                String limitTerm,
                 double limit,
                 VerifierThrown<Double, ExceptionType> thrown
         ) throws ExceptionType {
             if (target < limit) {
-                thrown.thrown(term, target, String.format("\"%s(%f)\" must be more than or equal to %f", term, target, limit));
+                thrown.thrown(targetTerm, target, String.format(ErrorMsgFormat.MORE_THAN_INCLUSIVE, targetTerm, target, limitTerm, limit));
             }
         }
 
         default void requireDoubleMoreThanExclusive(
-                String term,
+                String targetTerm,
                 double target,
                 double limit
         ) throws DefaultExceptionType {
-            requireDoubleMoreThanExclusive(term, target, limit, defaultThrown());
+            requireDoubleMoreThanExclusive(targetTerm, target, "", limit, defaultThrown());
+        }
+
+        default void requireDoubleMoreThanExclusive(
+                String targetTerm,
+                double target,
+                String limitTerm,
+                double limit
+        ) throws DefaultExceptionType {
+            requireDoubleMoreThanExclusive(targetTerm, target, limitTerm, limit, defaultThrown());
         }
 
         default <ExceptionType extends Exception> void requireDoubleMoreThanExclusive(
-                String term,
+                String targetTerm,
                 double target,
+                double limit,
+                VerifierThrown<Double, ExceptionType> thrown
+        ) throws ExceptionType {
+            requireDoubleMoreThanExclusive(targetTerm, target, "", limit, thrown);
+        }
+
+        default <ExceptionType extends Exception> void requireDoubleMoreThanExclusive(
+                String targetTerm,
+                double target,
+                String limitTerm,
                 double limit,
                 VerifierThrown<Double, ExceptionType> thrown
         ) throws ExceptionType {
             if (target <= limit) {
-                thrown.thrown(term, target, String.format("\"%s(%f)\" must be more than %f", term, target, limit));
+                thrown.thrown(targetTerm, target, String.format(ErrorMsgFormat.MORE_THAN_EXCLUSIVE, targetTerm, target, limitTerm, limit));
             }
         }
 
         default void requireDoubleLessThanInclusive(
-                String term,
+                String targetTerm,
                 double target,
                 double limit
         ) throws DefaultExceptionType {
-            requireDoubleLessThanInclusive(term, target, limit, defaultThrown());
+            requireDoubleLessThanInclusive(targetTerm, target, "", limit, defaultThrown());
+        }
+
+        default void requireDoubleLessThanInclusive(
+                String targetTerm,
+                double target,
+                String limitTerm,
+                double limit
+        ) throws DefaultExceptionType {
+            requireDoubleLessThanInclusive(targetTerm, target, limitTerm, limit, defaultThrown());
         }
 
         default <ExceptionType extends Exception> void requireDoubleLessThanInclusive(
-                String term,
+                String targetTerm,
                 double target,
+                double limit,
+                VerifierThrown<Double, ExceptionType> thrown
+        ) throws ExceptionType {
+            requireDoubleLessThanInclusive(targetTerm, target, "", limit, thrown);
+        }
+
+        default <ExceptionType extends Exception> void requireDoubleLessThanInclusive(
+                String targetTerm,
+                double target,
+                String limitTerm,
                 double limit,
                 VerifierThrown<Double, ExceptionType> thrown
         ) throws ExceptionType {
             if (target > limit) {
-                thrown.thrown(term, target, String.format("\"%s(%f)\" must be less than or equal to %f", term, target, limit));
+                thrown.thrown(targetTerm, target, String.format(ErrorMsgFormat.LESS_THAN_INCLUSIVE, targetTerm, target, limitTerm, limit));
             }
         }
 
         default void requireDoubleLessThanExclusive(
-                String term,
+                String targetTerm,
                 double target,
                 double limit
         ) throws DefaultExceptionType {
-            requireDoubleLessThanExclusive(term, target, limit, defaultThrown());
+            requireDoubleLessThanExclusive(targetTerm, target, "", limit, defaultThrown());
+        }
+
+        default void requireDoubleLessThanExclusive(
+                String targetTerm,
+                double target,
+                String limitTerm,
+                double limit
+        ) throws DefaultExceptionType {
+            requireDoubleLessThanExclusive(targetTerm, target, limitTerm, limit, defaultThrown());
         }
 
         default <ExceptionType extends Exception> void requireDoubleLessThanExclusive(
-                String term,
+                String targetTerm,
                 double target,
                 double limit,
                 VerifierThrown<Double, ExceptionType> thrown
         ) throws ExceptionType {
+            requireDoubleLessThanExclusive(targetTerm, target, "", limit, thrown);
+        }
+
+        default <ExceptionType extends Exception> void requireDoubleLessThanExclusive(
+                String targetTerm,
+                double target,
+                String limitTerm,
+                double limit,
+                VerifierThrown<Double, ExceptionType> thrown
+        ) throws ExceptionType {
             if (target >= limit) {
-                thrown.thrown(term, target, String.format("\"%s(%f)\" must be less than %f", term, target, limit));
+                thrown.thrown(targetTerm, target, String.format(ErrorMsgFormat.LESS_THAN_EXCLUSIVE, targetTerm, target, limitTerm, limit));
             }
         }
 
         default void requireBigDecimalMoreThanInclusive(
-                String term,
+                String targetTerm,
                 BigDecimal target,
                 BigDecimal limit
         ) throws DefaultExceptionType {
-            requireBigDecimalMoreThanInclusive(term, target, limit, defaultThrown());
+            requireBigDecimalMoreThanInclusive(targetTerm, target, "", limit, defaultThrown());
+        }
+
+        default void requireBigDecimalMoreThanInclusive(
+                String targetTerm,
+                BigDecimal target,
+                String limitTerm,
+                BigDecimal limit
+        ) throws DefaultExceptionType {
+            requireBigDecimalMoreThanInclusive(targetTerm, target, limitTerm, limit, defaultThrown());
         }
 
         default <ExceptionType extends Exception> void requireBigDecimalMoreThanInclusive(
-                String term,
+                String targetTerm,
                 BigDecimal target,
+                BigDecimal limit,
+                VerifierThrown<BigDecimal, ExceptionType> thrown
+        ) throws ExceptionType {
+            requireBigDecimalMoreThanInclusive(targetTerm, target, "", limit, thrown);
+        }
+
+        default <ExceptionType extends Exception> void requireBigDecimalMoreThanInclusive(
+                String targetTerm,
+                BigDecimal target,
+                String limitTerm,
                 BigDecimal limit,
                 VerifierThrown<BigDecimal, ExceptionType> thrown
         ) throws ExceptionType {
             if (target.compareTo(limit) < 0) {
-                thrown.thrown(term, target, String.format("\"%s(%f)\" must be more than or equal to %f", term, target, limit));
+                thrown.thrown(targetTerm, target, String.format(ErrorMsgFormat.MORE_THAN_INCLUSIVE, targetTerm, target, limitTerm, limit));
             }
         }
 
         default void requireBigDecimalMoreThanExclusive(
-                String term,
+                String targetTerm,
                 BigDecimal target,
                 BigDecimal limit
         ) throws DefaultExceptionType {
-            requireBigDecimalMoreThanExclusive(term, target, limit, defaultThrown());
+            requireBigDecimalMoreThanExclusive(targetTerm, target, "", limit, defaultThrown());
+        }
+
+        default void requireBigDecimalMoreThanExclusive(
+                String targetTerm,
+                BigDecimal target,
+                String limitTerm,
+                BigDecimal limit
+        ) throws DefaultExceptionType {
+            requireBigDecimalMoreThanExclusive(targetTerm, target, limitTerm, limit, defaultThrown());
         }
 
         default <ExceptionType extends Exception> void requireBigDecimalMoreThanExclusive(
-                String term,
+                String targetTerm,
                 BigDecimal target,
+                BigDecimal limit,
+                VerifierThrown<BigDecimal, ExceptionType> thrown
+        ) throws ExceptionType {
+            requireBigDecimalMoreThanExclusive(targetTerm, target, "", limit, thrown);
+        }
+
+        default <ExceptionType extends Exception> void requireBigDecimalMoreThanExclusive(
+                String targetTerm,
+                BigDecimal target,
+                String limitTerm,
                 BigDecimal limit,
                 VerifierThrown<BigDecimal, ExceptionType> thrown
         ) throws ExceptionType {
             if (target.compareTo(limit) <= 0) {
-                thrown.thrown(term, target, String.format("\"%s(%f)\" must be more than %f", term, target, limit));
+                thrown.thrown(targetTerm, target, String.format(ErrorMsgFormat.MORE_THAN_EXCLUSIVE, targetTerm, target, limitTerm, limit));
             }
         }
 
         default void requireBigDecimalLessThanInclusive(
-                String term,
+                String targetTerm,
                 BigDecimal target,
                 BigDecimal limit
         ) throws DefaultExceptionType {
-            requireBigDecimalLessThanInclusive(term, target, limit, defaultThrown());
+            requireBigDecimalLessThanInclusive(targetTerm, target, "", limit, defaultThrown());
+        }
+
+        default void requireBigDecimalLessThanInclusive(
+                String targetTerm,
+                BigDecimal target,
+                String limitTerm,
+                BigDecimal limit
+        ) throws DefaultExceptionType {
+            requireBigDecimalLessThanInclusive(targetTerm, target, limitTerm, limit, defaultThrown());
         }
 
         default <ExceptionType extends Exception> void requireBigDecimalLessThanInclusive(
-                String term,
+                String targetTerm,
                 BigDecimal target,
+                BigDecimal limit,
+                VerifierThrown<BigDecimal, ExceptionType> thrown
+        ) throws ExceptionType {
+            requireBigDecimalLessThanInclusive(targetTerm, target, "", limit, thrown);
+        }
+
+        default <ExceptionType extends Exception> void requireBigDecimalLessThanInclusive(
+                String targetTerm,
+                BigDecimal target,
+                String limitTerm,
                 BigDecimal limit,
                 VerifierThrown<BigDecimal, ExceptionType> thrown
         ) throws ExceptionType {
             if (target.compareTo(limit) > 0) {
-                thrown.thrown(term, target, String.format("\"%s(%f)\" must be less than or equal to %f", term, target, limit));
+                thrown.thrown(targetTerm, target, String.format(ErrorMsgFormat.LESS_THAN_INCLUSIVE, targetTerm, target, limitTerm, limit));
             }
         }
 
         default void requireBigDecimalLessThanExclusive(
-                String term,
+                String targetTerm,
                 BigDecimal target,
                 BigDecimal limit
         ) throws DefaultExceptionType {
-            requireBigDecimalLessThanExclusive(term, target, limit, defaultThrown());
+            requireBigDecimalLessThanExclusive(targetTerm, target, "", limit, defaultThrown());
+        }
+
+        default void requireBigDecimalLessThanExclusive(
+                String targetTerm,
+                BigDecimal target,
+                String limitTerm,
+                BigDecimal limit
+        ) throws DefaultExceptionType {
+            requireBigDecimalLessThanExclusive(targetTerm, target, limitTerm, limit, defaultThrown());
         }
 
         default <ExceptionType extends Exception> void requireBigDecimalLessThanExclusive(
-                String term,
+                String targetTerm,
                 BigDecimal target,
                 BigDecimal limit,
                 VerifierThrown<BigDecimal, ExceptionType> thrown
         ) throws ExceptionType {
-            if (target.compareTo(limit) >= 0) {
-                thrown.thrown(term, target, String.format("\"%s(%f)\" must be less than %f", term, target, limit));
-            }
+            requireBigDecimalLessThanExclusive(targetTerm, target, "", limit, thrown);
         }
 
+        default <ExceptionType extends Exception> void requireBigDecimalLessThanExclusive(
+                String targetTerm,
+                BigDecimal target,
+                String limitTerm,
+                BigDecimal limit,
+                VerifierThrown<BigDecimal, ExceptionType> thrown
+        ) throws ExceptionType {
+            if (target.compareTo(limit) >= 0) {
+                thrown.thrown(targetTerm, target, String.format(ErrorMsgFormat.LESS_THAN_EXCLUSIVE, targetTerm, target, limitTerm, limit));
+            }
+        }
+    }
+
+    public static class ErrorMsgFormat {
+
+        public static final String REFUSE_NULL = "\"%s\" can't be null";
+
+        public static final String REFUSE_NULL_OR_EMPTY = "\"%s\" can't be null or empty";
+
+        public static final String MORE_THAN_INCLUSIVE = "%s(%s) must be more than or equal to %s(%s)";
+
+        public static final String MORE_THAN_EXCLUSIVE = "%s(%s) must be more than %s(%s)";
+
+        public static final String LESS_THAN_INCLUSIVE = "%s(%s) must be less than or equal to %s(%s)";
+
+        public static final String LESS_THAN_EXCLUSIVE = "%s(%s) must be less than %s(%s)";
+
+        public static final String REQUIRE_RANGE_INCLUSIVE = "%s(%s) must be in range [%s, %s]";
+
+        public static final String REQUIRE_RANGE_EXCLUSIVE = "%s(%s) must be in range (%s, %s)";
+
+        public static final String REFUSE_RANGE_INCLUSIVE = "%s(%s) can't be in range [%s, %s]";
+
+        public static final String REFUSE_RANGE_EXCLUSIVE = "%s(%s) can't be in range (%s, %s)";
     }
 
     public static final Logic<IllegalArgumentException> INSTANCE = new Logic<IllegalArgumentException>() {
@@ -536,71 +1014,147 @@ public class Verifier {
     }
 
     public static void requireShortMoreThanInclusive(
-            String term,
+            String targetTerm,
             short target,
             short limit
     ) throws IllegalArgumentException {
-        INSTANCE.requireShortMoreThanInclusive(term, target, limit);
+        INSTANCE.requireShortMoreThanInclusive(targetTerm, target, limit);
+    }
+
+    public static void requireShortMoreThanInclusive(
+            String targetTerm,
+            short target,
+            String limitTerm,
+            short limit
+    ) throws IllegalArgumentException {
+        INSTANCE.requireShortMoreThanInclusive(targetTerm, target, limitTerm, limit);
     }
 
     public static <ExceptionType extends Exception> void requireShortMoreThanInclusive(
-            String term,
+            String targetTerm,
             short target,
             short limit,
             VerifierThrown<Short, ExceptionType> thrown
     ) throws ExceptionType {
-        INSTANCE.requireShortMoreThanInclusive(term, target, limit, thrown);
+        INSTANCE.requireShortMoreThanInclusive(targetTerm, target, limit, thrown);
+    }
+
+    public static <ExceptionType extends Exception> void requireShortMoreThanInclusive(
+            String targetTerm,
+            short target,
+            String limitTerm,
+            short limit,
+            VerifierThrown<Short, ExceptionType> thrown
+    ) throws ExceptionType {
+        INSTANCE.requireShortMoreThanInclusive(targetTerm, target, limitTerm, limit, thrown);
     }
 
     public static void requireShortMoreThanExclusive(
-            String term,
+            String targetTerm,
             short target,
             short limit
     ) throws IllegalArgumentException {
-        INSTANCE.requireShortMoreThanExclusive(term, target, limit);
+        INSTANCE.requireShortMoreThanExclusive(targetTerm, target, limit);
+    }
+
+    public static void requireShortMoreThanExclusive(
+            String targetTerm,
+            short target,
+            String limitTerm,
+            short limit
+    ) throws IllegalArgumentException {
+        INSTANCE.requireShortMoreThanExclusive(targetTerm, target, limitTerm, limit);
     }
 
     public static <ExceptionType extends Exception> void requireShortMoreThanExclusive(
-            String term,
+            String targetTerm,
             short target,
             short limit,
             VerifierThrown<Short, ExceptionType> thrown
     ) throws ExceptionType {
-        INSTANCE.requireShortMoreThanExclusive(term, target, limit, thrown);
+        INSTANCE.requireShortMoreThanExclusive(targetTerm, target, limit, thrown);
+    }
+
+    public static <ExceptionType extends Exception> void requireShortMoreThanExclusive(
+            String targetTerm,
+            short target,
+            String limitTerm,
+            short limit,
+            VerifierThrown<Short, ExceptionType> thrown
+    ) throws ExceptionType {
+        INSTANCE.requireShortMoreThanExclusive(targetTerm, target, limitTerm, limit, thrown);
     }
 
     public static void requireShortLessThanInclusive(
-            String term,
+            String targetTerm,
             short target,
             short limit
     ) throws IllegalArgumentException {
-        INSTANCE.requireShortLessThanInclusive(term, target, limit);
+        INSTANCE.requireShortLessThanInclusive(targetTerm, target, limit);
+    }
+
+    public static void requireShortLessThanInclusive(
+            String targetTerm,
+            short target,
+            String limitTerm,
+            short limit
+    ) throws IllegalArgumentException {
+        INSTANCE.requireShortLessThanInclusive(targetTerm, target, limitTerm, limit);
     }
 
     public static <ExceptionType extends Exception> void requireShortLessThanInclusive(
-            String term,
+            String targetTerm,
             short target,
             short limit,
             VerifierThrown<Short, ExceptionType> thrown
     ) throws ExceptionType {
-        INSTANCE.requireShortLessThanInclusive(term, target, limit, thrown);
+        INSTANCE.requireShortLessThanInclusive(targetTerm, target, limit, thrown);
+    }
+
+    public static <ExceptionType extends Exception> void requireShortLessThanInclusive(
+            String targetTerm,
+            short target,
+            String limitTerm,
+            short limit,
+            VerifierThrown<Short, ExceptionType> thrown
+    ) throws ExceptionType {
+        INSTANCE.requireShortLessThanInclusive(targetTerm, target, limitTerm, limit, thrown);
     }
 
     public static void requireShortLessThanExclusive(
-            String term,
+            String targetTerm,
             short target,
             short limit
     ) throws IllegalArgumentException {
-        INSTANCE.requireShortLessThanExclusive(term, target, limit);
+        INSTANCE.requireShortLessThanExclusive(targetTerm, target, limit);
+    }
+
+    public static void requireShortLessThanExclusive(
+            String targetTerm,
+            short target,
+            String limitTerm,
+            short limit
+    ) throws IllegalArgumentException {
+        INSTANCE.requireShortLessThanExclusive(targetTerm, target, limitTerm, limit);
     }
 
     public static <ExceptionType extends Exception> void requireShortLessThanExclusive(
-            String term,
+            String targetTerm,
             short target,
             short limit,
             VerifierThrown<Short, ExceptionType> thrown
     ) throws ExceptionType {
-        INSTANCE.requireShortLessThanExclusive(term, target, limit, thrown);
+        INSTANCE.requireShortLessThanExclusive(targetTerm, target, limit, thrown);
+    }
+
+    public static <ExceptionType extends Exception> void requireShortLessThanExclusive(
+            String targetTerm,
+            short target,
+            String limitTerm,
+            short limit,
+            VerifierThrown<Short, ExceptionType> thrown
+    ) throws ExceptionType {
+        INSTANCE.requireShortLessThanExclusive(targetTerm, target, limitTerm, limit, thrown);
     }
 
     public static IntRangeVerifier ofRange(int min, int max) {
@@ -608,71 +1162,147 @@ public class Verifier {
     }
 
     public static void requireIntMoreThanInclusive(
-            String term,
+            String targetTerm,
             int target,
             int limit
     ) throws IllegalArgumentException {
-        INSTANCE.requireIntMoreThanInclusive(term, target, limit);
+        INSTANCE.requireIntMoreThanInclusive(targetTerm, target, limit);
+    }
+
+    public static void requireIntMoreThanInclusive(
+            String targetTerm,
+            int target,
+            String limitTerm,
+            int limit
+    ) throws IllegalArgumentException {
+        INSTANCE.requireIntMoreThanInclusive(targetTerm, target, limitTerm, limit);
     }
 
     public static <ExceptionType extends Exception> void requireIntMoreThanInclusive(
-            String term,
+            String targetTerm,
             int target,
             int limit,
             VerifierThrown<Integer, ExceptionType> thrown
     ) throws ExceptionType {
-        INSTANCE.requireIntMoreThanInclusive(term, target, limit, thrown);
+        INSTANCE.requireIntMoreThanInclusive(targetTerm, target, limit, thrown);
+    }
+
+    public static <ExceptionType extends Exception> void requireIntMoreThanInclusive(
+            String targetTerm,
+            int target,
+            String limitTerm,
+            int limit,
+            VerifierThrown<Integer, ExceptionType> thrown
+    ) throws ExceptionType {
+        INSTANCE.requireIntMoreThanInclusive(targetTerm, target, limitTerm, limit, thrown);
     }
 
     public static void requireIntMoreThanExclusive(
-            String term,
+            String targetTerm,
             int target,
             int limit
     ) throws IllegalArgumentException {
-        INSTANCE.requireIntMoreThanExclusive(term, target, limit);
+        INSTANCE.requireIntMoreThanExclusive(targetTerm, target, limit);
+    }
+
+    public static void requireIntMoreThanExclusive(
+            String targetTerm,
+            int target,
+            String limitTerm,
+            int limit
+    ) throws IllegalArgumentException {
+        INSTANCE.requireIntMoreThanExclusive(targetTerm, target, limitTerm, limit);
     }
 
     public static <ExceptionType extends Exception> void requireIntMoreThanExclusive(
-            String term,
+            String targetTerm,
             int target,
             int limit,
             VerifierThrown<Integer, ExceptionType> thrown
     ) throws ExceptionType {
-        INSTANCE.requireIntMoreThanExclusive(term, target, limit, thrown);
+        INSTANCE.requireIntMoreThanExclusive(targetTerm, target, limit, thrown);
+    }
+
+    public static <ExceptionType extends Exception> void requireIntMoreThanExclusive(
+            String targetTerm,
+            int target,
+            String limitTerm,
+            int limit,
+            VerifierThrown<Integer, ExceptionType> thrown
+    ) throws ExceptionType {
+        INSTANCE.requireIntMoreThanExclusive(targetTerm, target, limitTerm, limit, thrown);
     }
 
     public static void requireIntLessThanInclusive(
-            String term,
+            String targetTerm,
             int target,
             int limit
     ) throws IllegalArgumentException {
-        INSTANCE.requireIntLessThanInclusive(term, target, limit);
+        INSTANCE.requireIntLessThanInclusive(targetTerm, target, limit);
+    }
+
+    public static void requireIntLessThanInclusive(
+            String targetTerm,
+            int target,
+            String limitTerm,
+            int limit
+    ) throws IllegalArgumentException {
+        INSTANCE.requireIntLessThanInclusive(targetTerm, target, limitTerm, limit);
     }
 
     public static <ExceptionType extends Exception> void requireIntLessThanInclusive(
-            String term,
+            String targetTerm,
             int target,
             int limit,
             VerifierThrown<Integer, ExceptionType> thrown
     ) throws ExceptionType {
-        INSTANCE.requireIntLessThanInclusive(term, target, limit, thrown);
+        INSTANCE.requireIntLessThanInclusive(targetTerm, target, limit, thrown);
+    }
+
+    public static <ExceptionType extends Exception> void requireIntLessThanInclusive(
+            String targetTerm,
+            int target,
+            String limitTerm,
+            int limit,
+            VerifierThrown<Integer, ExceptionType> thrown
+    ) throws ExceptionType {
+        INSTANCE.requireIntLessThanInclusive(targetTerm, target, limitTerm, limit, thrown);
     }
 
     public static void requireIntLessThanExclusive(
-            String term,
+            String targetTerm,
             int target,
             int limit
     ) throws IllegalArgumentException {
-        INSTANCE.requireIntLessThanExclusive(term, target, limit);
+        INSTANCE.requireIntLessThanExclusive(targetTerm, target, limit);
+    }
+
+    public static void requireIntLessThanExclusive(
+            String targetTerm,
+            int target,
+            String limitTerm,
+            int limit
+    ) throws IllegalArgumentException {
+        INSTANCE.requireIntLessThanExclusive(targetTerm, target, limitTerm, limit);
     }
 
     public static <ExceptionType extends Exception> void requireIntLessThanExclusive(
-            String term,
+            String targetTerm,
             int target,
             int limit,
             VerifierThrown<Integer, ExceptionType> thrown
     ) throws ExceptionType {
-        INSTANCE.requireIntLessThanExclusive(term, target, limit, thrown);
+        INSTANCE.requireIntLessThanExclusive(targetTerm, target, limit, thrown);
+    }
+
+    public static <ExceptionType extends Exception> void requireIntLessThanExclusive(
+            String targetTerm,
+            int target,
+            String limitTerm,
+            int limit,
+            VerifierThrown<Integer, ExceptionType> thrown
+    ) throws ExceptionType {
+        INSTANCE.requireIntLessThanExclusive(targetTerm, target, limitTerm, limit, thrown);
     }
 
     public static LongRangeVerifier ofRange(long min, long max) {
@@ -680,71 +1310,147 @@ public class Verifier {
     }
 
     public static void requireLongMoreThanInclusive(
-            String term,
+            String targetTerm,
             long target,
             long limit
     ) throws IllegalArgumentException {
-        INSTANCE.requireLongMoreThanInclusive(term, target, limit);
+        INSTANCE.requireLongMoreThanInclusive(targetTerm, target, limit);
+    }
+
+    public static void requireLongMoreThanInclusive(
+            String targetTerm,
+            long target,
+            String limitTerm,
+            long limit
+    ) throws IllegalArgumentException {
+        INSTANCE.requireLongMoreThanInclusive(targetTerm, target, limitTerm, limit);
     }
 
     public static <ExceptionType extends Exception> void requireLongMoreThanInclusive(
-            String term,
+            String targetTerm,
             long target,
             long limit,
             VerifierThrown<Long, ExceptionType> thrown
     ) throws ExceptionType {
-        INSTANCE.requireLongMoreThanInclusive(term, target, limit, thrown);
+        INSTANCE.requireLongMoreThanInclusive(targetTerm, target, limit, thrown);
+    }
+
+    public static <ExceptionType extends Exception> void requireLongMoreThanInclusive(
+            String targetTerm,
+            long target,
+            String limitTerm,
+            long limit,
+            VerifierThrown<Long, ExceptionType> thrown
+    ) throws ExceptionType {
+        INSTANCE.requireLongMoreThanInclusive(targetTerm, target, limitTerm, limit, thrown);
     }
 
     public static void requireLongMoreThanExclusive(
-            String term,
+            String targetTerm,
             long target,
             long limit
     ) throws IllegalArgumentException {
-        INSTANCE.requireLongMoreThanExclusive(term, target, limit);
+        INSTANCE.requireLongMoreThanExclusive(targetTerm, target, limit);
+    }
+
+    public static void requireLongMoreThanExclusive(
+            String targetTerm,
+            long target,
+            String limitTerm,
+            long limit
+    ) throws IllegalArgumentException {
+        INSTANCE.requireLongMoreThanExclusive(targetTerm, target, limitTerm, limit);
     }
 
     public static <ExceptionType extends Exception> void requireLongMoreThanExclusive(
-            String term,
+            String targetTerm,
             long target,
             long limit,
             VerifierThrown<Long, ExceptionType> thrown
     ) throws ExceptionType {
-        INSTANCE.requireLongMoreThanExclusive(term, target, limit, thrown);
+        INSTANCE.requireLongMoreThanExclusive(targetTerm, target, limit, thrown);
+    }
+
+    public static <ExceptionType extends Exception> void requireLongMoreThanExclusive(
+            String targetTerm,
+            long target,
+            String limitTerm,
+            long limit,
+            VerifierThrown<Long, ExceptionType> thrown
+    ) throws ExceptionType {
+        INSTANCE.requireLongMoreThanExclusive(targetTerm, target, limitTerm, limit, thrown);
     }
 
     public static void requireLongLessThanInclusive(
-            String term,
+            String targetTerm,
             long target,
             long limit
     ) throws IllegalArgumentException {
-        INSTANCE.requireLongLessThanInclusive(term, target, limit);
+        INSTANCE.requireLongLessThanInclusive(targetTerm, target, limit);
+    }
+
+    public static void requireLongLessThanInclusive(
+            String targetTerm,
+            long target,
+            String limitTerm,
+            long limit
+    ) throws IllegalArgumentException {
+        INSTANCE.requireLongLessThanInclusive(targetTerm, target, limitTerm, limit);
     }
 
     public static <ExceptionType extends Exception> void requireLongLessThanInclusive(
-            String term,
+            String targetTerm,
             long target,
             long limit,
             VerifierThrown<Long, ExceptionType> thrown
     ) throws ExceptionType {
-        INSTANCE.requireLongLessThanInclusive(term, target, limit, thrown);
+        INSTANCE.requireLongLessThanInclusive(targetTerm, target, limit, thrown);
+    }
+
+    public static <ExceptionType extends Exception> void requireLongLessThanInclusive(
+            String targetTerm,
+            long target,
+            String limitTerm,
+            long limit,
+            VerifierThrown<Long, ExceptionType> thrown
+    ) throws ExceptionType {
+        INSTANCE.requireLongLessThanInclusive(targetTerm, target, limitTerm, limit, thrown);
     }
 
     public static void requireLongLessThanExclusive(
-            String term,
+            String targetTerm,
             long target,
             long limit
     ) throws IllegalArgumentException {
-        INSTANCE.requireLongLessThanExclusive(term, target, limit);
+        INSTANCE.requireLongLessThanExclusive(targetTerm, target, limit);
+    }
+
+    public static void requireLongLessThanExclusive(
+            String targetTerm,
+            long target,
+            String limitTerm,
+            long limit
+    ) throws IllegalArgumentException {
+        INSTANCE.requireLongLessThanExclusive(targetTerm, target, limitTerm, limit);
     }
 
     public static <ExceptionType extends Exception> void requireLongLessThanExclusive(
-            String term,
+            String targetTerm,
             long target,
             long limit,
             VerifierThrown<Long, ExceptionType> thrown
     ) throws ExceptionType {
-        INSTANCE.requireLongLessThanExclusive(term, target, limit, thrown);
+        INSTANCE.requireLongLessThanExclusive(targetTerm, target, limit, thrown);
+    }
+
+    public static <ExceptionType extends Exception> void requireLongLessThanExclusive(
+            String targetTerm,
+            long target,
+            String limitTerm,
+            long limit,
+            VerifierThrown<Long, ExceptionType> thrown
+    ) throws ExceptionType {
+        INSTANCE.requireLongLessThanExclusive(targetTerm, target, limitTerm, limit, thrown);
     }
 
     public static FloatRangeVerifier ofRange(float min, float max) {
@@ -752,71 +1458,147 @@ public class Verifier {
     }
 
     public static void requireFloatMoreThanInclusive(
-            String term,
+            String targetTerm,
             float target,
             float limit
     ) throws IllegalArgumentException {
-        INSTANCE.requireFloatMoreThanInclusive(term, target, limit);
+        INSTANCE.requireFloatMoreThanInclusive(targetTerm, target, limit);
+    }
+
+    public static void requireFloatMoreThanInclusive(
+            String targetTerm,
+            float target,
+            String limitTerm,
+            float limit
+    ) throws IllegalArgumentException {
+        INSTANCE.requireFloatMoreThanInclusive(targetTerm, target, limitTerm, limit);
     }
 
     public static <ExceptionType extends Exception> void requireFloatMoreThanInclusive(
-            String term,
+            String targetTerm,
             float target,
             float limit,
             VerifierThrown<Float, ExceptionType> thrown
     ) throws ExceptionType {
-        INSTANCE.requireFloatMoreThanInclusive(term, target, limit, thrown);
+        INSTANCE.requireFloatMoreThanInclusive(targetTerm, target, limit, thrown);
+    }
+
+    public static <ExceptionType extends Exception> void requireFloatMoreThanInclusive(
+            String targetTerm,
+            float target,
+            String limitTerm,
+            float limit,
+            VerifierThrown<Float, ExceptionType> thrown
+    ) throws ExceptionType {
+        INSTANCE.requireFloatMoreThanInclusive(targetTerm, target, limitTerm, limit, thrown);
     }
 
     public static void requireFloatMoreThanExclusive(
-            String term,
+            String targetTerm,
             float target,
             float limit
     ) throws IllegalArgumentException {
-        INSTANCE.requireFloatMoreThanExclusive(term, target, limit);
+        INSTANCE.requireFloatMoreThanExclusive(targetTerm, target, limit);
+    }
+
+    public static void requireFloatMoreThanExclusive(
+            String targetTerm,
+            float target,
+            String limitTerm,
+            float limit
+    ) throws IllegalArgumentException {
+        INSTANCE.requireFloatMoreThanExclusive(targetTerm, target, limitTerm, limit);
     }
 
     public static <ExceptionType extends Exception> void requireFloatMoreThanExclusive(
-            String term,
+            String targetTerm,
             float target,
             float limit,
             VerifierThrown<Float, ExceptionType> thrown
     ) throws ExceptionType {
-        INSTANCE.requireFloatMoreThanExclusive(term, target, limit, thrown);
+        INSTANCE.requireFloatMoreThanExclusive(targetTerm, target, limit, thrown);
+    }
+
+    public static <ExceptionType extends Exception> void requireFloatMoreThanExclusive(
+            String targetTerm,
+            float target,
+            String limitTerm,
+            float limit,
+            VerifierThrown<Float, ExceptionType> thrown
+    ) throws ExceptionType {
+        INSTANCE.requireFloatMoreThanExclusive(targetTerm, target, limitTerm, limit, thrown);
     }
 
     public static void requireFloatLessThanInclusive(
-            String term,
+            String targetTerm,
             float target,
             float limit
     ) throws IllegalArgumentException {
-        INSTANCE.requireFloatLessThanInclusive(term, target, limit);
+        INSTANCE.requireFloatLessThanInclusive(targetTerm, target, limit);
+    }
+
+    public static void requireFloatLessThanInclusive(
+            String targetTerm,
+            float target,
+            String limitTerm,
+            float limit
+    ) throws IllegalArgumentException {
+        INSTANCE.requireFloatLessThanInclusive(targetTerm, target, limitTerm, limit);
     }
 
     public static <ExceptionType extends Exception> void requireFloatLessThanInclusive(
-            String term,
+            String targetTerm,
             float target,
             float limit,
             VerifierThrown<Float, ExceptionType> thrown
     ) throws ExceptionType {
-        INSTANCE.requireFloatLessThanInclusive(term, target, limit, thrown);
+        INSTANCE.requireFloatLessThanInclusive(targetTerm, target, limit, thrown);
+    }
+
+    public static <ExceptionType extends Exception> void requireFloatLessThanInclusive(
+            String targetTerm,
+            float target,
+            String limitTerm,
+            float limit,
+            VerifierThrown<Float, ExceptionType> thrown
+    ) throws ExceptionType {
+        INSTANCE.requireFloatLessThanInclusive(targetTerm, target, limitTerm, limit, thrown);
     }
 
     public static void requireFloatLessThanExclusive(
-            String term,
+            String targetTerm,
             float target,
             float limit
     ) throws IllegalArgumentException {
-        INSTANCE.requireFloatLessThanExclusive(term, target, limit);
+        INSTANCE.requireFloatLessThanExclusive(targetTerm, target, limit);
+    }
+
+    public static void requireFloatLessThanExclusive(
+            String targetTerm,
+            float target,
+            String limitTerm,
+            float limit
+    ) throws IllegalArgumentException {
+        INSTANCE.requireFloatLessThanExclusive(targetTerm, target, limitTerm, limit);
     }
 
     public static <ExceptionType extends Exception> void requireFloatLessThanExclusive(
-            String term,
+            String targetTerm,
             float target,
             float limit,
             VerifierThrown<Float, ExceptionType> thrown
     ) throws ExceptionType {
-        INSTANCE.requireFloatLessThanExclusive(term, target, limit, thrown);
+        INSTANCE.requireFloatLessThanExclusive(targetTerm, target, limit, thrown);
+    }
+
+    public static <ExceptionType extends Exception> void requireFloatLessThanExclusive(
+            String targetTerm,
+            float target,
+            String limitTerm,
+            float limit,
+            VerifierThrown<Float, ExceptionType> thrown
+    ) throws ExceptionType {
+        INSTANCE.requireFloatLessThanExclusive(targetTerm, target, limitTerm, limit, thrown);
     }
 
     public static DoubleRangeVerifier ofRange(double min, double max) {
@@ -824,71 +1606,147 @@ public class Verifier {
     }
 
     public static void requireDoubleMoreThanInclusive(
-            String term,
+            String targetTerm,
             double target,
             double limit
     ) throws IllegalArgumentException {
-        INSTANCE.requireDoubleMoreThanInclusive(term, target, limit);
+        INSTANCE.requireDoubleMoreThanInclusive(targetTerm, target, limit);
+    }
+
+    public static void requireDoubleMoreThanInclusive(
+            String targetTerm,
+            double target,
+            String limitTerm,
+            double limit
+    ) throws IllegalArgumentException {
+        INSTANCE.requireDoubleMoreThanInclusive(targetTerm, target, limitTerm, limit);
     }
 
     public static <ExceptionType extends Exception> void requireDoubleMoreThanInclusive(
-            String term,
+            String targetTerm,
             double target,
             double limit,
             VerifierThrown<Double, ExceptionType> thrown
     ) throws ExceptionType {
-        INSTANCE.requireDoubleMoreThanInclusive(term, target, limit, thrown);
+        INSTANCE.requireDoubleMoreThanInclusive(targetTerm, target, limit, thrown);
+    }
+
+    public static <ExceptionType extends Exception> void requireDoubleMoreThanInclusive(
+            String targetTerm,
+            double target,
+            String limitTerm,
+            double limit,
+            VerifierThrown<Double, ExceptionType> thrown
+    ) throws ExceptionType {
+        INSTANCE.requireDoubleMoreThanInclusive(targetTerm, target, limitTerm, limit, thrown);
     }
 
     public static void requireDoubleMoreThanExclusive(
-            String term,
+            String targetTerm,
             double target,
             double limit
     ) throws IllegalArgumentException {
-        INSTANCE.requireDoubleMoreThanExclusive(term, target, limit);
+        INSTANCE.requireDoubleMoreThanExclusive(targetTerm, target, limit);
+    }
+
+    public static void requireDoubleMoreThanExclusive(
+            String targetTerm,
+            double target,
+            String limitTerm,
+            double limit
+    ) throws IllegalArgumentException {
+        INSTANCE.requireDoubleMoreThanExclusive(targetTerm, target, limitTerm, limit);
     }
 
     public static <ExceptionType extends Exception> void requireDoubleMoreThanExclusive(
-            String term,
+            String targetTerm,
             double target,
             double limit,
             VerifierThrown<Double, ExceptionType> thrown
     ) throws ExceptionType {
-        INSTANCE.requireDoubleMoreThanExclusive(term, target, limit, thrown);
+        INSTANCE.requireDoubleMoreThanExclusive(targetTerm, target, limit, thrown);
+    }
+
+    public static <ExceptionType extends Exception> void requireDoubleMoreThanExclusive(
+            String targetTerm,
+            double target,
+            String limitTerm,
+            double limit,
+            VerifierThrown<Double, ExceptionType> thrown
+    ) throws ExceptionType {
+        INSTANCE.requireDoubleMoreThanExclusive(targetTerm, target, limitTerm, limit, thrown);
     }
 
     public static void requireDoubleLessThanInclusive(
-            String term,
+            String targetTerm,
             double target,
             double limit
     ) throws IllegalArgumentException {
-        INSTANCE.requireDoubleLessThanInclusive(term, target, limit);
+        INSTANCE.requireDoubleLessThanInclusive(targetTerm, target, limit);
+    }
+
+    public static void requireDoubleLessThanInclusive(
+            String targetTerm,
+            double target,
+            String limitTerm,
+            double limit
+    ) throws IllegalArgumentException {
+        INSTANCE.requireDoubleLessThanInclusive(targetTerm, target, limitTerm, limit);
     }
 
     public static <ExceptionType extends Exception> void requireDoubleLessThanInclusive(
-            String term,
+            String targetTerm,
             double target,
             double limit,
             VerifierThrown<Double, ExceptionType> thrown
     ) throws ExceptionType {
-        INSTANCE.requireDoubleLessThanInclusive(term, target, limit, thrown);
+        INSTANCE.requireDoubleLessThanInclusive(targetTerm, target, limit, thrown);
+    }
+
+    public static <ExceptionType extends Exception> void requireDoubleLessThanInclusive(
+            String targetTerm,
+            double target,
+            String limitTerm,
+            double limit,
+            VerifierThrown<Double, ExceptionType> thrown
+    ) throws ExceptionType {
+        INSTANCE.requireDoubleLessThanInclusive(targetTerm, target, limitTerm, limit, thrown);
     }
 
     public static void requireDoubleLessThanExclusive(
-            String term,
+            String targetTerm,
             double target,
             double limit
     ) throws IllegalArgumentException {
-        INSTANCE.requireDoubleLessThanExclusive(term, target, limit);
+        INSTANCE.requireDoubleLessThanExclusive(targetTerm, target, limit);
+    }
+
+    public static void requireDoubleLessThanExclusive(
+            String targetTerm,
+            double target,
+            String limitTerm,
+            double limit
+    ) throws IllegalArgumentException {
+        INSTANCE.requireDoubleLessThanExclusive(targetTerm, target, limitTerm, limit);
     }
 
     public static <ExceptionType extends Exception> void requireDoubleLessThanExclusive(
-            String term,
+            String targetTerm,
             double target,
             double limit,
             VerifierThrown<Double, ExceptionType> thrown
     ) throws ExceptionType {
-        INSTANCE.requireDoubleLessThanExclusive(term, target, limit, thrown);
+        INSTANCE.requireDoubleLessThanExclusive(targetTerm, target, limit, thrown);
+    }
+
+    public static <ExceptionType extends Exception> void requireDoubleLessThanExclusive(
+            String targetTerm,
+            double target,
+            String limitTerm,
+            double limit,
+            VerifierThrown<Double, ExceptionType> thrown
+    ) throws ExceptionType {
+        INSTANCE.requireDoubleLessThanExclusive(targetTerm, target, limitTerm, limit, thrown);
     }
 
     public static BigDecimalRangeVerifier ofRange(BigDecimal min, BigDecimal max) {
@@ -896,71 +1754,147 @@ public class Verifier {
     }
 
     public static void requireBigDecimalMoreThanInclusive(
-            String term,
+            String targetTerm,
             BigDecimal target,
             BigDecimal limit
     ) throws IllegalArgumentException {
-        INSTANCE.requireBigDecimalMoreThanInclusive(term, target, limit);
+        INSTANCE.requireBigDecimalMoreThanInclusive(targetTerm, target, limit);
+    }
+
+    public static void requireBigDecimalMoreThanInclusive(
+            String targetTerm,
+            BigDecimal target,
+            String limitTerm,
+            BigDecimal limit
+    ) throws IllegalArgumentException {
+        INSTANCE.requireBigDecimalMoreThanInclusive(targetTerm, target, limitTerm, limit);
     }
 
     public static <ExceptionType extends Exception> void requireBigDecimalMoreThanInclusive(
-            String term,
+            String targetTerm,
             BigDecimal target,
             BigDecimal limit,
             VerifierThrown<BigDecimal, ExceptionType> thrown
     ) throws ExceptionType {
-        INSTANCE.requireBigDecimalMoreThanInclusive(term, target, limit, thrown);
+        INSTANCE.requireBigDecimalMoreThanInclusive(targetTerm, target, limit, thrown);
+    }
+
+    public static <ExceptionType extends Exception> void requireBigDecimalMoreThanInclusive(
+            String targetTerm,
+            BigDecimal target,
+            String limitTerm,
+            BigDecimal limit,
+            VerifierThrown<BigDecimal, ExceptionType> thrown
+    ) throws ExceptionType {
+        INSTANCE.requireBigDecimalMoreThanInclusive(targetTerm, target, limitTerm, limit, thrown);
     }
 
     public static void requireBigDecimalMoreThanExclusive(
-            String term,
+            String targetTerm,
             BigDecimal target,
             BigDecimal limit
     ) throws IllegalArgumentException {
-        INSTANCE.requireBigDecimalMoreThanExclusive(term, target, limit);
+        INSTANCE.requireBigDecimalMoreThanExclusive(targetTerm, target, limit);
+    }
+
+    public static void requireBigDecimalMoreThanExclusive(
+            String targetTerm,
+            BigDecimal target,
+            String limitTerm,
+            BigDecimal limit
+    ) throws IllegalArgumentException {
+        INSTANCE.requireBigDecimalMoreThanExclusive(targetTerm, target, limitTerm, limit);
     }
 
     public static <ExceptionType extends Exception> void requireBigDecimalMoreThanExclusive(
-            String term,
+            String targetTerm,
             BigDecimal target,
             BigDecimal limit,
             VerifierThrown<BigDecimal, ExceptionType> thrown
     ) throws ExceptionType {
-        INSTANCE.requireBigDecimalMoreThanExclusive(term, target, limit, thrown);
+        INSTANCE.requireBigDecimalMoreThanExclusive(targetTerm, target, limit, thrown);
+    }
+
+    public static <ExceptionType extends Exception> void requireBigDecimalMoreThanExclusive(
+            String targetTerm,
+            BigDecimal target,
+            String limitTerm,
+            BigDecimal limit,
+            VerifierThrown<BigDecimal, ExceptionType> thrown
+    ) throws ExceptionType {
+        INSTANCE.requireBigDecimalMoreThanExclusive(targetTerm, target, limitTerm, limit, thrown);
     }
 
     public static void requireBigDecimalLessThanInclusive(
-            String term,
+            String targetTerm,
             BigDecimal target,
             BigDecimal limit
     ) throws IllegalArgumentException {
-        INSTANCE.requireBigDecimalLessThanInclusive(term, target, limit);
+        INSTANCE.requireBigDecimalLessThanInclusive(targetTerm, target, limit);
+    }
+
+    public static void requireBigDecimalLessThanInclusive(
+            String targetTerm,
+            BigDecimal target,
+            String limitTerm,
+            BigDecimal limit
+    ) throws IllegalArgumentException {
+        INSTANCE.requireBigDecimalLessThanInclusive(targetTerm, target, limitTerm, limit);
     }
 
     public static <ExceptionType extends Exception> void requireBigDecimalLessThanInclusive(
-            String term,
+            String targetTerm,
             BigDecimal target,
             BigDecimal limit,
             VerifierThrown<BigDecimal, ExceptionType> thrown
     ) throws ExceptionType {
-        INSTANCE.requireBigDecimalLessThanInclusive(term, target, limit, thrown);
+        INSTANCE.requireBigDecimalLessThanInclusive(targetTerm, target, limit, thrown);
+    }
+
+    public static <ExceptionType extends Exception> void requireBigDecimalLessThanInclusive(
+            String targetTerm,
+            BigDecimal target,
+            String limitTerm,
+            BigDecimal limit,
+            VerifierThrown<BigDecimal, ExceptionType> thrown
+    ) throws ExceptionType {
+        INSTANCE.requireBigDecimalLessThanInclusive(targetTerm, target, limitTerm, limit, thrown);
     }
 
     public static void requireBigDecimalLessThanExclusive(
-            String term,
+            String targetTerm,
             BigDecimal target,
             BigDecimal limit
     ) throws IllegalArgumentException {
-        INSTANCE.requireBigDecimalLessThanExclusive(term, target, limit);
+        INSTANCE.requireBigDecimalLessThanExclusive(targetTerm, target, limit);
+    }
+
+    public static void requireBigDecimalLessThanExclusive(
+            String targetTerm,
+            BigDecimal target,
+            String limitTerm,
+            BigDecimal limit
+    ) throws IllegalArgumentException {
+        INSTANCE.requireBigDecimalLessThanExclusive(targetTerm, target, limitTerm, limit);
     }
 
     public static <ExceptionType extends Exception> void requireBigDecimalLessThanExclusive(
-            String term,
+            String targetTerm,
             BigDecimal target,
             BigDecimal limit,
             VerifierThrown<BigDecimal, ExceptionType> thrown
     ) throws ExceptionType {
-        INSTANCE.requireBigDecimalLessThanExclusive(term, target, limit, thrown);
+        INSTANCE.requireBigDecimalLessThanExclusive(targetTerm, target, limit, thrown);
+    }
+
+    public static <ExceptionType extends Exception> void requireBigDecimalLessThanExclusive(
+            String targetTerm,
+            BigDecimal target,
+            String limitTerm,
+            BigDecimal limit,
+            VerifierThrown<BigDecimal, ExceptionType> thrown
+    ) throws ExceptionType {
+        INSTANCE.requireBigDecimalLessThanExclusive(targetTerm, target, limitTerm, limit, thrown);
     }
 
 }

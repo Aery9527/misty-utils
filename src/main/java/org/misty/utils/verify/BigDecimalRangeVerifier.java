@@ -9,7 +9,7 @@ public class BigDecimalRangeVerifier extends Verifier {
     private final BigDecimal max;
 
     public BigDecimalRangeVerifier(BigDecimal min, BigDecimal max) {
-        Verifier.requireBigDecimalLessThanInclusive("min", min, max);
+        Verifier.requireBigDecimalLessThanInclusive("min", min, "max", max);
         this.min = min;
         this.max = max;
     }
@@ -24,7 +24,7 @@ public class BigDecimalRangeVerifier extends Verifier {
             VerifierThrown<BigDecimal, ExceptionType> thrown
     ) throws ExceptionType {
         if (target.compareTo(this.min) < 0 || target.compareTo(this.max) > 0) {
-            thrown.thrown(term, target, String.format("\"%s(%s)\" must be in range [%s, %s]", term, target, this.min, this.max));
+            thrown.thrown(term, target, String.format(Verifier.ErrorMsgFormat.REQUIRE_RANGE_INCLUSIVE, term, target, this.min, this.max));
         }
     }
 
@@ -38,7 +38,7 @@ public class BigDecimalRangeVerifier extends Verifier {
             VerifierThrown<BigDecimal, ExceptionType> thrown
     ) throws ExceptionType {
         if (target.compareTo(this.min) <= 0 || target.compareTo(this.max) >= 0) {
-            thrown.thrown(term, target, String.format("\"%s(%s)\" must be in range (%s, %s)", term, target, this.min, this.max));
+            thrown.thrown(term, target, String.format(Verifier.ErrorMsgFormat.REQUIRE_RANGE_EXCLUSIVE, term, target, this.min, this.max));
         }
     }
 
@@ -52,7 +52,7 @@ public class BigDecimalRangeVerifier extends Verifier {
             VerifierThrown<BigDecimal, ExceptionType> thrown
     ) throws ExceptionType {
         if (target.compareTo(this.min) >= 0 && target.compareTo(this.max) <= 0) {
-            thrown.thrown(term, target, String.format("\"%s(%s)\" can't be in range [%s, %s]", term, target, this.min, this.max));
+            thrown.thrown(term, target, String.format(Verifier.ErrorMsgFormat.REFUSE_RANGE_INCLUSIVE, term, target, this.min, this.max));
         }
     }
 
@@ -66,7 +66,7 @@ public class BigDecimalRangeVerifier extends Verifier {
             VerifierThrown<BigDecimal, ExceptionType> thrown
     ) throws ExceptionType {
         if (target.compareTo(this.min) > 0 && target.compareTo(this.max) < 0) {
-            thrown.thrown(term, target, String.format("\"%s(%s)\" can't be in range (%s, %s)", term, target, this.min, this.max));
+            thrown.thrown(term, target, String.format(Verifier.ErrorMsgFormat.REFUSE_RANGE_EXCLUSIVE, term, target, this.min, this.max));
         }
     }
 

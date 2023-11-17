@@ -10,9 +10,9 @@ import java.util.Optional;
 
 public class VerifierTest {
 
-    public static <TargetType> VerifierThrown<TargetType, Test1RuntimeException> throwTest1RuntimeException() {
-        return (term, arg, errorMsg) -> {
-            throw new Test1RuntimeException(errorMsg);
+    public static <TargetType, MagType extends VerifierErrorMsg<TargetType>> VerifierThrown<TargetType, MagType, Test1RuntimeException> throwTest1RuntimeException() {
+        return error -> {
+            throw new Test1RuntimeException(error.getErrorMsg());
         };
     }
 

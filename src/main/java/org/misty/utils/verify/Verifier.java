@@ -27,11 +27,11 @@ public class Verifier {
         public static final String REFUSE_RANGE_EXCLUSIVE = "%s(%s) can't be in range (%s, %s)";
     }
 
-    public static final VerifierLogic<IllegalArgumentException> INSTANCE = new VerifierLogic<IllegalArgumentException>() {
+    public static final VerifierLogic<IllegalArgumentException> INSTANCE = new VerifierLogic<>() {
         @Override
-        public <TargetType> VerifierThrown<TargetType, IllegalArgumentException> getThrower() {
-            return (term, arg, errorMsg) -> {
-                throw new IllegalArgumentException(errorMsg);
+        public <TargetType, MagType extends VerifierErrorMsg<TargetType>> VerifierThrown<TargetType, MagType, IllegalArgumentException> getThrower() {
+            return error -> {
+                throw new IllegalArgumentException(error.getErrorMsg());
             };
         }
 
@@ -74,7 +74,7 @@ public class Verifier {
     public static <TargetType, ExceptionType extends Exception> void refuseNull(
             String term,
             TargetType arg,
-            VerifierThrown<TargetType, ExceptionType> thrown
+            VerifierThrown<TargetType, VerifierErrorMsg<TargetType>, ExceptionType> thrown
     ) throws ExceptionType {
         INSTANCE.refuseNull(term, arg, thrown);
     }
@@ -86,7 +86,7 @@ public class Verifier {
     public static <TargetType, ExceptionType extends Exception> void refuseNullOrEmpty(
             String term,
             TargetType arg,
-            VerifierThrown<TargetType, ExceptionType> thrown
+            VerifierThrown<TargetType, VerifierErrorMsg<TargetType>, ExceptionType> thrown
     ) throws ExceptionType {
         INSTANCE.refuseNullOrEmpty(term, arg, thrown);
     }
@@ -116,7 +116,7 @@ public class Verifier {
             String targetTerm,
             short target,
             short limit,
-            VerifierThrown<Short, ExceptionType> thrown
+            VerifierThrown<Short, VerifierLimitErrorMsg<Short>, ExceptionType> thrown
     ) throws ExceptionType {
         INSTANCE.requireShortMoreThanInclusive(targetTerm, target, limit, thrown);
     }
@@ -126,7 +126,7 @@ public class Verifier {
             short target,
             String limitTerm,
             short limit,
-            VerifierThrown<Short, ExceptionType> thrown
+            VerifierThrown<Short, VerifierLimitErrorMsg<Short>, ExceptionType> thrown
     ) throws ExceptionType {
         INSTANCE.requireShortMoreThanInclusive(targetTerm, target, limitTerm, limit, thrown);
     }
@@ -152,7 +152,7 @@ public class Verifier {
             String targetTerm,
             short target,
             short limit,
-            VerifierThrown<Short, ExceptionType> thrown
+            VerifierThrown<Short, VerifierLimitErrorMsg<Short>, ExceptionType> thrown
     ) throws ExceptionType {
         INSTANCE.requireShortMoreThanExclusive(targetTerm, target, limit, thrown);
     }
@@ -162,7 +162,7 @@ public class Verifier {
             short target,
             String limitTerm,
             short limit,
-            VerifierThrown<Short, ExceptionType> thrown
+            VerifierThrown<Short, VerifierLimitErrorMsg<Short>, ExceptionType> thrown
     ) throws ExceptionType {
         INSTANCE.requireShortMoreThanExclusive(targetTerm, target, limitTerm, limit, thrown);
     }
@@ -188,7 +188,7 @@ public class Verifier {
             String targetTerm,
             short target,
             short limit,
-            VerifierThrown<Short, ExceptionType> thrown
+            VerifierThrown<Short, VerifierLimitErrorMsg<Short>, ExceptionType> thrown
     ) throws ExceptionType {
         INSTANCE.requireShortLessThanInclusive(targetTerm, target, limit, thrown);
     }
@@ -198,7 +198,7 @@ public class Verifier {
             short target,
             String limitTerm,
             short limit,
-            VerifierThrown<Short, ExceptionType> thrown
+            VerifierThrown<Short, VerifierLimitErrorMsg<Short>, ExceptionType> thrown
     ) throws ExceptionType {
         INSTANCE.requireShortLessThanInclusive(targetTerm, target, limitTerm, limit, thrown);
     }
@@ -224,7 +224,7 @@ public class Verifier {
             String targetTerm,
             short target,
             short limit,
-            VerifierThrown<Short, ExceptionType> thrown
+            VerifierThrown<Short, VerifierLimitErrorMsg<Short>, ExceptionType> thrown
     ) throws ExceptionType {
         INSTANCE.requireShortLessThanExclusive(targetTerm, target, limit, thrown);
     }
@@ -234,7 +234,7 @@ public class Verifier {
             short target,
             String limitTerm,
             short limit,
-            VerifierThrown<Short, ExceptionType> thrown
+            VerifierThrown<Short, VerifierLimitErrorMsg<Short>, ExceptionType> thrown
     ) throws ExceptionType {
         INSTANCE.requireShortLessThanExclusive(targetTerm, target, limitTerm, limit, thrown);
     }
@@ -264,7 +264,7 @@ public class Verifier {
             String targetTerm,
             int target,
             int limit,
-            VerifierThrown<Integer, ExceptionType> thrown
+            VerifierThrown<Integer, VerifierLimitErrorMsg<Integer>, ExceptionType> thrown
     ) throws ExceptionType {
         INSTANCE.requireIntMoreThanInclusive(targetTerm, target, limit, thrown);
     }
@@ -274,7 +274,7 @@ public class Verifier {
             int target,
             String limitTerm,
             int limit,
-            VerifierThrown<Integer, ExceptionType> thrown
+            VerifierThrown<Integer, VerifierLimitErrorMsg<Integer>, ExceptionType> thrown
     ) throws ExceptionType {
         INSTANCE.requireIntMoreThanInclusive(targetTerm, target, limitTerm, limit, thrown);
     }
@@ -300,7 +300,7 @@ public class Verifier {
             String targetTerm,
             int target,
             int limit,
-            VerifierThrown<Integer, ExceptionType> thrown
+            VerifierThrown<Integer, VerifierLimitErrorMsg<Integer>, ExceptionType> thrown
     ) throws ExceptionType {
         INSTANCE.requireIntMoreThanExclusive(targetTerm, target, limit, thrown);
     }
@@ -310,7 +310,7 @@ public class Verifier {
             int target,
             String limitTerm,
             int limit,
-            VerifierThrown<Integer, ExceptionType> thrown
+            VerifierThrown<Integer, VerifierLimitErrorMsg<Integer>, ExceptionType> thrown
     ) throws ExceptionType {
         INSTANCE.requireIntMoreThanExclusive(targetTerm, target, limitTerm, limit, thrown);
     }
@@ -336,7 +336,7 @@ public class Verifier {
             String targetTerm,
             int target,
             int limit,
-            VerifierThrown<Integer, ExceptionType> thrown
+            VerifierThrown<Integer, VerifierLimitErrorMsg<Integer>, ExceptionType> thrown
     ) throws ExceptionType {
         INSTANCE.requireIntLessThanInclusive(targetTerm, target, limit, thrown);
     }
@@ -346,7 +346,7 @@ public class Verifier {
             int target,
             String limitTerm,
             int limit,
-            VerifierThrown<Integer, ExceptionType> thrown
+            VerifierThrown<Integer, VerifierLimitErrorMsg<Integer>, ExceptionType> thrown
     ) throws ExceptionType {
         INSTANCE.requireIntLessThanInclusive(targetTerm, target, limitTerm, limit, thrown);
     }
@@ -372,7 +372,7 @@ public class Verifier {
             String targetTerm,
             int target,
             int limit,
-            VerifierThrown<Integer, ExceptionType> thrown
+            VerifierThrown<Integer, VerifierLimitErrorMsg<Integer>, ExceptionType> thrown
     ) throws ExceptionType {
         INSTANCE.requireIntLessThanExclusive(targetTerm, target, limit, thrown);
     }
@@ -382,7 +382,7 @@ public class Verifier {
             int target,
             String limitTerm,
             int limit,
-            VerifierThrown<Integer, ExceptionType> thrown
+            VerifierThrown<Integer, VerifierLimitErrorMsg<Integer>, ExceptionType> thrown
     ) throws ExceptionType {
         INSTANCE.requireIntLessThanExclusive(targetTerm, target, limitTerm, limit, thrown);
     }
@@ -412,7 +412,7 @@ public class Verifier {
             String targetTerm,
             long target,
             long limit,
-            VerifierThrown<Long, ExceptionType> thrown
+            VerifierThrown<Long, VerifierLimitErrorMsg<Long>, ExceptionType> thrown
     ) throws ExceptionType {
         INSTANCE.requireLongMoreThanInclusive(targetTerm, target, limit, thrown);
     }
@@ -422,7 +422,7 @@ public class Verifier {
             long target,
             String limitTerm,
             long limit,
-            VerifierThrown<Long, ExceptionType> thrown
+            VerifierThrown<Long, VerifierLimitErrorMsg<Long>, ExceptionType> thrown
     ) throws ExceptionType {
         INSTANCE.requireLongMoreThanInclusive(targetTerm, target, limitTerm, limit, thrown);
     }
@@ -448,7 +448,7 @@ public class Verifier {
             String targetTerm,
             long target,
             long limit,
-            VerifierThrown<Long, ExceptionType> thrown
+            VerifierThrown<Long, VerifierLimitErrorMsg<Long>, ExceptionType> thrown
     ) throws ExceptionType {
         INSTANCE.requireLongMoreThanExclusive(targetTerm, target, limit, thrown);
     }
@@ -458,7 +458,7 @@ public class Verifier {
             long target,
             String limitTerm,
             long limit,
-            VerifierThrown<Long, ExceptionType> thrown
+            VerifierThrown<Long, VerifierLimitErrorMsg<Long>, ExceptionType> thrown
     ) throws ExceptionType {
         INSTANCE.requireLongMoreThanExclusive(targetTerm, target, limitTerm, limit, thrown);
     }
@@ -484,7 +484,7 @@ public class Verifier {
             String targetTerm,
             long target,
             long limit,
-            VerifierThrown<Long, ExceptionType> thrown
+            VerifierThrown<Long, VerifierLimitErrorMsg<Long>, ExceptionType> thrown
     ) throws ExceptionType {
         INSTANCE.requireLongLessThanInclusive(targetTerm, target, limit, thrown);
     }
@@ -494,7 +494,7 @@ public class Verifier {
             long target,
             String limitTerm,
             long limit,
-            VerifierThrown<Long, ExceptionType> thrown
+            VerifierThrown<Long, VerifierLimitErrorMsg<Long>, ExceptionType> thrown
     ) throws ExceptionType {
         INSTANCE.requireLongLessThanInclusive(targetTerm, target, limitTerm, limit, thrown);
     }
@@ -520,7 +520,7 @@ public class Verifier {
             String targetTerm,
             long target,
             long limit,
-            VerifierThrown<Long, ExceptionType> thrown
+            VerifierThrown<Long, VerifierLimitErrorMsg<Long>, ExceptionType> thrown
     ) throws ExceptionType {
         INSTANCE.requireLongLessThanExclusive(targetTerm, target, limit, thrown);
     }
@@ -530,7 +530,7 @@ public class Verifier {
             long target,
             String limitTerm,
             long limit,
-            VerifierThrown<Long, ExceptionType> thrown
+            VerifierThrown<Long, VerifierLimitErrorMsg<Long>, ExceptionType> thrown
     ) throws ExceptionType {
         INSTANCE.requireLongLessThanExclusive(targetTerm, target, limitTerm, limit, thrown);
     }
@@ -560,7 +560,7 @@ public class Verifier {
             String targetTerm,
             float target,
             float limit,
-            VerifierThrown<Float, ExceptionType> thrown
+            VerifierThrown<Float, VerifierLimitErrorMsg<Float>, ExceptionType> thrown
     ) throws ExceptionType {
         INSTANCE.requireFloatMoreThanInclusive(targetTerm, target, limit, thrown);
     }
@@ -570,7 +570,7 @@ public class Verifier {
             float target,
             String limitTerm,
             float limit,
-            VerifierThrown<Float, ExceptionType> thrown
+            VerifierThrown<Float, VerifierLimitErrorMsg<Float>, ExceptionType> thrown
     ) throws ExceptionType {
         INSTANCE.requireFloatMoreThanInclusive(targetTerm, target, limitTerm, limit, thrown);
     }
@@ -596,7 +596,7 @@ public class Verifier {
             String targetTerm,
             float target,
             float limit,
-            VerifierThrown<Float, ExceptionType> thrown
+            VerifierThrown<Float, VerifierLimitErrorMsg<Float>, ExceptionType> thrown
     ) throws ExceptionType {
         INSTANCE.requireFloatMoreThanExclusive(targetTerm, target, limit, thrown);
     }
@@ -606,7 +606,7 @@ public class Verifier {
             float target,
             String limitTerm,
             float limit,
-            VerifierThrown<Float, ExceptionType> thrown
+            VerifierThrown<Float, VerifierLimitErrorMsg<Float>, ExceptionType> thrown
     ) throws ExceptionType {
         INSTANCE.requireFloatMoreThanExclusive(targetTerm, target, limitTerm, limit, thrown);
     }
@@ -632,7 +632,7 @@ public class Verifier {
             String targetTerm,
             float target,
             float limit,
-            VerifierThrown<Float, ExceptionType> thrown
+            VerifierThrown<Float, VerifierLimitErrorMsg<Float>, ExceptionType> thrown
     ) throws ExceptionType {
         INSTANCE.requireFloatLessThanInclusive(targetTerm, target, limit, thrown);
     }
@@ -642,7 +642,7 @@ public class Verifier {
             float target,
             String limitTerm,
             float limit,
-            VerifierThrown<Float, ExceptionType> thrown
+            VerifierThrown<Float, VerifierLimitErrorMsg<Float>, ExceptionType> thrown
     ) throws ExceptionType {
         INSTANCE.requireFloatLessThanInclusive(targetTerm, target, limitTerm, limit, thrown);
     }
@@ -668,7 +668,7 @@ public class Verifier {
             String targetTerm,
             float target,
             float limit,
-            VerifierThrown<Float, ExceptionType> thrown
+            VerifierThrown<Float, VerifierLimitErrorMsg<Float>, ExceptionType> thrown
     ) throws ExceptionType {
         INSTANCE.requireFloatLessThanExclusive(targetTerm, target, limit, thrown);
     }
@@ -678,7 +678,7 @@ public class Verifier {
             float target,
             String limitTerm,
             float limit,
-            VerifierThrown<Float, ExceptionType> thrown
+            VerifierThrown<Float, VerifierLimitErrorMsg<Float>, ExceptionType> thrown
     ) throws ExceptionType {
         INSTANCE.requireFloatLessThanExclusive(targetTerm, target, limitTerm, limit, thrown);
     }
@@ -708,7 +708,7 @@ public class Verifier {
             String targetTerm,
             double target,
             double limit,
-            VerifierThrown<Double, ExceptionType> thrown
+            VerifierThrown<Double, VerifierLimitErrorMsg<Double>, ExceptionType> thrown
     ) throws ExceptionType {
         INSTANCE.requireDoubleMoreThanInclusive(targetTerm, target, limit, thrown);
     }
@@ -718,7 +718,7 @@ public class Verifier {
             double target,
             String limitTerm,
             double limit,
-            VerifierThrown<Double, ExceptionType> thrown
+            VerifierThrown<Double, VerifierLimitErrorMsg<Double>, ExceptionType> thrown
     ) throws ExceptionType {
         INSTANCE.requireDoubleMoreThanInclusive(targetTerm, target, limitTerm, limit, thrown);
     }
@@ -744,7 +744,7 @@ public class Verifier {
             String targetTerm,
             double target,
             double limit,
-            VerifierThrown<Double, ExceptionType> thrown
+            VerifierThrown<Double, VerifierLimitErrorMsg<Double>, ExceptionType> thrown
     ) throws ExceptionType {
         INSTANCE.requireDoubleMoreThanExclusive(targetTerm, target, limit, thrown);
     }
@@ -754,7 +754,7 @@ public class Verifier {
             double target,
             String limitTerm,
             double limit,
-            VerifierThrown<Double, ExceptionType> thrown
+            VerifierThrown<Double, VerifierLimitErrorMsg<Double>, ExceptionType> thrown
     ) throws ExceptionType {
         INSTANCE.requireDoubleMoreThanExclusive(targetTerm, target, limitTerm, limit, thrown);
     }
@@ -780,7 +780,7 @@ public class Verifier {
             String targetTerm,
             double target,
             double limit,
-            VerifierThrown<Double, ExceptionType> thrown
+            VerifierThrown<Double, VerifierLimitErrorMsg<Double>, ExceptionType> thrown
     ) throws ExceptionType {
         INSTANCE.requireDoubleLessThanInclusive(targetTerm, target, limit, thrown);
     }
@@ -790,7 +790,7 @@ public class Verifier {
             double target,
             String limitTerm,
             double limit,
-            VerifierThrown<Double, ExceptionType> thrown
+            VerifierThrown<Double, VerifierLimitErrorMsg<Double>, ExceptionType> thrown
     ) throws ExceptionType {
         INSTANCE.requireDoubleLessThanInclusive(targetTerm, target, limitTerm, limit, thrown);
     }
@@ -816,7 +816,7 @@ public class Verifier {
             String targetTerm,
             double target,
             double limit,
-            VerifierThrown<Double, ExceptionType> thrown
+            VerifierThrown<Double, VerifierLimitErrorMsg<Double>, ExceptionType> thrown
     ) throws ExceptionType {
         INSTANCE.requireDoubleLessThanExclusive(targetTerm, target, limit, thrown);
     }
@@ -826,7 +826,7 @@ public class Verifier {
             double target,
             String limitTerm,
             double limit,
-            VerifierThrown<Double, ExceptionType> thrown
+            VerifierThrown<Double, VerifierLimitErrorMsg<Double>, ExceptionType> thrown
     ) throws ExceptionType {
         INSTANCE.requireDoubleLessThanExclusive(targetTerm, target, limitTerm, limit, thrown);
     }
@@ -856,7 +856,7 @@ public class Verifier {
             String targetTerm,
             BigDecimal target,
             BigDecimal limit,
-            VerifierThrown<BigDecimal, ExceptionType> thrown
+            VerifierThrown<BigDecimal, VerifierLimitErrorMsg<BigDecimal>, ExceptionType> thrown
     ) throws ExceptionType {
         INSTANCE.requireBigDecimalMoreThanInclusive(targetTerm, target, limit, thrown);
     }
@@ -866,7 +866,7 @@ public class Verifier {
             BigDecimal target,
             String limitTerm,
             BigDecimal limit,
-            VerifierThrown<BigDecimal, ExceptionType> thrown
+            VerifierThrown<BigDecimal, VerifierLimitErrorMsg<BigDecimal>, ExceptionType> thrown
     ) throws ExceptionType {
         INSTANCE.requireBigDecimalMoreThanInclusive(targetTerm, target, limitTerm, limit, thrown);
     }
@@ -892,7 +892,7 @@ public class Verifier {
             String targetTerm,
             BigDecimal target,
             BigDecimal limit,
-            VerifierThrown<BigDecimal, ExceptionType> thrown
+            VerifierThrown<BigDecimal, VerifierLimitErrorMsg<BigDecimal>, ExceptionType> thrown
     ) throws ExceptionType {
         INSTANCE.requireBigDecimalMoreThanExclusive(targetTerm, target, limit, thrown);
     }
@@ -902,7 +902,7 @@ public class Verifier {
             BigDecimal target,
             String limitTerm,
             BigDecimal limit,
-            VerifierThrown<BigDecimal, ExceptionType> thrown
+            VerifierThrown<BigDecimal, VerifierLimitErrorMsg<BigDecimal>, ExceptionType> thrown
     ) throws ExceptionType {
         INSTANCE.requireBigDecimalMoreThanExclusive(targetTerm, target, limitTerm, limit, thrown);
     }
@@ -928,7 +928,7 @@ public class Verifier {
             String targetTerm,
             BigDecimal target,
             BigDecimal limit,
-            VerifierThrown<BigDecimal, ExceptionType> thrown
+            VerifierThrown<BigDecimal, VerifierLimitErrorMsg<BigDecimal>, ExceptionType> thrown
     ) throws ExceptionType {
         INSTANCE.requireBigDecimalLessThanInclusive(targetTerm, target, limit, thrown);
     }
@@ -938,7 +938,7 @@ public class Verifier {
             BigDecimal target,
             String limitTerm,
             BigDecimal limit,
-            VerifierThrown<BigDecimal, ExceptionType> thrown
+            VerifierThrown<BigDecimal, VerifierLimitErrorMsg<BigDecimal>, ExceptionType> thrown
     ) throws ExceptionType {
         INSTANCE.requireBigDecimalLessThanInclusive(targetTerm, target, limitTerm, limit, thrown);
     }
@@ -964,7 +964,7 @@ public class Verifier {
             String targetTerm,
             BigDecimal target,
             BigDecimal limit,
-            VerifierThrown<BigDecimal, ExceptionType> thrown
+            VerifierThrown<BigDecimal, VerifierLimitErrorMsg<BigDecimal>, ExceptionType> thrown
     ) throws ExceptionType {
         INSTANCE.requireBigDecimalLessThanExclusive(targetTerm, target, limit, thrown);
     }
@@ -974,7 +974,7 @@ public class Verifier {
             BigDecimal target,
             String limitTerm,
             BigDecimal limit,
-            VerifierThrown<BigDecimal, ExceptionType> thrown
+            VerifierThrown<BigDecimal, VerifierLimitErrorMsg<BigDecimal>, ExceptionType> thrown
     ) throws ExceptionType {
         INSTANCE.requireBigDecimalLessThanExclusive(targetTerm, target, limitTerm, limit, thrown);
     }

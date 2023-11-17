@@ -22,10 +22,10 @@ public class ShortRangeVerifierBase<DefaultExceptionType extends Exception> {
     public <ExceptionType extends Exception> void requireInclusive(
             String term,
             short target,
-            VerifierThrown<Short, ExceptionType> thrown
+            VerifierThrown<Short, VerifierRangeErrorMsg<Short>, ExceptionType> thrown
     ) throws ExceptionType {
         if (target < this.min || target > this.max) {
-            thrown.thrown(term, target, String.format(Verifier.ErrorMsgFormat.REQUIRE_RANGE_INCLUSIVE, term, target, this.min, this.max));
+            thrown.thrown(new VerifierRangeErrorMsg<>(term, target, this.min, this.max, Verifier.ErrorMsgFormat.REQUIRE_RANGE_INCLUSIVE));
         }
     }
 
@@ -36,10 +36,10 @@ public class ShortRangeVerifierBase<DefaultExceptionType extends Exception> {
     public <ExceptionType extends Exception> void requireExclusive(
             String term,
             short target,
-            VerifierThrown<Short, ExceptionType> thrown
+            VerifierThrown<Short, VerifierRangeErrorMsg<Short>, ExceptionType> thrown
     ) throws ExceptionType {
         if (target <= this.min || target >= this.max) {
-            thrown.thrown(term, target, String.format(Verifier.ErrorMsgFormat.REQUIRE_RANGE_EXCLUSIVE, term, target, this.min, this.max));
+            thrown.thrown(new VerifierRangeErrorMsg<>(term, target, this.min, this.max, Verifier.ErrorMsgFormat.REQUIRE_RANGE_EXCLUSIVE));
         }
     }
 
@@ -50,10 +50,10 @@ public class ShortRangeVerifierBase<DefaultExceptionType extends Exception> {
     public <ExceptionType extends Exception> void refuseInclusive(
             String term,
             short target,
-            VerifierThrown<Short, ExceptionType> thrown
+            VerifierThrown<Short, VerifierRangeErrorMsg<Short>, ExceptionType> thrown
     ) throws ExceptionType {
         if (target >= this.min && target <= this.max) {
-            thrown.thrown(term, target, String.format(Verifier.ErrorMsgFormat.REFUSE_RANGE_INCLUSIVE, term, target, this.min, this.max));
+            thrown.thrown(new VerifierRangeErrorMsg<>(term, target, this.min, this.max, Verifier.ErrorMsgFormat.REFUSE_RANGE_INCLUSIVE));
         }
     }
 
@@ -64,10 +64,10 @@ public class ShortRangeVerifierBase<DefaultExceptionType extends Exception> {
     public <ExceptionType extends Exception> void refuseExclusive(
             String term,
             short target,
-            VerifierThrown<Short, ExceptionType> thrown
+            VerifierThrown<Short, VerifierRangeErrorMsg<Short>, ExceptionType> thrown
     ) throws ExceptionType {
         if (target > this.min && target < this.max) {
-            thrown.thrown(term, target, String.format(Verifier.ErrorMsgFormat.REFUSE_RANGE_EXCLUSIVE, term, target, this.min, this.max));
+            thrown.thrown(new VerifierRangeErrorMsg<>(term, target, this.min, this.max, Verifier.ErrorMsgFormat.REFUSE_RANGE_EXCLUSIVE));
         }
     }
 

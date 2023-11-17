@@ -1,7 +1,7 @@
 package org.misty.utils.verify;
 
-public interface VerifierThrown<TargetType, ExceptionType extends Exception> {
+public interface VerifierThrown<TargetType, MagType extends VerifierErrorMsg<TargetType>, ExceptionType extends Exception> {
 
-    void thrown(String term, TargetType arg, String errorMsg) throws ExceptionType;
+    void thrown(MagType msg) throws ExceptionType;
 
 }

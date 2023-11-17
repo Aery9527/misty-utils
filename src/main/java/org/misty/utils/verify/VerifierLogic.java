@@ -12,10 +12,10 @@ public interface VerifierLogic<DefaultExceptionType extends Exception> extends V
     default <TargetType, ExceptionType extends Exception> void refuseNull(
             String term,
             TargetType arg,
-            VerifierThrown<TargetType, ExceptionType> thrown
+            VerifierThrown<TargetType, VerifierErrorMsg<TargetType>, ExceptionType> thrown
     ) throws ExceptionType {
         if (arg == null || (arg instanceof Optional && !((Optional) arg).isPresent())) {
-            thrown.thrown(term, arg, String.format(Verifier.ErrorMsgFormat.REFUSE_NULL, term));
+            thrown.thrown(new VerifierErrorMsg<>(term, arg, String.format(Verifier.ErrorMsgFormat.REFUSE_NULL, term)));
         }
     }
 
@@ -26,10 +26,10 @@ public interface VerifierLogic<DefaultExceptionType extends Exception> extends V
     default <TargetType, ExceptionType extends Exception> void refuseNullOrEmpty(
             String term,
             TargetType arg,
-            VerifierThrown<TargetType, ExceptionType> thrown
+            VerifierThrown<TargetType, VerifierErrorMsg<TargetType>, ExceptionType> thrown
     ) throws ExceptionType {
         if (Checker.isNullOrEmpty(arg)) {
-            thrown.thrown(term, arg, String.format(Verifier.ErrorMsgFormat.REFUSE_NULL_OR_EMPTY, term));
+            thrown.thrown(new VerifierErrorMsg<>(term, arg, String.format(Verifier.ErrorMsgFormat.REFUSE_NULL_OR_EMPTY, term)));
         }
     }
 
@@ -58,7 +58,7 @@ public interface VerifierLogic<DefaultExceptionType extends Exception> extends V
             String targetTerm,
             short target,
             short limit,
-            VerifierThrown<Short, ExceptionType> thrown
+            VerifierThrown<Short, VerifierLimitErrorMsg<Short>, ExceptionType> thrown
     ) throws ExceptionType {
         requireShortMoreThanInclusive(targetTerm, target, "", limit, thrown);
     }
@@ -68,10 +68,10 @@ public interface VerifierLogic<DefaultExceptionType extends Exception> extends V
             short target,
             String limitTerm,
             short limit,
-            VerifierThrown<Short, ExceptionType> thrown
+            VerifierThrown<Short, VerifierLimitErrorMsg<Short>, ExceptionType> thrown
     ) throws ExceptionType {
         if (target < limit) {
-            thrown.thrown(targetTerm, target, String.format(Verifier.ErrorMsgFormat.MORE_THAN_INCLUSIVE, targetTerm, target, limitTerm, limit));
+            thrown.thrown(new VerifierLimitErrorMsg<>(targetTerm, target, limitTerm, limit, Verifier.ErrorMsgFormat.MORE_THAN_INCLUSIVE));
         }
     }
 
@@ -96,7 +96,7 @@ public interface VerifierLogic<DefaultExceptionType extends Exception> extends V
             String targetTerm,
             short target,
             short limit,
-            VerifierThrown<Short, ExceptionType> thrown
+            VerifierThrown<Short, VerifierLimitErrorMsg<Short>, ExceptionType> thrown
     ) throws ExceptionType {
         requireShortMoreThanExclusive(targetTerm, target, "", limit, thrown);
     }
@@ -106,10 +106,10 @@ public interface VerifierLogic<DefaultExceptionType extends Exception> extends V
             short target,
             String limitTerm,
             short limit,
-            VerifierThrown<Short, ExceptionType> thrown
+            VerifierThrown<Short, VerifierLimitErrorMsg<Short>, ExceptionType> thrown
     ) throws ExceptionType {
         if (target <= limit) {
-            thrown.thrown(targetTerm, target, String.format(Verifier.ErrorMsgFormat.MORE_THAN_EXCLUSIVE, targetTerm, target, limitTerm, limit));
+            thrown.thrown(new VerifierLimitErrorMsg<>(targetTerm, target, limitTerm, limit, Verifier.ErrorMsgFormat.MORE_THAN_EXCLUSIVE));
         }
     }
 
@@ -134,7 +134,7 @@ public interface VerifierLogic<DefaultExceptionType extends Exception> extends V
             String targetTerm,
             short target,
             short limit,
-            VerifierThrown<Short, ExceptionType> thrown
+            VerifierThrown<Short, VerifierLimitErrorMsg<Short>, ExceptionType> thrown
     ) throws ExceptionType {
         requireShortLessThanInclusive(targetTerm, target, "", limit, thrown);
     }
@@ -144,10 +144,10 @@ public interface VerifierLogic<DefaultExceptionType extends Exception> extends V
             short target,
             String limitTerm,
             short limit,
-            VerifierThrown<Short, ExceptionType> thrown
+            VerifierThrown<Short, VerifierLimitErrorMsg<Short>, ExceptionType> thrown
     ) throws ExceptionType {
         if (target > limit) {
-            thrown.thrown(targetTerm, target, String.format(Verifier.ErrorMsgFormat.LESS_THAN_INCLUSIVE, targetTerm, target, limitTerm, limit));
+            thrown.thrown(new VerifierLimitErrorMsg<>(targetTerm, target, limitTerm, limit, Verifier.ErrorMsgFormat.LESS_THAN_INCLUSIVE));
         }
     }
 
@@ -172,7 +172,7 @@ public interface VerifierLogic<DefaultExceptionType extends Exception> extends V
             String targetTerm,
             short target,
             short limit,
-            VerifierThrown<Short, ExceptionType> thrown
+            VerifierThrown<Short, VerifierLimitErrorMsg<Short>, ExceptionType> thrown
     ) throws ExceptionType {
         requireShortLessThanExclusive(targetTerm, target, "", limit, thrown);
     }
@@ -182,10 +182,10 @@ public interface VerifierLogic<DefaultExceptionType extends Exception> extends V
             short target,
             String limitTerm,
             short limit,
-            VerifierThrown<Short, ExceptionType> thrown
+            VerifierThrown<Short, VerifierLimitErrorMsg<Short>, ExceptionType> thrown
     ) throws ExceptionType {
         if (target >= limit) {
-            thrown.thrown(targetTerm, target, String.format(Verifier.ErrorMsgFormat.LESS_THAN_EXCLUSIVE, targetTerm, target, limitTerm, limit));
+            thrown.thrown(new VerifierLimitErrorMsg<>(targetTerm, target, limitTerm, limit, Verifier.ErrorMsgFormat.LESS_THAN_EXCLUSIVE));
         }
     }
 
@@ -214,7 +214,7 @@ public interface VerifierLogic<DefaultExceptionType extends Exception> extends V
             String targetTerm,
             int target,
             int limit,
-            VerifierThrown<Integer, ExceptionType> thrown
+            VerifierThrown<Integer, VerifierLimitErrorMsg<Integer>, ExceptionType> thrown
     ) throws ExceptionType {
         requireIntMoreThanInclusive(targetTerm, target, "", limit, thrown);
     }
@@ -224,10 +224,10 @@ public interface VerifierLogic<DefaultExceptionType extends Exception> extends V
             int target,
             String limitTerm,
             int limit,
-            VerifierThrown<Integer, ExceptionType> thrown
+            VerifierThrown<Integer, VerifierLimitErrorMsg<Integer>, ExceptionType> thrown
     ) throws ExceptionType {
         if (target < limit) {
-            thrown.thrown(targetTerm, target, String.format(Verifier.ErrorMsgFormat.MORE_THAN_INCLUSIVE, targetTerm, target, limitTerm, limit));
+            thrown.thrown(new VerifierLimitErrorMsg<>(targetTerm, target, limitTerm, limit, Verifier.ErrorMsgFormat.MORE_THAN_INCLUSIVE));
         }
     }
 
@@ -252,7 +252,7 @@ public interface VerifierLogic<DefaultExceptionType extends Exception> extends V
             String targetTerm,
             int target,
             int limit,
-            VerifierThrown<Integer, ExceptionType> thrown
+            VerifierThrown<Integer, VerifierLimitErrorMsg<Integer>, ExceptionType> thrown
     ) throws ExceptionType {
         requireIntMoreThanExclusive(targetTerm, target, "", limit, thrown);
     }
@@ -262,10 +262,10 @@ public interface VerifierLogic<DefaultExceptionType extends Exception> extends V
             int target,
             String limitTerm,
             int limit,
-            VerifierThrown<Integer, ExceptionType> thrown
+            VerifierThrown<Integer, VerifierLimitErrorMsg<Integer>, ExceptionType> thrown
     ) throws ExceptionType {
         if (target <= limit) {
-            thrown.thrown(targetTerm, target, String.format(Verifier.ErrorMsgFormat.MORE_THAN_EXCLUSIVE, targetTerm, target, limitTerm, limit));
+            thrown.thrown(new VerifierLimitErrorMsg<>(targetTerm, target, limitTerm, limit, Verifier.ErrorMsgFormat.MORE_THAN_EXCLUSIVE));
         }
     }
 
@@ -290,7 +290,7 @@ public interface VerifierLogic<DefaultExceptionType extends Exception> extends V
             String targetTerm,
             int target,
             int limit,
-            VerifierThrown<Integer, ExceptionType> thrown
+            VerifierThrown<Integer, VerifierLimitErrorMsg<Integer>, ExceptionType> thrown
     ) throws ExceptionType {
         requireIntLessThanInclusive(targetTerm, target, "", limit, thrown);
     }
@@ -300,10 +300,10 @@ public interface VerifierLogic<DefaultExceptionType extends Exception> extends V
             int target,
             String limitTerm,
             int limit,
-            VerifierThrown<Integer, ExceptionType> thrown
+            VerifierThrown<Integer, VerifierLimitErrorMsg<Integer>, ExceptionType> thrown
     ) throws ExceptionType {
         if (target > limit) {
-            thrown.thrown(targetTerm, target, String.format(Verifier.ErrorMsgFormat.LESS_THAN_INCLUSIVE, targetTerm, target, limitTerm, limit));
+            thrown.thrown(new VerifierLimitErrorMsg<>(targetTerm, target, limitTerm, limit, Verifier.ErrorMsgFormat.LESS_THAN_INCLUSIVE));
         }
     }
 
@@ -328,7 +328,7 @@ public interface VerifierLogic<DefaultExceptionType extends Exception> extends V
             String targetTerm,
             int target,
             int limit,
-            VerifierThrown<Integer, ExceptionType> thrown
+            VerifierThrown<Integer, VerifierLimitErrorMsg<Integer>, ExceptionType> thrown
     ) throws ExceptionType {
         requireIntLessThanExclusive(targetTerm, target, "", limit, thrown);
     }
@@ -338,10 +338,10 @@ public interface VerifierLogic<DefaultExceptionType extends Exception> extends V
             int target,
             String limitTerm,
             int limit,
-            VerifierThrown<Integer, ExceptionType> thrown
+            VerifierThrown<Integer, VerifierLimitErrorMsg<Integer>, ExceptionType> thrown
     ) throws ExceptionType {
         if (target >= limit) {
-            thrown.thrown(targetTerm, target, String.format(Verifier.ErrorMsgFormat.LESS_THAN_EXCLUSIVE, targetTerm, target, limitTerm, limit));
+            thrown.thrown(new VerifierLimitErrorMsg<>(targetTerm, target, limitTerm, limit, Verifier.ErrorMsgFormat.LESS_THAN_EXCLUSIVE));
         }
     }
 
@@ -370,7 +370,7 @@ public interface VerifierLogic<DefaultExceptionType extends Exception> extends V
             String targetTerm,
             long target,
             long limit,
-            VerifierThrown<Long, ExceptionType> thrown
+            VerifierThrown<Long, VerifierLimitErrorMsg<Long>, ExceptionType> thrown
     ) throws ExceptionType {
         requireLongMoreThanInclusive(targetTerm, target, "", limit, thrown);
     }
@@ -380,10 +380,10 @@ public interface VerifierLogic<DefaultExceptionType extends Exception> extends V
             long target,
             String limitTerm,
             long limit,
-            VerifierThrown<Long, ExceptionType> thrown
+            VerifierThrown<Long, VerifierLimitErrorMsg<Long>, ExceptionType> thrown
     ) throws ExceptionType {
         if (target < limit) {
-            thrown.thrown(targetTerm, target, String.format(Verifier.ErrorMsgFormat.MORE_THAN_INCLUSIVE, targetTerm, target, limitTerm, limit));
+            thrown.thrown(new VerifierLimitErrorMsg<>(targetTerm, target, limitTerm, limit, Verifier.ErrorMsgFormat.MORE_THAN_INCLUSIVE));
         }
     }
 
@@ -408,7 +408,7 @@ public interface VerifierLogic<DefaultExceptionType extends Exception> extends V
             String targetTerm,
             long target,
             long limit,
-            VerifierThrown<Long, ExceptionType> thrown
+            VerifierThrown<Long, VerifierLimitErrorMsg<Long>, ExceptionType> thrown
     ) throws ExceptionType {
         requireLongMoreThanExclusive(targetTerm, target, "", limit, thrown);
     }
@@ -418,10 +418,10 @@ public interface VerifierLogic<DefaultExceptionType extends Exception> extends V
             long target,
             String limitTerm,
             long limit,
-            VerifierThrown<Long, ExceptionType> thrown
+            VerifierThrown<Long, VerifierLimitErrorMsg<Long>, ExceptionType> thrown
     ) throws ExceptionType {
         if (target <= limit) {
-            thrown.thrown(targetTerm, target, String.format(Verifier.ErrorMsgFormat.MORE_THAN_EXCLUSIVE, targetTerm, target, limitTerm, limit));
+            thrown.thrown(new VerifierLimitErrorMsg<>(targetTerm, target, limitTerm, limit, Verifier.ErrorMsgFormat.MORE_THAN_EXCLUSIVE));
         }
     }
 
@@ -446,7 +446,7 @@ public interface VerifierLogic<DefaultExceptionType extends Exception> extends V
             String targetTerm,
             long target,
             long limit,
-            VerifierThrown<Long, ExceptionType> thrown
+            VerifierThrown<Long, VerifierLimitErrorMsg<Long>, ExceptionType> thrown
     ) throws ExceptionType {
         requireLongLessThanInclusive(targetTerm, target, "", limit, thrown);
     }
@@ -456,10 +456,10 @@ public interface VerifierLogic<DefaultExceptionType extends Exception> extends V
             long target,
             String limitTerm,
             long limit,
-            VerifierThrown<Long, ExceptionType> thrown
+            VerifierThrown<Long, VerifierLimitErrorMsg<Long>, ExceptionType> thrown
     ) throws ExceptionType {
         if (target > limit) {
-            thrown.thrown(targetTerm, target, String.format(Verifier.ErrorMsgFormat.LESS_THAN_INCLUSIVE, targetTerm, target, limitTerm, limit));
+            thrown.thrown(new VerifierLimitErrorMsg<>(targetTerm, target, limitTerm, limit, Verifier.ErrorMsgFormat.LESS_THAN_INCLUSIVE));
         }
     }
 
@@ -484,7 +484,7 @@ public interface VerifierLogic<DefaultExceptionType extends Exception> extends V
             String targetTerm,
             long target,
             long limit,
-            VerifierThrown<Long, ExceptionType> thrown
+            VerifierThrown<Long, VerifierLimitErrorMsg<Long>, ExceptionType> thrown
     ) throws ExceptionType {
         requireLongLessThanExclusive(targetTerm, target, "", limit, thrown);
     }
@@ -494,10 +494,10 @@ public interface VerifierLogic<DefaultExceptionType extends Exception> extends V
             long target,
             String limitTerm,
             long limit,
-            VerifierThrown<Long, ExceptionType> thrown
+            VerifierThrown<Long, VerifierLimitErrorMsg<Long>, ExceptionType> thrown
     ) throws ExceptionType {
         if (target >= limit) {
-            thrown.thrown(targetTerm, target, String.format(Verifier.ErrorMsgFormat.LESS_THAN_EXCLUSIVE, targetTerm, target, limitTerm, limit));
+            thrown.thrown(new VerifierLimitErrorMsg<>(targetTerm, target, limitTerm, limit, Verifier.ErrorMsgFormat.LESS_THAN_EXCLUSIVE));
         }
     }
 
@@ -526,7 +526,7 @@ public interface VerifierLogic<DefaultExceptionType extends Exception> extends V
             String targetTerm,
             float target,
             float limit,
-            VerifierThrown<Float, ExceptionType> thrown
+            VerifierThrown<Float, VerifierLimitErrorMsg<Float>, ExceptionType> thrown
     ) throws ExceptionType {
         requireFloatMoreThanInclusive(targetTerm, target, "", limit, thrown);
     }
@@ -536,10 +536,10 @@ public interface VerifierLogic<DefaultExceptionType extends Exception> extends V
             float target,
             String limitTerm,
             float limit,
-            VerifierThrown<Float, ExceptionType> thrown
+            VerifierThrown<Float, VerifierLimitErrorMsg<Float>, ExceptionType> thrown
     ) throws ExceptionType {
         if (target < limit) {
-            thrown.thrown(targetTerm, target, String.format(Verifier.ErrorMsgFormat.MORE_THAN_INCLUSIVE, targetTerm, target, limitTerm, limit));
+            thrown.thrown(new VerifierLimitErrorMsg<>(targetTerm, target, limitTerm, limit, Verifier.ErrorMsgFormat.MORE_THAN_INCLUSIVE));
         }
     }
 
@@ -564,7 +564,7 @@ public interface VerifierLogic<DefaultExceptionType extends Exception> extends V
             String targetTerm,
             float target,
             float limit,
-            VerifierThrown<Float, ExceptionType> thrown
+            VerifierThrown<Float, VerifierLimitErrorMsg<Float>, ExceptionType> thrown
     ) throws ExceptionType {
         requireFloatMoreThanExclusive(targetTerm, target, "", limit, thrown);
     }
@@ -574,10 +574,10 @@ public interface VerifierLogic<DefaultExceptionType extends Exception> extends V
             float target,
             String limitTerm,
             float limit,
-            VerifierThrown<Float, ExceptionType> thrown
+            VerifierThrown<Float, VerifierLimitErrorMsg<Float>, ExceptionType> thrown
     ) throws ExceptionType {
         if (target <= limit) {
-            thrown.thrown(targetTerm, target, String.format(Verifier.ErrorMsgFormat.MORE_THAN_EXCLUSIVE, targetTerm, target, limitTerm, limit));
+            thrown.thrown(new VerifierLimitErrorMsg<>(targetTerm, target, limitTerm, limit, Verifier.ErrorMsgFormat.MORE_THAN_EXCLUSIVE));
         }
     }
 
@@ -602,7 +602,7 @@ public interface VerifierLogic<DefaultExceptionType extends Exception> extends V
             String targetTerm,
             float target,
             float limit,
-            VerifierThrown<Float, ExceptionType> thrown
+            VerifierThrown<Float, VerifierLimitErrorMsg<Float>, ExceptionType> thrown
     ) throws ExceptionType {
         requireFloatLessThanInclusive(targetTerm, target, "", limit, thrown);
     }
@@ -612,10 +612,10 @@ public interface VerifierLogic<DefaultExceptionType extends Exception> extends V
             float target,
             String limitTerm,
             float limit,
-            VerifierThrown<Float, ExceptionType> thrown
+            VerifierThrown<Float, VerifierLimitErrorMsg<Float>, ExceptionType> thrown
     ) throws ExceptionType {
         if (target > limit) {
-            thrown.thrown(targetTerm, target, String.format(Verifier.ErrorMsgFormat.LESS_THAN_INCLUSIVE, targetTerm, target, limitTerm, limit));
+            thrown.thrown(new VerifierLimitErrorMsg<>(targetTerm, target, limitTerm, limit, Verifier.ErrorMsgFormat.LESS_THAN_INCLUSIVE));
         }
     }
 
@@ -640,7 +640,7 @@ public interface VerifierLogic<DefaultExceptionType extends Exception> extends V
             String targetTerm,
             float target,
             float limit,
-            VerifierThrown<Float, ExceptionType> thrown
+            VerifierThrown<Float, VerifierLimitErrorMsg<Float>, ExceptionType> thrown
     ) throws ExceptionType {
         requireFloatLessThanExclusive(targetTerm, target, "", limit, thrown);
     }
@@ -650,10 +650,10 @@ public interface VerifierLogic<DefaultExceptionType extends Exception> extends V
             float target,
             String limitTerm,
             float limit,
-            VerifierThrown<Float, ExceptionType> thrown
+            VerifierThrown<Float, VerifierLimitErrorMsg<Float>, ExceptionType> thrown
     ) throws ExceptionType {
         if (target >= limit) {
-            thrown.thrown(targetTerm, target, String.format(Verifier.ErrorMsgFormat.LESS_THAN_EXCLUSIVE, targetTerm, target, limitTerm, limit));
+            thrown.thrown(new VerifierLimitErrorMsg<>(targetTerm, target, limitTerm, limit, Verifier.ErrorMsgFormat.LESS_THAN_EXCLUSIVE));
         }
     }
 
@@ -682,7 +682,7 @@ public interface VerifierLogic<DefaultExceptionType extends Exception> extends V
             String targetTerm,
             double target,
             double limit,
-            VerifierThrown<Double, ExceptionType> thrown
+            VerifierThrown<Double, VerifierLimitErrorMsg<Double>, ExceptionType> thrown
     ) throws ExceptionType {
         requireDoubleMoreThanInclusive(targetTerm, target, "", limit, thrown);
     }
@@ -692,10 +692,10 @@ public interface VerifierLogic<DefaultExceptionType extends Exception> extends V
             double target,
             String limitTerm,
             double limit,
-            VerifierThrown<Double, ExceptionType> thrown
+            VerifierThrown<Double, VerifierLimitErrorMsg<Double>, ExceptionType> thrown
     ) throws ExceptionType {
         if (target < limit) {
-            thrown.thrown(targetTerm, target, String.format(Verifier.ErrorMsgFormat.MORE_THAN_INCLUSIVE, targetTerm, target, limitTerm, limit));
+            thrown.thrown(new VerifierLimitErrorMsg<>(targetTerm, target, limitTerm, limit, Verifier.ErrorMsgFormat.MORE_THAN_INCLUSIVE));
         }
     }
 
@@ -720,7 +720,7 @@ public interface VerifierLogic<DefaultExceptionType extends Exception> extends V
             String targetTerm,
             double target,
             double limit,
-            VerifierThrown<Double, ExceptionType> thrown
+            VerifierThrown<Double, VerifierLimitErrorMsg<Double>, ExceptionType> thrown
     ) throws ExceptionType {
         requireDoubleMoreThanExclusive(targetTerm, target, "", limit, thrown);
     }
@@ -730,10 +730,10 @@ public interface VerifierLogic<DefaultExceptionType extends Exception> extends V
             double target,
             String limitTerm,
             double limit,
-            VerifierThrown<Double, ExceptionType> thrown
+            VerifierThrown<Double, VerifierLimitErrorMsg<Double>, ExceptionType> thrown
     ) throws ExceptionType {
         if (target <= limit) {
-            thrown.thrown(targetTerm, target, String.format(Verifier.ErrorMsgFormat.MORE_THAN_EXCLUSIVE, targetTerm, target, limitTerm, limit));
+            thrown.thrown(new VerifierLimitErrorMsg<>(targetTerm, target, limitTerm, limit, Verifier.ErrorMsgFormat.MORE_THAN_EXCLUSIVE));
         }
     }
 
@@ -758,7 +758,7 @@ public interface VerifierLogic<DefaultExceptionType extends Exception> extends V
             String targetTerm,
             double target,
             double limit,
-            VerifierThrown<Double, ExceptionType> thrown
+            VerifierThrown<Double, VerifierLimitErrorMsg<Double>, ExceptionType> thrown
     ) throws ExceptionType {
         requireDoubleLessThanInclusive(targetTerm, target, "", limit, thrown);
     }
@@ -768,10 +768,10 @@ public interface VerifierLogic<DefaultExceptionType extends Exception> extends V
             double target,
             String limitTerm,
             double limit,
-            VerifierThrown<Double, ExceptionType> thrown
+            VerifierThrown<Double, VerifierLimitErrorMsg<Double>, ExceptionType> thrown
     ) throws ExceptionType {
         if (target > limit) {
-            thrown.thrown(targetTerm, target, String.format(Verifier.ErrorMsgFormat.LESS_THAN_INCLUSIVE, targetTerm, target, limitTerm, limit));
+            thrown.thrown(new VerifierLimitErrorMsg<>(targetTerm, target, limitTerm, limit, Verifier.ErrorMsgFormat.LESS_THAN_INCLUSIVE));
         }
     }
 
@@ -796,7 +796,7 @@ public interface VerifierLogic<DefaultExceptionType extends Exception> extends V
             String targetTerm,
             double target,
             double limit,
-            VerifierThrown<Double, ExceptionType> thrown
+            VerifierThrown<Double, VerifierLimitErrorMsg<Double>, ExceptionType> thrown
     ) throws ExceptionType {
         requireDoubleLessThanExclusive(targetTerm, target, "", limit, thrown);
     }
@@ -806,10 +806,10 @@ public interface VerifierLogic<DefaultExceptionType extends Exception> extends V
             double target,
             String limitTerm,
             double limit,
-            VerifierThrown<Double, ExceptionType> thrown
+            VerifierThrown<Double, VerifierLimitErrorMsg<Double>, ExceptionType> thrown
     ) throws ExceptionType {
         if (target >= limit) {
-            thrown.thrown(targetTerm, target, String.format(Verifier.ErrorMsgFormat.LESS_THAN_EXCLUSIVE, targetTerm, target, limitTerm, limit));
+            thrown.thrown(new VerifierLimitErrorMsg<>(targetTerm, target, limitTerm, limit, Verifier.ErrorMsgFormat.LESS_THAN_EXCLUSIVE));
         }
     }
 
@@ -838,7 +838,7 @@ public interface VerifierLogic<DefaultExceptionType extends Exception> extends V
             String targetTerm,
             BigDecimal target,
             BigDecimal limit,
-            VerifierThrown<BigDecimal, ExceptionType> thrown
+            VerifierThrown<BigDecimal, VerifierLimitErrorMsg<BigDecimal>, ExceptionType> thrown
     ) throws ExceptionType {
         requireBigDecimalMoreThanInclusive(targetTerm, target, "", limit, thrown);
     }
@@ -848,10 +848,10 @@ public interface VerifierLogic<DefaultExceptionType extends Exception> extends V
             BigDecimal target,
             String limitTerm,
             BigDecimal limit,
-            VerifierThrown<BigDecimal, ExceptionType> thrown
+            VerifierThrown<BigDecimal, VerifierLimitErrorMsg<BigDecimal>, ExceptionType> thrown
     ) throws ExceptionType {
         if (target.compareTo(limit) < 0) {
-            thrown.thrown(targetTerm, target, String.format(Verifier.ErrorMsgFormat.MORE_THAN_INCLUSIVE, targetTerm, target, limitTerm, limit));
+            thrown.thrown(new VerifierLimitErrorMsg<>(targetTerm, target, limitTerm, limit, Verifier.ErrorMsgFormat.MORE_THAN_INCLUSIVE));
         }
     }
 
@@ -876,7 +876,7 @@ public interface VerifierLogic<DefaultExceptionType extends Exception> extends V
             String targetTerm,
             BigDecimal target,
             BigDecimal limit,
-            VerifierThrown<BigDecimal, ExceptionType> thrown
+            VerifierThrown<BigDecimal, VerifierLimitErrorMsg<BigDecimal>, ExceptionType> thrown
     ) throws ExceptionType {
         requireBigDecimalMoreThanExclusive(targetTerm, target, "", limit, thrown);
     }
@@ -886,10 +886,10 @@ public interface VerifierLogic<DefaultExceptionType extends Exception> extends V
             BigDecimal target,
             String limitTerm,
             BigDecimal limit,
-            VerifierThrown<BigDecimal, ExceptionType> thrown
+            VerifierThrown<BigDecimal, VerifierLimitErrorMsg<BigDecimal>, ExceptionType> thrown
     ) throws ExceptionType {
         if (target.compareTo(limit) <= 0) {
-            thrown.thrown(targetTerm, target, String.format(Verifier.ErrorMsgFormat.MORE_THAN_EXCLUSIVE, targetTerm, target, limitTerm, limit));
+            thrown.thrown(new VerifierLimitErrorMsg<>(targetTerm, target, limitTerm, limit, Verifier.ErrorMsgFormat.MORE_THAN_EXCLUSIVE));
         }
     }
 
@@ -914,7 +914,7 @@ public interface VerifierLogic<DefaultExceptionType extends Exception> extends V
             String targetTerm,
             BigDecimal target,
             BigDecimal limit,
-            VerifierThrown<BigDecimal, ExceptionType> thrown
+            VerifierThrown<BigDecimal, VerifierLimitErrorMsg<BigDecimal>, ExceptionType> thrown
     ) throws ExceptionType {
         requireBigDecimalLessThanInclusive(targetTerm, target, "", limit, thrown);
     }
@@ -924,10 +924,10 @@ public interface VerifierLogic<DefaultExceptionType extends Exception> extends V
             BigDecimal target,
             String limitTerm,
             BigDecimal limit,
-            VerifierThrown<BigDecimal, ExceptionType> thrown
+            VerifierThrown<BigDecimal, VerifierLimitErrorMsg<BigDecimal>, ExceptionType> thrown
     ) throws ExceptionType {
         if (target.compareTo(limit) > 0) {
-            thrown.thrown(targetTerm, target, String.format(Verifier.ErrorMsgFormat.LESS_THAN_INCLUSIVE, targetTerm, target, limitTerm, limit));
+            thrown.thrown(new VerifierLimitErrorMsg<>(targetTerm, target, limitTerm, limit, Verifier.ErrorMsgFormat.LESS_THAN_INCLUSIVE));
         }
     }
 
@@ -952,7 +952,7 @@ public interface VerifierLogic<DefaultExceptionType extends Exception> extends V
             String targetTerm,
             BigDecimal target,
             BigDecimal limit,
-            VerifierThrown<BigDecimal, ExceptionType> thrown
+            VerifierThrown<BigDecimal, VerifierLimitErrorMsg<BigDecimal>, ExceptionType> thrown
     ) throws ExceptionType {
         requireBigDecimalLessThanExclusive(targetTerm, target, "", limit, thrown);
     }
@@ -962,10 +962,10 @@ public interface VerifierLogic<DefaultExceptionType extends Exception> extends V
             BigDecimal target,
             String limitTerm,
             BigDecimal limit,
-            VerifierThrown<BigDecimal, ExceptionType> thrown
+            VerifierThrown<BigDecimal, VerifierLimitErrorMsg<BigDecimal>, ExceptionType> thrown
     ) throws ExceptionType {
         if (target.compareTo(limit) >= 0) {
-            thrown.thrown(targetTerm, target, String.format(Verifier.ErrorMsgFormat.LESS_THAN_EXCLUSIVE, targetTerm, target, limitTerm, limit));
+            thrown.thrown(new VerifierLimitErrorMsg<>(targetTerm, target, limitTerm, limit, Verifier.ErrorMsgFormat.LESS_THAN_EXCLUSIVE));
         }
     }
 

@@ -24,10 +24,10 @@ public class BigDecimalRangeVerifierBase<DefaultExceptionType extends Exception>
     public <ExceptionType extends Exception> void requireInclusive(
             String term,
             BigDecimal target,
-            VerifierThrown<BigDecimal, ExceptionType> thrown
+            VerifierThrown<BigDecimal, VerifierRangeErrorMsg<BigDecimal>, ExceptionType> thrown
     ) throws ExceptionType {
         if (target.compareTo(this.min) < 0 || target.compareTo(this.max) > 0) {
-            thrown.thrown(term, target, String.format(Verifier.ErrorMsgFormat.REQUIRE_RANGE_INCLUSIVE, term, target, this.min, this.max));
+            thrown.thrown(new VerifierRangeErrorMsg<>(term, target, this.min, this.max, Verifier.ErrorMsgFormat.REQUIRE_RANGE_INCLUSIVE));
         }
     }
 
@@ -38,10 +38,10 @@ public class BigDecimalRangeVerifierBase<DefaultExceptionType extends Exception>
     public <ExceptionType extends Exception> void requireExclusive(
             String term,
             BigDecimal target,
-            VerifierThrown<BigDecimal, ExceptionType> thrown
+            VerifierThrown<BigDecimal, VerifierRangeErrorMsg<BigDecimal>, ExceptionType> thrown
     ) throws ExceptionType {
         if (target.compareTo(this.min) <= 0 || target.compareTo(this.max) >= 0) {
-            thrown.thrown(term, target, String.format(Verifier.ErrorMsgFormat.REQUIRE_RANGE_EXCLUSIVE, term, target, this.min, this.max));
+            thrown.thrown(new VerifierRangeErrorMsg<>(term, target, this.min, this.max, Verifier.ErrorMsgFormat.REQUIRE_RANGE_EXCLUSIVE));
         }
     }
 
@@ -52,10 +52,10 @@ public class BigDecimalRangeVerifierBase<DefaultExceptionType extends Exception>
     public <ExceptionType extends Exception> void refuseInclusive(
             String term,
             BigDecimal target,
-            VerifierThrown<BigDecimal, ExceptionType> thrown
+            VerifierThrown<BigDecimal, VerifierRangeErrorMsg<BigDecimal>, ExceptionType> thrown
     ) throws ExceptionType {
         if (target.compareTo(this.min) >= 0 && target.compareTo(this.max) <= 0) {
-            thrown.thrown(term, target, String.format(Verifier.ErrorMsgFormat.REFUSE_RANGE_INCLUSIVE, term, target, this.min, this.max));
+            thrown.thrown(new VerifierRangeErrorMsg<>(term, target, this.min, this.max, Verifier.ErrorMsgFormat.REFUSE_RANGE_INCLUSIVE));
         }
     }
 
@@ -66,10 +66,10 @@ public class BigDecimalRangeVerifierBase<DefaultExceptionType extends Exception>
     public <ExceptionType extends Exception> void refuseExclusive(
             String term,
             BigDecimal target,
-            VerifierThrown<BigDecimal, ExceptionType> thrown
+            VerifierThrown<BigDecimal, VerifierRangeErrorMsg<BigDecimal>, ExceptionType> thrown
     ) throws ExceptionType {
         if (target.compareTo(this.min) > 0 && target.compareTo(this.max) < 0) {
-            thrown.thrown(term, target, String.format(Verifier.ErrorMsgFormat.REFUSE_RANGE_EXCLUSIVE, term, target, this.min, this.max));
+            thrown.thrown(new VerifierRangeErrorMsg<>(term, target, this.min, this.max, Verifier.ErrorMsgFormat.REFUSE_RANGE_EXCLUSIVE));
         }
     }
 

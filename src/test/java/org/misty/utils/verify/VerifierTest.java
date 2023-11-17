@@ -2,6 +2,7 @@ package org.misty.utils.verify;
 
 import org.junit.jupiter.api.Test;
 import org.misty._utils.AssertionsEx;
+import org.misty._utils.Test1RuntimeException;
 
 import java.math.BigDecimal;
 import java.util.Collections;
@@ -9,15 +10,9 @@ import java.util.Optional;
 
 public class VerifierTest {
 
-    public static class TestException extends RuntimeException {
-        public TestException(String message) {
-            super(message);
-        }
-    }
-
-    public static <TargetType> VerifierThrown<TargetType, TestException> thrown() {
+    public static <TargetType> VerifierThrown<TargetType, Test1RuntimeException> throwTest1RuntimeException() {
         return (term, arg, errorMsg) -> {
-            throw new TestException(errorMsg);
+            throw new Test1RuntimeException(errorMsg);
         };
     }
 
@@ -42,22 +37,22 @@ public class VerifierTest {
         AssertionsEx.assertThrown(() -> Verifier.refuseNull("term", null)).isInstanceOf(IllegalArgumentException.class);
 
         // 測試檢查通過的情況, 拋出非預設自定義錯誤
-        Verifier.refuseNull("term", "", thrown());
-        Verifier.refuseNull("term", Collections.emptyList(), thrown());
-        Verifier.refuseNull("term", Collections.emptyMap(), thrown());
-        Verifier.refuseNull("term", new short[0], thrown());
-        Verifier.refuseNull("term", new int[0], thrown());
-        Verifier.refuseNull("term", new long[0], thrown());
-        Verifier.refuseNull("term", new float[0], thrown());
-        Verifier.refuseNull("term", new double[0], thrown());
-        Verifier.refuseNull("term", new boolean[0], thrown());
-        Verifier.refuseNull("term", new char[0], thrown());
-        Verifier.refuseNull("term", new byte[0], thrown());
-        Verifier.refuseNull("term", new Object[0], thrown());
-        Verifier.refuseNull("term", Optional.of(""), thrown());
+        Verifier.refuseNull("term", "", throwTest1RuntimeException());
+        Verifier.refuseNull("term", Collections.emptyList(), throwTest1RuntimeException());
+        Verifier.refuseNull("term", Collections.emptyMap(), throwTest1RuntimeException());
+        Verifier.refuseNull("term", new short[0], throwTest1RuntimeException());
+        Verifier.refuseNull("term", new int[0], throwTest1RuntimeException());
+        Verifier.refuseNull("term", new long[0], throwTest1RuntimeException());
+        Verifier.refuseNull("term", new float[0], throwTest1RuntimeException());
+        Verifier.refuseNull("term", new double[0], throwTest1RuntimeException());
+        Verifier.refuseNull("term", new boolean[0], throwTest1RuntimeException());
+        Verifier.refuseNull("term", new char[0], throwTest1RuntimeException());
+        Verifier.refuseNull("term", new byte[0], throwTest1RuntimeException());
+        Verifier.refuseNull("term", new Object[0], throwTest1RuntimeException());
+        Verifier.refuseNull("term", Optional.of(""), throwTest1RuntimeException());
 
         // 測試檢查不通過的情況, 拋出非預設自定義錯誤
-        AssertionsEx.assertThrown(() -> Verifier.refuseNull("term", null, thrown())).isInstanceOf(TestException.class);
+        AssertionsEx.assertThrown(() -> Verifier.refuseNull("term", null, throwTest1RuntimeException())).isInstanceOf(Test1RuntimeException.class);
     }
 
     @Test
@@ -96,36 +91,36 @@ public class VerifierTest {
         AssertionsEx.assertThrown(() -> Verifier.refuseNullOrEmpty("term", Optional.of(""))).isInstanceOf(IllegalArgumentException.class);
 
         // 測試檢查通過的情況, 拋出非預設自定義錯誤
-        Verifier.refuseNullOrEmpty("term", new Object(), thrown());
-        Verifier.refuseNullOrEmpty("term", "123", thrown());
-        Verifier.refuseNullOrEmpty("term", Collections.singletonList("A"), thrown());
-        Verifier.refuseNullOrEmpty("term", Collections.singletonMap("A", "B"), thrown());
-        Verifier.refuseNullOrEmpty("term", new short[]{1}, thrown());
-        Verifier.refuseNullOrEmpty("term", new int[]{1}, thrown());
-        Verifier.refuseNullOrEmpty("term", new long[]{1}, thrown());
-        Verifier.refuseNullOrEmpty("term", new float[]{1}, thrown());
-        Verifier.refuseNullOrEmpty("term", new double[]{1}, thrown());
-        Verifier.refuseNullOrEmpty("term", new boolean[]{true}, thrown());
-        Verifier.refuseNullOrEmpty("term", new char[]{' '}, thrown());
-        Verifier.refuseNullOrEmpty("term", new byte[]{1}, thrown());
-        Verifier.refuseNullOrEmpty("term", new Object[]{new Object()}, thrown());
-        Verifier.refuseNullOrEmpty("term", Optional.of("A"), thrown());
+        Verifier.refuseNullOrEmpty("term", new Object(), throwTest1RuntimeException());
+        Verifier.refuseNullOrEmpty("term", "123", throwTest1RuntimeException());
+        Verifier.refuseNullOrEmpty("term", Collections.singletonList("A"), throwTest1RuntimeException());
+        Verifier.refuseNullOrEmpty("term", Collections.singletonMap("A", "B"), throwTest1RuntimeException());
+        Verifier.refuseNullOrEmpty("term", new short[]{1}, throwTest1RuntimeException());
+        Verifier.refuseNullOrEmpty("term", new int[]{1}, throwTest1RuntimeException());
+        Verifier.refuseNullOrEmpty("term", new long[]{1}, throwTest1RuntimeException());
+        Verifier.refuseNullOrEmpty("term", new float[]{1}, throwTest1RuntimeException());
+        Verifier.refuseNullOrEmpty("term", new double[]{1}, throwTest1RuntimeException());
+        Verifier.refuseNullOrEmpty("term", new boolean[]{true}, throwTest1RuntimeException());
+        Verifier.refuseNullOrEmpty("term", new char[]{' '}, throwTest1RuntimeException());
+        Verifier.refuseNullOrEmpty("term", new byte[]{1}, throwTest1RuntimeException());
+        Verifier.refuseNullOrEmpty("term", new Object[]{new Object()}, throwTest1RuntimeException());
+        Verifier.refuseNullOrEmpty("term", Optional.of("A"), throwTest1RuntimeException());
 
         // 測試檢查不通過的情況, 拋出非預設自定義錯誤
-        AssertionsEx.assertThrown(() -> Verifier.refuseNullOrEmpty("term", null, thrown())).isInstanceOf(TestException.class);
-        AssertionsEx.assertThrown(() -> Verifier.refuseNullOrEmpty("term", "", thrown())).isInstanceOf(TestException.class);
-        AssertionsEx.assertThrown(() -> Verifier.refuseNullOrEmpty("term", Collections.emptyList(), thrown())).isInstanceOf(TestException.class);
-        AssertionsEx.assertThrown(() -> Verifier.refuseNullOrEmpty("term", Collections.emptyMap(), thrown())).isInstanceOf(TestException.class);
-        AssertionsEx.assertThrown(() -> Verifier.refuseNullOrEmpty("term", new short[0], thrown())).isInstanceOf(TestException.class);
-        AssertionsEx.assertThrown(() -> Verifier.refuseNullOrEmpty("term", new int[0], thrown())).isInstanceOf(TestException.class);
-        AssertionsEx.assertThrown(() -> Verifier.refuseNullOrEmpty("term", new long[0], thrown())).isInstanceOf(TestException.class);
-        AssertionsEx.assertThrown(() -> Verifier.refuseNullOrEmpty("term", new float[0], thrown())).isInstanceOf(TestException.class);
-        AssertionsEx.assertThrown(() -> Verifier.refuseNullOrEmpty("term", new double[0], thrown())).isInstanceOf(TestException.class);
-        AssertionsEx.assertThrown(() -> Verifier.refuseNullOrEmpty("term", new boolean[0], thrown())).isInstanceOf(TestException.class);
-        AssertionsEx.assertThrown(() -> Verifier.refuseNullOrEmpty("term", new char[0], thrown())).isInstanceOf(TestException.class);
-        AssertionsEx.assertThrown(() -> Verifier.refuseNullOrEmpty("term", new byte[0], thrown())).isInstanceOf(TestException.class);
-        AssertionsEx.assertThrown(() -> Verifier.refuseNullOrEmpty("term", new Object[0], thrown())).isInstanceOf(TestException.class);
-        AssertionsEx.assertThrown(() -> Verifier.refuseNullOrEmpty("term", Optional.ofNullable(null), thrown())).isInstanceOf(TestException.class);
+        AssertionsEx.assertThrown(() -> Verifier.refuseNullOrEmpty("term", null, throwTest1RuntimeException())).isInstanceOf(Test1RuntimeException.class);
+        AssertionsEx.assertThrown(() -> Verifier.refuseNullOrEmpty("term", "", throwTest1RuntimeException())).isInstanceOf(Test1RuntimeException.class);
+        AssertionsEx.assertThrown(() -> Verifier.refuseNullOrEmpty("term", Collections.emptyList(), throwTest1RuntimeException())).isInstanceOf(Test1RuntimeException.class);
+        AssertionsEx.assertThrown(() -> Verifier.refuseNullOrEmpty("term", Collections.emptyMap(), throwTest1RuntimeException())).isInstanceOf(Test1RuntimeException.class);
+        AssertionsEx.assertThrown(() -> Verifier.refuseNullOrEmpty("term", new short[0], throwTest1RuntimeException())).isInstanceOf(Test1RuntimeException.class);
+        AssertionsEx.assertThrown(() -> Verifier.refuseNullOrEmpty("term", new int[0], throwTest1RuntimeException())).isInstanceOf(Test1RuntimeException.class);
+        AssertionsEx.assertThrown(() -> Verifier.refuseNullOrEmpty("term", new long[0], throwTest1RuntimeException())).isInstanceOf(Test1RuntimeException.class);
+        AssertionsEx.assertThrown(() -> Verifier.refuseNullOrEmpty("term", new float[0], throwTest1RuntimeException())).isInstanceOf(Test1RuntimeException.class);
+        AssertionsEx.assertThrown(() -> Verifier.refuseNullOrEmpty("term", new double[0], throwTest1RuntimeException())).isInstanceOf(Test1RuntimeException.class);
+        AssertionsEx.assertThrown(() -> Verifier.refuseNullOrEmpty("term", new boolean[0], throwTest1RuntimeException())).isInstanceOf(Test1RuntimeException.class);
+        AssertionsEx.assertThrown(() -> Verifier.refuseNullOrEmpty("term", new char[0], throwTest1RuntimeException())).isInstanceOf(Test1RuntimeException.class);
+        AssertionsEx.assertThrown(() -> Verifier.refuseNullOrEmpty("term", new byte[0], throwTest1RuntimeException())).isInstanceOf(Test1RuntimeException.class);
+        AssertionsEx.assertThrown(() -> Verifier.refuseNullOrEmpty("term", new Object[0], throwTest1RuntimeException())).isInstanceOf(Test1RuntimeException.class);
+        AssertionsEx.assertThrown(() -> Verifier.refuseNullOrEmpty("term", Optional.ofNullable(null), throwTest1RuntimeException())).isInstanceOf(Test1RuntimeException.class);
     }
 
     @Test
@@ -149,17 +144,17 @@ public class VerifierTest {
                 .isInstanceOf(IllegalArgumentException.class);
 
         // 測試檢查通過的情況, 拋出非預設自定義錯誤
-        Verifier.requireShortMoreThanInclusive(targetTerm, (short) 1, (short) 0, thrown());
-        Verifier.requireShortMoreThanInclusive(targetTerm, (short) 1, (short) 1, thrown());
-        Verifier.requireShortMoreThanInclusive(targetTerm, (short) 1, limitTerm, (short) 0, thrown());
-        Verifier.requireShortMoreThanInclusive(targetTerm, (short) 1, limitTerm, (short) 1, thrown());
+        Verifier.requireShortMoreThanInclusive(targetTerm, (short) 1, (short) 0, throwTest1RuntimeException());
+        Verifier.requireShortMoreThanInclusive(targetTerm, (short) 1, (short) 1, throwTest1RuntimeException());
+        Verifier.requireShortMoreThanInclusive(targetTerm, (short) 1, limitTerm, (short) 0, throwTest1RuntimeException());
+        Verifier.requireShortMoreThanInclusive(targetTerm, (short) 1, limitTerm, (short) 1, throwTest1RuntimeException());
 
         // 測試檢查不通過的情況, 拋出非預設自定義錯誤
-        AssertionsEx.assertThrown(() -> Verifier.requireShortMoreThanInclusive(targetTerm, (short) 1, (short) 2, thrown()))
-                .isInstanceOf(TestException.class)
+        AssertionsEx.assertThrown(() -> Verifier.requireShortMoreThanInclusive(targetTerm, (short) 1, (short) 2, throwTest1RuntimeException()))
+                .isInstanceOf(Test1RuntimeException.class)
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 1, "", 2));
-        AssertionsEx.assertThrown(() -> Verifier.requireShortMoreThanInclusive(targetTerm, (short) 1, limitTerm, (short) 2, thrown()))
-                .isInstanceOf(TestException.class)
+        AssertionsEx.assertThrown(() -> Verifier.requireShortMoreThanInclusive(targetTerm, (short) 1, limitTerm, (short) 2, throwTest1RuntimeException()))
+                .isInstanceOf(Test1RuntimeException.class)
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 1, limitTerm, 2));
     }
 
@@ -188,21 +183,21 @@ public class VerifierTest {
                 .isInstanceOf(IllegalArgumentException.class);
 
         // 測試檢查通過的情況, 拋出非預設自定義錯誤
-        Verifier.requireShortMoreThanExclusive(targetTerm, (short) 1, (short) 0, thrown());
+        Verifier.requireShortMoreThanExclusive(targetTerm, (short) 1, (short) 0, throwTest1RuntimeException());
 
         // 測試檢查不通過的情況, 拋出非預設自定義錯誤
-        AssertionsEx.assertThrown(() -> Verifier.requireShortMoreThanExclusive(targetTerm, (short) 1, (short) 1, thrown()))
+        AssertionsEx.assertThrown(() -> Verifier.requireShortMoreThanExclusive(targetTerm, (short) 1, (short) 1, throwTest1RuntimeException()))
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, (short) 1, "", (short) 1))
-                .isInstanceOf(TestException.class);
-        AssertionsEx.assertThrown(() -> Verifier.requireShortMoreThanExclusive(targetTerm, (short) 1, (short) 2, thrown()))
+                .isInstanceOf(Test1RuntimeException.class);
+        AssertionsEx.assertThrown(() -> Verifier.requireShortMoreThanExclusive(targetTerm, (short) 1, (short) 2, throwTest1RuntimeException()))
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, (short) 1, "", (short) 2))
-                .isInstanceOf(TestException.class);
-        AssertionsEx.assertThrown(() -> Verifier.requireShortMoreThanExclusive(targetTerm, (short) 1, limitTerm, (short) 1, thrown()))
+                .isInstanceOf(Test1RuntimeException.class);
+        AssertionsEx.assertThrown(() -> Verifier.requireShortMoreThanExclusive(targetTerm, (short) 1, limitTerm, (short) 1, throwTest1RuntimeException()))
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, (short) 1, limitTerm, (short) 1))
-                .isInstanceOf(TestException.class);
-        AssertionsEx.assertThrown(() -> Verifier.requireShortMoreThanExclusive(targetTerm, (short) 1, limitTerm, (short) 2, thrown()))
+                .isInstanceOf(Test1RuntimeException.class);
+        AssertionsEx.assertThrown(() -> Verifier.requireShortMoreThanExclusive(targetTerm, (short) 1, limitTerm, (short) 2, throwTest1RuntimeException()))
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, (short) 1, limitTerm, (short) 2))
-                .isInstanceOf(TestException.class);
+                .isInstanceOf(Test1RuntimeException.class);
     }
 
     @Test
@@ -226,18 +221,18 @@ public class VerifierTest {
                 .isInstanceOf(IllegalArgumentException.class);
 
         // 測試檢查通過的情況, 拋出非預設自定義錯誤
-        Verifier.requireShortLessThanInclusive(targetTerm, (short) 1, (short) 2, thrown());
-        Verifier.requireShortLessThanInclusive(targetTerm, (short) 1, (short) 1, thrown());
-        Verifier.requireShortLessThanInclusive(targetTerm, (short) 1, limitTerm, (short) 2, thrown());
-        Verifier.requireShortLessThanInclusive(targetTerm, (short) 1, limitTerm, (short) 1, thrown());
+        Verifier.requireShortLessThanInclusive(targetTerm, (short) 1, (short) 2, throwTest1RuntimeException());
+        Verifier.requireShortLessThanInclusive(targetTerm, (short) 1, (short) 1, throwTest1RuntimeException());
+        Verifier.requireShortLessThanInclusive(targetTerm, (short) 1, limitTerm, (short) 2, throwTest1RuntimeException());
+        Verifier.requireShortLessThanInclusive(targetTerm, (short) 1, limitTerm, (short) 1, throwTest1RuntimeException());
 
         // 測試檢查不通過的情況, 拋出非預設自定義錯誤
-        AssertionsEx.assertThrown(() -> Verifier.requireShortLessThanInclusive(targetTerm, (short) 1, (short) 0, thrown()))
+        AssertionsEx.assertThrown(() -> Verifier.requireShortLessThanInclusive(targetTerm, (short) 1, (short) 0, throwTest1RuntimeException()))
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, (short) 1, "", (short) 0))
-                .isInstanceOf(TestException.class);
-        AssertionsEx.assertThrown(() -> Verifier.requireShortLessThanInclusive(targetTerm, (short) 1, limitTerm, (short) 0, thrown()))
+                .isInstanceOf(Test1RuntimeException.class);
+        AssertionsEx.assertThrown(() -> Verifier.requireShortLessThanInclusive(targetTerm, (short) 1, limitTerm, (short) 0, throwTest1RuntimeException()))
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, (short) 1, limitTerm, (short) 0))
-                .isInstanceOf(TestException.class);
+                .isInstanceOf(Test1RuntimeException.class);
     }
 
     @Test
@@ -265,22 +260,22 @@ public class VerifierTest {
                 .isInstanceOf(IllegalArgumentException.class);
 
         // 測試檢查通過的情況, 拋出非預設自定義錯誤
-        Verifier.requireShortLessThanExclusive(targetTerm, (short) 1, (short) 2, thrown());
-        Verifier.requireShortLessThanExclusive(targetTerm, (short) 1, limitTerm, (short) 2, thrown());
+        Verifier.requireShortLessThanExclusive(targetTerm, (short) 1, (short) 2, throwTest1RuntimeException());
+        Verifier.requireShortLessThanExclusive(targetTerm, (short) 1, limitTerm, (short) 2, throwTest1RuntimeException());
 
         // 測試檢查不通過的情況, 拋出非預設自定義錯誤
-        AssertionsEx.assertThrown(() -> Verifier.requireShortLessThanExclusive(targetTerm, (short) 1, (short) 1, thrown()))
+        AssertionsEx.assertThrown(() -> Verifier.requireShortLessThanExclusive(targetTerm, (short) 1, (short) 1, throwTest1RuntimeException()))
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, (short) 1, "", (short) 1))
-                .isInstanceOf(TestException.class);
-        AssertionsEx.assertThrown(() -> Verifier.requireShortLessThanExclusive(targetTerm, (short) 1, (short) 0, thrown()))
+                .isInstanceOf(Test1RuntimeException.class);
+        AssertionsEx.assertThrown(() -> Verifier.requireShortLessThanExclusive(targetTerm, (short) 1, (short) 0, throwTest1RuntimeException()))
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, (short) 1, "", (short) 0))
-                .isInstanceOf(TestException.class);
-        AssertionsEx.assertThrown(() -> Verifier.requireShortLessThanExclusive(targetTerm, (short) 1, limitTerm, (short) 1, thrown()))
+                .isInstanceOf(Test1RuntimeException.class);
+        AssertionsEx.assertThrown(() -> Verifier.requireShortLessThanExclusive(targetTerm, (short) 1, limitTerm, (short) 1, throwTest1RuntimeException()))
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, (short) 1, limitTerm, (short) 1))
-                .isInstanceOf(TestException.class);
-        AssertionsEx.assertThrown(() -> Verifier.requireShortLessThanExclusive(targetTerm, (short) 1, limitTerm, (short) 0, thrown()))
+                .isInstanceOf(Test1RuntimeException.class);
+        AssertionsEx.assertThrown(() -> Verifier.requireShortLessThanExclusive(targetTerm, (short) 1, limitTerm, (short) 0, throwTest1RuntimeException()))
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, (short) 1, limitTerm, (short) 0))
-                .isInstanceOf(TestException.class);
+                .isInstanceOf(Test1RuntimeException.class);
     }
 
     @Test
@@ -304,18 +299,18 @@ public class VerifierTest {
                 .isInstanceOf(IllegalArgumentException.class);
 
         // 測試檢查通過的情況, 拋出非預設自定義錯誤
-        Verifier.requireIntMoreThanInclusive(targetTerm, 1, 0, thrown());
-        Verifier.requireIntMoreThanInclusive(targetTerm, 1, 1, thrown());
-        Verifier.requireIntMoreThanInclusive(targetTerm, 1, limitTerm, 0, thrown());
-        Verifier.requireIntMoreThanInclusive(targetTerm, 1, limitTerm, 1, thrown());
+        Verifier.requireIntMoreThanInclusive(targetTerm, 1, 0, throwTest1RuntimeException());
+        Verifier.requireIntMoreThanInclusive(targetTerm, 1, 1, throwTest1RuntimeException());
+        Verifier.requireIntMoreThanInclusive(targetTerm, 1, limitTerm, 0, throwTest1RuntimeException());
+        Verifier.requireIntMoreThanInclusive(targetTerm, 1, limitTerm, 1, throwTest1RuntimeException());
 
         // 測試檢查不通過的情況, 拋出非預設自定義錯誤
-        AssertionsEx.assertThrown(() -> Verifier.requireIntMoreThanInclusive(targetTerm, 1, 2, thrown()))
+        AssertionsEx.assertThrown(() -> Verifier.requireIntMoreThanInclusive(targetTerm, 1, 2, throwTest1RuntimeException()))
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 1, "", 2))
-                .isInstanceOf(TestException.class);
-        AssertionsEx.assertThrown(() -> Verifier.requireIntMoreThanInclusive(targetTerm, 1, limitTerm, 2, thrown()))
+                .isInstanceOf(Test1RuntimeException.class);
+        AssertionsEx.assertThrown(() -> Verifier.requireIntMoreThanInclusive(targetTerm, 1, limitTerm, 2, throwTest1RuntimeException()))
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 1, limitTerm, 2))
-                .isInstanceOf(TestException.class);
+                .isInstanceOf(Test1RuntimeException.class);
     }
 
     @Test
@@ -343,22 +338,22 @@ public class VerifierTest {
                 .isInstanceOf(IllegalArgumentException.class);
 
         // 測試檢查通過的情況, 拋出非預設自定義錯誤
-        Verifier.requireIntMoreThanExclusive(targetTerm, 1, 0, thrown());
-        Verifier.requireIntMoreThanExclusive(targetTerm, 1, limitTerm, 0, thrown());
+        Verifier.requireIntMoreThanExclusive(targetTerm, 1, 0, throwTest1RuntimeException());
+        Verifier.requireIntMoreThanExclusive(targetTerm, 1, limitTerm, 0, throwTest1RuntimeException());
 
         // 測試檢查不通過的情況, 拋出非預設自定義錯誤
-        AssertionsEx.assertThrown(() -> Verifier.requireIntMoreThanExclusive(targetTerm, 1, 1, thrown()))
+        AssertionsEx.assertThrown(() -> Verifier.requireIntMoreThanExclusive(targetTerm, 1, 1, throwTest1RuntimeException()))
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 1, "", 1))
-                .isInstanceOf(TestException.class);
-        AssertionsEx.assertThrown(() -> Verifier.requireIntMoreThanExclusive(targetTerm, 1, 2, thrown()))
+                .isInstanceOf(Test1RuntimeException.class);
+        AssertionsEx.assertThrown(() -> Verifier.requireIntMoreThanExclusive(targetTerm, 1, 2, throwTest1RuntimeException()))
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 1, "", 2))
-                .isInstanceOf(TestException.class);
-        AssertionsEx.assertThrown(() -> Verifier.requireIntMoreThanExclusive(targetTerm, 1, limitTerm, 1, thrown()))
+                .isInstanceOf(Test1RuntimeException.class);
+        AssertionsEx.assertThrown(() -> Verifier.requireIntMoreThanExclusive(targetTerm, 1, limitTerm, 1, throwTest1RuntimeException()))
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 1, limitTerm, 1))
-                .isInstanceOf(TestException.class);
-        AssertionsEx.assertThrown(() -> Verifier.requireIntMoreThanExclusive(targetTerm, 1, limitTerm, 2, thrown()))
+                .isInstanceOf(Test1RuntimeException.class);
+        AssertionsEx.assertThrown(() -> Verifier.requireIntMoreThanExclusive(targetTerm, 1, limitTerm, 2, throwTest1RuntimeException()))
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 1, limitTerm, 2))
-                .isInstanceOf(TestException.class);
+                .isInstanceOf(Test1RuntimeException.class);
     }
 
     @Test
@@ -382,18 +377,18 @@ public class VerifierTest {
                 .isInstanceOf(IllegalArgumentException.class);
 
         // 測試檢查通過的情況, 拋出非預設自定義錯誤
-        Verifier.requireIntLessThanInclusive(targetTerm, 1, 2, thrown());
-        Verifier.requireIntLessThanInclusive(targetTerm, 1, 1, thrown());
-        Verifier.requireIntLessThanInclusive(targetTerm, 1, limitTerm, 2, thrown());
-        Verifier.requireIntLessThanInclusive(targetTerm, 1, limitTerm, 1, thrown());
+        Verifier.requireIntLessThanInclusive(targetTerm, 1, 2, throwTest1RuntimeException());
+        Verifier.requireIntLessThanInclusive(targetTerm, 1, 1, throwTest1RuntimeException());
+        Verifier.requireIntLessThanInclusive(targetTerm, 1, limitTerm, 2, throwTest1RuntimeException());
+        Verifier.requireIntLessThanInclusive(targetTerm, 1, limitTerm, 1, throwTest1RuntimeException());
 
         // 測試檢查不通過的情況, 拋出非預設自定義錯誤
-        AssertionsEx.assertThrown(() -> Verifier.requireIntLessThanInclusive(targetTerm, 1, 0, thrown()))
+        AssertionsEx.assertThrown(() -> Verifier.requireIntLessThanInclusive(targetTerm, 1, 0, throwTest1RuntimeException()))
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 1, "", 0))
-                .isInstanceOf(TestException.class);
-        AssertionsEx.assertThrown(() -> Verifier.requireIntLessThanInclusive(targetTerm, 1, limitTerm, 0, thrown()))
+                .isInstanceOf(Test1RuntimeException.class);
+        AssertionsEx.assertThrown(() -> Verifier.requireIntLessThanInclusive(targetTerm, 1, limitTerm, 0, throwTest1RuntimeException()))
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 1, limitTerm, 0))
-                .isInstanceOf(TestException.class);
+                .isInstanceOf(Test1RuntimeException.class);
     }
 
     @Test
@@ -421,22 +416,22 @@ public class VerifierTest {
                 .isInstanceOf(IllegalArgumentException.class);
 
         // 測試檢查通過的情況, 拋出非預設自定義錯誤
-        Verifier.requireIntLessThanExclusive(targetTerm, 1, 2, thrown());
-        Verifier.requireIntLessThanExclusive(targetTerm, 1, limitTerm, 2, thrown());
+        Verifier.requireIntLessThanExclusive(targetTerm, 1, 2, throwTest1RuntimeException());
+        Verifier.requireIntLessThanExclusive(targetTerm, 1, limitTerm, 2, throwTest1RuntimeException());
 
         // 測試檢查不通過的情況, 拋出非預設自定義錯誤
-        AssertionsEx.assertThrown(() -> Verifier.requireIntLessThanExclusive(targetTerm, 1, 1, thrown()))
+        AssertionsEx.assertThrown(() -> Verifier.requireIntLessThanExclusive(targetTerm, 1, 1, throwTest1RuntimeException()))
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 1, "", 1))
-                .isInstanceOf(TestException.class);
-        AssertionsEx.assertThrown(() -> Verifier.requireIntLessThanExclusive(targetTerm, 1, 0, thrown()))
+                .isInstanceOf(Test1RuntimeException.class);
+        AssertionsEx.assertThrown(() -> Verifier.requireIntLessThanExclusive(targetTerm, 1, 0, throwTest1RuntimeException()))
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 1, "", 0))
-                .isInstanceOf(TestException.class);
-        AssertionsEx.assertThrown(() -> Verifier.requireIntLessThanExclusive(targetTerm, 1, limitTerm, 1, thrown()))
+                .isInstanceOf(Test1RuntimeException.class);
+        AssertionsEx.assertThrown(() -> Verifier.requireIntLessThanExclusive(targetTerm, 1, limitTerm, 1, throwTest1RuntimeException()))
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 1, limitTerm, 1))
-                .isInstanceOf(TestException.class);
-        AssertionsEx.assertThrown(() -> Verifier.requireIntLessThanExclusive(targetTerm, 1, limitTerm, 0, thrown()))
+                .isInstanceOf(Test1RuntimeException.class);
+        AssertionsEx.assertThrown(() -> Verifier.requireIntLessThanExclusive(targetTerm, 1, limitTerm, 0, throwTest1RuntimeException()))
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 1, limitTerm, 0))
-                .isInstanceOf(TestException.class);
+                .isInstanceOf(Test1RuntimeException.class);
     }
 
     @Test
@@ -460,18 +455,18 @@ public class VerifierTest {
                 .isInstanceOf(IllegalArgumentException.class);
 
         // 測試檢查通過的情況, 拋出非預設自定義錯誤
-        Verifier.requireLongMoreThanInclusive(targetTerm, 1, 0, thrown());
-        Verifier.requireLongMoreThanInclusive(targetTerm, 1, 1, thrown());
-        Verifier.requireLongMoreThanInclusive(targetTerm, 1, limitTerm, 0, thrown());
-        Verifier.requireLongMoreThanInclusive(targetTerm, 1, limitTerm, 1, thrown());
+        Verifier.requireLongMoreThanInclusive(targetTerm, 1, 0, throwTest1RuntimeException());
+        Verifier.requireLongMoreThanInclusive(targetTerm, 1, 1, throwTest1RuntimeException());
+        Verifier.requireLongMoreThanInclusive(targetTerm, 1, limitTerm, 0, throwTest1RuntimeException());
+        Verifier.requireLongMoreThanInclusive(targetTerm, 1, limitTerm, 1, throwTest1RuntimeException());
 
         // 測試檢查不通過的情況, 拋出非預設自定義錯誤
-        AssertionsEx.assertThrown(() -> Verifier.requireLongMoreThanInclusive(targetTerm, 1, 2, thrown()))
+        AssertionsEx.assertThrown(() -> Verifier.requireLongMoreThanInclusive(targetTerm, 1, 2, throwTest1RuntimeException()))
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 1, "", 2))
-                .isInstanceOf(TestException.class);
-        AssertionsEx.assertThrown(() -> Verifier.requireLongMoreThanInclusive(targetTerm, 1, limitTerm, 2, thrown()))
+                .isInstanceOf(Test1RuntimeException.class);
+        AssertionsEx.assertThrown(() -> Verifier.requireLongMoreThanInclusive(targetTerm, 1, limitTerm, 2, throwTest1RuntimeException()))
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 1, limitTerm, 2))
-                .isInstanceOf(TestException.class);
+                .isInstanceOf(Test1RuntimeException.class);
     }
 
     @Test
@@ -499,22 +494,22 @@ public class VerifierTest {
                 .isInstanceOf(IllegalArgumentException.class);
 
         // 測試檢查通過的情況, 拋出非預設自定義錯誤
-        Verifier.requireLongMoreThanExclusive(targetTerm, 1, 0, thrown());
-        Verifier.requireLongMoreThanExclusive(targetTerm, 1, limitTerm, 0, thrown());
+        Verifier.requireLongMoreThanExclusive(targetTerm, 1, 0, throwTest1RuntimeException());
+        Verifier.requireLongMoreThanExclusive(targetTerm, 1, limitTerm, 0, throwTest1RuntimeException());
 
         // 測試檢查不通過的情況, 拋出非預設自定義錯誤
-        AssertionsEx.assertThrown(() -> Verifier.requireLongMoreThanExclusive(targetTerm, 1, 1, thrown()))
+        AssertionsEx.assertThrown(() -> Verifier.requireLongMoreThanExclusive(targetTerm, 1, 1, throwTest1RuntimeException()))
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 1, "", 1))
-                .isInstanceOf(TestException.class);
-        AssertionsEx.assertThrown(() -> Verifier.requireLongMoreThanExclusive(targetTerm, 1, 2, thrown()))
+                .isInstanceOf(Test1RuntimeException.class);
+        AssertionsEx.assertThrown(() -> Verifier.requireLongMoreThanExclusive(targetTerm, 1, 2, throwTest1RuntimeException()))
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 1, "", 2))
-                .isInstanceOf(TestException.class);
-        AssertionsEx.assertThrown(() -> Verifier.requireLongMoreThanExclusive(targetTerm, 1, limitTerm, 1, thrown()))
+                .isInstanceOf(Test1RuntimeException.class);
+        AssertionsEx.assertThrown(() -> Verifier.requireLongMoreThanExclusive(targetTerm, 1, limitTerm, 1, throwTest1RuntimeException()))
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 1, limitTerm, 1))
-                .isInstanceOf(TestException.class);
-        AssertionsEx.assertThrown(() -> Verifier.requireLongMoreThanExclusive(targetTerm, 1, limitTerm, 2, thrown()))
+                .isInstanceOf(Test1RuntimeException.class);
+        AssertionsEx.assertThrown(() -> Verifier.requireLongMoreThanExclusive(targetTerm, 1, limitTerm, 2, throwTest1RuntimeException()))
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 1, limitTerm, 2))
-                .isInstanceOf(TestException.class);
+                .isInstanceOf(Test1RuntimeException.class);
     }
 
     @Test
@@ -538,18 +533,18 @@ public class VerifierTest {
                 .isInstanceOf(IllegalArgumentException.class);
 
         // 測試檢查通過的情況, 拋出非預設自定義錯誤
-        Verifier.requireLongLessThanInclusive(targetTerm, 1, 2, thrown());
-        Verifier.requireLongLessThanInclusive(targetTerm, 1, 1, thrown());
-        Verifier.requireLongLessThanInclusive(targetTerm, 1, limitTerm, 2, thrown());
-        Verifier.requireLongLessThanInclusive(targetTerm, 1, limitTerm, 1, thrown());
+        Verifier.requireLongLessThanInclusive(targetTerm, 1, 2, throwTest1RuntimeException());
+        Verifier.requireLongLessThanInclusive(targetTerm, 1, 1, throwTest1RuntimeException());
+        Verifier.requireLongLessThanInclusive(targetTerm, 1, limitTerm, 2, throwTest1RuntimeException());
+        Verifier.requireLongLessThanInclusive(targetTerm, 1, limitTerm, 1, throwTest1RuntimeException());
 
         // 測試檢查不通過的情況, 拋出非預設自定義錯誤
-        AssertionsEx.assertThrown(() -> Verifier.requireLongLessThanInclusive(targetTerm, 1, 0, thrown()))
+        AssertionsEx.assertThrown(() -> Verifier.requireLongLessThanInclusive(targetTerm, 1, 0, throwTest1RuntimeException()))
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 1, "", 0))
-                .isInstanceOf(TestException.class);
-        AssertionsEx.assertThrown(() -> Verifier.requireLongLessThanInclusive(targetTerm, 1, limitTerm, 0, thrown()))
+                .isInstanceOf(Test1RuntimeException.class);
+        AssertionsEx.assertThrown(() -> Verifier.requireLongLessThanInclusive(targetTerm, 1, limitTerm, 0, throwTest1RuntimeException()))
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 1, limitTerm, 0))
-                .isInstanceOf(TestException.class);
+                .isInstanceOf(Test1RuntimeException.class);
     }
 
     @Test
@@ -577,22 +572,22 @@ public class VerifierTest {
                 .isInstanceOf(IllegalArgumentException.class);
 
         // 測試檢查通過的情況, 拋出非預設自定義錯誤
-        Verifier.requireLongLessThanExclusive(targetTerm, 1, 2, thrown());
-        Verifier.requireLongLessThanExclusive(targetTerm, 1, limitTerm, 2, thrown());
+        Verifier.requireLongLessThanExclusive(targetTerm, 1, 2, throwTest1RuntimeException());
+        Verifier.requireLongLessThanExclusive(targetTerm, 1, limitTerm, 2, throwTest1RuntimeException());
 
         // 測試檢查不通過的情況, 拋出非預設自定義錯誤
-        AssertionsEx.assertThrown(() -> Verifier.requireLongLessThanExclusive(targetTerm, 1, 1, thrown()))
+        AssertionsEx.assertThrown(() -> Verifier.requireLongLessThanExclusive(targetTerm, 1, 1, throwTest1RuntimeException()))
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 1, "", 1))
-                .isInstanceOf(TestException.class);
-        AssertionsEx.assertThrown(() -> Verifier.requireLongLessThanExclusive(targetTerm, 1, 0, thrown()))
+                .isInstanceOf(Test1RuntimeException.class);
+        AssertionsEx.assertThrown(() -> Verifier.requireLongLessThanExclusive(targetTerm, 1, 0, throwTest1RuntimeException()))
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 1, "", 0))
-                .isInstanceOf(TestException.class);
-        AssertionsEx.assertThrown(() -> Verifier.requireLongLessThanExclusive(targetTerm, 1, limitTerm, 1, thrown()))
+                .isInstanceOf(Test1RuntimeException.class);
+        AssertionsEx.assertThrown(() -> Verifier.requireLongLessThanExclusive(targetTerm, 1, limitTerm, 1, throwTest1RuntimeException()))
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 1, limitTerm, 1))
-                .isInstanceOf(TestException.class);
-        AssertionsEx.assertThrown(() -> Verifier.requireLongLessThanExclusive(targetTerm, 1, limitTerm, 0, thrown()))
+                .isInstanceOf(Test1RuntimeException.class);
+        AssertionsEx.assertThrown(() -> Verifier.requireLongLessThanExclusive(targetTerm, 1, limitTerm, 0, throwTest1RuntimeException()))
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 1, limitTerm, 0))
-                .isInstanceOf(TestException.class);
+                .isInstanceOf(Test1RuntimeException.class);
     }
 
     @Test
@@ -616,18 +611,18 @@ public class VerifierTest {
                 .isInstanceOf(IllegalArgumentException.class);
 
         // 測試檢查通過的情況, 拋出非預設自定義錯誤
-        Verifier.requireFloatMoreThanInclusive(targetTerm, 1, 0, thrown());
-        Verifier.requireFloatMoreThanInclusive(targetTerm, 1, 1, thrown());
-        Verifier.requireFloatMoreThanInclusive(targetTerm, 1, limitTerm, 0, thrown());
-        Verifier.requireFloatMoreThanInclusive(targetTerm, 1, limitTerm, 1, thrown());
+        Verifier.requireFloatMoreThanInclusive(targetTerm, 1, 0, throwTest1RuntimeException());
+        Verifier.requireFloatMoreThanInclusive(targetTerm, 1, 1, throwTest1RuntimeException());
+        Verifier.requireFloatMoreThanInclusive(targetTerm, 1, limitTerm, 0, throwTest1RuntimeException());
+        Verifier.requireFloatMoreThanInclusive(targetTerm, 1, limitTerm, 1, throwTest1RuntimeException());
 
         // 測試檢查不通過的情況, 拋出非預設自定義錯誤
-        AssertionsEx.assertThrown(() -> Verifier.requireFloatMoreThanInclusive(targetTerm, 1, 2, thrown()))
+        AssertionsEx.assertThrown(() -> Verifier.requireFloatMoreThanInclusive(targetTerm, 1, 2, throwTest1RuntimeException()))
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 1f, "", 2f))
-                .isInstanceOf(TestException.class);
-        AssertionsEx.assertThrown(() -> Verifier.requireFloatMoreThanInclusive(targetTerm, 1, limitTerm, 2, thrown()))
+                .isInstanceOf(Test1RuntimeException.class);
+        AssertionsEx.assertThrown(() -> Verifier.requireFloatMoreThanInclusive(targetTerm, 1, limitTerm, 2, throwTest1RuntimeException()))
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 1f, limitTerm, 2f))
-                .isInstanceOf(TestException.class);
+                .isInstanceOf(Test1RuntimeException.class);
     }
 
     @Test
@@ -655,22 +650,22 @@ public class VerifierTest {
                 .isInstanceOf(IllegalArgumentException.class);
 
         // 測試檢查通過的情況, 拋出非預設自定義錯誤
-        Verifier.requireFloatMoreThanExclusive(targetTerm, 1, 0, thrown());
-        Verifier.requireFloatMoreThanExclusive(targetTerm, 1, limitTerm, 0, thrown());
+        Verifier.requireFloatMoreThanExclusive(targetTerm, 1, 0, throwTest1RuntimeException());
+        Verifier.requireFloatMoreThanExclusive(targetTerm, 1, limitTerm, 0, throwTest1RuntimeException());
 
         // 測試檢查不通過的情況, 拋出非預設自定義錯誤
-        AssertionsEx.assertThrown(() -> Verifier.requireFloatMoreThanExclusive(targetTerm, 1, 1, thrown()))
+        AssertionsEx.assertThrown(() -> Verifier.requireFloatMoreThanExclusive(targetTerm, 1, 1, throwTest1RuntimeException()))
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 1f, "", 1f))
-                .isInstanceOf(TestException.class);
-        AssertionsEx.assertThrown(() -> Verifier.requireFloatMoreThanExclusive(targetTerm, 1, 2, thrown()))
+                .isInstanceOf(Test1RuntimeException.class);
+        AssertionsEx.assertThrown(() -> Verifier.requireFloatMoreThanExclusive(targetTerm, 1, 2, throwTest1RuntimeException()))
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 1f, "", 2f))
-                .isInstanceOf(TestException.class);
-        AssertionsEx.assertThrown(() -> Verifier.requireFloatMoreThanExclusive(targetTerm, 1, limitTerm, 1, thrown()))
+                .isInstanceOf(Test1RuntimeException.class);
+        AssertionsEx.assertThrown(() -> Verifier.requireFloatMoreThanExclusive(targetTerm, 1, limitTerm, 1, throwTest1RuntimeException()))
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 1f, limitTerm, 1f))
-                .isInstanceOf(TestException.class);
-        AssertionsEx.assertThrown(() -> Verifier.requireFloatMoreThanExclusive(targetTerm, 1, limitTerm, 2, thrown()))
+                .isInstanceOf(Test1RuntimeException.class);
+        AssertionsEx.assertThrown(() -> Verifier.requireFloatMoreThanExclusive(targetTerm, 1, limitTerm, 2, throwTest1RuntimeException()))
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 1f, limitTerm, 2f))
-                .isInstanceOf(TestException.class);
+                .isInstanceOf(Test1RuntimeException.class);
     }
 
     @Test
@@ -694,18 +689,18 @@ public class VerifierTest {
                 .isInstanceOf(IllegalArgumentException.class);
 
         // 測試檢查通過的情況, 拋出非預設自定義錯誤
-        Verifier.requireFloatLessThanInclusive(targetTerm, 1, 2, thrown());
-        Verifier.requireFloatLessThanInclusive(targetTerm, 1, 1, thrown());
-        Verifier.requireFloatLessThanInclusive(targetTerm, 1, limitTerm, 2, thrown());
-        Verifier.requireFloatLessThanInclusive(targetTerm, 1, limitTerm, 1, thrown());
+        Verifier.requireFloatLessThanInclusive(targetTerm, 1, 2, throwTest1RuntimeException());
+        Verifier.requireFloatLessThanInclusive(targetTerm, 1, 1, throwTest1RuntimeException());
+        Verifier.requireFloatLessThanInclusive(targetTerm, 1, limitTerm, 2, throwTest1RuntimeException());
+        Verifier.requireFloatLessThanInclusive(targetTerm, 1, limitTerm, 1, throwTest1RuntimeException());
 
         // 測試檢查不通過的情況, 拋出非預設自定義錯誤
-        AssertionsEx.assertThrown(() -> Verifier.requireFloatLessThanInclusive(targetTerm, 1, 0, thrown()))
+        AssertionsEx.assertThrown(() -> Verifier.requireFloatLessThanInclusive(targetTerm, 1, 0, throwTest1RuntimeException()))
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 1f, "", 0f))
-                .isInstanceOf(TestException.class);
-        AssertionsEx.assertThrown(() -> Verifier.requireFloatLessThanInclusive(targetTerm, 1, limitTerm, 0, thrown()))
+                .isInstanceOf(Test1RuntimeException.class);
+        AssertionsEx.assertThrown(() -> Verifier.requireFloatLessThanInclusive(targetTerm, 1, limitTerm, 0, throwTest1RuntimeException()))
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 1f, limitTerm, 0f))
-                .isInstanceOf(TestException.class);
+                .isInstanceOf(Test1RuntimeException.class);
     }
 
     @Test
@@ -733,22 +728,22 @@ public class VerifierTest {
                 .isInstanceOf(IllegalArgumentException.class);
 
         // 測試檢查通過的情況, 拋出非預設自定義錯誤
-        Verifier.requireFloatLessThanExclusive(targetTerm, 1, 2, thrown());
-        Verifier.requireFloatLessThanExclusive(targetTerm, 1, limitTerm, 2, thrown());
+        Verifier.requireFloatLessThanExclusive(targetTerm, 1, 2, throwTest1RuntimeException());
+        Verifier.requireFloatLessThanExclusive(targetTerm, 1, limitTerm, 2, throwTest1RuntimeException());
 
         // 測試檢查不通過的情況, 拋出非預設自定義錯誤
-        AssertionsEx.assertThrown(() -> Verifier.requireFloatLessThanExclusive(targetTerm, 1, 1, thrown()))
+        AssertionsEx.assertThrown(() -> Verifier.requireFloatLessThanExclusive(targetTerm, 1, 1, throwTest1RuntimeException()))
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 1f, "", 1f))
-                .isInstanceOf(TestException.class);
-        AssertionsEx.assertThrown(() -> Verifier.requireFloatLessThanExclusive(targetTerm, 1, 0, thrown()))
+                .isInstanceOf(Test1RuntimeException.class);
+        AssertionsEx.assertThrown(() -> Verifier.requireFloatLessThanExclusive(targetTerm, 1, 0, throwTest1RuntimeException()))
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 1f, "", 0f))
-                .isInstanceOf(TestException.class);
-        AssertionsEx.assertThrown(() -> Verifier.requireFloatLessThanExclusive(targetTerm, 1, limitTerm, 1, thrown()))
+                .isInstanceOf(Test1RuntimeException.class);
+        AssertionsEx.assertThrown(() -> Verifier.requireFloatLessThanExclusive(targetTerm, 1, limitTerm, 1, throwTest1RuntimeException()))
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 1f, limitTerm, 1f))
-                .isInstanceOf(TestException.class);
-        AssertionsEx.assertThrown(() -> Verifier.requireFloatLessThanExclusive(targetTerm, 1, limitTerm, 0, thrown()))
+                .isInstanceOf(Test1RuntimeException.class);
+        AssertionsEx.assertThrown(() -> Verifier.requireFloatLessThanExclusive(targetTerm, 1, limitTerm, 0, throwTest1RuntimeException()))
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 1f, limitTerm, 0f))
-                .isInstanceOf(TestException.class);
+                .isInstanceOf(Test1RuntimeException.class);
     }
 
     @Test
@@ -772,18 +767,18 @@ public class VerifierTest {
                 .isInstanceOf(IllegalArgumentException.class);
 
         // 測試檢查通過的情況, 拋出非預設自定義錯誤
-        Verifier.requireDoubleMoreThanInclusive(targetTerm, 1, 0, thrown());
-        Verifier.requireDoubleMoreThanInclusive(targetTerm, 1, 1, thrown());
-        Verifier.requireDoubleMoreThanInclusive(targetTerm, 1, limitTerm, 0, thrown());
-        Verifier.requireDoubleMoreThanInclusive(targetTerm, 1, limitTerm, 1, thrown());
+        Verifier.requireDoubleMoreThanInclusive(targetTerm, 1, 0, throwTest1RuntimeException());
+        Verifier.requireDoubleMoreThanInclusive(targetTerm, 1, 1, throwTest1RuntimeException());
+        Verifier.requireDoubleMoreThanInclusive(targetTerm, 1, limitTerm, 0, throwTest1RuntimeException());
+        Verifier.requireDoubleMoreThanInclusive(targetTerm, 1, limitTerm, 1, throwTest1RuntimeException());
 
         // 測試檢查不通過的情況, 拋出非預設自定義錯誤
-        AssertionsEx.assertThrown(() -> Verifier.requireDoubleMoreThanInclusive(targetTerm, 1, 2, thrown()))
+        AssertionsEx.assertThrown(() -> Verifier.requireDoubleMoreThanInclusive(targetTerm, 1, 2, throwTest1RuntimeException()))
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 1d, "", 2d))
-                .isInstanceOf(TestException.class);
-        AssertionsEx.assertThrown(() -> Verifier.requireDoubleMoreThanInclusive(targetTerm, 1, limitTerm, 2, thrown()))
+                .isInstanceOf(Test1RuntimeException.class);
+        AssertionsEx.assertThrown(() -> Verifier.requireDoubleMoreThanInclusive(targetTerm, 1, limitTerm, 2, throwTest1RuntimeException()))
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 1d, limitTerm, 2d))
-                .isInstanceOf(TestException.class);
+                .isInstanceOf(Test1RuntimeException.class);
     }
 
     @Test
@@ -811,22 +806,22 @@ public class VerifierTest {
                 .isInstanceOf(IllegalArgumentException.class);
 
         // 測試檢查通過的情況, 拋出非預設自定義錯誤
-        Verifier.requireDoubleMoreThanExclusive(targetTerm, 1, 0, thrown());
-        Verifier.requireDoubleMoreThanExclusive(targetTerm, 1, limitTerm, 0, thrown());
+        Verifier.requireDoubleMoreThanExclusive(targetTerm, 1, 0, throwTest1RuntimeException());
+        Verifier.requireDoubleMoreThanExclusive(targetTerm, 1, limitTerm, 0, throwTest1RuntimeException());
 
         // 測試檢查不通過的情況, 拋出非預設自定義錯誤
-        AssertionsEx.assertThrown(() -> Verifier.requireDoubleMoreThanExclusive(targetTerm, 1, 1, thrown()))
+        AssertionsEx.assertThrown(() -> Verifier.requireDoubleMoreThanExclusive(targetTerm, 1, 1, throwTest1RuntimeException()))
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 1d, "", 1d))
-                .isInstanceOf(TestException.class);
-        AssertionsEx.assertThrown(() -> Verifier.requireDoubleMoreThanExclusive(targetTerm, 1, 2, thrown()))
+                .isInstanceOf(Test1RuntimeException.class);
+        AssertionsEx.assertThrown(() -> Verifier.requireDoubleMoreThanExclusive(targetTerm, 1, 2, throwTest1RuntimeException()))
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 1d, "", 2d))
-                .isInstanceOf(TestException.class);
-        AssertionsEx.assertThrown(() -> Verifier.requireDoubleMoreThanExclusive(targetTerm, 1, limitTerm, 1, thrown()))
+                .isInstanceOf(Test1RuntimeException.class);
+        AssertionsEx.assertThrown(() -> Verifier.requireDoubleMoreThanExclusive(targetTerm, 1, limitTerm, 1, throwTest1RuntimeException()))
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 1d, limitTerm, 1d))
-                .isInstanceOf(TestException.class);
-        AssertionsEx.assertThrown(() -> Verifier.requireDoubleMoreThanExclusive(targetTerm, 1, limitTerm, 2, thrown()))
+                .isInstanceOf(Test1RuntimeException.class);
+        AssertionsEx.assertThrown(() -> Verifier.requireDoubleMoreThanExclusive(targetTerm, 1, limitTerm, 2, throwTest1RuntimeException()))
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 1d, limitTerm, 2d))
-                .isInstanceOf(TestException.class);
+                .isInstanceOf(Test1RuntimeException.class);
     }
 
     @Test
@@ -850,18 +845,18 @@ public class VerifierTest {
                 .isInstanceOf(IllegalArgumentException.class);
 
         // 測試檢查通過的情況, 拋出非預設自定義錯誤
-        Verifier.requireDoubleLessThanInclusive(targetTerm, 1, 2, thrown());
-        Verifier.requireDoubleLessThanInclusive(targetTerm, 1, 1, thrown());
-        Verifier.requireDoubleLessThanInclusive(targetTerm, 1, limitTerm, 2, thrown());
-        Verifier.requireDoubleLessThanInclusive(targetTerm, 1, limitTerm, 1, thrown());
+        Verifier.requireDoubleLessThanInclusive(targetTerm, 1, 2, throwTest1RuntimeException());
+        Verifier.requireDoubleLessThanInclusive(targetTerm, 1, 1, throwTest1RuntimeException());
+        Verifier.requireDoubleLessThanInclusive(targetTerm, 1, limitTerm, 2, throwTest1RuntimeException());
+        Verifier.requireDoubleLessThanInclusive(targetTerm, 1, limitTerm, 1, throwTest1RuntimeException());
 
         // 測試檢查不通過的情況, 拋出非預設自定義錯誤
-        AssertionsEx.assertThrown(() -> Verifier.requireDoubleLessThanInclusive(targetTerm, 1, 0, thrown()))
+        AssertionsEx.assertThrown(() -> Verifier.requireDoubleLessThanInclusive(targetTerm, 1, 0, throwTest1RuntimeException()))
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 1d, "", 0d))
-                .isInstanceOf(TestException.class);
-        AssertionsEx.assertThrown(() -> Verifier.requireDoubleLessThanInclusive(targetTerm, 1, limitTerm, 0, thrown()))
+                .isInstanceOf(Test1RuntimeException.class);
+        AssertionsEx.assertThrown(() -> Verifier.requireDoubleLessThanInclusive(targetTerm, 1, limitTerm, 0, throwTest1RuntimeException()))
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 1d, limitTerm, 0d))
-                .isInstanceOf(TestException.class);
+                .isInstanceOf(Test1RuntimeException.class);
     }
 
     @Test
@@ -889,22 +884,22 @@ public class VerifierTest {
                 .isInstanceOf(IllegalArgumentException.class);
 
         // 測試檢查通過的情況, 拋出非預設自定義錯誤
-        Verifier.requireDoubleLessThanExclusive(targetTerm, 1, 2, thrown());
-        Verifier.requireDoubleLessThanExclusive(targetTerm, 1, limitTerm, 2, thrown());
+        Verifier.requireDoubleLessThanExclusive(targetTerm, 1, 2, throwTest1RuntimeException());
+        Verifier.requireDoubleLessThanExclusive(targetTerm, 1, limitTerm, 2, throwTest1RuntimeException());
 
         // 測試檢查不通過的情況, 拋出非預設自定義錯誤
-        AssertionsEx.assertThrown(() -> Verifier.requireDoubleLessThanExclusive(targetTerm, 1, 1, thrown()))
+        AssertionsEx.assertThrown(() -> Verifier.requireDoubleLessThanExclusive(targetTerm, 1, 1, throwTest1RuntimeException()))
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 1d, "", 1d))
-                .isInstanceOf(TestException.class);
-        AssertionsEx.assertThrown(() -> Verifier.requireDoubleLessThanExclusive(targetTerm, 1, 0, thrown()))
+                .isInstanceOf(Test1RuntimeException.class);
+        AssertionsEx.assertThrown(() -> Verifier.requireDoubleLessThanExclusive(targetTerm, 1, 0, throwTest1RuntimeException()))
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 1d, "", 0d))
-                .isInstanceOf(TestException.class);
-        AssertionsEx.assertThrown(() -> Verifier.requireDoubleLessThanExclusive(targetTerm, 1, limitTerm, 1, thrown()))
+                .isInstanceOf(Test1RuntimeException.class);
+        AssertionsEx.assertThrown(() -> Verifier.requireDoubleLessThanExclusive(targetTerm, 1, limitTerm, 1, throwTest1RuntimeException()))
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 1d, limitTerm, 1d))
-                .isInstanceOf(TestException.class);
-        AssertionsEx.assertThrown(() -> Verifier.requireDoubleLessThanExclusive(targetTerm, 1, limitTerm, 0, thrown()))
+                .isInstanceOf(Test1RuntimeException.class);
+        AssertionsEx.assertThrown(() -> Verifier.requireDoubleLessThanExclusive(targetTerm, 1, limitTerm, 0, throwTest1RuntimeException()))
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 1d, limitTerm, 0d))
-                .isInstanceOf(TestException.class);
+                .isInstanceOf(Test1RuntimeException.class);
     }
 
     @Test
@@ -932,18 +927,18 @@ public class VerifierTest {
                 .isInstanceOf(IllegalArgumentException.class);
 
         // 測試檢查通過的情況, 拋出非預設自定義錯誤
-        Verifier.requireBigDecimalMoreThanInclusive(targetTerm, $1, $0, thrown());
-        Verifier.requireBigDecimalMoreThanInclusive(targetTerm, $1, $1, thrown());
-        Verifier.requireBigDecimalMoreThanInclusive(targetTerm, $1, limitTerm, $0, thrown());
-        Verifier.requireBigDecimalMoreThanInclusive(targetTerm, $1, limitTerm, $1, thrown());
+        Verifier.requireBigDecimalMoreThanInclusive(targetTerm, $1, $0, throwTest1RuntimeException());
+        Verifier.requireBigDecimalMoreThanInclusive(targetTerm, $1, $1, throwTest1RuntimeException());
+        Verifier.requireBigDecimalMoreThanInclusive(targetTerm, $1, limitTerm, $0, throwTest1RuntimeException());
+        Verifier.requireBigDecimalMoreThanInclusive(targetTerm, $1, limitTerm, $1, throwTest1RuntimeException());
 
         // 測試檢查不通過的情況, 拋出非預設自定義錯誤
-        AssertionsEx.assertThrown(() -> Verifier.requireBigDecimalMoreThanInclusive(targetTerm, $1, $2, thrown()))
+        AssertionsEx.assertThrown(() -> Verifier.requireBigDecimalMoreThanInclusive(targetTerm, $1, $2, throwTest1RuntimeException()))
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, $1, "", $2))
-                .isInstanceOf(TestException.class);
-        AssertionsEx.assertThrown(() -> Verifier.requireBigDecimalMoreThanInclusive(targetTerm, $1, limitTerm, $2, thrown()))
+                .isInstanceOf(Test1RuntimeException.class);
+        AssertionsEx.assertThrown(() -> Verifier.requireBigDecimalMoreThanInclusive(targetTerm, $1, limitTerm, $2, throwTest1RuntimeException()))
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, $1, limitTerm, $2))
-                .isInstanceOf(TestException.class);
+                .isInstanceOf(Test1RuntimeException.class);
     }
 
     @Test
@@ -975,22 +970,22 @@ public class VerifierTest {
                 .isInstanceOf(IllegalArgumentException.class);
 
         // 測試檢查通過的情況, 拋出非預設自定義錯誤
-        Verifier.requireBigDecimalMoreThanExclusive(targetTerm, $1, $0, thrown());
-        Verifier.requireBigDecimalMoreThanExclusive(targetTerm, $1, limitTerm, $0, thrown());
+        Verifier.requireBigDecimalMoreThanExclusive(targetTerm, $1, $0, throwTest1RuntimeException());
+        Verifier.requireBigDecimalMoreThanExclusive(targetTerm, $1, limitTerm, $0, throwTest1RuntimeException());
 
         // 測試檢查不通過的情況, 拋出非預設自定義錯誤
-        AssertionsEx.assertThrown(() -> Verifier.requireBigDecimalMoreThanExclusive(targetTerm, $1, $1, thrown()))
+        AssertionsEx.assertThrown(() -> Verifier.requireBigDecimalMoreThanExclusive(targetTerm, $1, $1, throwTest1RuntimeException()))
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, $1, "", $1))
-                .isInstanceOf(TestException.class);
-        AssertionsEx.assertThrown(() -> Verifier.requireBigDecimalMoreThanExclusive(targetTerm, $1, $2, thrown()))
+                .isInstanceOf(Test1RuntimeException.class);
+        AssertionsEx.assertThrown(() -> Verifier.requireBigDecimalMoreThanExclusive(targetTerm, $1, $2, throwTest1RuntimeException()))
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, $1, "", $2))
-                .isInstanceOf(TestException.class);
-        AssertionsEx.assertThrown(() -> Verifier.requireBigDecimalMoreThanExclusive(targetTerm, $1, limitTerm, $1, thrown()))
+                .isInstanceOf(Test1RuntimeException.class);
+        AssertionsEx.assertThrown(() -> Verifier.requireBigDecimalMoreThanExclusive(targetTerm, $1, limitTerm, $1, throwTest1RuntimeException()))
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, $1, limitTerm, $1))
-                .isInstanceOf(TestException.class);
-        AssertionsEx.assertThrown(() -> Verifier.requireBigDecimalMoreThanExclusive(targetTerm, $1, limitTerm, $2, thrown()))
+                .isInstanceOf(Test1RuntimeException.class);
+        AssertionsEx.assertThrown(() -> Verifier.requireBigDecimalMoreThanExclusive(targetTerm, $1, limitTerm, $2, throwTest1RuntimeException()))
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, $1, limitTerm, $2))
-                .isInstanceOf(TestException.class);
+                .isInstanceOf(Test1RuntimeException.class);
     }
 
     @Test
@@ -1018,18 +1013,18 @@ public class VerifierTest {
                 .isInstanceOf(IllegalArgumentException.class);
 
         // 測試檢查通過的情況, 拋出非預設自定義錯誤
-        Verifier.requireBigDecimalLessThanInclusive(targetTerm, $1, $2, thrown());
-        Verifier.requireBigDecimalLessThanInclusive(targetTerm, $1, $2, thrown());
-        Verifier.requireBigDecimalLessThanInclusive(targetTerm, $1, limitTerm, $2, thrown());
-        Verifier.requireBigDecimalLessThanInclusive(targetTerm, $1, limitTerm, $2, thrown());
+        Verifier.requireBigDecimalLessThanInclusive(targetTerm, $1, $2, throwTest1RuntimeException());
+        Verifier.requireBigDecimalLessThanInclusive(targetTerm, $1, $2, throwTest1RuntimeException());
+        Verifier.requireBigDecimalLessThanInclusive(targetTerm, $1, limitTerm, $2, throwTest1RuntimeException());
+        Verifier.requireBigDecimalLessThanInclusive(targetTerm, $1, limitTerm, $2, throwTest1RuntimeException());
 
         // 測試檢查不通過的情況, 拋出非預設自定義錯誤
-        AssertionsEx.assertThrown(() -> Verifier.requireBigDecimalLessThanInclusive(targetTerm, $1, $0, thrown()))
+        AssertionsEx.assertThrown(() -> Verifier.requireBigDecimalLessThanInclusive(targetTerm, $1, $0, throwTest1RuntimeException()))
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, $1, "", $0))
-                .isInstanceOf(TestException.class);
-        AssertionsEx.assertThrown(() -> Verifier.requireBigDecimalLessThanInclusive(targetTerm, $1, limitTerm, $0, thrown()))
+                .isInstanceOf(Test1RuntimeException.class);
+        AssertionsEx.assertThrown(() -> Verifier.requireBigDecimalLessThanInclusive(targetTerm, $1, limitTerm, $0, throwTest1RuntimeException()))
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, $1, limitTerm, $0))
-                .isInstanceOf(TestException.class);
+                .isInstanceOf(Test1RuntimeException.class);
     }
 
     @Test
@@ -1061,22 +1056,22 @@ public class VerifierTest {
                 .isInstanceOf(IllegalArgumentException.class);
 
         // 測試檢查通過的情況, 拋出非預設自定義錯誤
-        Verifier.requireBigDecimalLessThanExclusive(targetTerm, $1, $2, thrown());
-        Verifier.requireBigDecimalLessThanExclusive(targetTerm, $1, limitTerm, $2, thrown());
+        Verifier.requireBigDecimalLessThanExclusive(targetTerm, $1, $2, throwTest1RuntimeException());
+        Verifier.requireBigDecimalLessThanExclusive(targetTerm, $1, limitTerm, $2, throwTest1RuntimeException());
 
         // 測試檢查不通過的情況, 拋出非預設自定義錯誤
-        AssertionsEx.assertThrown(() -> Verifier.requireBigDecimalLessThanExclusive(targetTerm, $1, $1, thrown()))
+        AssertionsEx.assertThrown(() -> Verifier.requireBigDecimalLessThanExclusive(targetTerm, $1, $1, throwTest1RuntimeException()))
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, $1, "", $1))
-                .isInstanceOf(TestException.class);
-        AssertionsEx.assertThrown(() -> Verifier.requireBigDecimalLessThanExclusive(targetTerm, $1, $0, thrown()))
+                .isInstanceOf(Test1RuntimeException.class);
+        AssertionsEx.assertThrown(() -> Verifier.requireBigDecimalLessThanExclusive(targetTerm, $1, $0, throwTest1RuntimeException()))
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, $1, "", $0))
-                .isInstanceOf(TestException.class);
-        AssertionsEx.assertThrown(() -> Verifier.requireBigDecimalLessThanExclusive(targetTerm, $1, limitTerm, $1, thrown()))
+                .isInstanceOf(Test1RuntimeException.class);
+        AssertionsEx.assertThrown(() -> Verifier.requireBigDecimalLessThanExclusive(targetTerm, $1, limitTerm, $1, throwTest1RuntimeException()))
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, $1, limitTerm, $1))
-                .isInstanceOf(TestException.class);
-        AssertionsEx.assertThrown(() -> Verifier.requireBigDecimalLessThanExclusive(targetTerm, $1, limitTerm, $0, thrown()))
+                .isInstanceOf(Test1RuntimeException.class);
+        AssertionsEx.assertThrown(() -> Verifier.requireBigDecimalLessThanExclusive(targetTerm, $1, limitTerm, $0, throwTest1RuntimeException()))
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, $1, limitTerm, $0))
-                .isInstanceOf(TestException.class);
+                .isInstanceOf(Test1RuntimeException.class);
     }
 
 }

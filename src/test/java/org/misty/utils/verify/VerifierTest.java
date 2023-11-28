@@ -5,6 +5,7 @@ import org.misty._utils.AssertionsEx;
 import org.misty._utils.Test1RuntimeException;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.Collections;
 import java.util.Optional;
 
@@ -1070,6 +1071,178 @@ public class VerifierTest {
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, $1, limitTerm, $1))
                 .isInstanceOf(Test1RuntimeException.class);
         AssertionsEx.assertThrown(() -> Verifier.requireBigDecimalLessThanExclusive(targetTerm, $1, limitTerm, $0, throwTest1RuntimeException()))
+                .hasMessageContaining(String.format(errorMsgFormat, targetTerm, $1, limitTerm, $0))
+                .isInstanceOf(Test1RuntimeException.class);
+    }
+
+    @Test
+    public void BigInteger_requireMoreThanInclusive() {
+        String targetTerm = "targetTerm";
+        String limitTerm = "limitTerm";
+        String errorMsgFormat = Verifier.ErrorMsgFormat.MORE_THAN_INCLUSIVE;
+
+        BigInteger $0 = BigInteger.valueOf(0);
+        BigInteger $1 = BigInteger.valueOf(1);
+        BigInteger $2 = BigInteger.valueOf(2);
+
+        // 測試檢查通過的情況
+        Verifier.requireBigIntegerMoreThanInclusive(targetTerm, $1, $0);
+        Verifier.requireBigIntegerMoreThanInclusive(targetTerm, $1, $1);
+        Verifier.requireBigIntegerMoreThanInclusive(targetTerm, $1, limitTerm, $0);
+        Verifier.requireBigIntegerMoreThanInclusive(targetTerm, $1, limitTerm, $1);
+
+        // 測試檢查不通過的情況
+        AssertionsEx.assertThrown(() -> Verifier.requireBigIntegerMoreThanInclusive(targetTerm, $1, $2))
+                .hasMessageContaining(String.format(errorMsgFormat, targetTerm, $1, "", $2))
+                .isInstanceOf(IllegalArgumentException.class);
+        AssertionsEx.assertThrown(() -> Verifier.requireBigIntegerMoreThanInclusive(targetTerm, $1, limitTerm, $2))
+                .hasMessageContaining(String.format(errorMsgFormat, targetTerm, $1, limitTerm, $2))
+                .isInstanceOf(IllegalArgumentException.class);
+
+        // 測試檢查通過的情況, 拋出非預設自定義錯誤
+        Verifier.requireBigIntegerMoreThanInclusive(targetTerm, $1, $0, throwTest1RuntimeException());
+        Verifier.requireBigIntegerMoreThanInclusive(targetTerm, $1, $1, throwTest1RuntimeException());
+        Verifier.requireBigIntegerMoreThanInclusive(targetTerm, $1, limitTerm, $0, throwTest1RuntimeException());
+        Verifier.requireBigIntegerMoreThanInclusive(targetTerm, $1, limitTerm, $1, throwTest1RuntimeException());
+
+        // 測試檢查不通過的情況, 拋出非預設自定義錯誤
+        AssertionsEx.assertThrown(() -> Verifier.requireBigIntegerMoreThanInclusive(targetTerm, $1, $2, throwTest1RuntimeException()))
+                .hasMessageContaining(String.format(errorMsgFormat, targetTerm, $1, "", $2))
+                .isInstanceOf(Test1RuntimeException.class);
+        AssertionsEx.assertThrown(() -> Verifier.requireBigIntegerMoreThanInclusive(targetTerm, $1, limitTerm, $2, throwTest1RuntimeException()))
+                .hasMessageContaining(String.format(errorMsgFormat, targetTerm, $1, limitTerm, $2))
+                .isInstanceOf(Test1RuntimeException.class);
+    }
+
+    @Test
+    public void BigInteger_requireMoreThanExclusive() {
+        String targetTerm = "targetTerm";
+        String limitTerm = "limitTerm";
+        String errorMsgFormat = Verifier.ErrorMsgFormat.MORE_THAN_EXCLUSIVE;
+
+        BigInteger $0 = BigInteger.valueOf(0);
+        BigInteger $1 = BigInteger.valueOf(1);
+        BigInteger $2 = BigInteger.valueOf(2);
+
+        // 測試檢查通過的情況
+        Verifier.requireBigIntegerMoreThanExclusive(targetTerm, $1, $0);
+        Verifier.requireBigIntegerMoreThanExclusive(targetTerm, $1, limitTerm, $0);
+
+        // 測試檢查不通過的情況
+        AssertionsEx.assertThrown(() -> Verifier.requireBigIntegerMoreThanExclusive(targetTerm, $1, $1))
+                .hasMessageContaining(String.format(errorMsgFormat, targetTerm, $1, "", $1))
+                .isInstanceOf(IllegalArgumentException.class);
+        AssertionsEx.assertThrown(() -> Verifier.requireBigIntegerMoreThanExclusive(targetTerm, $1, $2))
+                .hasMessageContaining(String.format(errorMsgFormat, targetTerm, $1, "", $2))
+                .isInstanceOf(IllegalArgumentException.class);
+        AssertionsEx.assertThrown(() -> Verifier.requireBigIntegerMoreThanExclusive(targetTerm, $1, limitTerm, $1))
+                .hasMessageContaining(String.format(errorMsgFormat, targetTerm, $1, limitTerm, $1))
+                .isInstanceOf(IllegalArgumentException.class);
+        AssertionsEx.assertThrown(() -> Verifier.requireBigIntegerMoreThanExclusive(targetTerm, $1, limitTerm, $2))
+                .hasMessageContaining(String.format(errorMsgFormat, targetTerm, $1, limitTerm, $2))
+                .isInstanceOf(IllegalArgumentException.class);
+
+        // 測試檢查通過的情況, 拋出非預設自定義錯誤
+        Verifier.requireBigIntegerMoreThanExclusive(targetTerm, $1, $0, throwTest1RuntimeException());
+        Verifier.requireBigIntegerMoreThanExclusive(targetTerm, $1, limitTerm, $0, throwTest1RuntimeException());
+
+        // 測試檢查不通過的情況, 拋出非預設自定義錯誤
+        AssertionsEx.assertThrown(() -> Verifier.requireBigIntegerMoreThanExclusive(targetTerm, $1, $1, throwTest1RuntimeException()))
+                .hasMessageContaining(String.format(errorMsgFormat, targetTerm, $1, "", $1))
+                .isInstanceOf(Test1RuntimeException.class);
+        AssertionsEx.assertThrown(() -> Verifier.requireBigIntegerMoreThanExclusive(targetTerm, $1, $2, throwTest1RuntimeException()))
+                .hasMessageContaining(String.format(errorMsgFormat, targetTerm, $1, "", $2))
+                .isInstanceOf(Test1RuntimeException.class);
+        AssertionsEx.assertThrown(() -> Verifier.requireBigIntegerMoreThanExclusive(targetTerm, $1, limitTerm, $1, throwTest1RuntimeException()))
+                .hasMessageContaining(String.format(errorMsgFormat, targetTerm, $1, limitTerm, $1))
+                .isInstanceOf(Test1RuntimeException.class);
+        AssertionsEx.assertThrown(() -> Verifier.requireBigIntegerMoreThanExclusive(targetTerm, $1, limitTerm, $2, throwTest1RuntimeException()))
+                .hasMessageContaining(String.format(errorMsgFormat, targetTerm, $1, limitTerm, $2))
+                .isInstanceOf(Test1RuntimeException.class);
+    }
+
+    @Test
+    public void BigInteger_requireLessThanInclusive() {
+        String targetTerm = "targetTerm";
+        String limitTerm = "limitTerm";
+        String errorMsgFormat = Verifier.ErrorMsgFormat.LESS_THAN_INCLUSIVE;
+
+        BigInteger $0 = BigInteger.valueOf(0);
+        BigInteger $1 = BigInteger.valueOf(1);
+        BigInteger $2 = BigInteger.valueOf(2);
+
+        // 測試檢查通過的情況
+        Verifier.requireBigIntegerLessThanInclusive(targetTerm, $1, $2);
+        Verifier.requireBigIntegerLessThanInclusive(targetTerm, $1, $1);
+        Verifier.requireBigIntegerLessThanInclusive(targetTerm, $1, limitTerm, $2);
+        Verifier.requireBigIntegerLessThanInclusive(targetTerm, $1, limitTerm, $1);
+
+        // 測試檢查不通過的情況
+        AssertionsEx.assertThrown(() -> Verifier.requireBigIntegerLessThanInclusive(targetTerm, $1, $0))
+                .hasMessageContaining(String.format(errorMsgFormat, targetTerm, $1, "", $0))
+                .isInstanceOf(IllegalArgumentException.class);
+        AssertionsEx.assertThrown(() -> Verifier.requireBigIntegerLessThanInclusive(targetTerm, $1, limitTerm, $0))
+                .hasMessageContaining(String.format(errorMsgFormat, targetTerm, $1, limitTerm, $0))
+                .isInstanceOf(IllegalArgumentException.class);
+
+        // 測試檢查通過的情況, 拋出非預設自定義錯誤
+        Verifier.requireBigIntegerLessThanInclusive(targetTerm, $1, $2, throwTest1RuntimeException());
+        Verifier.requireBigIntegerLessThanInclusive(targetTerm, $1, $2, throwTest1RuntimeException());
+        Verifier.requireBigIntegerLessThanInclusive(targetTerm, $1, limitTerm, $2, throwTest1RuntimeException());
+        Verifier.requireBigIntegerLessThanInclusive(targetTerm, $1, limitTerm, $2, throwTest1RuntimeException());
+
+        // 測試檢查不通過的情況, 拋出非預設自定義錯誤
+        AssertionsEx.assertThrown(() -> Verifier.requireBigIntegerLessThanInclusive(targetTerm, $1, $0, throwTest1RuntimeException()))
+                .hasMessageContaining(String.format(errorMsgFormat, targetTerm, $1, "", $0))
+                .isInstanceOf(Test1RuntimeException.class);
+        AssertionsEx.assertThrown(() -> Verifier.requireBigIntegerLessThanInclusive(targetTerm, $1, limitTerm, $0, throwTest1RuntimeException()))
+                .hasMessageContaining(String.format(errorMsgFormat, targetTerm, $1, limitTerm, $0))
+                .isInstanceOf(Test1RuntimeException.class);
+    }
+
+    @Test
+    public void BigInteger_requireLessThanExclusive() {
+        String targetTerm = "targetTerm";
+        String limitTerm = "limitTerm";
+        String errorMsgFormat = Verifier.ErrorMsgFormat.LESS_THAN_EXCLUSIVE;
+
+        BigInteger $0 = BigInteger.valueOf(0);
+        BigInteger $1 = BigInteger.valueOf(1);
+        BigInteger $2 = BigInteger.valueOf(2);
+
+        // 測試檢查通過的情況
+        Verifier.requireBigIntegerLessThanExclusive(targetTerm, $1, $2);
+        Verifier.requireBigIntegerLessThanExclusive(targetTerm, $1, limitTerm, $2);
+
+        // 測試檢查不通過的情況
+        AssertionsEx.assertThrown(() -> Verifier.requireBigIntegerLessThanExclusive(targetTerm, $1, $1))
+                .hasMessageContaining(String.format(errorMsgFormat, targetTerm, $1, "", $1))
+                .isInstanceOf(IllegalArgumentException.class);
+        AssertionsEx.assertThrown(() -> Verifier.requireBigIntegerLessThanExclusive(targetTerm, $1, $0))
+                .hasMessageContaining(String.format(errorMsgFormat, targetTerm, $1, "", $0))
+                .isInstanceOf(IllegalArgumentException.class);
+        AssertionsEx.assertThrown(() -> Verifier.requireBigIntegerLessThanExclusive(targetTerm, $1, limitTerm, $1))
+                .hasMessageContaining(String.format(errorMsgFormat, targetTerm, $1, limitTerm, $1))
+                .isInstanceOf(IllegalArgumentException.class);
+        AssertionsEx.assertThrown(() -> Verifier.requireBigIntegerLessThanExclusive(targetTerm, $1, limitTerm, $0))
+                .hasMessageContaining(String.format(errorMsgFormat, targetTerm, $1, limitTerm, $0))
+                .isInstanceOf(IllegalArgumentException.class);
+
+        // 測試檢查通過的情況, 拋出非預設自定義錯誤
+        Verifier.requireBigIntegerLessThanExclusive(targetTerm, $1, $2, throwTest1RuntimeException());
+        Verifier.requireBigIntegerLessThanExclusive(targetTerm, $1, limitTerm, $2, throwTest1RuntimeException());
+
+        // 測試檢查不通過的情況, 拋出非預設自定義錯誤
+        AssertionsEx.assertThrown(() -> Verifier.requireBigIntegerLessThanExclusive(targetTerm, $1, $1, throwTest1RuntimeException()))
+                .hasMessageContaining(String.format(errorMsgFormat, targetTerm, $1, "", $1))
+                .isInstanceOf(Test1RuntimeException.class);
+        AssertionsEx.assertThrown(() -> Verifier.requireBigIntegerLessThanExclusive(targetTerm, $1, $0, throwTest1RuntimeException()))
+                .hasMessageContaining(String.format(errorMsgFormat, targetTerm, $1, "", $0))
+                .isInstanceOf(Test1RuntimeException.class);
+        AssertionsEx.assertThrown(() -> Verifier.requireBigIntegerLessThanExclusive(targetTerm, $1, limitTerm, $1, throwTest1RuntimeException()))
+                .hasMessageContaining(String.format(errorMsgFormat, targetTerm, $1, limitTerm, $1))
+                .isInstanceOf(Test1RuntimeException.class);
+        AssertionsEx.assertThrown(() -> Verifier.requireBigIntegerLessThanExclusive(targetTerm, $1, limitTerm, $0, throwTest1RuntimeException()))
                 .hasMessageContaining(String.format(errorMsgFormat, targetTerm, $1, limitTerm, $0))
                 .isInstanceOf(Test1RuntimeException.class);
     }

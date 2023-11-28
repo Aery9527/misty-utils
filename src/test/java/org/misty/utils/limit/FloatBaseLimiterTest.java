@@ -1,0 +1,37 @@
+package org.misty.utils.limit;
+
+import org.junit.jupiter.api.Test;
+
+public class FloatBaseLimiterTest extends FloatAbstractLimiterTest {
+
+    @Test
+    public void build() {
+        teset_build(AbstractLimiterBuilder::withBase);
+    }
+
+    @Test
+    public void set() {
+        test_set(FloatBaseLimiter::new);
+    }
+
+    @Test
+    public void plus() {
+        test_plus(FloatBaseLimiter::new);
+    }
+
+    @Test
+    public void minus() {
+        test_minus(FloatBaseLimiter::new);
+    }
+
+    @Test
+    public void increment() {
+        test_increment(FloatBaseLimiter::new);
+    }
+
+    @Test
+    public void decrement() {
+        test_decrement(FloatBaseLimiter::new);
+    }
+
+}

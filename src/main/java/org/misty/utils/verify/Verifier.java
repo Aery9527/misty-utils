@@ -1,6 +1,7 @@
 package org.misty.utils.verify;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 
 public class Verifier {
 
@@ -10,24 +11,32 @@ public class Verifier {
 
         public static final String REFUSE_NULL_OR_EMPTY = "\"%s\" can't be null or empty";
 
-        public static final String MORE_THAN_INCLUSIVE = "%s(%s) must be more than or equal to %s(%s)";
+        public static final String MORE_THAN_INCLUSIVE = "%s(%s) must >= %s(%s)";
 
-        public static final String MORE_THAN_EXCLUSIVE = "%s(%s) must be more than %s(%s)";
+        public static final String MORE_THAN_EXCLUSIVE = "%s(%s) must > %s(%s)";
 
-        public static final String LESS_THAN_INCLUSIVE = "%s(%s) must be less than or equal to %s(%s)";
+        public static final String LESS_THAN_INCLUSIVE = "%s(%s) must <= %s(%s)";
 
-        public static final String LESS_THAN_EXCLUSIVE = "%s(%s) must be less than %s(%s)";
+        public static final String LESS_THAN_EXCLUSIVE = "%s(%s) must < %s(%s)";
 
-        public static final String REQUIRE_RANGE_INCLUSIVE = "%s(%s) must be in range [%s, %s]";
+        public static final String REQUIRE_RANGE_INCLUSIVE = "%s(%s) must in range [%s, %s] {target >= min && target <= max}";
 
-        public static final String REQUIRE_RANGE_EXCLUSIVE = "%s(%s) must be in range (%s, %s)";
+        public static final String REQUIRE_RANGE_INCLUSIVE_EXCLUSIVE = "%s(%s) must in range [%s, %s) {target >= min && target < max}";
 
-        public static final String REFUSE_RANGE_INCLUSIVE = "%s(%s) can't be in range [%s, %s]";
+        public static final String REQUIRE_RANGE_EXCLUSIVE = "%s(%s) must in range (%s, %s) {target > min && target < max}";
 
-        public static final String REFUSE_RANGE_EXCLUSIVE = "%s(%s) can't be in range (%s, %s)";
+        public static final String REQUIRE_RANGE_EXCLUSIVE_INCLUSIVE = "%s(%s) must in range (%s, %s] {target > min && target <= max}";
+
+        public static final String REFUSE_RANGE_INCLUSIVE = "%s(%s) can't in range [%s, %s] {target < min || target > max}";
+
+        public static final String REFUSE_RANGE_INCLUSIVE_EXCLUSIVE = "%s(%s) can't in range [%s, %s) {target < min || target => max}";
+
+        public static final String REFUSE_RANGE_EXCLUSIVE = "%s(%s) can't in range (%s, %s) {target <= min || target => max}";
+
+        public static final String REFUSE_RANGE_EXCLUSIVE_INCLUSIVE = "%s(%s) can't in range (%s, %s] {target <= min || target > max}";
     }
 
-    public static final VerifierLogic<IllegalArgumentException> INSTANCE = new VerifierLogic<>() {
+    public static final VerifierLogic<IllegalArgumentException> INSTANCE = new VerifierLogic<IllegalArgumentException>() {
         @Override
         public <TargetType, MagType extends VerifierErrorMsg<TargetType>> VerifierThrown<TargetType, MagType, IllegalArgumentException> getThrower() {
             return error -> {
@@ -65,6 +74,10 @@ public class Verifier {
             return new BigDecimalRangeVerifier(min, max);
         }
 
+        @Override
+        public BigIntegerRangeVerifier ofRange(BigInteger min, BigInteger max) throws IllegalArgumentException {
+            return new BigIntegerRangeVerifier(min, max);
+        }
     };
 
     public static void refuseNull(String term, Object arg) throws IllegalArgumentException {
@@ -977,6 +990,154 @@ public class Verifier {
             VerifierThrown<BigDecimal, VerifierLimitErrorMsg<BigDecimal>, ExceptionType> thrown
     ) throws ExceptionType {
         INSTANCE.requireBigDecimalLessThanExclusive(targetTerm, target, limitTerm, limit, thrown);
+    }
+
+    public static BigIntegerRangeVerifier ofRange(BigInteger min, BigInteger max) {
+        return (BigIntegerRangeVerifier) INSTANCE.ofRange(min, max);
+    }
+
+    public static void requireBigIntegerMoreThanInclusive(
+            String targetTerm,
+            BigInteger target,
+            BigInteger limit
+    ) throws IllegalArgumentException {
+        INSTANCE.requireBigIntegerMoreThanInclusive(targetTerm, target, limit);
+    }
+
+    public static void requireBigIntegerMoreThanInclusive(
+            String targetTerm,
+            BigInteger target,
+            String limitTerm,
+            BigInteger limit
+    ) throws IllegalArgumentException {
+        INSTANCE.requireBigIntegerMoreThanInclusive(targetTerm, target, limitTerm, limit);
+    }
+
+    public static <ExceptionType extends Exception> void requireBigIntegerMoreThanInclusive(
+            String targetTerm,
+            BigInteger target,
+            BigInteger limit,
+            VerifierThrown<BigInteger, VerifierLimitErrorMsg<BigInteger>, ExceptionType> thrown
+    ) throws ExceptionType {
+        INSTANCE.requireBigIntegerMoreThanInclusive(targetTerm, target, limit, thrown);
+    }
+
+    public static <ExceptionType extends Exception> void requireBigIntegerMoreThanInclusive(
+            String targetTerm,
+            BigInteger target,
+            String limitTerm,
+            BigInteger limit,
+            VerifierThrown<BigInteger, VerifierLimitErrorMsg<BigInteger>, ExceptionType> thrown
+    ) throws ExceptionType {
+        INSTANCE.requireBigIntegerMoreThanInclusive(targetTerm, target, limitTerm, limit, thrown);
+    }
+
+    public static void requireBigIntegerMoreThanExclusive(
+            String targetTerm,
+            BigInteger target,
+            BigInteger limit
+    ) throws IllegalArgumentException {
+        INSTANCE.requireBigIntegerMoreThanExclusive(targetTerm, target, limit);
+    }
+
+    public static void requireBigIntegerMoreThanExclusive(
+            String targetTerm,
+            BigInteger target,
+            String limitTerm,
+            BigInteger limit
+    ) throws IllegalArgumentException {
+        INSTANCE.requireBigIntegerMoreThanExclusive(targetTerm, target, limitTerm, limit);
+    }
+
+    public static <ExceptionType extends Exception> void requireBigIntegerMoreThanExclusive(
+            String targetTerm,
+            BigInteger target,
+            BigInteger limit,
+            VerifierThrown<BigInteger, VerifierLimitErrorMsg<BigInteger>, ExceptionType> thrown
+    ) throws ExceptionType {
+        INSTANCE.requireBigIntegerMoreThanExclusive(targetTerm, target, limit, thrown);
+    }
+
+    public static <ExceptionType extends Exception> void requireBigIntegerMoreThanExclusive(
+            String targetTerm,
+            BigInteger target,
+            String limitTerm,
+            BigInteger limit,
+            VerifierThrown<BigInteger, VerifierLimitErrorMsg<BigInteger>, ExceptionType> thrown
+    ) throws ExceptionType {
+        INSTANCE.requireBigIntegerMoreThanExclusive(targetTerm, target, limitTerm, limit, thrown);
+    }
+
+    public static void requireBigIntegerLessThanInclusive(
+            String targetTerm,
+            BigInteger target,
+            BigInteger limit
+    ) throws IllegalArgumentException {
+        INSTANCE.requireBigIntegerLessThanInclusive(targetTerm, target, limit);
+    }
+
+    public static void requireBigIntegerLessThanInclusive(
+            String targetTerm,
+            BigInteger target,
+            String limitTerm,
+            BigInteger limit
+    ) throws IllegalArgumentException {
+        INSTANCE.requireBigIntegerLessThanInclusive(targetTerm, target, limitTerm, limit);
+    }
+
+    public static <ExceptionType extends Exception> void requireBigIntegerLessThanInclusive(
+            String targetTerm,
+            BigInteger target,
+            BigInteger limit,
+            VerifierThrown<BigInteger, VerifierLimitErrorMsg<BigInteger>, ExceptionType> thrown
+    ) throws ExceptionType {
+        INSTANCE.requireBigIntegerLessThanInclusive(targetTerm, target, limit, thrown);
+    }
+
+    public static <ExceptionType extends Exception> void requireBigIntegerLessThanInclusive(
+            String targetTerm,
+            BigInteger target,
+            String limitTerm,
+            BigInteger limit,
+            VerifierThrown<BigInteger, VerifierLimitErrorMsg<BigInteger>, ExceptionType> thrown
+    ) throws ExceptionType {
+        INSTANCE.requireBigIntegerLessThanInclusive(targetTerm, target, limitTerm, limit, thrown);
+    }
+
+    public static void requireBigIntegerLessThanExclusive(
+            String targetTerm,
+            BigInteger target,
+            BigInteger limit
+    ) throws IllegalArgumentException {
+        INSTANCE.requireBigIntegerLessThanExclusive(targetTerm, target, limit);
+    }
+
+    public static void requireBigIntegerLessThanExclusive(
+            String targetTerm,
+            BigInteger target,
+            String limitTerm,
+            BigInteger limit
+    ) throws IllegalArgumentException {
+        INSTANCE.requireBigIntegerLessThanExclusive(targetTerm, target, limitTerm, limit);
+    }
+
+    public static <ExceptionType extends Exception> void requireBigIntegerLessThanExclusive(
+            String targetTerm,
+            BigInteger target,
+            BigInteger limit,
+            VerifierThrown<BigInteger, VerifierLimitErrorMsg<BigInteger>, ExceptionType> thrown
+    ) throws ExceptionType {
+        INSTANCE.requireBigIntegerLessThanExclusive(targetTerm, target, limit, thrown);
+    }
+
+    public static <ExceptionType extends Exception> void requireBigIntegerLessThanExclusive(
+            String targetTerm,
+            BigInteger target,
+            String limitTerm,
+            BigInteger limit,
+            VerifierThrown<BigInteger, VerifierLimitErrorMsg<BigInteger>, ExceptionType> thrown
+    ) throws ExceptionType {
+        INSTANCE.requireBigIntegerLessThanExclusive(targetTerm, target, limitTerm, limit, thrown);
     }
 
 }

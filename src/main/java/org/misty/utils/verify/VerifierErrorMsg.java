@@ -14,6 +14,10 @@ public class VerifierErrorMsg<TargetType> {
         this.errorMsg = errorMsg;
     }
 
+    public VerifierErrorMsg<TargetType> copy(String errorMsg) {
+        return new VerifierErrorMsg<>(targetTerm, target, errorMsg);
+    }
+
     public String getTargetTerm() {
         return targetTerm;
     }

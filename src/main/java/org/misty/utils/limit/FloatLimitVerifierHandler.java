@@ -38,10 +38,9 @@ public class FloatLimitVerifierHandler implements LimitVerifier {
         this.minusVerifier = minusVerifier;
         this.unlimitedVerifier = acceptUnlimited ? (target, term, operate) -> {
         } : (target, term, operate) -> {
-            boolean notAllow = Float.isInfinite(target) || Float.isNaN(target);
-            notAllow |= Float.isInfinite(operate) || Float.isNaN(operate);
+            boolean notAllow = isInfiniteOrNaN(target) || isInfiniteOrNaN(operate);
             if (notAllow) {
-                String msg = String.format(Limiter.ErrorMsgFormat.OVERFLOW_FLOAT, target, term, operate);
+                String msg = String.format(Limiter.ErrorMsgFormat.INFINITE_NAN_OPERATE, target, term, operate);
                 this.limiterThrown.thrown(msg); // here support throw exception
                 throw new UnsupportedOperationException(msg);
             }
@@ -49,6 +48,11 @@ public class FloatLimitVerifierHandler implements LimitVerifier {
     }
 
     public void verifySet(float target) {
+        if (isInfiniteOrNaN(target)) {
+            String msg = String.format(Limiter.ErrorMsgFormat.INFINITE_NAN, target, "");
+            this.limiterThrown.thrown(msg); // here support throw exception
+            throw new UnsupportedOperationException(msg);
+        }
         this.setVerifier.verify(target);
     }
 
@@ -64,6 +68,10 @@ public class FloatLimitVerifierHandler implements LimitVerifier {
         float result = target - minus;
         this.minusVerifier.verify(target, minus, result);
         return result;
+    }
+
+    public boolean isInfiniteOrNaN(float value) {
+        return Float.isInfinite(value) || Float.isNaN(value);
     }
 
 }

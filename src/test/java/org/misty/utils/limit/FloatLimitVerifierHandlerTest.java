@@ -7,6 +7,7 @@ import org.misty._utils.TestRuntimeException;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Consumer;
+import java.util.stream.Stream;
 
 public class FloatLimitVerifierHandlerTest {
 
@@ -17,6 +18,12 @@ public class FloatLimitVerifierHandlerTest {
         AtomicBoolean checkPoint1 = new AtomicBoolean(false);
         AtomicBoolean checkPoint2 = new AtomicBoolean(false);
         AtomicBoolean checkPoint3 = new AtomicBoolean(false);
+
+        Runnable resetCheckPoint = () -> {
+            checkPoint1.set(false);
+            checkPoint2.set(false);
+            checkPoint3.set(false);
+        };
 
         FloatLimitVerifierHandler limitVerifierHandler = new FloatLimitVerifierHandler(targetTerm, errorMsg -> { // limiterThrown
             throw new TestRuntimeException(errorMsg);
@@ -43,6 +50,19 @@ public class FloatLimitVerifierHandlerTest {
         AssertionsEx.assertThat(checkPoint1.get()).isTrue();
         AssertionsEx.assertThat(checkPoint2.get()).isFalse();
         AssertionsEx.assertThat(checkPoint3.get()).isFalse();
+
+        // verify acceptUnlimited
+        Stream.of(Float.NaN, Float.POSITIVE_INFINITY, Float.NEGATIVE_INFINITY).forEach(target -> {
+            resetCheckPoint.run();
+
+            AssertionsEx.assertThrown(() -> limitVerifierHandler.verifySet(target))
+                    .hasMessage(String.format(Limiter.ErrorMsgFormat.INFINITE_NAN, target, ""))
+                    .isInstanceOf(TestRuntimeException.class);
+
+            AssertionsEx.assertThat(checkPoint1.get()).isFalse();
+            AssertionsEx.assertThat(checkPoint2.get()).isFalse();
+            AssertionsEx.assertThat(checkPoint3.get()).isFalse();
+        });
     }
 
     @Test
@@ -107,22 +127,22 @@ public class FloatLimitVerifierHandlerTest {
         };
 
         acceptUnlimitedTest.accept(() -> AssertionsEx.assertThrown(() -> limitVerifierHandler.verifyPlus(0f, Float.NaN))
-                .hasMessage(String.format(Limiter.ErrorMsgFormat.OVERFLOW_FLOAT, 0f, "plus", Float.NaN))
+                .hasMessage(String.format(Limiter.ErrorMsgFormat.INFINITE_NAN_OPERATE, 0f, "plus", Float.NaN))
                 .isInstanceOf(TestRuntimeException.class));
         acceptUnlimitedTest.accept(() -> AssertionsEx.assertThrown(() -> limitVerifierHandler.verifyPlus(0f, Float.POSITIVE_INFINITY))
-                .hasMessage(String.format(Limiter.ErrorMsgFormat.OVERFLOW_FLOAT, 0f, "plus", Float.POSITIVE_INFINITY))
+                .hasMessage(String.format(Limiter.ErrorMsgFormat.INFINITE_NAN_OPERATE, 0f, "plus", Float.POSITIVE_INFINITY))
                 .isInstanceOf(TestRuntimeException.class));
         acceptUnlimitedTest.accept(() -> AssertionsEx.assertThrown(() -> limitVerifierHandler.verifyPlus(0f, Float.NEGATIVE_INFINITY))
-                .hasMessage(String.format(Limiter.ErrorMsgFormat.OVERFLOW_FLOAT, 0f, "plus", Float.NEGATIVE_INFINITY))
+                .hasMessage(String.format(Limiter.ErrorMsgFormat.INFINITE_NAN_OPERATE, 0f, "plus", Float.NEGATIVE_INFINITY))
                 .isInstanceOf(TestRuntimeException.class));
         acceptUnlimitedTest.accept(() -> AssertionsEx.assertThrown(() -> limitVerifierHandler.verifyPlus(Float.NaN, 0f))
-                .hasMessage(String.format(Limiter.ErrorMsgFormat.OVERFLOW_FLOAT, Float.NaN, "plus", 0f))
+                .hasMessage(String.format(Limiter.ErrorMsgFormat.INFINITE_NAN_OPERATE, Float.NaN, "plus", 0f))
                 .isInstanceOf(TestRuntimeException.class));
         acceptUnlimitedTest.accept(() -> AssertionsEx.assertThrown(() -> limitVerifierHandler.verifyPlus(Float.POSITIVE_INFINITY, 0f))
-                .hasMessage(String.format(Limiter.ErrorMsgFormat.OVERFLOW_FLOAT, Float.POSITIVE_INFINITY, "plus", 0f))
+                .hasMessage(String.format(Limiter.ErrorMsgFormat.INFINITE_NAN_OPERATE, Float.POSITIVE_INFINITY, "plus", 0f))
                 .isInstanceOf(TestRuntimeException.class));
         acceptUnlimitedTest.accept(() -> AssertionsEx.assertThrown(() -> limitVerifierHandler.verifyPlus(Float.NEGATIVE_INFINITY, 0f))
-                .hasMessage(String.format(Limiter.ErrorMsgFormat.OVERFLOW_FLOAT, Float.NEGATIVE_INFINITY, "plus", 0f))
+                .hasMessage(String.format(Limiter.ErrorMsgFormat.INFINITE_NAN_OPERATE, Float.NEGATIVE_INFINITY, "plus", 0f))
                 .isInstanceOf(TestRuntimeException.class));
     }
 
@@ -188,22 +208,22 @@ public class FloatLimitVerifierHandlerTest {
         };
 
         acceptUnlimitedTest.accept(() -> AssertionsEx.assertThrown(() -> limitVerifierHandler.verifyMinus(0f, Float.NaN))
-                .hasMessage(String.format(Limiter.ErrorMsgFormat.OVERFLOW_FLOAT, 0f, "minus", Float.NaN))
+                .hasMessage(String.format(Limiter.ErrorMsgFormat.INFINITE_NAN_OPERATE, 0f, "minus", Float.NaN))
                 .isInstanceOf(TestRuntimeException.class));
         acceptUnlimitedTest.accept(() -> AssertionsEx.assertThrown(() -> limitVerifierHandler.verifyMinus(0f, Float.POSITIVE_INFINITY))
-                .hasMessage(String.format(Limiter.ErrorMsgFormat.OVERFLOW_FLOAT, 0f, "minus", Float.POSITIVE_INFINITY))
+                .hasMessage(String.format(Limiter.ErrorMsgFormat.INFINITE_NAN_OPERATE, 0f, "minus", Float.POSITIVE_INFINITY))
                 .isInstanceOf(TestRuntimeException.class));
         acceptUnlimitedTest.accept(() -> AssertionsEx.assertThrown(() -> limitVerifierHandler.verifyMinus(0f, Float.NEGATIVE_INFINITY))
-                .hasMessage(String.format(Limiter.ErrorMsgFormat.OVERFLOW_FLOAT, 0f, "minus", Float.NEGATIVE_INFINITY))
+                .hasMessage(String.format(Limiter.ErrorMsgFormat.INFINITE_NAN_OPERATE, 0f, "minus", Float.NEGATIVE_INFINITY))
                 .isInstanceOf(TestRuntimeException.class));
         acceptUnlimitedTest.accept(() -> AssertionsEx.assertThrown(() -> limitVerifierHandler.verifyMinus(Float.NaN, 0f))
-                .hasMessage(String.format(Limiter.ErrorMsgFormat.OVERFLOW_FLOAT, Float.NaN, "minus", 0f))
+                .hasMessage(String.format(Limiter.ErrorMsgFormat.INFINITE_NAN_OPERATE, Float.NaN, "minus", 0f))
                 .isInstanceOf(TestRuntimeException.class));
         acceptUnlimitedTest.accept(() -> AssertionsEx.assertThrown(() -> limitVerifierHandler.verifyMinus(Float.POSITIVE_INFINITY, 0f))
-                .hasMessage(String.format(Limiter.ErrorMsgFormat.OVERFLOW_FLOAT, Float.POSITIVE_INFINITY, "minus", 0f))
+                .hasMessage(String.format(Limiter.ErrorMsgFormat.INFINITE_NAN_OPERATE, Float.POSITIVE_INFINITY, "minus", 0f))
                 .isInstanceOf(TestRuntimeException.class));
         acceptUnlimitedTest.accept(() -> AssertionsEx.assertThrown(() -> limitVerifierHandler.verifyMinus(Float.NEGATIVE_INFINITY, 0f))
-                .hasMessage(String.format(Limiter.ErrorMsgFormat.OVERFLOW_FLOAT, Float.NEGATIVE_INFINITY, "minus", 0f))
+                .hasMessage(String.format(Limiter.ErrorMsgFormat.INFINITE_NAN_OPERATE, Float.NEGATIVE_INFINITY, "minus", 0f))
                 .isInstanceOf(TestRuntimeException.class));
     }
 

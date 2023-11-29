@@ -24,9 +24,9 @@ public interface Limiter {
 
         public static final String OVERFLOW_LONG_MIN = "? that is overflow (MIN -2^63=" + Long.MIN_VALUE + ")";
 
-        public static final String INFINITE_NAN = "target=%s,%s not allow Infinite(?/0) or NaN(0/0) in formula.";
+        public static final String INFINITE_NAN = "%s(%s) can't set Infinite(?/0) or NaN(0/0).";
 
-        public static final String INFINITE_NAN_OPERATE = String.format(INFINITE_NAN, "%s", " %s=%s,");
+        public static final String INFINITE_NAN_OPERATE = "%s(%s), %s(%s), not allow Infinite(?/0) or NaN(0/0) in formula.";
 
         public static final String OPERATION = "%s(%s) %s %s = %s";
     }

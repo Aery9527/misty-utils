@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="85a0b3b9-499c-4427-8178-fde3848053e3" name="Changes" comment="add limit series" />
+    <list default="true" id="85a0b3b9-499c-4427-8178-fde3848053e3" name="Changes" comment="fix FloatLimitVerifierHandler and DoubleLimitVerifierHandler verify Nan/Infinity/-Infinity">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/DoubleLimitVerifierHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/DoubleLimitVerifierHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/FloatLimitVerifierHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/FloatLimitVerifierHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/Limiter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/Limiter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/DoubleLimitVerifierHandlerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/DoubleLimitVerifierHandlerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/FloatLimitVerifierHandlerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/FloatLimitVerifierHandlerTest.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -72,7 +79,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "com.google.cloudcode.ide_session_index": "20231128_0000",
+    "com.google.cloudcode.ide_session_index": "20231129_0000",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "git-widget-placeholder": "develop",
@@ -110,7 +117,7 @@
       <recent name="org.misty.utils" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.All in misty-utils.test">
+  <component name="RunManager" selected="JUnit.FloatLimitVerifierHandlerTest">
     <configuration name="All in misty-utils.test (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="misty-utils.test" />
       <option name="PACKAGE_NAME" value="" />
@@ -127,34 +134,32 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CombinatoricsSorterTest.addFilter" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="DoubleLimitVerifierHandlerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="misty-utils.test" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.misty.utils.combinatorics.*" />
+          <option name="PATTERN" value="org.misty.utils.limit.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="org.misty.utils.combinatorics" />
-      <option name="MAIN_CLASS_NAME" value="org.misty.utils.combinatorics.CombinatoricsSorterTest" />
-      <option name="METHOD_NAME" value="addFilter" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="PACKAGE_NAME" value="org.misty.utils.limit" />
+      <option name="MAIN_CLASS_NAME" value="org.misty.utils.limit.DoubleLimitVerifierHandlerTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TrackedTest.create_with_link" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="FloatLimitVerifierHandlerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="misty-utils.test" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.misty.utils.*" />
+          <option name="PATTERN" value="org.misty.utils.limit.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="org.misty.utils" />
-      <option name="MAIN_CLASS_NAME" value="org.misty.utils.TrackedTest" />
-      <option name="METHOD_NAME" value="create_with_link" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="PACKAGE_NAME" value="org.misty.utils.limit" />
+      <option name="MAIN_CLASS_NAME" value="org.misty.utils.limit.FloatLimitVerifierHandlerTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -176,11 +181,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.FloatLimitVerifierHandlerTest" />
+        <item itemvalue="JUnit.DoubleLimitVerifierHandlerTest" />
         <item itemvalue="JUnit.All in misty-utils.test" />
         <item itemvalue="JUnit.All in misty-utils.test (1)" />
         <item itemvalue="JUnit.VerifierTest" />
-        <item itemvalue="JUnit.TrackedTest.create_with_link" />
-        <item itemvalue="JUnit.CombinatoricsSorterTest.addFilter" />
       </list>
     </recent_temporary>
   </component>
@@ -205,6 +210,7 @@
       <workItem from="1699948385481" duration="140000" />
       <workItem from="1699948535176" duration="5858000" />
       <workItem from="1701159036739" duration="910000" />
+      <workItem from="1701249778479" duration="1570000" />
     </task>
     <task id="LOCAL-00001" summary="Combinatorics add collect series">
       <option name="closed" value="true" />
@@ -342,7 +348,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701159823889</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="fix FloatLimitVerifierHandler and DoubleLimitVerifierHandler verify Nan/Infinity/-Infinity">
+      <option name="closed" value="true" />
+      <created>1701250048820</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1701250048820</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -364,7 +378,8 @@
     <MESSAGE value="Verifier add refuseNull method" />
     <MESSAGE value="adjust verify series" />
     <MESSAGE value="add limit series" />
-    <option name="LAST_COMMIT_MESSAGE" value="add limit series" />
+    <MESSAGE value="fix FloatLimitVerifierHandler and DoubleLimitVerifierHandler verify Nan/Infinity/-Infinity" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix FloatLimitVerifierHandler and DoubleLimitVerifierHandler verify Nan/Infinity/-Infinity" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/misty_utils$JudgeTest.ic" NAME="JudgeTest Coverage Results" MODIFIED="1698051751125" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

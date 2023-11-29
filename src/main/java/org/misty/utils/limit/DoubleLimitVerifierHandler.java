@@ -1,5 +1,7 @@
 package org.misty.utils.limit;
 
+import java.util.function.Consumer;
+
 public class DoubleLimitVerifierHandler implements LimitVerifier {
 
     private interface UnlimitedVerifier {
@@ -17,6 +19,8 @@ public class DoubleLimitVerifierHandler implements LimitVerifier {
     private final DoubleLimitVerifier.OperationVerifier minusVerifier;
 
     private final UnlimitedVerifier unlimitedVerifier;
+
+    private final Consumer<Double> setUnlimitedVerifier;
 
     public DoubleLimitVerifierHandler(String targetTerm,
                                       LimiterThrown limiterThrown,
@@ -40,7 +44,16 @@ public class DoubleLimitVerifierHandler implements LimitVerifier {
         } : (target, term, operate) -> {
             boolean notAllow = isInfiniteOrNaN(target) || isInfiniteOrNaN(operate);
             if (notAllow) {
-                String msg = String.format(Limiter.ErrorMsgFormat.INFINITE_NAN_OPERATE, target, term, operate);
+                String msg = String.format(Limiter.ErrorMsgFormat.INFINITE_NAN_OPERATE, targetTerm, target, term, operate);
+                this.limiterThrown.thrown(msg); // here support throw exception
+                throw new UnsupportedOperationException(msg);
+            }
+        };
+        this.setUnlimitedVerifier = acceptUnlimited ? target -> {
+        } : target -> {
+            boolean notAllow = isInfiniteOrNaN(target);
+            if (notAllow) {
+                String msg = String.format(Limiter.ErrorMsgFormat.INFINITE_NAN, this.targetTerm, target);
                 this.limiterThrown.thrown(msg); // here support throw exception
                 throw new UnsupportedOperationException(msg);
             }
@@ -48,11 +61,7 @@ public class DoubleLimitVerifierHandler implements LimitVerifier {
     }
 
     public void verifySet(double target) {
-        if (isInfiniteOrNaN(target)) {
-            String msg = String.format(Limiter.ErrorMsgFormat.INFINITE_NAN, target, "");
-            this.limiterThrown.thrown(msg); // here support throw exception
-            throw new UnsupportedOperationException(msg);
-        }
+        this.setUnlimitedVerifier.accept(target);
         this.setVerifier.verify(target);
     }
 

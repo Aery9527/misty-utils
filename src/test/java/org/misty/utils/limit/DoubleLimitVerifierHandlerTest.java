@@ -3,6 +3,7 @@ package org.misty.utils.limit;
 import org.junit.jupiter.api.Test;
 import org.misty._utils.AssertionsEx;
 import org.misty._utils.TestRuntimeException;
+import org.misty.utils.combinatorics.Combinations;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
@@ -25,44 +26,55 @@ public class DoubleLimitVerifierHandlerTest {
             checkPoint3.set(false);
         };
 
-        DoubleLimitVerifierHandler limitVerifierHandler = new DoubleLimitVerifierHandler(targetTerm, errorMsg -> { // limiterThrown
-            throw new TestRuntimeException(errorMsg);
-        }, new DoubleLimitVerifier() {
-            @Override
-            public void verifySet(double target) throws RuntimeException {
-                checkPoint1.set(true);
-            }
+        Consumer<Boolean> test = acceptUnlimited -> {
+            DoubleLimitVerifierHandler limitVerifierHandler = new DoubleLimitVerifierHandler(targetTerm, errorMsg -> { // limiterThrown
+                throw new TestRuntimeException(errorMsg);
+            }, new DoubleLimitVerifier() {
+                @Override
+                public void verifySet(double target) throws RuntimeException {
+                    checkPoint1.set(true);
+                }
 
-            @Override
-            public void verifyPlus(double target, double plus, double result) throws RuntimeException {
-                checkPoint2.set(true);
-            }
+                @Override
+                public void verifyPlus(double target, double plus, double result) throws RuntimeException {
+                    checkPoint2.set(true);
+                }
 
-            @Override
-            public void verifyMinus(double target, double minus, double result) throws RuntimeException {
-                checkPoint3.set(true);
-            }
-        }, false);
+                @Override
+                public void verifyMinus(double target, double minus, double result) throws RuntimeException {
+                    checkPoint3.set(true);
+                }
+            }, acceptUnlimited);
 
-        // verify invoke
-        limitVerifierHandler.verifySet(0);
-
-        AssertionsEx.assertThat(checkPoint1.get()).isTrue();
-        AssertionsEx.assertThat(checkPoint2.get()).isFalse();
-        AssertionsEx.assertThat(checkPoint3.get()).isFalse();
-
-        // verify acceptUnlimited
-        Stream.of(Float.NaN, Float.POSITIVE_INFINITY, Float.NEGATIVE_INFINITY).forEach(target -> {
+            // verify invoke
             resetCheckPoint.run();
 
-            AssertionsEx.assertThrown(() -> limitVerifierHandler.verifySet(target))
-                    .hasMessage(String.format(Limiter.ErrorMsgFormat.INFINITE_NAN, target, ""))
-                    .isInstanceOf(TestRuntimeException.class);
+            limitVerifierHandler.verifySet(0);
 
-            AssertionsEx.assertThat(checkPoint1.get()).isFalse();
+            AssertionsEx.assertThat(checkPoint1.get()).isTrue();
             AssertionsEx.assertThat(checkPoint2.get()).isFalse();
             AssertionsEx.assertThat(checkPoint3.get()).isFalse();
-        });
+
+            // verify acceptUnlimited
+            Stream.of(Double.NaN, Double.POSITIVE_INFINITY, Double.NEGATIVE_INFINITY).forEach(target -> {
+                resetCheckPoint.run();
+
+                if (acceptUnlimited) {
+                    limitVerifierHandler.verifySet(target);
+                } else {
+                    AssertionsEx.assertThrown(() -> limitVerifierHandler.verifySet(target))
+                            .hasMessage(String.format(Limiter.ErrorMsgFormat.INFINITE_NAN, targetTerm, target))
+                            .isInstanceOf(TestRuntimeException.class);
+                }
+
+                AssertionsEx.assertThat(checkPoint1.get()).isEqualTo(acceptUnlimited);
+                AssertionsEx.assertThat(checkPoint2.get()).isFalse();
+                AssertionsEx.assertThat(checkPoint3.get()).isFalse();
+            });
+        };
+
+        test.accept(true);
+        test.accept(false);
     }
 
     @Test
@@ -82,68 +94,70 @@ public class DoubleLimitVerifierHandlerTest {
             checkPoint3.set(false);
         };
 
-        DoubleLimitVerifierHandler limitVerifierHandler = new DoubleLimitVerifierHandler(targetTerm, errorMsg -> { // limiterThrown
-            throw new TestRuntimeException(errorMsg);
-        }, new DoubleLimitVerifier() {
-            @Override
-            public void verifySet(double target) throws RuntimeException {
-                checkPoint1.set(true);
-            }
+        Consumer<Boolean> test = acceptUnlimited -> {
+            DoubleLimitVerifierHandler limitVerifierHandler = new DoubleLimitVerifierHandler(targetTerm, errorMsg -> { // limiterThrown
+                throw new TestRuntimeException(errorMsg);
+            }, new DoubleLimitVerifier() {
+                @Override
+                public void verifySet(double target) throws RuntimeException {
+                    checkPoint1.set(true);
+                }
 
-            @Override
-            public void verifyPlus(double target, double plus, double result) throws RuntimeException {
-                checkPoint2.set(true);
-                checkTarget.set(target);
-                checkPlus.set(plus);
-                checkResult.set(result);
-            }
+                @Override
+                public void verifyPlus(double target, double plus, double result) throws RuntimeException {
+                    checkPoint2.set(true);
+                    checkTarget.set(target);
+                    checkPlus.set(plus);
+                    checkResult.set(result);
+                }
 
-            @Override
-            public void verifyMinus(double target, double minus, double result) throws RuntimeException {
-                checkPoint3.set(true);
-            }
-        }, false);
+                @Override
+                public void verifyMinus(double target, double minus, double result) throws RuntimeException {
+                    checkPoint3.set(true);
+                }
+            }, acceptUnlimited);
 
-        // verify invoke
-        resetCheckPoint.run();
-        limitVerifierHandler.verifyPlus(9527, 5566);
-
-        AssertionsEx.assertThat(checkPoint1.get()).isFalse();
-        AssertionsEx.assertThat(checkPoint2.get()).isTrue();
-        AssertionsEx.assertThat(checkPoint3.get()).isFalse();
-        AssertionsEx.assertThat(checkTarget.get()).isEqualTo(9527f);
-        AssertionsEx.assertThat(checkPlus.get()).isEqualTo(5566f);
-        AssertionsEx.assertThat(checkResult.get()).isEqualTo(9527f + 5566f);
-
-        // verify acceptUnlimited
-        Consumer<Runnable> acceptUnlimitedTest = (action) -> {
+            // verify invoke
             resetCheckPoint.run();
-
-            action.run();
+            limitVerifierHandler.verifyPlus(9527, 5566);
 
             AssertionsEx.assertThat(checkPoint1.get()).isFalse();
-            AssertionsEx.assertThat(checkPoint2.get()).isFalse();
+            AssertionsEx.assertThat(checkPoint2.get()).isTrue();
             AssertionsEx.assertThat(checkPoint3.get()).isFalse();
+            AssertionsEx.assertThat(checkTarget.get()).isEqualTo(9527f);
+            AssertionsEx.assertThat(checkPlus.get()).isEqualTo(5566f);
+            AssertionsEx.assertThat(checkResult.get()).isEqualTo(9527f + 5566f);
+
+            // verify acceptUnlimited
+            Combinations<Double> combinations = Combinations.of(0d, Double.NaN, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY);
+            combinations.foreach(2, true, combination -> { // filter
+                return combination.get(0).content != 0f || combination.get(1).content != 0f;
+            }, combination -> { // test
+                resetCheckPoint.run();
+
+                double a = combination.get(0);
+                double b = combination.get(1);
+
+                if (acceptUnlimited) {
+                    limitVerifierHandler.verifyPlus(a, b);
+                    limitVerifierHandler.verifyPlus(b, a);
+                } else {
+                    AssertionsEx.assertThrown(() -> limitVerifierHandler.verifyPlus(a, b))
+                            .hasMessage(String.format(Limiter.ErrorMsgFormat.INFINITE_NAN_OPERATE, targetTerm, a, "plus", b))
+                            .isInstanceOf(TestRuntimeException.class);
+                    AssertionsEx.assertThrown(() -> limitVerifierHandler.verifyPlus(b, a))
+                            .hasMessage(String.format(Limiter.ErrorMsgFormat.INFINITE_NAN_OPERATE, targetTerm, b, "plus", a))
+                            .isInstanceOf(TestRuntimeException.class);
+                }
+
+                AssertionsEx.assertThat(checkPoint1.get()).isFalse();
+                AssertionsEx.assertThat(checkPoint2.get()).isEqualTo(acceptUnlimited);
+                AssertionsEx.assertThat(checkPoint3.get()).isFalse();
+            });
         };
 
-        acceptUnlimitedTest.accept(() -> AssertionsEx.assertThrown(() -> limitVerifierHandler.verifyPlus(0f, Double.NaN))
-                .hasMessage(String.format(Limiter.ErrorMsgFormat.INFINITE_NAN_OPERATE, 0f, "plus", Double.NaN))
-                .isInstanceOf(TestRuntimeException.class));
-        acceptUnlimitedTest.accept(() -> AssertionsEx.assertThrown(() -> limitVerifierHandler.verifyPlus(0f, Double.POSITIVE_INFINITY))
-                .hasMessage(String.format(Limiter.ErrorMsgFormat.INFINITE_NAN_OPERATE, 0f, "plus", Double.POSITIVE_INFINITY))
-                .isInstanceOf(TestRuntimeException.class));
-        acceptUnlimitedTest.accept(() -> AssertionsEx.assertThrown(() -> limitVerifierHandler.verifyPlus(0f, Double.NEGATIVE_INFINITY))
-                .hasMessage(String.format(Limiter.ErrorMsgFormat.INFINITE_NAN_OPERATE, 0f, "plus", Double.NEGATIVE_INFINITY))
-                .isInstanceOf(TestRuntimeException.class));
-        acceptUnlimitedTest.accept(() -> AssertionsEx.assertThrown(() -> limitVerifierHandler.verifyPlus(Double.NaN, 0f))
-                .hasMessage(String.format(Limiter.ErrorMsgFormat.INFINITE_NAN_OPERATE, Double.NaN, "plus", 0f))
-                .isInstanceOf(TestRuntimeException.class));
-        acceptUnlimitedTest.accept(() -> AssertionsEx.assertThrown(() -> limitVerifierHandler.verifyPlus(Double.POSITIVE_INFINITY, 0f))
-                .hasMessage(String.format(Limiter.ErrorMsgFormat.INFINITE_NAN_OPERATE, Double.POSITIVE_INFINITY, "plus", 0f))
-                .isInstanceOf(TestRuntimeException.class));
-        acceptUnlimitedTest.accept(() -> AssertionsEx.assertThrown(() -> limitVerifierHandler.verifyPlus(Double.NEGATIVE_INFINITY, 0f))
-                .hasMessage(String.format(Limiter.ErrorMsgFormat.INFINITE_NAN_OPERATE, Double.NEGATIVE_INFINITY, "plus", 0f))
-                .isInstanceOf(TestRuntimeException.class));
+        test.accept(true);
+        test.accept(false);
     }
 
     @Test
@@ -163,68 +177,71 @@ public class DoubleLimitVerifierHandlerTest {
             checkPoint3.set(false);
         };
 
-        DoubleLimitVerifierHandler limitVerifierHandler = new DoubleLimitVerifierHandler(targetTerm, errorMsg -> { // limiterThrown
-            throw new TestRuntimeException(errorMsg);
-        }, new DoubleLimitVerifier() {
-            @Override
-            public void verifySet(double target) throws RuntimeException {
-                checkPoint1.set(true);
-            }
 
-            @Override
-            public void verifyPlus(double target, double plus, double result) throws RuntimeException {
-                checkPoint2.set(true);
-            }
+        Consumer<Boolean> test = acceptUnlimited -> {
+            DoubleLimitVerifierHandler limitVerifierHandler = new DoubleLimitVerifierHandler(targetTerm, errorMsg -> { // limiterThrown
+                throw new TestRuntimeException(errorMsg);
+            }, new DoubleLimitVerifier() {
+                @Override
+                public void verifySet(double target) throws RuntimeException {
+                    checkPoint1.set(true);
+                }
 
-            @Override
-            public void verifyMinus(double target, double minus, double result) throws RuntimeException {
-                checkPoint3.set(true);
-                checkTarget.set(target);
-                checkMinus.set(minus);
-                checkResult.set(result);
-            }
-        }, false);
+                @Override
+                public void verifyPlus(double target, double plus, double result) throws RuntimeException {
+                    checkPoint2.set(true);
+                }
 
-        // verify invoke
-        resetCheckPoint.run();
-        limitVerifierHandler.verifyMinus(9527, 5566);
+                @Override
+                public void verifyMinus(double target, double minus, double result) throws RuntimeException {
+                    checkPoint3.set(true);
+                    checkTarget.set(target);
+                    checkMinus.set(minus);
+                    checkResult.set(result);
+                }
+            }, acceptUnlimited);
 
-        AssertionsEx.assertThat(checkPoint1.get()).isFalse();
-        AssertionsEx.assertThat(checkPoint2.get()).isFalse();
-        AssertionsEx.assertThat(checkPoint3.get()).isTrue();
-        AssertionsEx.assertThat(checkTarget.get()).isEqualTo(9527);
-        AssertionsEx.assertThat(checkMinus.get()).isEqualTo(5566);
-        AssertionsEx.assertThat(checkResult.get()).isEqualTo(9527 - 5566);
-
-        // verify acceptUnlimited
-        Consumer<Runnable> acceptUnlimitedTest = (action) -> {
+            // verify invoke
             resetCheckPoint.run();
-
-            action.run();
+            limitVerifierHandler.verifyMinus(9527, 5566);
 
             AssertionsEx.assertThat(checkPoint1.get()).isFalse();
             AssertionsEx.assertThat(checkPoint2.get()).isFalse();
-            AssertionsEx.assertThat(checkPoint3.get()).isFalse();
+            AssertionsEx.assertThat(checkPoint3.get()).isTrue();
+            AssertionsEx.assertThat(checkTarget.get()).isEqualTo(9527);
+            AssertionsEx.assertThat(checkMinus.get()).isEqualTo(5566);
+            AssertionsEx.assertThat(checkResult.get()).isEqualTo(9527 - 5566);
+
+            // verify acceptUnlimited
+            Combinations<Double> combinations = Combinations.of(0d, Double.NaN, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY);
+            combinations.foreach(2, true, combination -> { // filter
+                return combination.get(0).content != 0f || combination.get(1).content != 0f;
+            }, combination -> { // test
+                resetCheckPoint.run();
+
+                double a = combination.get(0);
+                double b = combination.get(1);
+
+                if (acceptUnlimited) {
+                    limitVerifierHandler.verifyMinus(a, b);
+                    limitVerifierHandler.verifyMinus(b, a);
+                } else {
+                    AssertionsEx.assertThrown(() -> limitVerifierHandler.verifyMinus(a, b))
+                            .hasMessage(String.format(Limiter.ErrorMsgFormat.INFINITE_NAN_OPERATE, targetTerm, a, "minus", b))
+                            .isInstanceOf(TestRuntimeException.class);
+                    AssertionsEx.assertThrown(() -> limitVerifierHandler.verifyMinus(b, a))
+                            .hasMessage(String.format(Limiter.ErrorMsgFormat.INFINITE_NAN_OPERATE, targetTerm, b, "minus", a))
+                            .isInstanceOf(TestRuntimeException.class);
+                }
+
+                AssertionsEx.assertThat(checkPoint1.get()).isFalse();
+                AssertionsEx.assertThat(checkPoint2.get()).isFalse();
+                AssertionsEx.assertThat(checkPoint3.get()).isEqualTo(acceptUnlimited);
+            });
         };
 
-        acceptUnlimitedTest.accept(() -> AssertionsEx.assertThrown(() -> limitVerifierHandler.verifyMinus(0f, Double.NaN))
-                .hasMessage(String.format(Limiter.ErrorMsgFormat.INFINITE_NAN_OPERATE, 0f, "minus", Double.NaN))
-                .isInstanceOf(TestRuntimeException.class));
-        acceptUnlimitedTest.accept(() -> AssertionsEx.assertThrown(() -> limitVerifierHandler.verifyMinus(0f, Double.POSITIVE_INFINITY))
-                .hasMessage(String.format(Limiter.ErrorMsgFormat.INFINITE_NAN_OPERATE, 0f, "minus", Double.POSITIVE_INFINITY))
-                .isInstanceOf(TestRuntimeException.class));
-        acceptUnlimitedTest.accept(() -> AssertionsEx.assertThrown(() -> limitVerifierHandler.verifyMinus(0f, Double.NEGATIVE_INFINITY))
-                .hasMessage(String.format(Limiter.ErrorMsgFormat.INFINITE_NAN_OPERATE, 0f, "minus", Double.NEGATIVE_INFINITY))
-                .isInstanceOf(TestRuntimeException.class));
-        acceptUnlimitedTest.accept(() -> AssertionsEx.assertThrown(() -> limitVerifierHandler.verifyMinus(Double.NaN, 0f))
-                .hasMessage(String.format(Limiter.ErrorMsgFormat.INFINITE_NAN_OPERATE, Double.NaN, "minus", 0f))
-                .isInstanceOf(TestRuntimeException.class));
-        acceptUnlimitedTest.accept(() -> AssertionsEx.assertThrown(() -> limitVerifierHandler.verifyMinus(Double.POSITIVE_INFINITY, 0f))
-                .hasMessage(String.format(Limiter.ErrorMsgFormat.INFINITE_NAN_OPERATE, Double.POSITIVE_INFINITY, "minus", 0f))
-                .isInstanceOf(TestRuntimeException.class));
-        acceptUnlimitedTest.accept(() -> AssertionsEx.assertThrown(() -> limitVerifierHandler.verifyMinus(Double.NEGATIVE_INFINITY, 0f))
-                .hasMessage(String.format(Limiter.ErrorMsgFormat.INFINITE_NAN_OPERATE, Double.NEGATIVE_INFINITY, "minus", 0f))
-                .isInstanceOf(TestRuntimeException.class));
+        test.accept(true);
+        test.accept(false);
     }
 
 }

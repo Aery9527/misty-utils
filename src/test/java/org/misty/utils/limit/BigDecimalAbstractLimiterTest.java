@@ -32,7 +32,7 @@ public class BigDecimalAbstractLimiterTest {
         setting.accept(limiterBuilder);
 
         BigDecimalLimiter limiter = limiterBuilder.build(initValue);
-        AssertionsEx.assertThat(limiter.get()).isEqualTo(initValue);
+        AssertionsEx.assertThat(limiter.get()).isEqualTo(initValue.setScale(BigDecimalLimiterBuilder.DEFAULT_SCALE, BigDecimalLimiterBuilder.DEFAULT_ROUNDING_MODE));
 
         AssertionsEx.assertThrown(() -> limiterBuilder.build($0))
                 .hasMessage(term + " " + String.format(Verifier.ErrorMsgFormat.REQUIRE_RANGE_INCLUSIVE, Limiter.ErrorMsgFormat.SET_TERM, "0.00", min, max))
@@ -40,7 +40,10 @@ public class BigDecimalAbstractLimiterTest {
     }
 
     public void test_set(BiFunction<BigDecimalLimitVerifierHandler, BigDecimal, BigDecimalLimiter> setting) {
-        BigDecimalLimitVerifierHandler limitVerifierHandler = new BigDecimalLimitVerifierHandler(2, RoundingMode.HALF_UP, new BigDecimalLimitVerifier() {
+        int scale = 2;
+        RoundingMode roundingMode = RoundingMode.HALF_UP;
+
+        BigDecimalLimitVerifierHandler limitVerifierHandler = new BigDecimalLimitVerifierHandler(scale, roundingMode, new BigDecimalLimitVerifier() {
             @Override
             public void verifySet(BigDecimal target) throws RuntimeException {
                 if (target.compareTo($0) == 0) {
@@ -62,13 +65,13 @@ public class BigDecimalAbstractLimiterTest {
         BigDecimal initValue = $2;
         BigDecimalLimiter limiter = setting.apply(limitVerifierHandler, initValue);
 
-        BigDecimal setValue = $1;
+        BigDecimal setValue = BigDecimal.valueOf(Math.random() * 100);
         limiter.set(setValue);
-        AssertionsEx.assertThat(limiter.get()).isEqualTo(setValue);
+        AssertionsEx.assertThat(limiter.get()).isEqualTo(setValue.setScale(scale, roundingMode));
 
         AssertionsEx.assertThatThrownBy(() -> limiter.set($0))
                 .isInstanceOf(TestRuntimeException.class);
-        AssertionsEx.assertThat(limiter.get()).isEqualTo(setValue);
+        AssertionsEx.assertThat(limiter.get()).isEqualTo(setValue.setScale(scale, roundingMode));
     }
 
     public void test_plus(BiFunction<BigDecimalLimitVerifierHandler, BigDecimal, BigDecimalLimiter> setting) {

@@ -18,8 +18,7 @@ public class BigDecimalVolatileLimiter extends BigDecimalAbstractLimiter {
 
     @Override
     public void set(BigDecimal value) {
-        super.getVerifier().verifySet(value);
-        this.value = value;
+        this.value = super.getVerifier().verifySet(value);
     }
 
     @Override

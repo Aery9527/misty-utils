@@ -33,9 +33,10 @@ public class BigDecimalLimitVerifierHandler implements LimitVerifier {
         this.minusVerifier = minusVerifier;
     }
 
-    public void verifySet(BigDecimal target) {
+    public BigDecimal verifySet(BigDecimal target) {
         target = setScale(target);
         this.setVerifier.verify(target);
+        return target;
     }
 
     public BigDecimal verifyPlus(BigDecimal target, BigDecimal plus) {

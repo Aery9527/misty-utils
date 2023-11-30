@@ -28,13 +28,13 @@ public class BigDecimalMildLimiterTest {
             BigDecimalMildLimiter mildLimiter = limiterBuilder.buildMildLimiter($2);
 
             AssertionsEx.assertThat(mildLimiter.set($1)).isTrue();
-            AssertionsEx.assertThat(mildLimiter.get()).isEqualTo($1);
+            AssertionsEx.assertThat(mildLimiter.get()).isEqualTo($1.setScale(BigDecimalLimiterBuilder.DEFAULT_SCALE, BigDecimalLimiterBuilder.DEFAULT_ROUNDING_MODE));
 
             AssertionsEx.assertThat(mildLimiter.set($0)).isFalse();
-            AssertionsEx.assertThat(mildLimiter.get()).isEqualTo($1);
+            AssertionsEx.assertThat(mildLimiter.get()).isEqualTo($1.setScale(BigDecimalLimiterBuilder.DEFAULT_SCALE, BigDecimalLimiterBuilder.DEFAULT_ROUNDING_MODE));
 
             AssertionsEx.assertThat(mildLimiter.set($4)).isFalse();
-            AssertionsEx.assertThat(mildLimiter.get()).isEqualTo($1);
+            AssertionsEx.assertThat(mildLimiter.get()).isEqualTo($1.setScale(BigDecimalLimiterBuilder.DEFAULT_SCALE, BigDecimalLimiterBuilder.DEFAULT_ROUNDING_MODE));
         };
 
         test.accept(AbstractLimiterBuilder::withBase);

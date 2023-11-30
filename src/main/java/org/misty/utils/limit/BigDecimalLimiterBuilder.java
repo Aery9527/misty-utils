@@ -17,9 +17,13 @@ public class BigDecimalLimiterBuilder extends
                 BigDecimalLimiterBuilder
                 > {
 
-    private int scale = 2;
+    public static final int DEFAULT_SCALE = 2;
 
-    private RoundingMode roundingMode = RoundingMode.HALF_UP;
+    public static final RoundingMode DEFAULT_ROUNDING_MODE = RoundingMode.HALF_UP;
+
+    private int scale = DEFAULT_SCALE;
+
+    private RoundingMode roundingMode = DEFAULT_ROUNDING_MODE;
 
     @Override
     protected void verifyMinLessThanMax(BigDecimal min, BigDecimal max) throws IllegalArgumentException {

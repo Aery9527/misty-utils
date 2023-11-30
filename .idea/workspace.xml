@@ -6,11 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="85a0b3b9-499c-4427-8178-fde3848053e3" name="Changes" comment="fix FloatLimitVerifierHandler and DoubleLimitVerifierHandler verify Nan/Infinity/-Infinity">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/DoubleLimitVerifierHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/DoubleLimitVerifierHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/FloatLimitVerifierHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/FloatLimitVerifierHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/Limiter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/Limiter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/DoubleLimitVerifierHandlerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/DoubleLimitVerifierHandlerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/FloatLimitVerifierHandlerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/FloatLimitVerifierHandlerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/BigDecimalAtomicLimiter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/BigDecimalAtomicLimiter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/BigDecimalBaseLimiter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/BigDecimalBaseLimiter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/BigDecimalLimitVerifierHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/BigDecimalLimitVerifierHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/BigDecimalLimiterBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/BigDecimalLimiterBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/BigDecimalVolatileLimiter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/BigDecimalVolatileLimiter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/BigDecimalAbstractLimiterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/BigDecimalAbstractLimiterTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/BigDecimalMildLimiterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/BigDecimalMildLimiterTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,7 +81,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "com.google.cloudcode.ide_session_index": "20231129_0000",
+    "com.google.cloudcode.ide_session_index": "20231130_0001",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "git-widget-placeholder": "develop",
@@ -117,7 +119,7 @@
       <recent name="org.misty.utils" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.FloatLimitVerifierHandlerTest">
+  <component name="RunManager" selected="JUnit.All in misty-utils.test">
     <configuration name="All in misty-utils.test (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="misty-utils.test" />
       <option name="PACKAGE_NAME" value="" />
@@ -181,9 +183,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.All in misty-utils.test" />
         <item itemvalue="JUnit.FloatLimitVerifierHandlerTest" />
         <item itemvalue="JUnit.DoubleLimitVerifierHandlerTest" />
-        <item itemvalue="JUnit.All in misty-utils.test" />
         <item itemvalue="JUnit.All in misty-utils.test (1)" />
         <item itemvalue="JUnit.VerifierTest" />
       </list>
@@ -210,7 +212,9 @@
       <workItem from="1699948385481" duration="140000" />
       <workItem from="1699948535176" duration="5858000" />
       <workItem from="1701159036739" duration="910000" />
-      <workItem from="1701249778479" duration="1570000" />
+      <workItem from="1701249778479" duration="2193000" />
+      <workItem from="1701312645067" duration="908000" />
+      <workItem from="1701331898261" duration="518000" />
     </task>
     <task id="LOCAL-00001" summary="Combinatorics add collect series">
       <option name="closed" value="true" />
@@ -356,7 +360,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701250048820</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="fix FloatLimitVerifierHandler and DoubleLimitVerifierHandler verify Nan/Infinity/-Infinity">
+      <option name="closed" value="true" />
+      <created>1701252656000</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1701252656000</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

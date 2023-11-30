@@ -19,8 +19,7 @@ public class BigDecimalAtomicLimiter extends BigDecimalAbstractLimiter {
 
     @Override
     public void set(BigDecimal value) {
-        super.getVerifier().verifySet(value);
-        this.value.set(value);
+        this.value.set(super.getVerifier().verifySet(value));
     }
 
     @Override

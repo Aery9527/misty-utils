@@ -4,16 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="85a0b3b9-499c-4427-8178-fde3848053e3" name="Changes" comment="fix FloatLimitVerifierHandler and DoubleLimitVerifierHandler verify Nan/Infinity/-Infinity">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/BigDecimalAtomicLimiter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/BigDecimalAtomicLimiter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/BigDecimalBaseLimiter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/BigDecimalBaseLimiter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/BigDecimalLimitVerifierHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/BigDecimalLimitVerifierHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/BigDecimalLimiterBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/BigDecimalLimiterBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/BigDecimalVolatileLimiter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/BigDecimalVolatileLimiter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/BigDecimalAbstractLimiterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/BigDecimalAbstractLimiterTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/BigDecimalMildLimiterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/BigDecimalMildLimiterTest.java" afterDir="false" />
-    </list>
+    <list default="true" id="85a0b3b9-499c-4427-8178-fde3848053e3" name="Changes" comment="fix BigDecimal set not scale issue in limiter series" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -214,7 +205,7 @@
       <workItem from="1701159036739" duration="910000" />
       <workItem from="1701249778479" duration="2193000" />
       <workItem from="1701312645067" duration="908000" />
-      <workItem from="1701331898261" duration="518000" />
+      <workItem from="1701331898261" duration="603000" />
     </task>
     <task id="LOCAL-00001" summary="Combinatorics add collect series">
       <option name="closed" value="true" />
@@ -368,7 +359,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701252656000</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="fix BigDecimal set not scale issue in limiter series">
+      <option name="closed" value="true" />
+      <created>1701332495347</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1701332495347</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -391,7 +390,8 @@
     <MESSAGE value="adjust verify series" />
     <MESSAGE value="add limit series" />
     <MESSAGE value="fix FloatLimitVerifierHandler and DoubleLimitVerifierHandler verify Nan/Infinity/-Infinity" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix FloatLimitVerifierHandler and DoubleLimitVerifierHandler verify Nan/Infinity/-Infinity" />
+    <MESSAGE value="fix BigDecimal set not scale issue in limiter series" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix BigDecimal set not scale issue in limiter series" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/misty_utils$JudgeTest.ic" NAME="JudgeTest Coverage Results" MODIFIED="1698051751125" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

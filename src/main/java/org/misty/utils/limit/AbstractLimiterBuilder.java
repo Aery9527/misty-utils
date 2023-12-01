@@ -160,10 +160,18 @@ public abstract class AbstractLimiterBuilder<
         return (Self) this;
     }
 
+    public Self giveMinLimit(TargetType min) {
+        return giveMinLimit(min, true);
+    }
+
     public Self giveMinLimit(TargetType min, boolean inclusive) {
         this.min = min;
         this.minInclusive = inclusive;
         return (Self) this;
+    }
+
+    public Self giveMaxLimit(TargetType max) {
+        return giveMaxLimit(max, true);
     }
 
     public Self giveMaxLimit(TargetType max, boolean inclusive) {

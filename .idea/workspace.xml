@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="85a0b3b9-499c-4427-8178-fde3848053e3" name="Changes" comment="fix BigDecimal set not scale issue in limiter series" />
+    <list default="true" id="85a0b3b9-499c-4427-8178-fde3848053e3" name="Changes" comment="enhance AbstractLimiterBuilder">
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/AbstractLimiterBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/AbstractLimiterBuilder.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -72,7 +74,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "com.google.cloudcode.ide_session_index": "20231130_0001",
+    "com.google.cloudcode.ide_session_index": "20231201_0000",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "git-widget-placeholder": "develop",
@@ -206,6 +208,7 @@
       <workItem from="1701249778479" duration="2193000" />
       <workItem from="1701312645067" duration="908000" />
       <workItem from="1701331898261" duration="603000" />
+      <workItem from="1701398424845" duration="405000" />
     </task>
     <task id="LOCAL-00001" summary="Combinatorics add collect series">
       <option name="closed" value="true" />
@@ -367,7 +370,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701332495347</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="enhance AbstractLimiterBuilder">
+      <option name="closed" value="true" />
+      <created>1701398575277</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1701398575277</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -391,7 +402,8 @@
     <MESSAGE value="add limit series" />
     <MESSAGE value="fix FloatLimitVerifierHandler and DoubleLimitVerifierHandler verify Nan/Infinity/-Infinity" />
     <MESSAGE value="fix BigDecimal set not scale issue in limiter series" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix BigDecimal set not scale issue in limiter series" />
+    <MESSAGE value="enhance AbstractLimiterBuilder" />
+    <option name="LAST_COMMIT_MESSAGE" value="enhance AbstractLimiterBuilder" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/misty_utils$JudgeTest.ic" NAME="JudgeTest Coverage Results" MODIFIED="1698051751125" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

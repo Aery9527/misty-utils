@@ -180,6 +180,10 @@ public abstract class AbstractLimiterBuilder<
         return (Self) this;
     }
 
+    public Self giveLimit(TargetType min, TargetType max) {
+        return giveMinLimit(min).giveMaxLimit(max);
+    }
+
     public Self giveThrown(LimiterThrown limiterThrown) {
         this.limiterThrown = limiterThrown;
         return (Self) this;

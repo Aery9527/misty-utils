@@ -26,8 +26,8 @@ class BiFloatToDoubleFunctionExTest {
         float forTestArg1 = (float) (Math.random() * 100);
         float forTestArg2 = (float) (Math.random() * 100);
 
-        AtomicReference<Float> tempArg1 = new AtomicReference<Float>();
-        AtomicReference<Float> tempArg2 = new AtomicReference<Float>();
+        AtomicReference<Float> tempArg1 = new AtomicReference<>();
+        AtomicReference<Float> tempArg2 = new AtomicReference<>();
         BiFloatToDoubleFunctionEx testWrap = (arg1, arg2) -> {
             tempArg1.set(arg1);
             tempArg2.set(arg2);

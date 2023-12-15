@@ -62,4 +62,12 @@ public interface FunctionalInterfaceEx {
         }
     }
 
+    static <ExceptionType extends Exception> short wrap(ShortSupplierEx shortSupplierEx) throws ExceptionType {
+        try {
+            return shortSupplierEx.handle();
+        } catch (Exception t) {
+            throw (ExceptionType) t;
+        }
+    }
+
 }

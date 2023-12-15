@@ -12,14 +12,14 @@ class DoubleFunctionExTest {
     @Test
     void execute() {
         double forTestArg = Math.random();
-        DoubleFunctionEx<String> doubleFunctionEx = (arg) -> String.valueOf(arg);
-        Assertions.assertThat(doubleFunctionEx.execute(forTestArg)).isEqualTo(String.valueOf(forTestArg));
+        DoubleFunctionEx<String> functionEx = (arg) -> String.valueOf(arg);
+        Assertions.assertThat(functionEx.execute(forTestArg)).isEqualTo(String.valueOf(forTestArg));
 
-        DoubleFunctionEx<String> doubleFunctionEx1 = (arg) -> FunctionalInterfaceExTest.throwIOException(); // there is no need for a try-catch.
-        testThrow(doubleFunctionEx1, IOException.class);
+        DoubleFunctionEx<String> functionEx1 = (arg) -> FunctionalInterfaceExTest.throwIOException(); // there is no need for a try-catch.
+        testThrow(functionEx1, IOException.class);
 
-        DoubleFunctionEx<String> doubleFunctionEx2 = (arg) -> FunctionalInterfaceExTest.throwInterruptedException(); // there is no need for a try-catch.
-        testThrow(doubleFunctionEx2, InterruptedException.class);
+        DoubleFunctionEx<String> functionEx2 = (arg) -> FunctionalInterfaceExTest.throwInterruptedException(); // there is no need for a try-catch.
+        testThrow(functionEx2, InterruptedException.class);
     }
 
     void testThrow(DoubleFunctionEx<String> target, Class<? extends Exception> checkExceptionType) {

@@ -11,14 +11,14 @@ class DoublePredicateExTest {
     @Test
     void execute() {
         boolean forTestReturn = (int) (Math.random() * 2) == 0;
-        DoublePredicateEx doublePredicateEx = (arg) -> forTestReturn;
-        Assertions.assertThat(doublePredicateEx.execute(0)).isEqualTo(forTestReturn);
+        DoublePredicateEx predicateEx = (arg) -> forTestReturn;
+        Assertions.assertThat(predicateEx.execute(0)).isEqualTo(forTestReturn);
 
-        DoublePredicateEx doublePredicateEx1 = (arg) -> FunctionalInterfaceExTest.throwIOException(); // there is no need for a try-catch.
-        testThrow(doublePredicateEx1, IOException.class);
+        DoublePredicateEx predicateEx1 = (arg) -> FunctionalInterfaceExTest.throwIOException(); // there is no need for a try-catch.
+        testThrow(predicateEx1, IOException.class);
 
-        DoublePredicateEx doublePredicateEx2 = (arg) -> FunctionalInterfaceExTest.throwInterruptedException(); // there is no need for a try-catch.
-        testThrow(doublePredicateEx2, InterruptedException.class);
+        DoublePredicateEx predicateEx2 = (arg) -> FunctionalInterfaceExTest.throwInterruptedException(); // there is no need for a try-catch.
+        testThrow(predicateEx2, InterruptedException.class);
     }
 
     void testThrow(DoublePredicateEx target, Class<? extends Exception> checkExceptionType) {

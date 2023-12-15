@@ -11,14 +11,14 @@ class LongUnaryOperatorExTest {
     @Test
     void execute() {
         long forTestArg = (long) (Math.random() * 100);
-        LongUnaryOperatorEx longUnaryOperatorEx = (arg) -> arg;
-        Assertions.assertThat(longUnaryOperatorEx.execute(forTestArg)).isEqualTo(forTestArg);
+        LongUnaryOperatorEx unaryOperatorEx = (arg) -> arg;
+        Assertions.assertThat(unaryOperatorEx.execute(forTestArg)).isEqualTo(forTestArg);
 
-        LongUnaryOperatorEx longUnaryOperatorEx1 = (arg) -> FunctionalInterfaceExTest.throwIOException(); // there is no need for a try-catch.
-        testThrow(longUnaryOperatorEx1, IOException.class);
+        LongUnaryOperatorEx unaryOperatorEx1 = (arg) -> FunctionalInterfaceExTest.throwIOException(); // there is no need for a try-catch.
+        testThrow(unaryOperatorEx1, IOException.class);
 
-        LongUnaryOperatorEx longUnaryOperatorEx2 = (arg) -> FunctionalInterfaceExTest.throwInterruptedException(); // there is no need for a try-catch.
-        testThrow(longUnaryOperatorEx2, InterruptedException.class);
+        LongUnaryOperatorEx unaryOperatorEx2 = (arg) -> FunctionalInterfaceExTest.throwInterruptedException(); // there is no need for a try-catch.
+        testThrow(unaryOperatorEx2, InterruptedException.class);
     }
 
     void testThrow(LongUnaryOperatorEx target, Class<? extends Exception> checkExceptionType) {

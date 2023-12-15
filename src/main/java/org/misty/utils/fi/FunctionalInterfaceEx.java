@@ -54,4 +54,12 @@ public interface FunctionalInterfaceEx {
         }
     }
 
+    static <ExceptionType extends Exception> float wrap(FloatSupplierEx floatSupplierEx) throws ExceptionType {
+        try {
+            return floatSupplierEx.handle();
+        } catch (Exception t) {
+            throw (ExceptionType) t;
+        }
+    }
+
 }

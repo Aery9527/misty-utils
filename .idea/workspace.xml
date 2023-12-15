@@ -5,7 +5,118 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="85a0b3b9-499c-4427-8178-fde3848053e3" name="Changes" comment="enhance AbstractLimiterBuilder">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/BiDoubleConsumerEx.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/BiDoubleFunctionEx.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/BiDoublePredicateEx.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/BiDoubleToFloatFunctionEx.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/BiDoubleToIntFunctionEx.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/BiDoubleToLongFunctionEx.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/BiFloatConsumerEx.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/BiFloatFunctionEx.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/BiFloatPredicateEx.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/BiFloatToDoubleFunctionEx.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/BiFloatToIntFunctionEx.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/BiFloatToLongFunctionEx.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/BiIntConsumerEx.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/BiIntFunctionEx.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/BiIntPredicateEx.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/BiIntToDoubleFunctionEx.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/BiIntToFloatFunctionEx.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/BiIntToLongFunctionEx.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/BiLongConsumerEx.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/BiLongFunctionEx.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/BiLongPredicateEx.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/BiLongToDoubleFunctionEx.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/BiLongToFloatFunctionEx.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/BiLongToIntFunctionEx.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/DoubleToFloatFunctionEx.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/FloatConsumerEx.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/FloatFunctionEx.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/FloatPredicateEx.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/FloatSupplierEx.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/FloatToDoubleFunctionEx.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/FloatToIntFunctionEx.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/FloatToLongFunctionEx.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/FloatUnaryOperatorEx.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/IntToFloatFunctionEx.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/LongToFloatFunctionEx.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/ToFloatBiFunctionEx.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/ToFloatFunctionEx.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/BiDoubleConsumerExTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/BiDoubleFunctionExTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/BiDoublePredicateExTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/BiDoubleToFloatFunctionExTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/BiDoubleToIntFunctionExTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/BiDoubleToLongFunctionExTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/BiFloatConsumerExTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/BiFloatFunctionExTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/BiFloatPredicateExTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/BiFloatToDoubleFunctionExTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/BiFloatToIntFunctionExTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/BiFloatToLongFunctionExTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/BiIntConsumerExTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/BiIntFunctionExTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/BiIntPredicateExTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/BiIntToDoubleFunctionExTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/BiIntToFloatFunctionExTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/BiIntToLongFunctionExTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/BiLongConsumerExTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/BiLongFunctionExTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/BiLongPredicateExTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/BiLongToDoubleFunctionExTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/BiLongToFloatFunctionExTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/BiLongToIntFunctionExTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/DoubleToFloatFunctionExTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/FloatConsumerExTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/FloatFunctionExTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/FloatPredicateExTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/FloatSupplierExTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/FloatToDoubleFunctionExTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/FloatToIntFunctionExTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/FloatToLongFunctionExTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/FloatUnaryOperatorExTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/IntToFloatFunctionExTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/LongToFloatFunctionExTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/ToFloatBiFunctionExTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/ToFloatFunctionExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/ExecutorSwitch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/ExecutorSwitch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/FunctionalInterfaceEx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/fi/FunctionalInterfaceEx.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/AbstractLimiterBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/AbstractLimiterBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/ExecutorSwitchTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/ExecutorSwitchTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/BooleanSupplierExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/BooleanSupplierExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/DoubleBinaryOperatorExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/DoubleBinaryOperatorExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/DoubleConsumerExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/DoubleConsumerExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/DoubleFunctionExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/DoubleFunctionExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/DoublePredicateExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/DoublePredicateExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/DoubleSupplierExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/DoubleSupplierExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/DoubleToIntFunctionExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/DoubleToIntFunctionExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/DoubleToLongFunctionExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/DoubleToLongFunctionExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/DoubleUnaryOperatorExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/DoubleUnaryOperatorExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/IntBinaryOperatorExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/IntBinaryOperatorExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/IntConsumerExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/IntConsumerExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/IntFunctionExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/IntFunctionExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/IntPredicateExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/IntPredicateExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/IntToDoubleFunctionExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/IntToDoubleFunctionExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/IntToLongFunctionExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/IntToLongFunctionExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/IntUnaryOperatorExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/IntUnaryOperatorExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/LongBinaryOperatorExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/LongBinaryOperatorExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/LongConsumerExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/LongConsumerExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/LongFunctionExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/LongFunctionExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/LongPredicateExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/LongPredicateExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/LongToDoubleFunctionExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/LongToDoubleFunctionExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/LongToIntFunctionExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/LongToIntFunctionExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/LongUnaryOperatorExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/LongUnaryOperatorExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/ObjDoubleConsumerExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/ObjDoubleConsumerExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/ObjIntConsumerExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/ObjIntConsumerExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/ObjLongConsumerExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/ObjLongConsumerExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/ToDoubleBiFunctionExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/ToDoubleBiFunctionExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/ToDoubleFunctionExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/ToDoubleFunctionExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/ToIntBiFunctionExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/ToIntBiFunctionExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/ToIntFunctionExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/ToIntFunctionExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/ToLongBiFunctionExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/ToLongBiFunctionExTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/ToLongFunctionExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/fi/ToLongFunctionExTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,18 +182,60 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "JUnit.BiDoubleConsumerExTest.execute.executor": "Run",
+    "JUnit.BiDoubleFunctionExTest.execute.executor": "Run",
+    "JUnit.BiDoublePredicateExTest.execute.executor": "Run",
+    "JUnit.BiDoubleToFloatFunctionExTest.execute.executor": "Run",
+    "JUnit.BiDoubleToIntFunctionExTest.execute.executor": "Run",
+    "JUnit.BiDoubleToLongFunctionExTest.execute.executor": "Run",
+    "JUnit.BiFloatConsumerExTest.execute.executor": "Run",
+    "JUnit.BiFloatFunctionExTest.execute.executor": "Run",
+    "JUnit.BiFloatPredicateExTest.execute.executor": "Run",
+    "JUnit.BiFloatToDoubleFunctionExTest.execute.executor": "Run",
+    "JUnit.BiFloatToIntFunctionExTest.execute.executor": "Run",
+    "JUnit.BiFloatToLongFunctionExTest.execute.executor": "Run",
+    "JUnit.BiIntConsumerExTest.executor": "Run",
+    "JUnit.BiIntFunctionExTest.execute.executor": "Run",
+    "JUnit.BiIntPredicateExTest.execute.executor": "Run",
+    "JUnit.BiIntToDoubleFunctionExTest.execute.executor": "Run",
+    "JUnit.BiIntToFloatFunctionExTest.execute.executor": "Run",
+    "JUnit.BiIntToLongFunctionExTest.executor": "Run",
+    "JUnit.BiLongConsumerExTest.execute.executor": "Run",
+    "JUnit.BiLongFunctionExTest.execute.executor": "Run",
+    "JUnit.BiLongPredicateExTest.execute.executor": "Run",
+    "JUnit.BiLongToDoubleFunctionExTest.execute.executor": "Run",
+    "JUnit.BiLongToFloatFunctionExTest.execute.executor": "Run",
+    "JUnit.BiLongToIntFunctionExTest.execute.executor": "Run",
+    "JUnit.DoubleToFloatFunctionExTest.execute.executor": "Run",
+    "JUnit.DoubleToLongFunctionExTest.execute.executor": "Run",
+    "JUnit.FloatConsumerExTest.execute.executor": "Run",
+    "JUnit.FloatFunctionExTest.execute.executor": "Run",
+    "JUnit.FloatPredicateExTest.execute.executor": "Run",
+    "JUnit.FloatSupplierExTest.execute.executor": "Run",
+    "JUnit.FloatToDoubleFunctionExTest.execute.executor": "Run",
+    "JUnit.FloatToIntFunctionExTest.execute.executor": "Run",
+    "JUnit.FloatToLongFunctionExTest.executor": "Run",
+    "JUnit.FloatUnaryOperatorExTest.execute.executor": "Run",
+    "JUnit.IntToFloatFunctionExTest.execute.executor": "Run",
+    "JUnit.LongToFloatFunctionExTest.execute.executor": "Run",
+    "JUnit.ShortSupplierExTest.execute.executor": "Run",
+    "JUnit.ToFloatBiFunctionExTest.execute.executor": "Run",
+    "JUnit.ToFloatFunctionExTest.executor": "Run",
+    "JUnit.ToShortFunctionExTest.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "com.google.cloudcode.ide_session_index": "20231201_0000",
+    "com.google.cloudcode.ide_session_index": "20231215_0000",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "git-widget-placeholder": "develop",
-    "last_opened_file_path": "C:/Users/aerylin/IdeaProjects/misty-utils/src/test/java/org/misty/utils/limit",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/aerylin/IdeaProjects/misty-utils/src/main/java/org/misty/utils/fi",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
@@ -92,35 +245,29 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\aerylin\IdeaProjects\misty-utils\src\main\java\org\misty\utils\fi" />
       <recent name="C:\Users\aerylin\IdeaProjects\misty-utils\src\test\java\org\misty\utils\limit" />
       <recent name="C:\Users\aerylin\IdeaProjects\misty-utils\src\main\java\org\misty\utils\limit" />
       <recent name="C:\Users\aerylin\IdeaProjects\misty-utils\src\test\java\org\misty\utils\verify" />
       <recent name="C:\Users\aerylin\IdeaProjects\misty-utils\src\main\java\org\misty\utils\verify" />
-      <recent name="C:\Users\aerylin\IdeaProjects\misty-utils\src\test\java\org\misty\_utils" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="org.misty.utils.fi" />
       <recent name="org.misty.utils.combinatorics" />
       <recent name="org.misty.utils" />
       <recent name="org.misty.utils.sys" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.misty.utils.fi" />
       <recent name="org.misty._utils" />
       <recent name="org.misty.utils.combinatorics" />
       <recent name="org.misty.utils" />
     </key>
   </component>
   <component name="RunManager" selected="JUnit.All in misty-utils.test">
-    <configuration name="All in misty-utils.test (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="misty-utils.test" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="TEST_OBJECT" value="package" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="All in misty-utils.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="misty-utils.test" />
       <option name="PACKAGE_NAME" value="" />
@@ -129,47 +276,66 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DoubleLimitVerifierHandlerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="BiDoubleToFloatFunctionExTest.execute" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="misty-utils.test" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.misty.utils.limit.*" />
+          <option name="PATTERN" value="org.misty.utils.fi.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="org.misty.utils.limit" />
-      <option name="MAIN_CLASS_NAME" value="org.misty.utils.limit.DoubleLimitVerifierHandlerTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="PACKAGE_NAME" value="org.misty.utils.fi" />
+      <option name="MAIN_CLASS_NAME" value="org.misty.utils.fi.BiDoubleToFloatFunctionExTest" />
+      <option name="METHOD_NAME" value="execute" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="FloatLimitVerifierHandlerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="BiIntToFloatFunctionExTest.execute" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="misty-utils.test" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.misty.utils.limit.*" />
+          <option name="PATTERN" value="org.misty.utils.fi.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="org.misty.utils.limit" />
-      <option name="MAIN_CLASS_NAME" value="org.misty.utils.limit.FloatLimitVerifierHandlerTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="PACKAGE_NAME" value="org.misty.utils.fi" />
+      <option name="MAIN_CLASS_NAME" value="org.misty.utils.fi.BiIntToFloatFunctionExTest" />
+      <option name="METHOD_NAME" value="execute" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="VerifierTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="BiLongToFloatFunctionExTest.execute" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="misty-utils.test" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.misty.utils.verify.*" />
+          <option name="PATTERN" value="org.misty.utils.fi.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="org.misty.utils.verify" />
-      <option name="MAIN_CLASS_NAME" value="org.misty.utils.verify.VerifierTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="PACKAGE_NAME" value="org.misty.utils.fi" />
+      <option name="MAIN_CLASS_NAME" value="org.misty.utils.fi.BiLongToFloatFunctionExTest" />
+      <option name="METHOD_NAME" value="execute" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FloatBinaryOperatorExTest.execute" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="misty-utils.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.misty.utils.fi.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.misty.utils.fi" />
+      <option name="MAIN_CLASS_NAME" value="org.misty.utils.fi.FloatBinaryOperatorExTest" />
+      <option name="METHOD_NAME" value="execute" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -177,12 +343,19 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.All in misty-utils.test" />
-        <item itemvalue="JUnit.FloatLimitVerifierHandlerTest" />
-        <item itemvalue="JUnit.DoubleLimitVerifierHandlerTest" />
-        <item itemvalue="JUnit.All in misty-utils.test (1)" />
-        <item itemvalue="JUnit.VerifierTest" />
+        <item itemvalue="JUnit.FloatBinaryOperatorExTest.execute" />
+        <item itemvalue="JUnit.BiLongToFloatFunctionExTest.execute" />
+        <item itemvalue="JUnit.BiIntToFloatFunctionExTest.execute" />
+        <item itemvalue="JUnit.BiDoubleToFloatFunctionExTest.execute" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-17.0.9-corretto-17.0.9-3183f394aec4-8f899f12" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -208,7 +381,17 @@
       <workItem from="1701249778479" duration="2193000" />
       <workItem from="1701312645067" duration="908000" />
       <workItem from="1701331898261" duration="603000" />
-      <workItem from="1701398424845" duration="405000" />
+      <workItem from="1701398424845" duration="1621000" />
+      <workItem from="1701740640540" duration="626000" />
+      <workItem from="1701746127654" duration="20000" />
+      <workItem from="1701763484981" duration="850000" />
+      <workItem from="1701770187706" duration="599000" />
+      <workItem from="1701831241733" duration="7000" />
+      <workItem from="1701859226031" duration="1290000" />
+      <workItem from="1701921466905" duration="3986000" />
+      <workItem from="1702261623143" duration="34000" />
+      <workItem from="1702541555740" duration="11307000" />
+      <workItem from="1702628005405" duration="1342000" />
     </task>
     <task id="LOCAL-00001" summary="Combinatorics add collect series">
       <option name="closed" value="true" />
@@ -378,7 +561,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701398575277</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="enhance AbstractLimiterBuilder">
+      <option name="closed" value="true" />
+      <created>1701398840020</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1701398840020</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

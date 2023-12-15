@@ -12,11 +12,11 @@ class ObjLongConsumerExTest {
 
     @Test
     void execute() {
-        ObjLongConsumerEx<String> objLongConsumerEx1 = (arg1, arg2) -> FunctionalInterfaceExTest.throwIOException(); // there is no need for a try-catch.
-        testThrow(objLongConsumerEx1, IOException.class);
+        ObjLongConsumerEx<String> consumerEx1 = (arg1, arg2) -> FunctionalInterfaceExTest.throwIOException(); // there is no need for a try-catch.
+        testThrow(consumerEx1, IOException.class);
 
-        ObjLongConsumerEx<String> objLongConsumerEx2 = (arg1, arg2) -> FunctionalInterfaceExTest.throwInterruptedException(); // there is no need for a try-catch.
-        testThrow(objLongConsumerEx2, InterruptedException.class);
+        ObjLongConsumerEx<String> consumerEx2 = (arg1, arg2) -> FunctionalInterfaceExTest.throwInterruptedException(); // there is no need for a try-catch.
+        testThrow(consumerEx2, InterruptedException.class);
     }
 
     void testThrow(ObjLongConsumerEx<String> target, Class<? extends Exception> checkExceptionType) {

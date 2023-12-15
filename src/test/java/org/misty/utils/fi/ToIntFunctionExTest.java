@@ -13,14 +13,14 @@ class ToIntFunctionExTest {
     @Test
     void execute() {
         String forTestArg = String.valueOf((int) (Math.random() * 100));
-        ToIntFunctionEx<String> toIntFunctionEx = (arg) -> Integer.parseInt(arg);
-        Assertions.assertThat(toIntFunctionEx.execute(forTestArg)).isEqualTo(Integer.parseInt(forTestArg));
+        ToIntFunctionEx<String> functionEx = (arg) -> Integer.parseInt(arg);
+        Assertions.assertThat(functionEx.execute(forTestArg)).isEqualTo(Integer.parseInt(forTestArg));
 
-        ToIntFunctionEx<String> ToIntFunctionEx1 = (arg) -> FunctionalInterfaceExTest.throwIOException(); // there is no need for a try-catch.
-        testThrow(ToIntFunctionEx1, IOException.class);
+        ToIntFunctionEx<String> functionEx1 = (arg) -> FunctionalInterfaceExTest.throwIOException(); // there is no need for a try-catch.
+        testThrow(functionEx1, IOException.class);
 
-        ToIntFunctionEx<String> ToIntFunctionEx2 = (arg) -> FunctionalInterfaceExTest.throwInterruptedException(); // there is no need for a try-catch.
-        testThrow(ToIntFunctionEx2, InterruptedException.class);
+        ToIntFunctionEx<String> functionEx2 = (arg) -> FunctionalInterfaceExTest.throwInterruptedException(); // there is no need for a try-catch.
+        testThrow(functionEx2, InterruptedException.class);
     }
 
     void testThrow(ToIntFunctionEx<String> target, Class<? extends Exception> checkExceptionType) {

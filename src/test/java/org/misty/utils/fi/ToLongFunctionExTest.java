@@ -13,14 +13,14 @@ class ToLongFunctionExTest {
     @Test
     void execute() {
         String forTestArg = String.valueOf((long) (Math.random() * 100));
-        ToLongFunctionEx<String> toLongFunctionEx = (arg) -> Long.parseLong(arg);
-        Assertions.assertThat(toLongFunctionEx.execute(forTestArg)).isEqualTo(Long.parseLong(forTestArg));
+        ToLongFunctionEx<String> functionEx = (arg) -> Long.parseLong(arg);
+        Assertions.assertThat(functionEx.execute(forTestArg)).isEqualTo(Long.parseLong(forTestArg));
 
-        ToLongFunctionEx<String> toLongFunctionEx1 = (arg) -> FunctionalInterfaceExTest.throwIOException(); // there is no need for a try-catch.
-        testThrow(toLongFunctionEx1, IOException.class);
+        ToLongFunctionEx<String> functionEx1 = (arg) -> FunctionalInterfaceExTest.throwIOException(); // there is no need for a try-catch.
+        testThrow(functionEx1, IOException.class);
 
-        ToLongFunctionEx<String> toLongFunctionEx2 = (arg) -> FunctionalInterfaceExTest.throwInterruptedException(); // there is no need for a try-catch.
-        testThrow(toLongFunctionEx2, InterruptedException.class);
+        ToLongFunctionEx<String> functionEx2 = (arg) -> FunctionalInterfaceExTest.throwInterruptedException(); // there is no need for a try-catch.
+        testThrow(functionEx2, InterruptedException.class);
     }
 
     void testThrow(ToLongFunctionEx<String> target, Class<? extends Exception> checkExceptionType) {

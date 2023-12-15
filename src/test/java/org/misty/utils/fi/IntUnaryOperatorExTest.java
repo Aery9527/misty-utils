@@ -11,14 +11,14 @@ class IntUnaryOperatorExTest {
     @Test
     void execute() {
         int forTestArg = (int) (Math.random() * 100);
-        IntUnaryOperatorEx intUnaryOperatorEx = (arg) -> arg;
-        Assertions.assertThat(intUnaryOperatorEx.execute(forTestArg)).isEqualTo(forTestArg);
+        IntUnaryOperatorEx unaryOperatorEx = (arg) -> arg;
+        Assertions.assertThat(unaryOperatorEx.execute(forTestArg)).isEqualTo(forTestArg);
 
-        IntUnaryOperatorEx intUnaryOperatorEx1 = (arg) -> FunctionalInterfaceExTest.throwIOException(); // there is no need for a try-catch.
-        testThrow(intUnaryOperatorEx1, IOException.class);
+        IntUnaryOperatorEx unaryOperatorEx1 = (arg) -> FunctionalInterfaceExTest.throwIOException(); // there is no need for a try-catch.
+        testThrow(unaryOperatorEx1, IOException.class);
 
-        IntUnaryOperatorEx intUnaryOperatorEx2 = (arg) -> FunctionalInterfaceExTest.throwInterruptedException(); // there is no need for a try-catch.
-        testThrow(intUnaryOperatorEx2, InterruptedException.class);
+        IntUnaryOperatorEx unaryOperatorEx2 = (arg) -> FunctionalInterfaceExTest.throwInterruptedException(); // there is no need for a try-catch.
+        testThrow(unaryOperatorEx2, InterruptedException.class);
     }
 
     void testThrow(IntUnaryOperatorEx target, Class<? extends Exception> checkExceptionType) {

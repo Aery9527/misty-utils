@@ -13,14 +13,14 @@ class LongBinaryOperatorExTest {
     void execute() {
         long forTestArg1 = (long) (Math.random() * 100);
         long forTestArg2 = (long) (Math.random() * 100);
-        LongBinaryOperatorEx longBinaryOperatorEx = (arg1, arg2) -> arg1 + arg2;
-        Assertions.assertThat(longBinaryOperatorEx.execute(forTestArg1, forTestArg2)).isEqualTo(forTestArg1 + forTestArg2);
+        LongBinaryOperatorEx binaryOperatorEx = (arg1, arg2) -> arg1 + arg2;
+        Assertions.assertThat(binaryOperatorEx.execute(forTestArg1, forTestArg2)).isEqualTo(forTestArg1 + forTestArg2);
 
-        LongBinaryOperatorEx longBinaryOperatorEx1 = (arg1, arg2) -> FunctionalInterfaceExTest.throwIOException(); // there is no need for a try-catch.
-        testThrow(longBinaryOperatorEx1, IOException.class);
+        LongBinaryOperatorEx binaryOperatorEx1 = (arg1, arg2) -> FunctionalInterfaceExTest.throwIOException(); // there is no need for a try-catch.
+        testThrow(binaryOperatorEx1, IOException.class);
 
-        LongBinaryOperatorEx longBinaryOperatorEx2 = (arg1, arg2) -> FunctionalInterfaceExTest.throwInterruptedException(); // there is no need for a try-catch.
-        testThrow(longBinaryOperatorEx2, InterruptedException.class);
+        LongBinaryOperatorEx binaryOperatorEx2 = (arg1, arg2) -> FunctionalInterfaceExTest.throwInterruptedException(); // there is no need for a try-catch.
+        testThrow(binaryOperatorEx2, InterruptedException.class);
     }
 
     void testThrow(LongBinaryOperatorEx target, Class<? extends Exception> checkExceptionType) {

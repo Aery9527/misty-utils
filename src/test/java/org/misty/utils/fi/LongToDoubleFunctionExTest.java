@@ -11,14 +11,14 @@ class LongToDoubleFunctionExTest {
     @Test
     void execute() {
         long forTestArg = (long) (Math.random() * 100);
-        LongToDoubleFunctionEx longToDoubleFunctionEx = (arg) -> arg;
-        Assertions.assertThat(longToDoubleFunctionEx.execute(forTestArg)).isEqualTo(forTestArg);
+        LongToDoubleFunctionEx functionEx = (arg) -> arg;
+        Assertions.assertThat(functionEx.execute(forTestArg)).isEqualTo(forTestArg);
 
-        LongToDoubleFunctionEx longToDoubleFunctionEx1 = (arg) -> FunctionalInterfaceExTest.throwIOException(); // there is no need for a try-catch.
-        testThrow(longToDoubleFunctionEx1, IOException.class);
+        LongToDoubleFunctionEx functionEx1 = (arg) -> FunctionalInterfaceExTest.throwIOException(); // there is no need for a try-catch.
+        testThrow(functionEx1, IOException.class);
 
-        LongToDoubleFunctionEx longToDoubleFunctionEx2 = (arg) -> FunctionalInterfaceExTest.throwInterruptedException(); // there is no need for a try-catch.
-        testThrow(longToDoubleFunctionEx2, InterruptedException.class);
+        LongToDoubleFunctionEx functionEx2 = (arg) -> FunctionalInterfaceExTest.throwInterruptedException(); // there is no need for a try-catch.
+        testThrow(functionEx2, InterruptedException.class);
     }
 
     void testThrow(LongToDoubleFunctionEx target, Class<? extends Exception> checkExceptionType) {

@@ -10,11 +10,11 @@ class DoubleConsumerExTest {
 
     @Test
     void execute() {
-        DoubleConsumerEx doubleConsumerEx1 = (arg) -> FunctionalInterfaceExTest.throwIOException(); // there is no need for a try-catch.
-        testThrow(doubleConsumerEx1, IOException.class);
+        DoubleConsumerEx consumerEx1 = (arg) -> FunctionalInterfaceExTest.throwIOException(); // there is no need for a try-catch.
+        testThrow(consumerEx1, IOException.class);
 
-        DoubleConsumerEx doubleConsumerEx2 = (arg) -> FunctionalInterfaceExTest.throwInterruptedException(); // there is no need for a try-catch.
-        testThrow(doubleConsumerEx2, InterruptedException.class);
+        DoubleConsumerEx consumerEx2 = (arg) -> FunctionalInterfaceExTest.throwInterruptedException(); // there is no need for a try-catch.
+        testThrow(consumerEx2, InterruptedException.class);
     }
 
     void testThrow(DoubleConsumerEx target, Class<? extends Exception> checkExceptionType) {

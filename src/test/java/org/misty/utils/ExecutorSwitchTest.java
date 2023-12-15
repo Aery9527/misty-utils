@@ -41,13 +41,13 @@ class ExecutorSwitchTest {
         AtomicInteger counter1 = new AtomicInteger(0);
         BiPredicate<Integer, Exception> defaultErrorHandler = (times, error) -> {
             counter1.incrementAndGet();
-            return ExecutorSwitch.WHEN_ERROR_CONTINUE;
+            return ExecutorSwitch.CONTINUE_WHEN_ERROR;
         };
 
         AtomicInteger counter2 = new AtomicInteger(0);
         BiPredicate<Integer, Exception> currentErrorHandler = (times, error) -> {
             counter2.incrementAndGet();
-            return ExecutorSwitch.WHEN_ERROR_CONTINUE;
+            return ExecutorSwitch.CONTINUE_WHEN_ERROR;
         };
 
         ExecutorSwitch executorSwitch1 = ExecutorSwitch.create("kerker", defaultErrorHandler);
@@ -104,7 +104,7 @@ class ExecutorSwitchTest {
         AtomicInteger errorCounter = new AtomicInteger(0);
         ExecutorSwitch executorSwitch = ExecutorSwitch.create((times, e) -> { // defaultErrorHandler
             int count = errorCounter.incrementAndGet();
-            return count == stopTimes ? ExecutorSwitch.WHEN_ERROR_BREAK : ExecutorSwitch.WHEN_ERROR_CONTINUE;
+            return count == stopTimes ? ExecutorSwitch.BREAK_WHEN_ERROR : ExecutorSwitch.CONTINUE_WHEN_ERROR;
         }).withSerial();
 
         BooleanSupplier test = () -> executorSwitch.run(times -> {
@@ -127,7 +127,7 @@ class ExecutorSwitchTest {
         AtomicInteger errorCounter = new AtomicInteger(0);
         ExecutorSwitch executorSwitch = ExecutorSwitch.create((times, e) -> { // defaultErrorHandler
             int count = errorCounter.incrementAndGet();
-            return count >= stopTimes ? ExecutorSwitch.WHEN_ERROR_BREAK : ExecutorSwitch.WHEN_ERROR_CONTINUE;
+            return count >= stopTimes ? ExecutorSwitch.BREAK_WHEN_ERROR : ExecutorSwitch.CONTINUE_WHEN_ERROR;
         }).withParallel(threadNumber);
 
         Map<Boolean, AtomicInteger> resultCounter = new HashMap<>();

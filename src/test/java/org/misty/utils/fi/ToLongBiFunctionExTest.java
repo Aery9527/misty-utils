@@ -13,15 +13,15 @@ class ToLongBiFunctionExTest {
     void execute() {
         String forTestArg1 = String.valueOf((long) (Math.random() * 100));
         String forTestArg2 = String.valueOf((long) (Math.random() * 100));
-        ToLongBiFunctionEx<String, String> toLongBiFunctionEx = (arg1, arg2) -> Long.parseLong(arg1) + Long.parseLong(arg2);
-        Assertions.assertThat(toLongBiFunctionEx.execute(forTestArg1, forTestArg2))
+        ToLongBiFunctionEx<String, String> biFunctionEx = (arg1, arg2) -> Long.parseLong(arg1) + Long.parseLong(arg2);
+        Assertions.assertThat(biFunctionEx.execute(forTestArg1, forTestArg2))
                 .isEqualTo(Long.parseLong(forTestArg1) + Long.parseLong(forTestArg2));
 
-        ToLongBiFunctionEx<String, String> ToLongBiFunctionEx1 = (arg1, arg2) -> FunctionalInterfaceExTest.throwIOException(); // there is no need for a try-catch.
-        testThrow(ToLongBiFunctionEx1, IOException.class);
+        ToLongBiFunctionEx<String, String> biFunctionEx1 = (arg1, arg2) -> FunctionalInterfaceExTest.throwIOException(); // there is no need for a try-catch.
+        testThrow(biFunctionEx1, IOException.class);
 
-        ToLongBiFunctionEx<String, String> ToLongBiFunctionEx2 = (arg1, arg2) -> FunctionalInterfaceExTest.throwInterruptedException(); // there is no need for a try-catch.
-        testThrow(ToLongBiFunctionEx2, InterruptedException.class);
+        ToLongBiFunctionEx<String, String> biFunctionEx2 = (arg1, arg2) -> FunctionalInterfaceExTest.throwInterruptedException(); // there is no need for a try-catch.
+        testThrow(biFunctionEx2, InterruptedException.class);
     }
 
     void testThrow(ToLongBiFunctionEx<String, String> target, Class<? extends Exception> checkExceptionType) {

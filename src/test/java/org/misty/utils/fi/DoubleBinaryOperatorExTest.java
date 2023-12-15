@@ -13,14 +13,14 @@ class DoubleBinaryOperatorExTest {
     void execute() {
         double forTestArg1 = Math.random();
         double forTestArg2 = Math.random();
-        DoubleBinaryOperatorEx doubleBinaryOperatorEx = (arg1, arg2) -> arg1 + arg2;
-        Assertions.assertThat(doubleBinaryOperatorEx.execute(forTestArg1, forTestArg2)).isEqualTo(forTestArg1 + forTestArg2);
+        DoubleBinaryOperatorEx binaryOperatorEx = (arg1, arg2) -> arg1 + arg2;
+        Assertions.assertThat(binaryOperatorEx.execute(forTestArg1, forTestArg2)).isEqualTo(forTestArg1 + forTestArg2);
 
-        DoubleBinaryOperatorEx doubleBinaryOperatorEx1 = (arg1, arg2) -> FunctionalInterfaceExTest.throwIOException(); // there is no need for a try-catch.
-        testThrow(doubleBinaryOperatorEx1, IOException.class);
+        DoubleBinaryOperatorEx binaryOperatorEx1 = (arg1, arg2) -> FunctionalInterfaceExTest.throwIOException(); // there is no need for a try-catch.
+        testThrow(binaryOperatorEx1, IOException.class);
 
-        DoubleBinaryOperatorEx doubleBinaryOperatorEx2 = (arg1, arg2) -> FunctionalInterfaceExTest.throwInterruptedException(); // there is no need for a try-catch.
-        testThrow(doubleBinaryOperatorEx2, InterruptedException.class);
+        DoubleBinaryOperatorEx binaryOperatorEx2 = (arg1, arg2) -> FunctionalInterfaceExTest.throwInterruptedException(); // there is no need for a try-catch.
+        testThrow(binaryOperatorEx2, InterruptedException.class);
     }
 
     void testThrow(DoubleBinaryOperatorEx target, Class<? extends Exception> checkExceptionType) {

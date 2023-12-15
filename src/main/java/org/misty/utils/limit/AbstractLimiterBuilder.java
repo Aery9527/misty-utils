@@ -29,38 +29,38 @@ public abstract class AbstractLimiterBuilder<
 
     private DeclareType declareType = DeclareType.BASE;
 
-    public LimiterType build(TargetType initValue) {
-        return build(this.limiterThrown, initValue);
-    }
-
     public MildLimiterType buildMildLimiter(TargetType initValue) {
-        LimiterType limiter = build(errorMsg -> {
+        LimiterType limiter = build(initValue, errorMsg -> {
             throw new MildLimiter.MildException();
-        }, initValue);
+        });
         return wrapMildLimiter(limiter);
     }
 
-    private LimiterType build(LimiterThrown limiterThrown, TargetType initValue) {
-        verify(initValue);
+    public LimiterType build(TargetType initValue) {
+        return build(initValue, this.limiterThrown);
+    }
+
+    public LimiterType build(TargetType initValue, LimiterThrown limiterThrown) {
+        verify(limiterThrown, initValue);
         LimitVerifierType verifier = buildVerifier(limiterThrown);
         return buildLimiter(verifier, this.declareType, initValue);
     }
 
-    private void verify(TargetType initValue) {
+    private void verify(LimiterThrown limiterThrown, TargetType initValue) {
         String msgTitle = getClass().getSimpleName() + "(" + this.targetTerm + "): ";
 
         Verifier.refuseNull("initValue", initValue);
-        Verifier.refuseNull("limiterThrown", this.limiterThrown);
-        Verifier.refuseNullOrEmpty("targetTerm", this.targetTerm, error -> this.limiterThrown.thrown(msgTitle + error.getErrorMsg()));
+        Verifier.refuseNull("limiterThrown", limiterThrown);
+        Verifier.refuseNullOrEmpty("targetTerm", this.targetTerm, error -> limiterThrown.thrown(msgTitle + error.getErrorMsg()));
 
         if (this.min == null && this.max == null) {
-            this.limiterThrown.thrown(msgTitle + "min and max can not be null at the same time");
+            limiterThrown.thrown(msgTitle + "min and max can not be null at the same time");
 
         } else if (this.min != null && this.max != null) {
             try {
                 verifyMinLessThanMax(this.min, this.max);
             } catch (IllegalArgumentException e) {
-                this.limiterThrown.thrown(msgTitle + e.getMessage());
+                limiterThrown.thrown(msgTitle + e.getMessage());
             }
         }
     }

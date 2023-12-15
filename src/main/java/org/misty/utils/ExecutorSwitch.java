@@ -51,12 +51,12 @@ public class ExecutorSwitch {
     /**
      * 用來表達錯誤處理器的回傳值, 表示繼續執行
      */
-    public static final boolean WHEN_ERROR_CONTINUE = false;
+    public static final boolean CONTINUE_WHEN_ERROR = false;
 
     /**
-     * 同{@link #WHEN_ERROR_CONTINUE}, 表示中斷執行
+     * 同{@link #CONTINUE_WHEN_ERROR}, 表示中斷執行
      */
-    public static final boolean WHEN_ERROR_BREAK = true;
+    public static final boolean BREAK_WHEN_ERROR = true;
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -101,7 +101,7 @@ public class ExecutorSwitch {
         this.tracked = tracked;
         this.defaultErrorHandler = ((times, e) -> {
             this.logger.error(this.tracked.say("error when times({})"), times, e);
-            return WHEN_ERROR_CONTINUE;
+            return CONTINUE_WHEN_ERROR;
         });
 
         withSerial();
@@ -238,7 +238,7 @@ public class ExecutorSwitch {
      * 同步或非同步執行executeAction
      *
      * @param executeAction 欲工作的任務內容
-     * @param errorHandler  錯誤處理器, 回傳true表示中斷執行, 回傳false表示繼續執行, 參考{@link ExecutorSwitch#WHEN_ERROR_CONTINUE}與{@link ExecutorSwitch#WHEN_ERROR_BREAK}
+     * @param errorHandler  錯誤處理器, 回傳true表示中斷執行, 回傳false表示繼續執行, 參考{@link ExecutorSwitch#CONTINUE_WHEN_ERROR}與{@link ExecutorSwitch#BREAK_WHEN_ERROR}
      * @return true表示該任務有執行, false表示任務沒有執行
      */
     public boolean run(IntConsumerEx executeAction, BiPredicate<Integer, Exception> errorHandler) {

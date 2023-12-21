@@ -4,8 +4,8 @@ import java.math.BigInteger;
 
 public class BigIntegerRangeVerifier extends BigIntegerRangeVerifierBase<IllegalArgumentException> {
 
-    public BigIntegerRangeVerifier(BigInteger min, BigInteger max) throws IllegalArgumentException {
-        super(min, max, Verifier.INSTANCE);
+    public BigIntegerRangeVerifier(String title, BigInteger min, BigInteger max) throws IllegalArgumentException {
+        super(title, min, max, Verifier.INSTANCE);
     }
 
 }

@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.function.Consumer;
 
-public class BigDecimalRangeBuilder {
+public class BigDecimalRangeBuilder extends BaseRangeBuilder<BigDecimalRangeBuilder> {
 
     public static final int DEFAULT_SCALE = 2;
 
@@ -23,6 +23,10 @@ public class BigDecimalRangeBuilder {
     private Consumer<BigDecimal> upperBoundVerify = value -> {
     };
 
+    public BigDecimalRangeBuilder(String title) {
+        super(title);
+    }
+
     public BigDecimalRangeBuilder giveScale(int scale, RoundingMode roundingMode) {
         BigDecimal.ONE.setScale(scale, roundingMode); // pre-check
         this.scale = scale;
@@ -35,8 +39,8 @@ public class BigDecimalRangeBuilder {
     }
 
     public BigDecimalRangeBuilder giveLowerBound(BigDecimal min, BigDecimal max) {
-        Verifier.requireBigDecimalLessThanInclusive("lowerMin", min, "lowerMax", max);
-        BigDecimalRangeVerifier rangeVerifier = Verifier.ofRange(min, max);
+        Verifier.requireBigDecimalLessThanInclusive(getTitle(), "lowerMin", min, "lowerMax", max);
+        BigDecimalRangeVerifier rangeVerifier = Verifier.ofRange(getTitle(), min, max);
         this.lowerBoundVerify = value -> rangeVerifier.requireInclusive("lower", value);
         return this;
     }
@@ -46,8 +50,8 @@ public class BigDecimalRangeBuilder {
     }
 
     public BigDecimalRangeBuilder giveUpperBound(BigDecimal min, BigDecimal max) {
-        Verifier.requireBigDecimalLessThanInclusive("upperMin", min, "upperMax", max);
-        BigDecimalRangeVerifier rangeVerifier = Verifier.ofRange(min, max);
+        Verifier.requireBigDecimalLessThanInclusive(getTitle(), "upperMin", min, "upperMax", max);
+        BigDecimalRangeVerifier rangeVerifier = Verifier.ofRange(getTitle(), min, max);
         this.upperBoundVerify = value -> rangeVerifier.requireInclusive("upper", value);
         return this;
     }
@@ -55,7 +59,7 @@ public class BigDecimalRangeBuilder {
     public BigDecimalRange build(BigDecimal lower, BigDecimal upper) {
         this.lowerBoundVerify.accept(lower);
         this.upperBoundVerify.accept(upper);
-        Verifier.requireBigDecimalLessThanInclusive("lower", lower, "upper", upper);
+        Verifier.requireBigDecimalLessThanInclusive(getTitle(), "lower", lower, "upper", upper);
 
         return new BigDecimalRangePreset(lower, upper, this.scale, this.roundingMode);
     }

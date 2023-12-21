@@ -13,19 +13,18 @@ import java.util.function.UnaryOperator;
 
 public class AbstractLimiterBuilderTest {
 
-    public static class AbstractLimiterTestBuilder extends
+    public static class AbstractLimiterBuilderQuiz extends
             AbstractLimiterBuilder<
                     Integer,
                     IntLimitVerifierHandler,
                     IntRangeVerifier,
                     IntLimiter,
                     IntMildLimiter,
-                    AbstractLimiterTestBuilder
+                    AbstractLimiterBuilderQuiz
                     > {
 
         @Override
         protected void verifyMinLessThanMax(Integer min, Integer max) throws IllegalArgumentException {
-
         }
 
         @Override
@@ -96,273 +95,273 @@ public class AbstractLimiterBuilderTest {
 
     @Test
     public void givenTargetTerm() {
-        AbstractLimiterTestBuilder testBuilder = new AbstractLimiterTestBuilder();
+        AbstractLimiterBuilderQuiz quizBuilder = new AbstractLimiterBuilderQuiz();
 
-        AssertionsEx.assertThat(testBuilder.getTargetTerm()).isEqualTo(null);
+        AssertionsEx.assertThat(quizBuilder.getTargetTerm()).isEqualTo(null);
 
         String targetTerm = "kerker";
-        testBuilder.giveTargetTerm(targetTerm);
+        quizBuilder.giveTargetTerm(targetTerm);
 
-        AssertionsEx.assertThat(testBuilder.getTargetTerm()).isEqualTo(targetTerm);
+        AssertionsEx.assertThat(quizBuilder.getTargetTerm()).isEqualTo(targetTerm);
     }
 
     @Test
     public void givenMinLimit() {
-        AbstractLimiterTestBuilder testBuilder = new AbstractLimiterTestBuilder();
+        AbstractLimiterBuilderQuiz quizBuilder = new AbstractLimiterBuilderQuiz();
 
-        AssertionsEx.assertThat(testBuilder.getMin()).isEqualTo(null);
-        AssertionsEx.assertThat(testBuilder.isMinInclusive()).isTrue();
-        AssertionsEx.assertThat(testBuilder.getMax()).isEqualTo(null);
-        AssertionsEx.assertThat(testBuilder.isMaxInclusive()).isTrue();
+        AssertionsEx.assertThat(quizBuilder.getMin()).isEqualTo(null);
+        AssertionsEx.assertThat(quizBuilder.isMinInclusive()).isTrue();
+        AssertionsEx.assertThat(quizBuilder.getMax()).isEqualTo(null);
+        AssertionsEx.assertThat(quizBuilder.isMaxInclusive()).isTrue();
 
-        testBuilder.giveMinLimit(1, false);
-        AssertionsEx.assertThat(testBuilder.getMin()).isEqualTo(1);
-        AssertionsEx.assertThat(testBuilder.isMinInclusive()).isFalse();
-        AssertionsEx.assertThat(testBuilder.getMax()).isEqualTo(null);
-        AssertionsEx.assertThat(testBuilder.isMaxInclusive()).isTrue();
+        quizBuilder.giveMinLimit(1, false);
+        AssertionsEx.assertThat(quizBuilder.getMin()).isEqualTo(1);
+        AssertionsEx.assertThat(quizBuilder.isMinInclusive()).isFalse();
+        AssertionsEx.assertThat(quizBuilder.getMax()).isEqualTo(null);
+        AssertionsEx.assertThat(quizBuilder.isMaxInclusive()).isTrue();
 
-        testBuilder.giveMinLimit(2, true);
-        AssertionsEx.assertThat(testBuilder.getMin()).isEqualTo(2);
-        AssertionsEx.assertThat(testBuilder.isMinInclusive()).isTrue();
-        AssertionsEx.assertThat(testBuilder.getMax()).isEqualTo(null);
-        AssertionsEx.assertThat(testBuilder.isMaxInclusive()).isTrue();
+        quizBuilder.giveMinLimit(2, true);
+        AssertionsEx.assertThat(quizBuilder.getMin()).isEqualTo(2);
+        AssertionsEx.assertThat(quizBuilder.isMinInclusive()).isTrue();
+        AssertionsEx.assertThat(quizBuilder.getMax()).isEqualTo(null);
+        AssertionsEx.assertThat(quizBuilder.isMaxInclusive()).isTrue();
     }
 
     @Test
     public void givenMaxLimit() {
-        AbstractLimiterTestBuilder testBuilder = new AbstractLimiterTestBuilder();
+        AbstractLimiterBuilderQuiz quizBuilder = new AbstractLimiterBuilderQuiz();
 
-        AssertionsEx.assertThat(testBuilder.getMin()).isEqualTo(null);
-        AssertionsEx.assertThat(testBuilder.isMinInclusive()).isTrue();
-        AssertionsEx.assertThat(testBuilder.getMax()).isEqualTo(null);
-        AssertionsEx.assertThat(testBuilder.isMaxInclusive()).isTrue();
+        AssertionsEx.assertThat(quizBuilder.getMin()).isEqualTo(null);
+        AssertionsEx.assertThat(quizBuilder.isMinInclusive()).isTrue();
+        AssertionsEx.assertThat(quizBuilder.getMax()).isEqualTo(null);
+        AssertionsEx.assertThat(quizBuilder.isMaxInclusive()).isTrue();
 
-        testBuilder.giveMaxLimit(1, false);
-        AssertionsEx.assertThat(testBuilder.getMin()).isEqualTo(null);
-        AssertionsEx.assertThat(testBuilder.isMinInclusive()).isTrue();
-        AssertionsEx.assertThat(testBuilder.getMax()).isEqualTo(1);
-        AssertionsEx.assertThat(testBuilder.isMaxInclusive()).isFalse();
+        quizBuilder.giveMaxLimit(1, false);
+        AssertionsEx.assertThat(quizBuilder.getMin()).isEqualTo(null);
+        AssertionsEx.assertThat(quizBuilder.isMinInclusive()).isTrue();
+        AssertionsEx.assertThat(quizBuilder.getMax()).isEqualTo(1);
+        AssertionsEx.assertThat(quizBuilder.isMaxInclusive()).isFalse();
 
-        testBuilder.giveMaxLimit(2, true);
-        AssertionsEx.assertThat(testBuilder.getMin()).isEqualTo(null);
-        AssertionsEx.assertThat(testBuilder.isMinInclusive()).isTrue();
-        AssertionsEx.assertThat(testBuilder.getMax()).isEqualTo(2);
-        AssertionsEx.assertThat(testBuilder.isMaxInclusive()).isTrue();
+        quizBuilder.giveMaxLimit(2, true);
+        AssertionsEx.assertThat(quizBuilder.getMin()).isEqualTo(null);
+        AssertionsEx.assertThat(quizBuilder.isMinInclusive()).isTrue();
+        AssertionsEx.assertThat(quizBuilder.getMax()).isEqualTo(2);
+        AssertionsEx.assertThat(quizBuilder.isMaxInclusive()).isTrue();
     }
 
     @Test
     public void givenThrown() {
-        AbstractLimiterTestBuilder testBuilder = new AbstractLimiterTestBuilder();
+        AbstractLimiterBuilderQuiz quizBuilder = new AbstractLimiterBuilderQuiz();
 
-        AssertionsEx.assertThat(testBuilder.getLimiterThrown()).isEqualTo(null);
+        AssertionsEx.assertThat(quizBuilder.getLimiterThrown()).isEqualTo(null);
 
         LimiterThrown limiterThrown = error -> {
         };
-        testBuilder.giveThrown(limiterThrown);
+        quizBuilder.giveThrown(limiterThrown);
 
-        AssertionsEx.assertThat(testBuilder.getLimiterThrown() == limiterThrown).isTrue();
+        AssertionsEx.assertThat(quizBuilder.getLimiterThrown() == limiterThrown).isTrue();
     }
 
     @Test
     public void declareType() {
-        AbstractLimiterTestBuilder testBuilder = new AbstractLimiterTestBuilder();
+        AbstractLimiterBuilderQuiz quizBuilder = new AbstractLimiterBuilderQuiz();
 
-        AssertionsEx.assertThat(testBuilder.getDeclareType()).isEqualTo(AbstractLimiterBuilder.DeclareType.BASE);
+        AssertionsEx.assertThat(quizBuilder.getDeclareType()).isEqualTo(AbstractLimiterBuilder.DeclareType.BASE);
 
-        testBuilder.withVolatile();
-        AssertionsEx.assertThat(testBuilder.getDeclareType()).isEqualTo(AbstractLimiterBuilder.DeclareType.VOLATILE);
+        quizBuilder.withVolatile();
+        AssertionsEx.assertThat(quizBuilder.getDeclareType()).isEqualTo(AbstractLimiterBuilder.DeclareType.VOLATILE);
 
-        testBuilder.withAtomic();
-        AssertionsEx.assertThat(testBuilder.getDeclareType()).isEqualTo(AbstractLimiterBuilder.DeclareType.ATOMIC);
+        quizBuilder.withAtomic();
+        AssertionsEx.assertThat(quizBuilder.getDeclareType()).isEqualTo(AbstractLimiterBuilder.DeclareType.ATOMIC);
     }
 
     @Test
     public void build_check() {
-        AbstractLimiterTestBuilder testBuilder = new AbstractLimiterTestBuilder();
+        AbstractLimiterBuilderQuiz quizBuilder = new AbstractLimiterBuilderQuiz();
 
         // check limiterThrown
-        AssertionsEx.assertThrown(() -> testBuilder.build(0))
+        AssertionsEx.assertThrown(() -> quizBuilder.build(0))
                 .hasMessage(String.format(Verifier.ErrorMsgFormat.REFUSE_NULL, "limiterThrown"))
                 .isInstanceOf(IllegalArgumentException.class);
 
-        testBuilder.giveThrown(error -> {
+        quizBuilder.giveThrown(error -> {
             throw new TestRuntimeException(error);
         });
 
-        UnaryOperator<String> msgTitle = targetTerm -> AbstractLimiterTestBuilder.class.getSimpleName() + "(" + targetTerm + "): ";
+        UnaryOperator<String> msgTitle = targetTerm -> AbstractLimiterBuilderQuiz.class.getSimpleName() + "(" + targetTerm + "): ";
         String targetTerm = null;
 
         // check targetTerm
-        AssertionsEx.assertThrown(() -> testBuilder.build(0))
+        AssertionsEx.assertThrown(() -> quizBuilder.build(0))
                 .hasMessage(msgTitle.apply(targetTerm) + String.format(Verifier.ErrorMsgFormat.REFUSE_NULL_OR_EMPTY, "targetTerm"))
                 .isInstanceOf(TestRuntimeException.class);
 
         targetTerm = "";
-        testBuilder.giveTargetTerm(targetTerm);
+        quizBuilder.giveTargetTerm(targetTerm);
 
-        AssertionsEx.assertThrown(() -> testBuilder.build(0))
+        AssertionsEx.assertThrown(() -> quizBuilder.build(0))
                 .hasMessage(msgTitle.apply(targetTerm) + String.format(Verifier.ErrorMsgFormat.REFUSE_NULL_OR_EMPTY, "targetTerm"))
                 .isInstanceOf(TestRuntimeException.class);
 
         targetTerm = "kerker";
-        testBuilder.giveTargetTerm(targetTerm);
+        quizBuilder.giveTargetTerm(targetTerm);
 
         // check min and max
-        AssertionsEx.assertThrown(() -> testBuilder.build(0))
+        AssertionsEx.assertThrown(() -> quizBuilder.build(0))
                 .hasMessage(msgTitle.apply(targetTerm) + "min and max can not be null at the same time")
                 .isInstanceOf(TestRuntimeException.class);
 
         // success
-        testBuilder.giveMinLimit(1, false)
+        quizBuilder.giveMinLimit(1, false)
                 .giveMaxLimit(1, false);
-        testBuilder.build(1);
+        quizBuilder.build(1);
 
-        testBuilder.giveMinLimit(null, false)
+        quizBuilder.giveMinLimit(null, false)
                 .giveMaxLimit(1, false);
-        testBuilder.build(Integer.MIN_VALUE);
+        quizBuilder.build(Integer.MIN_VALUE);
 
-        testBuilder.giveMinLimit(1, false)
+        quizBuilder.giveMinLimit(1, false)
                 .giveMaxLimit(null, false);
-        testBuilder.build(Integer.MAX_VALUE);
+        quizBuilder.build(Integer.MAX_VALUE);
     }
 
     @Test
     public void buildMaxLimitInclusiveVerifier() {
-        check_methods_have_been_invoke(testBuilder -> {
-            testBuilder.giveMaxLimit(1, true);
-        }, testBuilder -> {
-            testBuilder.buildMaxLimitInclusiveVerifier(Mockito.anyString(), Mockito.anyInt(), Mockito.any());
+        check_methods_have_been_invoke(quizBuilder -> {
+            quizBuilder.giveMaxLimit(1, true);
+        }, quizBuilder -> {
+            quizBuilder.buildMaxLimitInclusiveVerifier(Mockito.anyString(), Mockito.anyInt(), Mockito.any());
         });
     }
 
     @Test
     public void buildMaxLimitExclusiveVerifier() {
-        check_methods_have_been_invoke(testBuilder -> {
-            testBuilder.giveMaxLimit(1, false);
-        }, testBuilder -> {
-            testBuilder.buildMaxLimitExclusiveVerifier(Mockito.anyString(), Mockito.anyInt(), Mockito.any());
+        check_methods_have_been_invoke(quizBuilder -> {
+            quizBuilder.giveMaxLimit(1, false);
+        }, quizBuilder -> {
+            quizBuilder.buildMaxLimitExclusiveVerifier(Mockito.anyString(), Mockito.anyInt(), Mockito.any());
         });
     }
 
     @Test
     public void buildMinLimitInclusiveVerifier() {
-        check_methods_have_been_invoke(testBuilder -> {
-            testBuilder.giveMinLimit(1, true);
-        }, testBuilder -> {
-            testBuilder.buildMinLimitInclusiveVerifier(Mockito.anyString(), Mockito.anyInt(), Mockito.any());
+        check_methods_have_been_invoke(quizBuilder -> {
+            quizBuilder.giveMinLimit(1, true);
+        }, quizBuilder -> {
+            quizBuilder.buildMinLimitInclusiveVerifier(Mockito.anyString(), Mockito.anyInt(), Mockito.any());
         });
     }
 
     @Test
     public void buildMinLimitExclusiveVerifier() {
-        check_methods_have_been_invoke(testBuilder -> {
-            testBuilder.giveMinLimit(1, false);
-        }, testBuilder -> {
-            testBuilder.buildMinLimitExclusiveVerifier(Mockito.anyString(), Mockito.anyInt(), Mockito.any());
+        check_methods_have_been_invoke(quizBuilder -> {
+            quizBuilder.giveMinLimit(1, false);
+        }, quizBuilder -> {
+            quizBuilder.buildMinLimitExclusiveVerifier(Mockito.anyString(), Mockito.anyInt(), Mockito.any());
         });
     }
 
     @Test
     public void buildRangeInclusiveInclusiveVerifier() {
-        check_methods_have_been_invoke(testBuilder -> {
-            testBuilder.giveMinLimit(1, true).giveMaxLimit(3, true);
-        }, testBuilder -> {
-            testBuilder.buildRangeInclusiveInclusiveVerifier(Mockito.anyString(), Mockito.any(), Mockito.any());
+        check_methods_have_been_invoke(quizBuilder -> {
+            quizBuilder.giveMinLimit(1, true).giveMaxLimit(3, true);
+        }, quizBuilder -> {
+            quizBuilder.buildRangeInclusiveInclusiveVerifier(Mockito.anyString(), Mockito.any(), Mockito.any());
         });
     }
 
     @Test
     public void buildRangeInclusiveExclusiveVerifier() {
-        check_methods_have_been_invoke(testBuilder -> {
-            testBuilder.giveMinLimit(1, true).giveMaxLimit(3, false);
-        }, testBuilder -> {
-            testBuilder.buildRangeInclusiveExclusiveVerifier(Mockito.anyString(), Mockito.any(), Mockito.any());
+        check_methods_have_been_invoke(quizBuilder -> {
+            quizBuilder.giveMinLimit(1, true).giveMaxLimit(3, false);
+        }, quizBuilder -> {
+            quizBuilder.buildRangeInclusiveExclusiveVerifier(Mockito.anyString(), Mockito.any(), Mockito.any());
         });
     }
 
     @Test
     public void buildRangeExclusiveExclusiveVerifier() {
-        check_methods_have_been_invoke(testBuilder -> {
-            testBuilder.giveMinLimit(1, false).giveMaxLimit(3, false);
-        }, testBuilder -> {
-            testBuilder.buildRangeExclusiveExclusiveVerifier(Mockito.anyString(), Mockito.any(), Mockito.any());
+        check_methods_have_been_invoke(quizBuilder -> {
+            quizBuilder.giveMinLimit(1, false).giveMaxLimit(3, false);
+        }, quizBuilder -> {
+            quizBuilder.buildRangeExclusiveExclusiveVerifier(Mockito.anyString(), Mockito.any(), Mockito.any());
         });
     }
 
     @Test
     public void buildRangeExclusiveInclusiveVerifier() {
-        check_methods_have_been_invoke(testBuilder -> {
-            testBuilder.giveMinLimit(1, false).giveMaxLimit(3, true);
-        }, testBuilder -> {
-            testBuilder.buildRangeExclusiveInclusiveVerifier(Mockito.anyString(), Mockito.any(), Mockito.any());
+        check_methods_have_been_invoke(quizBuilder -> {
+            quizBuilder.giveMinLimit(1, false).giveMaxLimit(3, true);
+        }, quizBuilder -> {
+            quizBuilder.buildRangeExclusiveInclusiveVerifier(Mockito.anyString(), Mockito.any(), Mockito.any());
         });
     }
 
     @Test
     public void buildBaseLimiter() {
-        check_methods_have_been_invoke(testBuilder -> {
-            testBuilder.giveMinLimit(1, false).withBase();
-        }, testBuilder -> {
-            testBuilder.buildBaseLimiter(Mockito.any(), Mockito.any());
+        check_methods_have_been_invoke(quizBuilder -> {
+            quizBuilder.giveMinLimit(1, false).withBase();
+        }, quizBuilder -> {
+            quizBuilder.buildBaseLimiter(Mockito.any(), Mockito.any());
         });
     }
 
     @Test
     public void buildVolatileLimiter() {
-        check_methods_have_been_invoke(testBuilder -> {
-            testBuilder.giveMinLimit(1, false).withVolatile();
-        }, testBuilder -> {
-            testBuilder.buildVolatileLimiter(Mockito.any(), Mockito.any());
+        check_methods_have_been_invoke(quizBuilder -> {
+            quizBuilder.giveMinLimit(1, false).withVolatile();
+        }, quizBuilder -> {
+            quizBuilder.buildVolatileLimiter(Mockito.any(), Mockito.any());
         });
     }
 
     @Test
     public void buildAtomicLimiter() {
-        check_methods_have_been_invoke(testBuilder -> {
-            testBuilder.giveMinLimit(1, false).withAtomic();
-        }, testBuilder -> {
-            testBuilder.buildAtomicLimiter(Mockito.any(), Mockito.any());
+        check_methods_have_been_invoke(quizBuilder -> {
+            quizBuilder.giveMinLimit(1, false).withAtomic();
+        }, quizBuilder -> {
+            quizBuilder.buildAtomicLimiter(Mockito.any(), Mockito.any());
         });
     }
 
     @Test
     public void wrapMildLimiter() {
-        check_methods_have_been_invoke(testBuilder -> {
-            testBuilder.giveMinLimit(1, false);
-        }, testBuilder -> {
-            testBuilder.wrapMildLimiter(Mockito.any());
-        }, testBuilder -> {
-            testBuilder.buildMildLimiter(0);
+        check_methods_have_been_invoke(quizBuilder -> {
+            quizBuilder.giveMinLimit(1, false);
+        }, quizBuilder -> {
+            quizBuilder.wrapMildLimiter(Mockito.any());
+        }, quizBuilder -> {
+            quizBuilder.buildMildLimiter(0);
         });
     }
 
-    private void check_methods_have_been_invoke(Consumer<AbstractLimiterTestBuilder> init,
-                                                Consumer<AbstractLimiterTestBuilder> invokeMethod) {
-        check_methods_have_been_invoke(init, invokeMethod, testBuilder -> {
-            testBuilder.build(0);
+    private void check_methods_have_been_invoke(Consumer<AbstractLimiterBuilderQuiz> init,
+                                                Consumer<AbstractLimiterBuilderQuiz> invokeMethod) {
+        check_methods_have_been_invoke(init, invokeMethod, quizBuilder -> {
+            quizBuilder.build(0);
         });
     }
 
-    private void check_methods_have_been_invoke(Consumer<AbstractLimiterTestBuilder> init,
-                                                Consumer<AbstractLimiterTestBuilder> invokeMethod,
-                                                Consumer<AbstractLimiterTestBuilder> buildAction) {
-        AbstractLimiterTestBuilder testBuilder = mockitoTestBuilder();
+    private void check_methods_have_been_invoke(Consumer<AbstractLimiterBuilderQuiz> init,
+                                                Consumer<AbstractLimiterBuilderQuiz> invokeMethod,
+                                                Consumer<AbstractLimiterBuilderQuiz> buildAction) {
+        AbstractLimiterBuilderQuiz quizBuilder = mockitoQuizBuilder();
 
-        init.accept(testBuilder);
+        init.accept(quizBuilder);
 
         AtomicBoolean checkPoint1 = new AtomicBoolean(false);
         invokeMethod.accept(Mockito.doAnswer((invocation) -> {
             checkPoint1.set(true);
             return null;
-        }).when(testBuilder));
+        }).when(quizBuilder));
 
-        buildAction.accept(testBuilder);
+        buildAction.accept(quizBuilder);
 
         AssertionsEx.assertThat(checkPoint1.get()).isTrue();
     }
 
-    private AbstractLimiterTestBuilder mockitoTestBuilder() {
-        return Mockito.spy(AbstractLimiterTestBuilder.class)
+    private AbstractLimiterBuilderQuiz mockitoQuizBuilder() {
+        return Mockito.spy(AbstractLimiterBuilderQuiz.class)
                 .giveTargetTerm("kerker")
                 .giveThrown(error -> {
                     throw new TestRuntimeException("");

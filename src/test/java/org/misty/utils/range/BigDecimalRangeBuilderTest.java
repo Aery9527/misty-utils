@@ -5,47 +5,62 @@ import org.misty._utils.AssertionsEx;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.function.BiConsumer;
 
 class BigDecimalRangeBuilderTest {
 
     @Test
     public void giveLowerBound() {
-        BigDecimalRangeBuilder rangeBuilder = Range.bigDecimalRangeBuilder()
-                .giveLowerBound(-1, 1);
+        BiConsumer<String, BigDecimalRangeBuilder> test = (title, rangeBuilder) -> {
+            rangeBuilder.giveLowerBound(-1, 1);
 
-        rangeBuilder.build(BigDecimal.valueOf(-1), BigDecimal.valueOf(Integer.MAX_VALUE));
-        rangeBuilder.build(BigDecimal.valueOf(1), BigDecimal.valueOf(Integer.MAX_VALUE));
-        AssertionsEx.assertThrown(() -> rangeBuilder.build(BigDecimal.valueOf(-2), BigDecimal.valueOf(5)))
-                .hasMessageContaining("lower")
-                .isInstanceOf(IllegalArgumentException.class);
-        AssertionsEx.assertThrown(() -> rangeBuilder.build(BigDecimal.valueOf(2), BigDecimal.valueOf(5)))
-                .hasMessageContaining("lower")
-                .isInstanceOf(IllegalArgumentException.class);
+            rangeBuilder.build(BigDecimal.valueOf(-1), BigDecimal.valueOf(Integer.MAX_VALUE));
+            rangeBuilder.build(BigDecimal.valueOf(1), BigDecimal.valueOf(Integer.MAX_VALUE));
+            AssertionsEx.assertThrown(() -> rangeBuilder.build(BigDecimal.valueOf(-2), BigDecimal.valueOf(5)))
+                    .hasMessageContaining("lower")
+                    .hasMessageContaining(title)
+                    .isInstanceOf(IllegalArgumentException.class);
+            AssertionsEx.assertThrown(() -> rangeBuilder.build(BigDecimal.valueOf(2), BigDecimal.valueOf(5)))
+                    .hasMessageContaining("lower")
+                    .hasMessageContaining(title)
+                    .isInstanceOf(IllegalArgumentException.class);
 
-        AssertionsEx.assertThrown(() -> rangeBuilder.giveLowerBound(1, 0))
-                .hasMessageContaining("lowerMin")
-                .hasMessageContaining("lowerMax")
-                .isInstanceOf(IllegalArgumentException.class);
+            AssertionsEx.assertThrown(() -> rangeBuilder.giveLowerBound(1, 0))
+                    .hasMessageContaining("lowerMin")
+                    .hasMessageContaining("lowerMax")
+                    .hasMessageContaining(title)
+                    .isInstanceOf(IllegalArgumentException.class);
+        };
+
+        test.accept("", Range.bigDecimalRangeBuilder());
+        test.accept("kerker", Range.bigDecimalRangeBuilder("kerker"));
     }
 
     @Test
     public void giveUpperBound() {
-        BigDecimalRangeBuilder rangeBuilder = Range.bigDecimalRangeBuilder()
-                .giveUpperBound(-1, 1);
+        BiConsumer<String, BigDecimalRangeBuilder> test = (title, rangeBuilder) -> {
+            rangeBuilder.giveUpperBound(-1, 1);
 
-        rangeBuilder.build(BigDecimal.valueOf(Integer.MIN_VALUE), BigDecimal.valueOf(-1));
-        rangeBuilder.build(BigDecimal.valueOf(Integer.MIN_VALUE), BigDecimal.valueOf(1));
-        AssertionsEx.assertThrown(() -> rangeBuilder.build(BigDecimal.valueOf(-5), BigDecimal.valueOf(-2)))
-                .hasMessageContaining("upper")
-                .isInstanceOf(IllegalArgumentException.class);
-        AssertionsEx.assertThrown(() -> rangeBuilder.build(BigDecimal.valueOf(-5), BigDecimal.valueOf(2)))
-                .hasMessageContaining("upper")
-                .isInstanceOf(IllegalArgumentException.class);
+            rangeBuilder.build(BigDecimal.valueOf(Integer.MIN_VALUE), BigDecimal.valueOf(-1));
+            rangeBuilder.build(BigDecimal.valueOf(Integer.MIN_VALUE), BigDecimal.valueOf(1));
+            AssertionsEx.assertThrown(() -> rangeBuilder.build(BigDecimal.valueOf(-5), BigDecimal.valueOf(-2)))
+                    .hasMessageContaining("upper")
+                    .hasMessageContaining(title)
+                    .isInstanceOf(IllegalArgumentException.class);
+            AssertionsEx.assertThrown(() -> rangeBuilder.build(BigDecimal.valueOf(-5), BigDecimal.valueOf(2)))
+                    .hasMessageContaining("upper")
+                    .hasMessageContaining(title)
+                    .isInstanceOf(IllegalArgumentException.class);
 
-        AssertionsEx.assertThrown(() -> rangeBuilder.giveUpperBound(1, 0))
-                .hasMessageContaining("upperMin")
-                .hasMessageContaining("upperMax")
-                .isInstanceOf(IllegalArgumentException.class);
+            AssertionsEx.assertThrown(() -> rangeBuilder.giveUpperBound(1, 0))
+                    .hasMessageContaining("upperMin")
+                    .hasMessageContaining("upperMax")
+                    .hasMessageContaining(title)
+                    .isInstanceOf(IllegalArgumentException.class);
+        };
+
+        test.accept("", Range.bigDecimalRangeBuilder());
+        test.accept("kerker", Range.bigDecimalRangeBuilder("kerker"));
     }
 
     @Test

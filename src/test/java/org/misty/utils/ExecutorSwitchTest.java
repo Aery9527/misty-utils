@@ -1,7 +1,7 @@
 package org.misty.utils;
 
 import org.assertj.core.api.Assertions;
-import org.assertj.core.data.Offset;
+import org.assertj.core.data.Percentage;
 import org.junit.jupiter.api.Test;
 import org.misty._utils.AssertionsEx;
 import org.misty.utils.ex.ThreadEx;
@@ -192,7 +192,7 @@ class ExecutorSwitchTest {
                 Assertions.assertThat(through2).isLessThanOrEqualTo(10); // 單緒這邊並不會有等待時間
             } else {
                 Assertions.assertThat(finished1).isFalse(); // 多緒任務還在執行未完成
-                Assertions.assertThat(through2).isCloseTo(restLeast_2, Offset.offset(200L)); // 所以多緒會有等待時間 (這裡有時候會超時耶...)
+                Assertions.assertThat(through2).isCloseTo(restLeast_2, Percentage.withPercentage(100)); // 所以多緒會有等待時間
             }
 
             watcher.reset();

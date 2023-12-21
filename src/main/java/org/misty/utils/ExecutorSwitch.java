@@ -161,9 +161,13 @@ public class ExecutorSwitch {
             Watcher watcher = Watcher.create();
             while (!watcher.over(waitMs)) {
                 long through = watcher.through();
-                long timeout = Math.min(1000, waitMs - through);
+                long timeout = waitMs - through;
 
                 try {
+                    if (timeout <= 0) {
+                        break;
+                    }
+
                     synchronized (lock) {
                         if (checkFinish.getAsBoolean()) {
                             return true;

@@ -20,7 +20,7 @@ public class BigIntegerRangePreset implements BigIntegerRange {
      * This leads to a distribution that resembles Pascal's Triangle.
      * </pre>
      */
-    public class BreakDown2PowerRandom {
+    public static class BreakDown2PowerRandom {
 
         Supplier<BigInteger> next;
 

@@ -50,7 +50,7 @@ class BigIntegerRangePresetTest {
     }
 
     @Test
-    void getGapRandom() {
+    public void getGapRandom() {
         BigInteger lower = BigInteger.valueOf(-1);
         BigInteger gap = BigInteger.valueOf(7);
         BigInteger upper = lower.add(gap);

@@ -6,9 +6,9 @@ public class LongRangeVerifierBase<DefaultExceptionType extends Exception> exten
 
     private final long max;
 
-    public LongRangeVerifierBase(long min, long max, VerifierThrownFactory<DefaultExceptionType> thrownFactory) throws DefaultExceptionType {
-        super(thrownFactory);
-        Verifier.requireLongLessThanInclusive("min", min, "max", max, thrownFactory.getThrower());
+    public LongRangeVerifierBase(String title, long min, long max, VerifierThrownFactory<DefaultExceptionType> thrownFactory) throws DefaultExceptionType {
+        super(title, thrownFactory);
+        Verifier.requireLongLessThanInclusive(title, "min", min, "max", max, thrownFactory.getThrower());
         this.min = min;
         this.max = max;
     }
@@ -30,7 +30,7 @@ public class LongRangeVerifierBase<DefaultExceptionType extends Exception> exten
     ) throws ExceptionType {
         if (target < this.min || target > this.max) {
             thrown.thrown(new VerifierRangeErrorMsg<>(term, target, this.min, this.max,
-                    String.format(Verifier.ErrorMsgFormat.REQUIRE_RANGE_INCLUSIVE, term, target, min, max)));
+                    getTitle() + String.format(Verifier.ErrorMsgFormat.REQUIRE_RANGE_INCLUSIVE, term, target, min, max)));
         }
     }
 
@@ -51,7 +51,7 @@ public class LongRangeVerifierBase<DefaultExceptionType extends Exception> exten
     ) throws ExceptionType {
         if (target < this.min || target >= this.max) {
             thrown.thrown(new VerifierRangeErrorMsg<>(term, target, this.min, this.max,
-                    String.format(Verifier.ErrorMsgFormat.REQUIRE_RANGE_INCLUSIVE_EXCLUSIVE, term, target, min, max)));
+                    getTitle() + String.format(Verifier.ErrorMsgFormat.REQUIRE_RANGE_INCLUSIVE_EXCLUSIVE, term, target, min, max)));
         }
     }
 
@@ -72,7 +72,7 @@ public class LongRangeVerifierBase<DefaultExceptionType extends Exception> exten
     ) throws ExceptionType {
         if (target <= this.min || target >= this.max) {
             thrown.thrown(new VerifierRangeErrorMsg<>(term, target, this.min, this.max,
-                    String.format(Verifier.ErrorMsgFormat.REQUIRE_RANGE_EXCLUSIVE, term, target, min, max)));
+                    getTitle() + String.format(Verifier.ErrorMsgFormat.REQUIRE_RANGE_EXCLUSIVE, term, target, min, max)));
         }
     }
 
@@ -93,7 +93,7 @@ public class LongRangeVerifierBase<DefaultExceptionType extends Exception> exten
     ) throws ExceptionType {
         if (target <= this.min || target > this.max) {
             thrown.thrown(new VerifierRangeErrorMsg<>(term, target, this.min, this.max,
-                    String.format(Verifier.ErrorMsgFormat.REQUIRE_RANGE_EXCLUSIVE_INCLUSIVE, term, target, min, max)));
+                    getTitle() + String.format(Verifier.ErrorMsgFormat.REQUIRE_RANGE_EXCLUSIVE_INCLUSIVE, term, target, min, max)));
         }
     }
 
@@ -114,7 +114,7 @@ public class LongRangeVerifierBase<DefaultExceptionType extends Exception> exten
     ) throws ExceptionType {
         if (target >= this.min && target <= this.max) {
             thrown.thrown(new VerifierRangeErrorMsg<>(term, target, this.min, this.max,
-                    String.format(Verifier.ErrorMsgFormat.REFUSE_RANGE_INCLUSIVE, term, target, min, max)));
+                    getTitle() + String.format(Verifier.ErrorMsgFormat.REFUSE_RANGE_INCLUSIVE, term, target, min, max)));
         }
     }
 
@@ -135,7 +135,7 @@ public class LongRangeVerifierBase<DefaultExceptionType extends Exception> exten
     ) throws ExceptionType {
         if (target >= this.min && target < this.max) {
             thrown.thrown(new VerifierRangeErrorMsg<>(term, target, this.min, this.max,
-                    String.format(Verifier.ErrorMsgFormat.REFUSE_RANGE_INCLUSIVE_EXCLUSIVE, term, target, min, max)));
+                    getTitle() + String.format(Verifier.ErrorMsgFormat.REFUSE_RANGE_INCLUSIVE_EXCLUSIVE, term, target, min, max)));
         }
     }
 
@@ -156,7 +156,7 @@ public class LongRangeVerifierBase<DefaultExceptionType extends Exception> exten
     ) throws ExceptionType {
         if (target > this.min && target < this.max) {
             thrown.thrown(new VerifierRangeErrorMsg<>(term, target, this.min, this.max,
-                    String.format(Verifier.ErrorMsgFormat.REFUSE_RANGE_EXCLUSIVE, term, target, min, max)));
+                    getTitle() + String.format(Verifier.ErrorMsgFormat.REFUSE_RANGE_EXCLUSIVE, term, target, min, max)));
         }
     }
 
@@ -177,7 +177,7 @@ public class LongRangeVerifierBase<DefaultExceptionType extends Exception> exten
     ) throws ExceptionType {
         if (target > this.min && target <= this.max) {
             thrown.thrown(new VerifierRangeErrorMsg<>(term, target, this.min, this.max,
-                    String.format(Verifier.ErrorMsgFormat.REFUSE_RANGE_EXCLUSIVE_INCLUSIVE, term, target, min, max)));
+                    getTitle() + String.format(Verifier.ErrorMsgFormat.REFUSE_RANGE_EXCLUSIVE_INCLUSIVE, term, target, min, max)));
         }
     }
 

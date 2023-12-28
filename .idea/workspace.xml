@@ -5,56 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="85a0b3b9-499c-4427-8178-fde3848053e3" name="Changes" comment="add title feature of range/verify series">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/StackFetcher.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/range/BaseRangeBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/StackFetcherTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/ExecutorSwitch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/ExecutorSwitch.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/range/BigDecimalRangeBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/range/BigDecimalRangeBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/range/BigIntegerRangeBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/range/BigIntegerRangeBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/range/BigIntegerRangePreset.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/range/BigIntegerRangePreset.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/range/DoubleRangeBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/range/DoubleRangeBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/range/FloatRangeBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/range/FloatRangeBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/range/IntRangeBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/range/IntRangeBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/range/LongRangeBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/range/LongRangeBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/range/Range.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/range/Range.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/range/ShortRangeBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/range/ShortRangeBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/verify/BigDecimalRangeVerifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/verify/BigDecimalRangeVerifier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/verify/BigDecimalRangeVerifierBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/verify/BigDecimalRangeVerifierBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/verify/BigIntegerRangeVerifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/verify/BigIntegerRangeVerifier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/verify/BigIntegerRangeVerifierBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/verify/BigIntegerRangeVerifierBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/verify/DoubleRangeVerifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/verify/DoubleRangeVerifier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/verify/DoubleRangeVerifierBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/verify/DoubleRangeVerifierBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/verify/FloatRangeVerifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/verify/FloatRangeVerifier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/verify/FloatRangeVerifierBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/verify/FloatRangeVerifierBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/verify/IntRangeVerifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/verify/IntRangeVerifier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/verify/IntRangeVerifierBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/verify/IntRangeVerifierBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/verify/LongRangeVerifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/verify/LongRangeVerifier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/verify/LongRangeVerifierBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/verify/LongRangeVerifierBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/verify/RangeVerifierBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/verify/RangeVerifierBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/verify/ShortRangeVerifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/verify/ShortRangeVerifier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/verify/ShortRangeVerifierBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/verify/ShortRangeVerifierBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/verify/Verifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/verify/Verifier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/verify/VerifierLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/verify/VerifierLogic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/_utils/AssertionsEx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/_utils/AssertionsEx.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/ExecutorSwitchTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/ExecutorSwitchTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/AbstractLimiterBuilderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/AbstractLimiterBuilderTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/range/BigDecimalRangeBuilderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/range/BigDecimalRangeBuilderTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/range/BigIntegerRangeBuilderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/range/BigIntegerRangeBuilderTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/range/BigIntegerRangePresetTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/range/BigIntegerRangePresetTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/range/DoubleRangeBuilderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/range/DoubleRangeBuilderTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/range/FloatRangeBuilderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/range/FloatRangeBuilderTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/range/IntRangeBuilderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/range/IntRangeBuilderTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/range/LongRangeBuilderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/range/LongRangeBuilderTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/range/ShortRangeBuilderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/range/ShortRangeBuilderTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/verify/BigDecimalRangeVerifierTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/verify/BigDecimalRangeVerifierTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/verify/BigIntegerRangeVerifierTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/verify/BigIntegerRangeVerifierTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/verify/DoubleRangeVerifierTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/verify/DoubleRangeVerifierTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/verify/FloatRangeVerifierTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/verify/FloatRangeVerifierTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/verify/IntRangeVerifierTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/verify/IntRangeVerifierTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/verify/LongRangeVerifierTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/verify/LongRangeVerifierTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/verify/ShortRangeVerifierTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/verify/ShortRangeVerifierTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/verify/VerifierTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/verify/VerifierTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/verify/Checker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/verify/Checker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/verify/CheckerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/verify/CheckerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -173,6 +126,7 @@
     "JUnit.BigIntegerRangePresetTest.getGapRandom.executor": "Run",
     "JUnit.BigIntegerRangePresetTest.random_inRange_outRange.executor": "Run",
     "JUnit.BigIntegerRangeVerifierTest.executor": "Run",
+    "JUnit.CheckerTest.executor": "Coverage",
     "JUnit.DoubleRangeBuilderTest.executor": "Run",
     "JUnit.DoubleRangePresetTest.executor": "Run",
     "JUnit.DoubleRangePresetTest.random_inRange_outRange.executor": "Run",
@@ -276,7 +230,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "com.google.cloudcode.ide_session_index": "20231221_0004",
+    "com.google.cloudcode.ide_session_index": "20231228_0000",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "git-widget-placeholder": "develop",
@@ -320,7 +274,7 @@
       <recent name="org.misty.utils" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.All in misty-utils.test">
+  <component name="RunManager" selected="JUnit.CheckerTest">
     <configuration name="All in misty-utils.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="misty-utils.test" />
       <option name="PACKAGE_NAME" value="" />
@@ -329,18 +283,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="BigIntegerRangeBuilderTest.giveLowerBound" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CheckerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="misty-utils.test" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.misty.utils.range.*" />
+          <option name="PATTERN" value="org.misty.utils.verify.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="org.misty.utils.range" />
-      <option name="MAIN_CLASS_NAME" value="org.misty.utils.range.BigIntegerRangeBuilderTest" />
-      <option name="METHOD_NAME" value="giveLowerBound" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="PACKAGE_NAME" value="org.misty.utils.verify" />
+      <option name="MAIN_CLASS_NAME" value="org.misty.utils.verify.CheckerTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -361,17 +314,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="StackFetcherTest.fetchCurrentStack" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ShortRangeBuilderTest.giveLowerBound" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="misty-utils.test" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.misty.utils.*" />
+          <option name="PATTERN" value="org.misty.utils.range.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="org.misty.utils" />
-      <option name="MAIN_CLASS_NAME" value="org.misty.utils.StackFetcherTest" />
-      <option name="METHOD_NAME" value="fetchCurrentStack" />
+      <option name="PACKAGE_NAME" value="org.misty.utils.range" />
+      <option name="MAIN_CLASS_NAME" value="org.misty.utils.range.ShortRangeBuilderTest" />
+      <option name="METHOD_NAME" value="giveLowerBound" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -394,11 +347,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.CheckerTest" />
+        <item itemvalue="JUnit.ShortRangeBuilderTest.giveLowerBound" />
         <item itemvalue="JUnit.All in misty-utils.test" />
         <item itemvalue="JUnit.ExecutorSwitchTest.waitFinish" />
         <item itemvalue="JUnit.VerifierTest" />
-        <item itemvalue="JUnit.BigIntegerRangeBuilderTest.giveLowerBound" />
-        <item itemvalue="JUnit.StackFetcherTest.fetchCurrentStack" />
       </list>
     </recent_temporary>
   </component>
@@ -453,7 +406,9 @@
       <workItem from="1702979082655" duration="7471000" />
       <workItem from="1703044079095" duration="20865000" />
       <workItem from="1703141341769" duration="6857000" />
-      <workItem from="1703148305201" duration="1370000" />
+      <workItem from="1703148305201" duration="1498000" />
+      <workItem from="1703150083419" duration="1098000" />
+      <workItem from="1703755559030" duration="803000" />
     </task>
     <task id="LOCAL-00001" summary="Combinatorics add collect series">
       <option name="closed" value="true" />
@@ -655,7 +610,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702974570321</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="add title feature of range/verify series">
+      <option name="closed" value="true" />
+      <created>1703149758360</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1703149758360</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

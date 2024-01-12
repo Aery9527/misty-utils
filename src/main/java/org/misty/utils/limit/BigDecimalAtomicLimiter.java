@@ -7,8 +7,8 @@ public class BigDecimalAtomicLimiter extends BigDecimalAbstractLimiter {
 
     private final AtomicReference<BigDecimal> value = new AtomicReference<>();
 
-    public BigDecimalAtomicLimiter(BigDecimalLimitVerifierHandler verifier, BigDecimal initValue) {
-        super(verifier);
+    public BigDecimalAtomicLimiter(BigDecimalLimitVerifierHandler verifier, BigDecimal min, BigDecimal max, BigDecimal initValue) {
+        super(verifier, min, max);
         set(initValue);
     }
 

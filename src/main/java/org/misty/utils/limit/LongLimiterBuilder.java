@@ -166,17 +166,17 @@ public class LongLimiterBuilder extends
 
     @Override
     protected LongLimiter buildBaseLimiter(LongLimitVerifierHandler verifier, Long initValue) {
-        return new LongBaseLimiter(verifier, initValue);
+        return new LongBaseLimiter(verifier, getMin(), getMax(), initValue);
     }
 
     @Override
     protected LongLimiter buildVolatileLimiter(LongLimitVerifierHandler verifier, Long initValue) {
-        return new LongVolatileLimiter(verifier, initValue);
+        return new LongVolatileLimiter(verifier, getMin(), getMax(), initValue);
     }
 
     @Override
     protected LongLimiter buildAtomicLimiter(LongLimitVerifierHandler verifier, Long initValue) {
-        return new LongAtomicLimiter(verifier, initValue);
+        return new LongAtomicLimiter(verifier, getMin(), getMax(), initValue);
     }
 
     @Override

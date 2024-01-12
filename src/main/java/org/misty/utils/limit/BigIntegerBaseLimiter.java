@@ -6,8 +6,8 @@ public class BigIntegerBaseLimiter extends BigIntegerAbstractLimiter {
 
     private BigInteger value;
 
-    public BigIntegerBaseLimiter(BigIntegerLimitVerifierHandler verifier, BigInteger initValue) {
-        super(verifier);
+    public BigIntegerBaseLimiter(BigIntegerLimitVerifierHandler verifier, BigInteger min, BigInteger max, BigInteger initValue) {
+        super(verifier, min, max);
         set(initValue);
     }
 

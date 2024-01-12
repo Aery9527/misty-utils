@@ -10,6 +10,11 @@ public class ShortVolatileLimiterTest extends ShortAbstractLimiterTest {
     }
 
     @Test
+    public void min_max() {
+        test_min_max(ShortVolatileLimiter::new);
+    }
+
+    @Test
     public void set() {
         test_set(ShortVolatileLimiter::new);
     }

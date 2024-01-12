@@ -166,17 +166,17 @@ public class ShortLimiterBuilder extends
 
     @Override
     protected ShortLimiter buildBaseLimiter(ShortLimitVerifierHandler verifier, Short initValue) {
-        return new ShortBaseLimiter(verifier, initValue);
+        return new ShortBaseLimiter(verifier, getMin(), getMax(), initValue);
     }
 
     @Override
     protected ShortLimiter buildVolatileLimiter(ShortLimitVerifierHandler verifier, Short initValue) {
-        return new ShortVolatileLimiter(verifier, initValue);
+        return new ShortVolatileLimiter(verifier, getMin(), getMax(), initValue);
     }
 
     @Override
     protected ShortLimiter buildAtomicLimiter(ShortLimitVerifierHandler verifier, Short initValue) {
-        return new ShortAtomicLimiter(verifier, initValue);
+        return new ShortAtomicLimiter(verifier, getMin(), getMax(), initValue);
     }
 
     @Override

@@ -6,7 +6,12 @@ public class IntVolatileLimiterTest extends IntAbstractLimiterTest {
 
     @Test
     public void build() {
-        teset_build(AbstractLimiterBuilder::withVolatile);
+        test_build(AbstractLimiterBuilder::withVolatile);
+    }
+
+    @Test
+    public void min_max() {
+        test_min_max(IntVolatileLimiter::new);
     }
 
     @Test

@@ -4,8 +4,8 @@ public class ShortVolatileLimiter extends ShortAbstractLimiter {
 
     private volatile short value;
 
-    public ShortVolatileLimiter(ShortLimitVerifierHandler verifier, short initValue) {
-        super(verifier);
+    public ShortVolatileLimiter(ShortLimitVerifierHandler verifier, short min, short max, short initValue) {
+        super(verifier, min, max);
         set(initValue);
     }
 

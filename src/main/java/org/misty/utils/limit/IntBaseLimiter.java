@@ -4,8 +4,8 @@ public class IntBaseLimiter extends IntAbstractLimiter {
 
     private int value;
 
-    public IntBaseLimiter(IntLimitVerifierHandler verifier, int initValue) {
-        super(verifier);
+    public IntBaseLimiter(IntLimitVerifierHandler verifier, int min, int max, int initValue) {
+        super(verifier, min, max);
         set(initValue);
     }
 

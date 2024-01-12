@@ -16,16 +16,16 @@ class BigDecimalRangeBuilderTest {
 
             rangeBuilder.build(BigDecimal.valueOf(-1), BigDecimal.valueOf(Integer.MAX_VALUE));
             rangeBuilder.build(BigDecimal.valueOf(1), BigDecimal.valueOf(Integer.MAX_VALUE));
-            AssertionsEx.assertThrown(() -> rangeBuilder.build(BigDecimal.valueOf(-2), BigDecimal.valueOf(5)))
+            AssertionsEx.awareThrown(() -> rangeBuilder.build(BigDecimal.valueOf(-2), BigDecimal.valueOf(5)))
                     .hasMessageContaining("lower")
                     .hasMessageContaining(title)
                     .isInstanceOf(IllegalArgumentException.class);
-            AssertionsEx.assertThrown(() -> rangeBuilder.build(BigDecimal.valueOf(2), BigDecimal.valueOf(5)))
+            AssertionsEx.awareThrown(() -> rangeBuilder.build(BigDecimal.valueOf(2), BigDecimal.valueOf(5)))
                     .hasMessageContaining("lower")
                     .hasMessageContaining(title)
                     .isInstanceOf(IllegalArgumentException.class);
 
-            AssertionsEx.assertThrown(() -> rangeBuilder.giveLowerBound(1, 0))
+            AssertionsEx.awareThrown(() -> rangeBuilder.giveLowerBound(1, 0))
                     .hasMessageContaining("lowerMin")
                     .hasMessageContaining("lowerMax")
                     .hasMessageContaining(title)
@@ -43,16 +43,16 @@ class BigDecimalRangeBuilderTest {
 
             rangeBuilder.build(BigDecimal.valueOf(Integer.MIN_VALUE), BigDecimal.valueOf(-1));
             rangeBuilder.build(BigDecimal.valueOf(Integer.MIN_VALUE), BigDecimal.valueOf(1));
-            AssertionsEx.assertThrown(() -> rangeBuilder.build(BigDecimal.valueOf(-5), BigDecimal.valueOf(-2)))
+            AssertionsEx.awareThrown(() -> rangeBuilder.build(BigDecimal.valueOf(-5), BigDecimal.valueOf(-2)))
                     .hasMessageContaining("upper")
                     .hasMessageContaining(title)
                     .isInstanceOf(IllegalArgumentException.class);
-            AssertionsEx.assertThrown(() -> rangeBuilder.build(BigDecimal.valueOf(-5), BigDecimal.valueOf(2)))
+            AssertionsEx.awareThrown(() -> rangeBuilder.build(BigDecimal.valueOf(-5), BigDecimal.valueOf(2)))
                     .hasMessageContaining("upper")
                     .hasMessageContaining(title)
                     .isInstanceOf(IllegalArgumentException.class);
 
-            AssertionsEx.assertThrown(() -> rangeBuilder.giveUpperBound(1, 0))
+            AssertionsEx.awareThrown(() -> rangeBuilder.giveUpperBound(1, 0))
                     .hasMessageContaining("upperMin")
                     .hasMessageContaining("upperMax")
                     .hasMessageContaining(title)

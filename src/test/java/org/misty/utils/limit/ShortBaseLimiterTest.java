@@ -10,6 +10,11 @@ public class ShortBaseLimiterTest extends ShortAbstractLimiterTest {
     }
 
     @Test
+    public void min_max() {
+        test_min_max(ShortBaseLimiter::new);
+    }
+
+    @Test
     public void set() {
         test_set(ShortBaseLimiter::new);
     }

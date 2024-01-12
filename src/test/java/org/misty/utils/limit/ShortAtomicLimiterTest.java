@@ -10,6 +10,11 @@ public class ShortAtomicLimiterTest extends ShortAbstractLimiterTest {
     }
 
     @Test
+    public void min_max() {
+        test_min_max(ShortAtomicLimiter::new);
+    }
+
+    @Test
     public void set() {
         test_set(ShortAtomicLimiter::new);
     }

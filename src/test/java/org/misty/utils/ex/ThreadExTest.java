@@ -7,8 +7,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicReference;
 
-class ThreadExTest {
+public class ThreadExTest {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -67,9 +68,32 @@ class ThreadExTest {
 //            Assertions.assertThat(through).isLessThan(most_deviation);
 //        }
 
-        AssertionsEx.assertThrown(() -> ThreadEx.restRandom(0, -1)).isInstanceOf(IllegalArgumentException.class);
-        AssertionsEx.assertThrown(() -> ThreadEx.restRandom(-1, 0)).isInstanceOf(IllegalArgumentException.class);
-        AssertionsEx.assertThrown(() -> ThreadEx.restRandom(10, 5)).isInstanceOf(IllegalArgumentException.class);
+        AssertionsEx.awareThrown(() -> ThreadEx.restRandom(0, -1)).isInstanceOf(IllegalArgumentException.class);
+        AssertionsEx.awareThrown(() -> ThreadEx.restRandom(-1, 0)).isInstanceOf(IllegalArgumentException.class);
+        AssertionsEx.awareThrown(() -> ThreadEx.restRandom(10, 5)).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    public void fork() {
+        AtomicReference<Thread> threadRef1 = new AtomicReference<>();
+        AtomicReference<Thread> threadRef2 = new AtomicReference<>();
+
+        CountDownLatchEx latch = new CountDownLatchEx(2);
+
+        ThreadEx.fork("fork", () -> {
+            threadRef1.set(Thread.currentThread());
+            latch.countDown();
+        });
+        ThreadEx.fork(() -> {
+            threadRef2.set(Thread.currentThread());
+            latch.countDown();
+        });
+
+        latch.wating();
+
+        Assertions.assertThat(threadRef1.get()).isNotEqualTo(Thread.currentThread());
+        Assertions.assertThat(threadRef2.get()).isNotEqualTo(Thread.currentThread());
+        Assertions.assertThat(threadRef2.get()).isNotEqualTo(threadRef1.get());
     }
 
     private void printState(String point, Thread thread) {

@@ -180,7 +180,7 @@ public class AbstractLimiterBuilderTest {
         AbstractLimiterBuilderQuiz quizBuilder = new AbstractLimiterBuilderQuiz();
 
         // check limiterThrown
-        AssertionsEx.assertThrown(() -> quizBuilder.build(0))
+        AssertionsEx.awareThrown(() -> quizBuilder.build(0))
                 .hasMessage(String.format(Verifier.ErrorMsgFormat.REFUSE_NULL, "limiterThrown"))
                 .isInstanceOf(IllegalArgumentException.class);
 
@@ -192,14 +192,14 @@ public class AbstractLimiterBuilderTest {
         String targetTerm = null;
 
         // check targetTerm
-        AssertionsEx.assertThrown(() -> quizBuilder.build(0))
+        AssertionsEx.awareThrown(() -> quizBuilder.build(0))
                 .hasMessage(msgTitle.apply(targetTerm) + String.format(Verifier.ErrorMsgFormat.REFUSE_NULL_OR_EMPTY, "targetTerm"))
                 .isInstanceOf(TestRuntimeException.class);
 
         targetTerm = "";
         quizBuilder.giveTargetTerm(targetTerm);
 
-        AssertionsEx.assertThrown(() -> quizBuilder.build(0))
+        AssertionsEx.awareThrown(() -> quizBuilder.build(0))
                 .hasMessage(msgTitle.apply(targetTerm) + String.format(Verifier.ErrorMsgFormat.REFUSE_NULL_OR_EMPTY, "targetTerm"))
                 .isInstanceOf(TestRuntimeException.class);
 
@@ -207,7 +207,7 @@ public class AbstractLimiterBuilderTest {
         quizBuilder.giveTargetTerm(targetTerm);
 
         // check min and max
-        AssertionsEx.assertThrown(() -> quizBuilder.build(0))
+        AssertionsEx.awareThrown(() -> quizBuilder.build(0))
                 .hasMessage(msgTitle.apply(targetTerm) + "min and max can not be null at the same time")
                 .isInstanceOf(TestRuntimeException.class);
 

@@ -10,6 +10,10 @@ public interface FloatLimiter extends Limiter {
 
     float minus(float minus);
 
+    float getMin();
+
+    float getMax();
+
     default float increment() {
         return plus(1);
     }

@@ -13,13 +13,18 @@ public class AssertionsEx extends Assertions {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AssertionsEx.class);
 
-    public static AbstractThrowableAssert<?, ? extends Throwable> assertThrown(ThrowableAssert.ThrowingCallable throwingCallable) {
-        return assertThrown(throwingCallable, true);
+    public static AbstractThrowableAssert<?, ? extends Throwable> awareThrown(ThrowableAssert.ThrowingCallable throwingCallable) {
+        return awareThrown(throwingCallable, 1);
     }
 
-    public static AbstractThrowableAssert<?, ? extends Throwable> assertThrown(ThrowableAssert.ThrowingCallable throwingCallable, boolean onlyPreviousStack) {
-        StackTraceElement ste = StackFetcher.fetchStack(2);
+    public static AbstractThrowableAssert<?, ? extends Throwable> awareThrown(ThrowableAssert.ThrowingCallable throwingCallable, boolean onlyPreviousStack) {
+        return awareThrown(throwingCallable, onlyPreviousStack ? 1 : -1);
+    }
+
+    private static AbstractThrowableAssert<?, ? extends Throwable> awareThrown(ThrowableAssert.ThrowingCallable throwingCallable, int offset) {
+        boolean onlyPreviousStack = offset >= 0;
         Consumer<Exception> printStackAction = onlyPreviousStack ? e -> { // print only caller stack
+            StackTraceElement ste = StackFetcher.fetchStack(7 + offset);
             System.out.println("ERROR MESSAGE : {" + System.lineSeparator()
                     + e.getMessage() + System.lineSeparator()
                     + "} at " + ste.toString());

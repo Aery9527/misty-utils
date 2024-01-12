@@ -6,7 +6,12 @@ public class IntBaseLimiterTest extends IntAbstractLimiterTest {
 
     @Test
     public void build() {
-        teset_build(AbstractLimiterBuilder::withBase);
+        test_build(AbstractLimiterBuilder::withBase);
+    }
+
+    @Test
+    public void min_max() {
+        test_min_max(IntBaseLimiter::new);
     }
 
     @Test

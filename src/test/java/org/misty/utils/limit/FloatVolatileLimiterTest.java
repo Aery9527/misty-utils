@@ -10,6 +10,11 @@ public class FloatVolatileLimiterTest extends FloatAbstractLimiterTest {
     }
 
     @Test
+    public void min_max() {
+        test_min_max(FloatVolatileLimiter::new);
+    }
+
+    @Test
     public void set() {
         test_set(FloatVolatileLimiter::new);
     }

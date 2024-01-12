@@ -155,10 +155,10 @@ class LongFlagTest {
     @Test
     public void check() {
         LongFlag longFlag = BitFlag.useLong();
-        AssertionsEx.assertThrown(() -> longFlag.add(0)).isInstanceOf(IllegalArgumentException.class);
-        AssertionsEx.assertThrown(() -> longFlag.add(-1)).isInstanceOf(IllegalArgumentException.class);
-        AssertionsEx.assertThrown(() -> longFlag.add(Long.MIN_VALUE)).isInstanceOf(IllegalArgumentException.class);
-        AssertionsEx.assertThrown(() -> longFlag.add(3)).isInstanceOf(IllegalArgumentException.class);
+        AssertionsEx.awareThrown(() -> longFlag.add(0)).isInstanceOf(IllegalArgumentException.class);
+        AssertionsEx.awareThrown(() -> longFlag.add(-1)).isInstanceOf(IllegalArgumentException.class);
+        AssertionsEx.awareThrown(() -> longFlag.add(Long.MIN_VALUE)).isInstanceOf(IllegalArgumentException.class);
+        AssertionsEx.awareThrown(() -> longFlag.add(3)).isInstanceOf(IllegalArgumentException.class);
     }
 
 }

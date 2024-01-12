@@ -4,8 +4,8 @@ public class LongVolatileLimiter extends LongAbstractLimiter {
 
     private volatile long value;
 
-    public LongVolatileLimiter(LongLimitVerifierHandler verifier, long initValue) {
-        super(verifier);
+    public LongVolatileLimiter(LongLimitVerifierHandler verifier, long min, long max, long initValue) {
+        super(verifier, min, max);
         set(initValue);
     }
 

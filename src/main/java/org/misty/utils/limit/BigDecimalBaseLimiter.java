@@ -6,8 +6,8 @@ public class BigDecimalBaseLimiter extends BigDecimalAbstractLimiter {
 
     private BigDecimal value;
 
-    public BigDecimalBaseLimiter(BigDecimalLimitVerifierHandler verifier, BigDecimal initValue) {
-        super(verifier);
+    public BigDecimalBaseLimiter(BigDecimalLimitVerifierHandler verifier, BigDecimal min, BigDecimal max, BigDecimal initValue) {
+        super(verifier, min, max);
         set(initValue);
     }
 

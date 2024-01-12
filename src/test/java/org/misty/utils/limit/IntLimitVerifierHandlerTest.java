@@ -96,7 +96,7 @@ public class IntLimitVerifierHandlerTest {
 
         // verify overflow
         resetCheckPoint.run();
-        AssertionsEx.assertThrown(() -> limitVerifierHandler.verifyPlus(1, Integer.MAX_VALUE))
+        AssertionsEx.awareThrown(() -> limitVerifierHandler.verifyPlus(1, Integer.MAX_VALUE))
                 .hasMessage(String.format(Limiter.ErrorMsgFormat.OPERATION, targetTerm, 1, "+", Integer.MAX_VALUE, (1 + Integer.MAX_VALUE) + Limiter.ErrorMsgFormat.OVERFLOW_INTEGER_MAX))
                 .isInstanceOf(TestRuntimeException.class);
         AssertionsEx.assertThat(checkPoint1.get()).isFalse();
@@ -104,7 +104,7 @@ public class IntLimitVerifierHandlerTest {
         AssertionsEx.assertThat(checkPoint3.get()).isFalse();
 
         resetCheckPoint.run();
-        AssertionsEx.assertThrown(() -> limitVerifierHandler.verifyPlus(-1, Integer.MIN_VALUE))
+        AssertionsEx.awareThrown(() -> limitVerifierHandler.verifyPlus(-1, Integer.MIN_VALUE))
                 .hasMessage(String.format(Limiter.ErrorMsgFormat.OPERATION, targetTerm, -1, "+", Integer.MIN_VALUE, (-1 + Integer.MIN_VALUE) + Limiter.ErrorMsgFormat.OVERFLOW_INTEGER_MIN))
                 .isInstanceOf(TestRuntimeException.class);
         AssertionsEx.assertThat(checkPoint1.get()).isFalse();
@@ -164,7 +164,7 @@ public class IntLimitVerifierHandlerTest {
 
         // verify overflow
         resetCheckPoint.run();
-        AssertionsEx.assertThrown(() -> limitVerifierHandler.verifyMinus(0, Integer.MIN_VALUE))
+        AssertionsEx.awareThrown(() -> limitVerifierHandler.verifyMinus(0, Integer.MIN_VALUE))
                 .hasMessage(String.format(Limiter.ErrorMsgFormat.OPERATION, targetTerm, 0, "-", Integer.MIN_VALUE, (0 - Integer.MIN_VALUE) + Limiter.ErrorMsgFormat.OVERFLOW_INTEGER_MAX))
                 .isInstanceOf(TestRuntimeException.class);
         AssertionsEx.assertThat(checkPoint1.get()).isFalse();
@@ -172,7 +172,7 @@ public class IntLimitVerifierHandlerTest {
         AssertionsEx.assertThat(checkPoint3.get()).isFalse();
 
         resetCheckPoint.run();
-        AssertionsEx.assertThrown(() -> limitVerifierHandler.verifyMinus(-2, Integer.MAX_VALUE))
+        AssertionsEx.awareThrown(() -> limitVerifierHandler.verifyMinus(-2, Integer.MAX_VALUE))
                 .hasMessage(String.format(Limiter.ErrorMsgFormat.OPERATION, targetTerm, -2, "-", Integer.MAX_VALUE, (-2 - Integer.MAX_VALUE) + Limiter.ErrorMsgFormat.OVERFLOW_INTEGER_MIN))
                 .isInstanceOf(TestRuntimeException.class);
         AssertionsEx.assertThat(checkPoint1.get()).isFalse();

@@ -1,20 +1,26 @@
 package org.misty.utils;
 
+import org.misty.utils.verify.Verifier;
+
 import java.util.Objects;
 import java.util.Optional;
 
 public class Tracked {
 
     public static Tracked create() {
-        return new Tracked(null, "", true);
+        return new Tracked(null, "TRACKED", random());
     }
 
-    public static Tracked create(String name) {
-        return new Tracked(null, name, true);
+    public static Tracked create(Class<?> clazz) {
+        return new Tracked(null, clazz.getSimpleName(), random());
     }
 
-    public static Tracked create(String name, String id) {
-        return new Tracked(null, name, id);
+    public static Tracked create(String title) {
+        return new Tracked(null, title, random());
+    }
+
+    public static Tracked create(String title, String id) {
+        return new Tracked(null, title, id);
     }
 
     public static String random() {
@@ -23,24 +29,22 @@ public class Tracked {
         return now + random;
     }
 
-    private final Optional<Tracked> parent;
+    private final Tracked parent;
+
+    private final String title;
 
     private final String id;
 
     private final String msg;
 
-    private Tracked(Tracked parent, String name, boolean joinIdentifier) {
-        this(parent, name, joinIdentifier ? random() : "");
-    }
+    private Tracked(Tracked parent, String title, String id) {
+        Verifier.refuseNullOrEmpty("title", title);
+        Verifier.refuseNull("id", id);
 
-    private Tracked(Tracked parent, String name, String random) {
-        this.parent = Optional.ofNullable(parent);
-
-        String id = parent == null ? "" : parent.id + "|";
-        id += name == null || name.isEmpty() ? "" : name + (random.isEmpty() ? "" : ":");
-        this.id = id + random;
-
-        this.msg = "TRACKED{" + this.id + '}';
+        this.parent = parent;
+        this.title = title;
+        this.id = id;
+        this.msg = mixMsg("{", "}");
     }
 
     /**
@@ -54,20 +58,21 @@ public class Tracked {
         return this.msg + " " + msg;
     }
 
-    public Tracked link(String name) {
-        return link(name, "");
+    public Tracked link(Class<?> clazz) {
+        return link(clazz.getSimpleName());
     }
 
-    public Tracked linkWithRandom(String name) {
-        return link(name, random());
+    public Tracked link(String title) {
+        return link(title, "");
     }
 
-    public Tracked link(String name, String id) {
-        if (name == null || name.isEmpty()) {
-            throw new IllegalArgumentException("name is null or empty");
-        }
+    public Tracked linkWithRandomId(String title) {
+        return link(title, random());
+    }
 
-        return new Tracked(this, name, id);
+    public Tracked link(String title, String id) {
+        Verifier.refuseNullOrEmpty("title", title);
+        return new Tracked(this, title, id);
     }
 
     @Override
@@ -75,12 +80,12 @@ public class Tracked {
         if (this == o) return true;
         if (!(o instanceof Tracked)) return false;
         Tracked tracked = (Tracked) o;
-        return Objects.equals(id, tracked.id);
+        return Objects.equals(this.msg, tracked.msg);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(msg);
     }
 
     @Override
@@ -88,8 +93,23 @@ public class Tracked {
         return this.msg;
     }
 
+    private String mixMsg(String prefix, String suffix) {
+        if (this.parent == null) {
+            return this.title + prefix + this.id + suffix;
+        } else {
+            return this.parent.mixMsg(prefix, "|")
+                    + this.title
+                    + (this.id.isEmpty() ? "" : ":" + this.id)
+                    + suffix;
+        }
+    }
+
     public Optional<Tracked> getParent() {
-        return parent;
+        return Optional.ofNullable(parent);
+    }
+
+    public String getTitle() {
+        return title;
     }
 
     public String getId() {

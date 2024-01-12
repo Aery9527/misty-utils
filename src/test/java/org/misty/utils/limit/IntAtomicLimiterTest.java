@@ -6,7 +6,12 @@ public class IntAtomicLimiterTest extends IntAbstractLimiterTest {
 
     @Test
     public void build() {
-        teset_build(AbstractLimiterBuilder::withAtomic);
+        test_build(AbstractLimiterBuilder::withAtomic);
+    }
+
+    @Test
+    public void min_max() {
+        test_min_max(IntAtomicLimiter::new);
     }
 
     @Test

@@ -1,6 +1,11 @@
 package org.misty.utils.ex;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class ThreadEx extends Thread {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(ThreadEx.class);
 
     public static boolean rest(long millis) {
         try {
@@ -26,6 +31,23 @@ public class ThreadEx extends Thread {
         }
 
         return rest((long) (Math.random() * (most - least)) + least);
+    }
+
+    public static void fork(Runnable action) {
+        new Thread(action).start();
+    }
+
+    public static void fork(String threadName, Runnable action) {
+        new Thread(() -> {
+            try {
+                LOGGER.info("[{}] in", threadName);
+                action.run();
+            } catch (Exception e) {
+                LOGGER.info("[{}] error", threadName, e);
+            } finally {
+                LOGGER.info("[{}] out", threadName);
+            }
+        }, threadName).start();
     }
 
 }

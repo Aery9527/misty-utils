@@ -10,6 +10,11 @@ public class LongAtomicLimiterTest extends LongAbstractLimiterTest {
     }
 
     @Test
+    public void min_max() {
+        test_min_max(LongAtomicLimiter::new);
+    }
+
+    @Test
     public void set() {
         test_set(LongAtomicLimiter::new);
     }

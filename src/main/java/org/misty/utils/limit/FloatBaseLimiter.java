@@ -4,8 +4,8 @@ public class FloatBaseLimiter extends FloatAbstractLimiter {
 
     private float value;
 
-    public FloatBaseLimiter(FloatLimitVerifierHandler verifier, float initValue) {
-        super(verifier);
+    public FloatBaseLimiter(FloatLimitVerifierHandler verifier, float min, float max, float initValue) {
+        super(verifier, min, max);
         set(initValue);
     }
 

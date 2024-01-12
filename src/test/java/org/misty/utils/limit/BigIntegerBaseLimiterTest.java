@@ -10,6 +10,11 @@ public class BigIntegerBaseLimiterTest extends BigIntegerAbstractLimiterTest {
     }
 
     @Test
+    public void min_max() {
+        test_min_max(BigIntegerBaseLimiter::new);
+    }
+
+    @Test
     public void set() {
         test_set(BigIntegerBaseLimiter::new);
     }

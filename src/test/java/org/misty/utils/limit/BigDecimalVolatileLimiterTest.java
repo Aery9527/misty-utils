@@ -10,6 +10,11 @@ public class BigDecimalVolatileLimiterTest extends BigDecimalAbstractLimiterTest
     }
 
     @Test
+    public void min_max() {
+        test_min_max(BigDecimalVolatileLimiter::new);
+    }
+
+    @Test
     public void set() {
         test_set(BigDecimalVolatileLimiter::new);
     }

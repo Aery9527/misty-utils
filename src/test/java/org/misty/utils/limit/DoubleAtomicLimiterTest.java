@@ -10,6 +10,11 @@ public class DoubleAtomicLimiterTest extends DoubleAbstractLimiterTest {
     }
 
     @Test
+    public void min_max() {
+        test_min_max(DoubleAtomicLimiter::new);
+    }
+
+    @Test
     public void set() {
         test_set(DoubleAtomicLimiter::new);
     }

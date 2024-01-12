@@ -1,0 +1,35 @@
+package org.misty.utils.cycle;
+
+public class LongVolatileCycle extends LongAbstractCycle {
+
+    private volatile long value;
+
+    public LongVolatileCycle(LongCycleBuilder builder) {
+        super(builder);
+        this.value = builder.getInitValue();
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + "(volatile)";
+    }
+
+    @Override
+    public long get() {
+        return this.value;
+    }
+
+    @Override
+    public long getAndNext() {
+        long oldValue = this.value;
+        this.value = super.next(oldValue);
+        return oldValue;
+    }
+
+    @Override
+    public long nextAndGet() {
+        this.value = super.next(this.value);
+        return this.value;
+    }
+
+}

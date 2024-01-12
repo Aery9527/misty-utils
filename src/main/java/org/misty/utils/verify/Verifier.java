@@ -7,6 +7,8 @@ public class Verifier {
 
     public static class ErrorMsgFormat {
 
+        public static final String REFUSE_NULL_NUMBER = "%s(%s) can't equals to %s(%s)";
+
         public static final String REFUSE_NULL = "\"%s\" can't be null";
 
         public static final String REFUSE_NULL_OR_EMPTY = "\"%s\" can't be null or empty";
@@ -115,6 +117,195 @@ public class Verifier {
             return new BigIntegerRangeVerifier(title, min, max);
         }
     };
+
+    public static void refuseNumber(String valueTerm, short value, short refuseValue) {
+        INSTANCE.refuseNumber(valueTerm, value, refuseValue);
+    }
+
+    public static <ExceptionType extends Exception> void refuseNumber(
+            String valueTerm,
+            short value,
+            short refuseValue,
+            VerifierThrown<Short, VerifierRefuseNumberErrorMsg<Short>, ExceptionType> thrown
+    ) throws ExceptionType {
+        INSTANCE.refuseNumber(valueTerm, value, refuseValue, thrown);
+    }
+
+    public static void refuseNumber(String valueTerm, short value, String refuseTerm, short refuseValue) {
+        INSTANCE.refuseNumber(valueTerm, value, refuseTerm, refuseValue);
+    }
+
+    public static <ExceptionType extends Exception> void refuseNumber(
+            String valueTerm,
+            short value,
+            String refuseTerm,
+            short refuseValue,
+            VerifierThrown<Short, VerifierRefuseNumberErrorMsg<Short>, ExceptionType> thrown
+    ) throws ExceptionType {
+        INSTANCE.refuseNumber(valueTerm, value, refuseTerm, refuseValue, thrown);
+    }
+
+    public static void refuseNumber(String valueTerm, int value, int refuseValue) {
+        INSTANCE.refuseNumber(valueTerm, value, refuseValue);
+    }
+
+    public static <ExceptionType extends Exception> void refuseNumber(
+            String valueTerm,
+            int value,
+            int refuseValue,
+            VerifierThrown<Integer, VerifierRefuseNumberErrorMsg<Integer>, ExceptionType> thrown
+    ) throws ExceptionType {
+        INSTANCE.refuseNumber(valueTerm, value, refuseValue, thrown);
+    }
+
+    public static void refuseNumber(String valueTerm, int value, String refuseTerm, int refuseValue) {
+        INSTANCE.refuseNumber(valueTerm, value, refuseTerm, refuseValue);
+    }
+
+    public static <ExceptionType extends Exception> void refuseNumber(
+            String valueTerm,
+            int value,
+            String refuseTerm,
+            int refuseValue,
+            VerifierThrown<Integer, VerifierRefuseNumberErrorMsg<Integer>, ExceptionType> thrown
+    ) throws ExceptionType {
+        INSTANCE.refuseNumber(valueTerm, value, refuseTerm, refuseValue, thrown);
+    }
+
+    public static void refuseNumber(String valueTerm, long value, long refuseValue) {
+        INSTANCE.refuseNumber(valueTerm, value, refuseValue);
+    }
+
+    public static <ExceptionType extends Exception> void refuseNumber(
+            String valueTerm,
+            long value,
+            long refuseValue,
+            VerifierThrown<Long, VerifierRefuseNumberErrorMsg<Long>, ExceptionType> thrown
+    ) throws ExceptionType {
+        INSTANCE.refuseNumber(valueTerm, value, refuseValue, thrown);
+    }
+
+    public static void refuseNumber(String valueTerm, long value, String refuseTerm, long refuseValue) {
+        INSTANCE.refuseNumber(valueTerm, value, refuseTerm, refuseValue);
+    }
+
+    public static <ExceptionType extends Exception> void refuseNumber(
+            String valueTerm,
+            long value,
+            String refuseTerm,
+            long refuseValue,
+            VerifierThrown<Long, VerifierRefuseNumberErrorMsg<Long>, ExceptionType> thrown
+    ) throws ExceptionType {
+        INSTANCE.refuseNumber(valueTerm, value, refuseTerm, refuseValue, thrown);
+    }
+
+    public static void refuseNumber(String valueTerm, float value, float refuseValue) {
+        INSTANCE.refuseNumber(valueTerm, value, refuseValue);
+    }
+
+    public static <ExceptionType extends Exception> void refuseNumber(
+            String valueTerm,
+            float value,
+            float refuseValue,
+            VerifierThrown<Float, VerifierRefuseNumberErrorMsg<Float>, ExceptionType> thrown
+    ) throws ExceptionType {
+        INSTANCE.refuseNumber(valueTerm, value, refuseValue, thrown);
+    }
+
+    public static void refuseNumber(String valueTerm, float value, String refuseTerm, float refuseValue) {
+        INSTANCE.refuseNumber(valueTerm, value, refuseTerm, refuseValue);
+    }
+
+    public static <ExceptionType extends Exception> void refuseNumber(
+            String valueTerm,
+            float value,
+            String refuseTerm,
+            float refuseValue,
+            VerifierThrown<Float, VerifierRefuseNumberErrorMsg<Float>, ExceptionType> thrown
+    ) throws ExceptionType {
+        INSTANCE.refuseNumber(valueTerm, value, refuseTerm, refuseValue, thrown);
+    }
+
+    public static void refuseNumber(String valueTerm, double value, double refuseValue) {
+        INSTANCE.refuseNumber(valueTerm, value, refuseValue);
+    }
+
+    public static <ExceptionType extends Exception> void refuseNumber(
+            String valueTerm,
+            double value,
+            double refuseValue,
+            VerifierThrown<Double, VerifierRefuseNumberErrorMsg<Double>, ExceptionType> thrown
+    ) throws ExceptionType {
+        INSTANCE.refuseNumber(valueTerm, value, refuseValue, thrown);
+    }
+
+    public static void refuseNumber(String valueTerm, double value, String refuseTerm, double refuseValue) {
+        INSTANCE.refuseNumber(valueTerm, value, refuseTerm, refuseValue);
+    }
+
+    public static <ExceptionType extends Exception> void refuseNumber(
+            String valueTerm,
+            double value,
+            String refuseTerm,
+            double refuseValue,
+            VerifierThrown<Double, VerifierRefuseNumberErrorMsg<Double>, ExceptionType> thrown
+    ) throws ExceptionType {
+        INSTANCE.refuseNumber(valueTerm, value, refuseTerm, refuseValue, thrown);
+    }
+
+    public static void refuseNumber(String valueTerm, BigDecimal value, BigDecimal refuseValue) {
+        INSTANCE.refuseNumber(valueTerm, value, refuseValue);
+    }
+
+    public static <ExceptionType extends Exception> void refuseNumber(
+            String valueTerm,
+            BigDecimal value,
+            BigDecimal refuseValue,
+            VerifierThrown<BigDecimal, VerifierRefuseNumberErrorMsg<BigDecimal>, ExceptionType> thrown
+    ) throws ExceptionType {
+        INSTANCE.refuseNumber(valueTerm, value, refuseValue, thrown);
+    }
+
+    public static void refuseNumber(String valueTerm, BigDecimal value, String refuseTerm, BigDecimal refuseValue) {
+        INSTANCE.refuseNumber(valueTerm, value, refuseTerm, refuseValue);
+    }
+
+    public static <ExceptionType extends Exception> void refuseNumber(
+            String valueTerm,
+            BigDecimal value,
+            String refuseTerm,
+            BigDecimal refuseValue,
+            VerifierThrown<BigDecimal, VerifierRefuseNumberErrorMsg<BigDecimal>, ExceptionType> thrown
+    ) throws ExceptionType {
+        INSTANCE.refuseNumber(valueTerm, value, refuseTerm, refuseValue, thrown);
+    }
+
+    public static void refuseNumber(String valueTerm, BigInteger value, BigInteger refuseValue) {
+        INSTANCE.refuseNumber(valueTerm, value, refuseValue);
+    }
+
+    public static <ExceptionType extends Exception> void refuseNumber(
+            String valueTerm,
+            BigInteger value,
+            BigInteger refuseValue,
+            VerifierThrown<BigInteger, VerifierRefuseNumberErrorMsg<BigInteger>, ExceptionType> thrown
+    ) throws ExceptionType {
+        INSTANCE.refuseNumber(valueTerm, value, refuseValue, thrown);
+    }
+
+    public static void refuseNumber(String valueTerm, BigInteger value, String refuseTerm, BigInteger refuseValue) {
+        INSTANCE.refuseNumber(valueTerm, value, refuseTerm, refuseValue);
+    }
+
+    public static <ExceptionType extends Exception> void refuseNumber(
+            String valueTerm,
+            BigInteger value,
+            String refuseTerm,
+            BigInteger refuseValue,
+            VerifierThrown<BigInteger, VerifierRefuseNumberErrorMsg<BigInteger>, ExceptionType> thrown
+    ) throws ExceptionType {
+        INSTANCE.refuseNumber(valueTerm, value, refuseTerm, refuseValue, thrown);
+    }
 
     public static void refuseNull(String term, Object arg) throws IllegalArgumentException {
         INSTANCE.refuseNull(term, arg);

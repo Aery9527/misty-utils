@@ -12,6 +12,10 @@ public interface BigIntegerLimiter extends Limiter {
 
     BigInteger minus(BigInteger minus);
 
+    BigInteger getMin();
+
+    BigInteger getMax();
+
     default BigInteger increment() {
         return plus(BigInteger.ONE);
     }

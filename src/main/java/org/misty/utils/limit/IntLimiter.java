@@ -10,6 +10,10 @@ public interface IntLimiter extends Limiter {
 
     int minus(int minus);
 
+    int getMin();
+
+    int getMax();
+
     default int increment() {
         return plus(1);
     }

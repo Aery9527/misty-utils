@@ -66,7 +66,7 @@ public class CombinatoricsSorter<KeyType, ElementType> {
 
     private final Combinatorics<ElementType, ?> combinatorics;
 
-    private Map<KeyType, BiPredicate<Integer, List<ElementType>>> filterMap;
+    private Map<KeyType, BiPredicate<Long, List<ElementType>>> filterMap;
 
     /**
      * 是否允許覆蓋已存在的分類器
@@ -80,19 +80,19 @@ public class CombinatoricsSorter<KeyType, ElementType> {
     }
 
     public CombinatoricsSorter(Combinatorics<ElementType, ?> combinatorics, String name) {
-        this.tracked = combinatorics.getTracked().linkWithRandom(name);
+        this.tracked = combinatorics.getTracked().linkWithRandomId(name);
         this.combinatorics = combinatorics;
         this.filterMap = new LinkedHashMap<>();
     }
 
-    public CombinatoricsSorter(Combinatorics<ElementType, ?> combinatorics, Map<KeyType, BiPredicate<Integer, List<ElementType>>> filterMap) {
+    public CombinatoricsSorter(Combinatorics<ElementType, ?> combinatorics, Map<KeyType, BiPredicate<Long, List<ElementType>>> filterMap) {
         this.tracked = combinatorics.getTracked().link("sorter");
         this.combinatorics = combinatorics;
         this.filterMap = filterMap;
     }
 
-    public CombinatoricsSorter(Combinatorics<ElementType, ?> combinatorics, String name, Map<KeyType, BiPredicate<Integer, List<ElementType>>> filterMap) {
-        this.tracked = combinatorics.getTracked().linkWithRandom(name);
+    public CombinatoricsSorter(Combinatorics<ElementType, ?> combinatorics, String name, Map<KeyType, BiPredicate<Long, List<ElementType>>> filterMap) {
+        this.tracked = combinatorics.getTracked().linkWithRandomId(name);
         this.combinatorics = combinatorics;
         this.filterMap = filterMap;
     }
@@ -101,8 +101,8 @@ public class CombinatoricsSorter<KeyType, ElementType> {
         return addFilter(key, (target, elements) -> filter.test(elements));
     }
 
-    public CombinatoricsSorter<KeyType, ElementType> addFilter(KeyType key, BiPredicate<Integer, List<ElementType>> filter) {
-        BiPredicate<Integer, List<ElementType>> old = this.filterMap.put(key, filter);
+    public CombinatoricsSorter<KeyType, ElementType> addFilter(KeyType key, BiPredicate<Long, List<ElementType>> filter) {
+        BiPredicate<Long, List<ElementType>> old = this.filterMap.put(key, filter);
         if (!this.allowFilterCover && old != null) {
             String errorMsg = this.tracked.say("filter key(%s) already exists", key);
             throw new IllegalStateException(errorMsg);
@@ -119,7 +119,7 @@ public class CombinatoricsSorter<KeyType, ElementType> {
         SortMap<KeyType, ElementType> sortResult = buildSortUsedMap();
 
         List<List<ElementType>> unsortListWrap;
-        if (this.combinatorics.getExecutorSwitch().isWithParallel()) {
+        if (this.combinatorics.getTaskCountExecutor().isParallelMode()) {
             unsortListWrap = Collections.synchronizedList(unsortList);
         } else {
             unsortListWrap = unsortList;
@@ -171,7 +171,7 @@ public class CombinatoricsSorter<KeyType, ElementType> {
         SortMap<KeyType, ElementType> sortResult = buildSortUsedMap();
 
         List<List<ElementType>> unsortListWrap;
-        if (this.combinatorics.getExecutorSwitch().isWithParallel()) {
+        if (this.combinatorics.getTaskCountExecutor().isParallelMode()) {
             unsortListWrap = Collections.synchronizedList(unsortList);
         } else {
             unsortListWrap = unsortList;
@@ -217,7 +217,7 @@ public class CombinatoricsSorter<KeyType, ElementType> {
     }
 
     private SortMap<KeyType, ElementType> buildSortUsedMap() {
-        return this.combinatorics.getExecutorSwitch().isWithParallel() ? new AsyncSortMap() : new SyncSortMap();
+        return this.combinatorics.getTaskCountExecutor().isParallelMode() ? new AsyncSortMap() : new SyncSortMap();
     }
 
     public boolean isAllowFilterCover() {
@@ -228,11 +228,11 @@ public class CombinatoricsSorter<KeyType, ElementType> {
         this.allowFilterCover = allowFilterCover;
     }
 
-    public Map<KeyType, BiPredicate<Integer, List<ElementType>>> getFilterMap() {
+    public Map<KeyType, BiPredicate<Long, List<ElementType>>> getFilterMap() {
         return filterMap;
     }
 
-    public CombinatoricsSorter<KeyType, ElementType> setFilterMap(Map<KeyType, BiPredicate<Integer, List<ElementType>>> filterMap) {
+    public CombinatoricsSorter<KeyType, ElementType> setFilterMap(Map<KeyType, BiPredicate<Long, List<ElementType>>> filterMap) {
         this.filterMap = filterMap;
         return this;
     }

@@ -10,6 +10,10 @@ public interface LongLimiter extends Limiter {
 
     long minus(long minus);
 
+    long getMin();
+
+    long getMax();
+
     default long increment() {
         return plus(1);
     }

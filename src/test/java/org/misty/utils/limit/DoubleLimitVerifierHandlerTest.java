@@ -62,7 +62,7 @@ public class DoubleLimitVerifierHandlerTest {
                 if (acceptUnlimited) {
                     limitVerifierHandler.verifySet(target);
                 } else {
-                    AssertionsEx.assertThrown(() -> limitVerifierHandler.verifySet(target))
+                    AssertionsEx.awareThrown(() -> limitVerifierHandler.verifySet(target))
                             .hasMessage(String.format(Limiter.ErrorMsgFormat.INFINITE_NAN, targetTerm, target))
                             .isInstanceOf(TestRuntimeException.class);
                 }
@@ -142,10 +142,10 @@ public class DoubleLimitVerifierHandlerTest {
                     limitVerifierHandler.verifyPlus(a, b);
                     limitVerifierHandler.verifyPlus(b, a);
                 } else {
-                    AssertionsEx.assertThrown(() -> limitVerifierHandler.verifyPlus(a, b))
+                    AssertionsEx.awareThrown(() -> limitVerifierHandler.verifyPlus(a, b))
                             .hasMessage(String.format(Limiter.ErrorMsgFormat.INFINITE_NAN_OPERATE, targetTerm, a, "plus", b))
                             .isInstanceOf(TestRuntimeException.class);
-                    AssertionsEx.assertThrown(() -> limitVerifierHandler.verifyPlus(b, a))
+                    AssertionsEx.awareThrown(() -> limitVerifierHandler.verifyPlus(b, a))
                             .hasMessage(String.format(Limiter.ErrorMsgFormat.INFINITE_NAN_OPERATE, targetTerm, b, "plus", a))
                             .isInstanceOf(TestRuntimeException.class);
                 }
@@ -226,10 +226,10 @@ public class DoubleLimitVerifierHandlerTest {
                     limitVerifierHandler.verifyMinus(a, b);
                     limitVerifierHandler.verifyMinus(b, a);
                 } else {
-                    AssertionsEx.assertThrown(() -> limitVerifierHandler.verifyMinus(a, b))
+                    AssertionsEx.awareThrown(() -> limitVerifierHandler.verifyMinus(a, b))
                             .hasMessage(String.format(Limiter.ErrorMsgFormat.INFINITE_NAN_OPERATE, targetTerm, a, "minus", b))
                             .isInstanceOf(TestRuntimeException.class);
-                    AssertionsEx.assertThrown(() -> limitVerifierHandler.verifyMinus(b, a))
+                    AssertionsEx.awareThrown(() -> limitVerifierHandler.verifyMinus(b, a))
                             .hasMessage(String.format(Limiter.ErrorMsgFormat.INFINITE_NAN_OPERATE, targetTerm, b, "minus", a))
                             .isInstanceOf(TestRuntimeException.class);
                 }

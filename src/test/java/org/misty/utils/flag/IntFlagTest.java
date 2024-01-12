@@ -155,10 +155,10 @@ class IntFlagTest {
     @Test
     public void check() {
         IntFlag intFlag = BitFlag.useInt();
-        AssertionsEx.assertThrown(() -> intFlag.add(0)).isInstanceOf(IllegalArgumentException.class);
-        AssertionsEx.assertThrown(() -> intFlag.add(-1)).isInstanceOf(IllegalArgumentException.class);
-        AssertionsEx.assertThrown(() -> intFlag.add(Integer.MIN_VALUE)).isInstanceOf(IllegalArgumentException.class);
-        AssertionsEx.assertThrown(() -> intFlag.add(3)).isInstanceOf(IllegalArgumentException.class);
+        AssertionsEx.awareThrown(() -> intFlag.add(0)).isInstanceOf(IllegalArgumentException.class);
+        AssertionsEx.awareThrown(() -> intFlag.add(-1)).isInstanceOf(IllegalArgumentException.class);
+        AssertionsEx.awareThrown(() -> intFlag.add(Integer.MIN_VALUE)).isInstanceOf(IllegalArgumentException.class);
+        AssertionsEx.awareThrown(() -> intFlag.add(3)).isInstanceOf(IllegalArgumentException.class);
     }
 
 }

@@ -6,8 +6,8 @@ public class ShortAtomicLimiter extends ShortAbstractLimiter {
 
     private final AtomicReference<Short> value = new AtomicReference<>();
 
-    public ShortAtomicLimiter(ShortLimitVerifierHandler verifier, short initValue) {
-        super(verifier);
+    public ShortAtomicLimiter(ShortLimitVerifierHandler verifier, short min, short max, short initValue) {
+        super(verifier, min, max);
         set(initValue);
     }
 

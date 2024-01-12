@@ -14,16 +14,16 @@ class IntRangeBuilderTest {
 
             rangeBuilder.build(-1, Integer.MAX_VALUE);
             rangeBuilder.build(1, Integer.MAX_VALUE);
-            AssertionsEx.assertThrown(() -> rangeBuilder.build(-2, 5))
+            AssertionsEx.awareThrown(() -> rangeBuilder.build(-2, 5))
                     .hasMessageContaining("lower")
                     .hasMessageContaining(title)
                     .isInstanceOf(IllegalArgumentException.class);
-            AssertionsEx.assertThrown(() -> rangeBuilder.build(2, 5))
+            AssertionsEx.awareThrown(() -> rangeBuilder.build(2, 5))
                     .hasMessageContaining("lower")
                     .hasMessageContaining(title)
                     .isInstanceOf(IllegalArgumentException.class);
 
-            AssertionsEx.assertThrown(() -> rangeBuilder.giveLowerBound(1, 0))
+            AssertionsEx.awareThrown(() -> rangeBuilder.giveLowerBound(1, 0))
                     .hasMessageContaining("lowerMin")
                     .hasMessageContaining("lowerMax")
                     .hasMessageContaining(title)
@@ -41,16 +41,16 @@ class IntRangeBuilderTest {
 
             rangeBuilder.build(Integer.MIN_VALUE, -1);
             rangeBuilder.build(Integer.MIN_VALUE, 1);
-            AssertionsEx.assertThrown(() -> rangeBuilder.build(-5, -2))
+            AssertionsEx.awareThrown(() -> rangeBuilder.build(-5, -2))
                     .hasMessageContaining("upper")
                     .hasMessageContaining(title)
                     .isInstanceOf(IllegalArgumentException.class);
-            AssertionsEx.assertThrown(() -> rangeBuilder.build(-5, 2))
+            AssertionsEx.awareThrown(() -> rangeBuilder.build(-5, 2))
                     .hasMessageContaining("upper")
                     .hasMessageContaining(title)
                     .isInstanceOf(IllegalArgumentException.class);
 
-            AssertionsEx.assertThrown(() -> rangeBuilder.giveUpperBound(1, 0))
+            AssertionsEx.awareThrown(() -> rangeBuilder.giveUpperBound(1, 0))
                     .hasMessageContaining("upperMin")
                     .hasMessageContaining("upperMax")
                     .hasMessageContaining(title)

@@ -96,7 +96,7 @@ public class LongLimitVerifierHandlerTest {
 
         // verify overflow
         resetCheckPoint.run();
-        AssertionsEx.assertThrown(() -> limitVerifierHandler.verifyPlus(1, Long.MAX_VALUE))
+        AssertionsEx.awareThrown(() -> limitVerifierHandler.verifyPlus(1, Long.MAX_VALUE))
                 .hasMessage(String.format(Limiter.ErrorMsgFormat.OPERATION, targetTerm, 1, "+", Long.MAX_VALUE, (1 + Long.MAX_VALUE) + Limiter.ErrorMsgFormat.OVERFLOW_LONG_MAX))
                 .isInstanceOf(TestRuntimeException.class);
         AssertionsEx.assertThat(checkPoint1.get()).isFalse();
@@ -104,7 +104,7 @@ public class LongLimitVerifierHandlerTest {
         AssertionsEx.assertThat(checkPoint3.get()).isFalse();
 
         resetCheckPoint.run();
-        AssertionsEx.assertThrown(() -> limitVerifierHandler.verifyPlus(-1, Long.MIN_VALUE))
+        AssertionsEx.awareThrown(() -> limitVerifierHandler.verifyPlus(-1, Long.MIN_VALUE))
                 .hasMessage(String.format(Limiter.ErrorMsgFormat.OPERATION, targetTerm, -1, "+", Long.MIN_VALUE, (-1 + Long.MIN_VALUE) + Limiter.ErrorMsgFormat.OVERFLOW_LONG_MIN))
                 .isInstanceOf(TestRuntimeException.class);
         AssertionsEx.assertThat(checkPoint1.get()).isFalse();
@@ -164,7 +164,7 @@ public class LongLimitVerifierHandlerTest {
 
         // verify overflow
         resetCheckPoint.run();
-        AssertionsEx.assertThrown(() -> limitVerifierHandler.verifyMinus(0, Long.MIN_VALUE))
+        AssertionsEx.awareThrown(() -> limitVerifierHandler.verifyMinus(0, Long.MIN_VALUE))
                 .hasMessage(String.format(Limiter.ErrorMsgFormat.OPERATION, targetTerm, 0, "-", Long.MIN_VALUE, (0 - Long.MIN_VALUE) + Limiter.ErrorMsgFormat.OVERFLOW_LONG_MAX))
                 .isInstanceOf(TestRuntimeException.class);
         AssertionsEx.assertThat(checkPoint1.get()).isFalse();
@@ -172,7 +172,7 @@ public class LongLimitVerifierHandlerTest {
         AssertionsEx.assertThat(checkPoint3.get()).isFalse();
 
         resetCheckPoint.run();
-        AssertionsEx.assertThrown(() -> limitVerifierHandler.verifyMinus(-2, Long.MAX_VALUE))
+        AssertionsEx.awareThrown(() -> limitVerifierHandler.verifyMinus(-2, Long.MAX_VALUE))
                 .hasMessage(String.format(Limiter.ErrorMsgFormat.OPERATION, targetTerm, -2, "-", Long.MAX_VALUE, (-2 - Long.MAX_VALUE) + Limiter.ErrorMsgFormat.OVERFLOW_LONG_MIN))
                 .isInstanceOf(TestRuntimeException.class);
         AssertionsEx.assertThat(checkPoint1.get()).isFalse();

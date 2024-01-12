@@ -17,13 +17,9 @@ public class BigDecimalLimiterBuilder extends
                 BigDecimalLimiterBuilder
                 > {
 
-    public static final int DEFAULT_SCALE = 2;
+    private int scale = BigDecimalLimiter.DEFAULT_SCALE;
 
-    public static final RoundingMode DEFAULT_ROUNDING_MODE = RoundingMode.HALF_UP;
-
-    private int scale = DEFAULT_SCALE;
-
-    private RoundingMode roundingMode = DEFAULT_ROUNDING_MODE;
+    private RoundingMode roundingMode = BigDecimalLimiter.DEFAULT_ROUNDING_MODE;
 
     @Override
     protected void verifyMinLessThanMax(BigDecimal min, BigDecimal max) throws IllegalArgumentException {
@@ -173,17 +169,17 @@ public class BigDecimalLimiterBuilder extends
 
     @Override
     protected BigDecimalLimiter buildBaseLimiter(BigDecimalLimitVerifierHandler verifier, BigDecimal initValue) {
-        return new BigDecimalBaseLimiter(verifier, initValue);
+        return new BigDecimalBaseLimiter(verifier, getMin(), getMax(), initValue);
     }
 
     @Override
     protected BigDecimalLimiter buildVolatileLimiter(BigDecimalLimitVerifierHandler verifier, BigDecimal initValue) {
-        return new BigDecimalVolatileLimiter(verifier, initValue);
+        return new BigDecimalVolatileLimiter(verifier, getMin(), getMax(), initValue);
     }
 
     @Override
     protected BigDecimalLimiter buildAtomicLimiter(BigDecimalLimitVerifierHandler verifier, BigDecimal initValue) {
-        return new BigDecimalAtomicLimiter(verifier, initValue);
+        return new BigDecimalAtomicLimiter(verifier, getMin(), getMax(), initValue);
     }
 
     @Override

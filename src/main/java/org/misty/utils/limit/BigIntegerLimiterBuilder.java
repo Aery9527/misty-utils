@@ -164,17 +164,17 @@ public class BigIntegerLimiterBuilder extends
 
     @Override
     protected BigIntegerLimiter buildBaseLimiter(BigIntegerLimitVerifierHandler verifier, BigInteger initValue) {
-        return new BigIntegerBaseLimiter(verifier, initValue);
+        return new BigIntegerBaseLimiter(verifier, getMin(), getMax(), initValue);
     }
 
     @Override
     protected BigIntegerLimiter buildVolatileLimiter(BigIntegerLimitVerifierHandler verifier, BigInteger initValue) {
-        return new BigIntegerVolatileLimiter(verifier, initValue);
+        return new BigIntegerVolatileLimiter(verifier, getMin(), getMax(), initValue);
     }
 
     @Override
     protected BigIntegerLimiter buildAtomicLimiter(BigIntegerLimitVerifierHandler verifier, BigInteger initValue) {
-        return new BigIntegerAtomicLimiter(verifier, initValue);
+        return new BigIntegerAtomicLimiter(verifier, getMin(), getMax(), initValue);
     }
 
     @Override

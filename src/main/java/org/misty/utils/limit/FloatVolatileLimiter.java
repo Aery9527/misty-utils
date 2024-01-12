@@ -4,8 +4,8 @@ public class FloatVolatileLimiter extends FloatAbstractLimiter {
 
     private volatile float value;
 
-    public FloatVolatileLimiter(FloatLimitVerifierHandler verifier, float initValue) {
-        super(verifier);
+    public FloatVolatileLimiter(FloatLimitVerifierHandler verifier, float min, float max, float initValue) {
+        super(verifier, min, max);
         set(initValue);
     }
 

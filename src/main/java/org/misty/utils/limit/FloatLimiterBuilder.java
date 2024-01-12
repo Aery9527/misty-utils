@@ -168,17 +168,17 @@ public class FloatLimiterBuilder extends
 
     @Override
     protected FloatLimiter buildBaseLimiter(FloatLimitVerifierHandler verifier, Float initValue) {
-        return new FloatBaseLimiter(verifier, initValue);
+        return new FloatBaseLimiter(verifier, getMin(), getMax(), initValue);
     }
 
     @Override
     protected FloatLimiter buildVolatileLimiter(FloatLimitVerifierHandler verifier, Float initValue) {
-        return new FloatVolatileLimiter(verifier, initValue);
+        return new FloatVolatileLimiter(verifier, getMin(), getMax(), initValue);
     }
 
     @Override
     protected FloatLimiter buildAtomicLimiter(FloatLimitVerifierHandler verifier, Float initValue) {
-        return new FloatAtomicLimiter(verifier, initValue);
+        return new FloatAtomicLimiter(verifier, getMin(), getMax(), initValue);
     }
 
     @Override

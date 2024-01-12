@@ -3,14 +3,18 @@ package org.misty.utils.limit;
 import org.misty._utils.AssertionsEx;
 import org.misty._utils.TestRuntimeException;
 import org.misty.utils.verify.Verifier;
+import org.mockito.Mockito;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.function.BiFunction;
 import java.util.function.Consumer;
 
 public class BigDecimalAbstractLimiterTest {
+
+    public interface TestInterface {
+        BigDecimalLimiter setting(BigDecimalLimitVerifierHandler verifierHandler, BigDecimal min, BigDecimal max, BigDecimal initValue);
+    }
 
     private final BigDecimal $0 = BigDecimal.ZERO;
 
@@ -19,6 +23,12 @@ public class BigDecimalAbstractLimiterTest {
     private final BigDecimal $2 = BigDecimal.valueOf(2);
 
     private final BigDecimal $3 = BigDecimal.valueOf(3);
+
+    private final BigDecimalLimitVerifierHandler mockVerifierHandler = Mockito.mock(BigDecimalLimitVerifierHandler.class);
+
+    private final BigDecimal min = BigDecimal.valueOf(2266);
+
+    private final BigDecimal max = BigDecimal.valueOf(9527);
 
     public void teset_build(Consumer<BigDecimalLimiterBuilder> setting) {
         BigDecimal min = $1;
@@ -32,14 +42,20 @@ public class BigDecimalAbstractLimiterTest {
         setting.accept(limiterBuilder);
 
         BigDecimalLimiter limiter = limiterBuilder.build(initValue);
-        AssertionsEx.assertThat(limiter.get()).isEqualTo(initValue.setScale(BigDecimalLimiterBuilder.DEFAULT_SCALE, BigDecimalLimiterBuilder.DEFAULT_ROUNDING_MODE));
+        AssertionsEx.assertThat(limiter.get()).isEqualTo(initValue.setScale(BigDecimalLimiter.DEFAULT_SCALE, BigDecimalLimiter.DEFAULT_ROUNDING_MODE));
 
-        AssertionsEx.assertThrown(() -> limiterBuilder.build($0))
+        AssertionsEx.awareThrown(() -> limiterBuilder.build($0))
                 .hasMessage(term + " " + String.format(Verifier.ErrorMsgFormat.REQUIRE_RANGE_INCLUSIVE, Limiter.ErrorMsgFormat.SET_TERM, "0.00", min, max))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    public void test_set(BiFunction<BigDecimalLimitVerifierHandler, BigDecimal, BigDecimalLimiter> setting) {
+    public void test_min_max(TestInterface setting) {
+        BigDecimalLimiter limiter = setting.setting(this.mockVerifierHandler, this.min, this.max, BigDecimal.valueOf(5566));
+        AssertionsEx.assertThat(limiter.getMin()).isEqualTo(this.min);
+        AssertionsEx.assertThat(limiter.getMax()).isEqualTo(this.max);
+    }
+
+    public void test_set(TestInterface setting) {
         int scale = 2;
         RoundingMode roundingMode = RoundingMode.HALF_UP;
 
@@ -63,7 +79,7 @@ public class BigDecimalAbstractLimiterTest {
         });
 
         BigDecimal initValue = $2;
-        BigDecimalLimiter limiter = setting.apply(limitVerifierHandler, initValue);
+        BigDecimalLimiter limiter = setting.setting(limitVerifierHandler, this.min, this.max, initValue);
 
         BigDecimal setValue = BigDecimal.valueOf(Math.random() * 100);
         limiter.set(setValue);
@@ -74,7 +90,7 @@ public class BigDecimalAbstractLimiterTest {
         AssertionsEx.assertThat(limiter.get()).isEqualTo(setValue.setScale(scale, roundingMode));
     }
 
-    public void test_plus(BiFunction<BigDecimalLimitVerifierHandler, BigDecimal, BigDecimalLimiter> setting) {
+    public void test_plus(TestInterface setting) {
         BigDecimalLimitVerifierHandler limitVerifierHandler = new BigDecimalLimitVerifierHandler(2, RoundingMode.HALF_UP, new BigDecimalLimitVerifier() {
             @Override
             public void verifySet(BigDecimal target) throws RuntimeException {
@@ -94,7 +110,7 @@ public class BigDecimalAbstractLimiterTest {
         });
 
         BigDecimal initValue = $0;
-        BigDecimalLimiter limiter = setting.apply(limitVerifierHandler, initValue);
+        BigDecimalLimiter limiter = setting.setting(limitVerifierHandler, this.min, this.max, initValue);
 
         BigDecimal plusValue = $1;
         BigDecimal result = limiter.plus(plusValue);
@@ -106,7 +122,7 @@ public class BigDecimalAbstractLimiterTest {
         AssertionsEx.assertThat(limiter.get()).isEqualTo(limitVerifierHandler.setScale(initValue.add(plusValue)));
     }
 
-    public void test_minus(BiFunction<BigDecimalLimitVerifierHandler, BigDecimal, BigDecimalLimiter> setting) {
+    public void test_minus(TestInterface setting) {
         BigDecimalLimitVerifierHandler limitVerifierHandler = new BigDecimalLimitVerifierHandler(2, RoundingMode.HALF_UP, new BigDecimalLimitVerifier() {
             @Override
             public void verifySet(BigDecimal target) throws RuntimeException {
@@ -126,7 +142,7 @@ public class BigDecimalAbstractLimiterTest {
         });
 
         BigDecimal initValue = $0;
-        BigDecimalLimiter limiter = setting.apply(limitVerifierHandler, initValue);
+        BigDecimalLimiter limiter = setting.setting(limitVerifierHandler, this.min, this.max, initValue);
 
         BigDecimal minusValue = $1;
         limiter.minus(minusValue);
@@ -137,7 +153,7 @@ public class BigDecimalAbstractLimiterTest {
         AssertionsEx.assertThat(limiter.get()).isEqualTo(limitVerifierHandler.setScale(initValue.subtract(minusValue)));
     }
 
-    public void test_increment(BiFunction<BigDecimalLimitVerifierHandler, BigDecimal, BigDecimalLimiter> setting) {
+    public void test_increment(TestInterface setting) {
         AtomicBoolean checkPoint = new AtomicBoolean(false);
 
         BigDecimalLimitVerifierHandler limitVerifierHandler = new BigDecimalLimitVerifierHandler(2, RoundingMode.HALF_UP, new BigDecimalLimitVerifier() {
@@ -158,12 +174,12 @@ public class BigDecimalAbstractLimiterTest {
         });
 
         BigDecimal initValue = $0;
-        BigDecimalLimiter limiter = setting.apply(limitVerifierHandler, initValue);
+        BigDecimalLimiter limiter = setting.setting(limitVerifierHandler, this.min, this.max, initValue);
         limiter.increment();
         AssertionsEx.assertThat(checkPoint.get()).isTrue();
     }
 
-    public void test_decrement(BiFunction<BigDecimalLimitVerifierHandler, BigDecimal, BigDecimalLimiter> setting) {
+    public void test_decrement(TestInterface setting) {
         AtomicBoolean checkPoint = new AtomicBoolean(false);
 
         BigDecimalLimitVerifierHandler limitVerifierHandler = new BigDecimalLimitVerifierHandler(2, RoundingMode.HALF_UP, new BigDecimalLimitVerifier() {
@@ -184,7 +200,7 @@ public class BigDecimalAbstractLimiterTest {
         });
 
         BigDecimal initValue = $0;
-        BigDecimalLimiter limiter = setting.apply(limitVerifierHandler, initValue);
+        BigDecimalLimiter limiter = setting.setting(limitVerifierHandler, this.min, this.max, initValue);
         limiter.decrement();
         AssertionsEx.assertThat(checkPoint.get()).isTrue();
     }

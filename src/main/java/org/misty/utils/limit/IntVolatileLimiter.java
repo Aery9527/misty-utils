@@ -4,8 +4,8 @@ public class IntVolatileLimiter extends IntAbstractLimiter {
 
     private volatile int value;
 
-    public IntVolatileLimiter(IntLimitVerifierHandler verifier, int initValue) {
-        super(verifier);
+    public IntVolatileLimiter(IntLimitVerifierHandler verifier, int min, int max, int initValue) {
+        super(verifier, min, max);
         set(initValue);
     }
 

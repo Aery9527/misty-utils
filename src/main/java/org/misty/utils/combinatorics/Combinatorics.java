@@ -1,8 +1,13 @@
 package org.misty.utils.combinatorics;
 
-import org.misty.utils.ExecutorSwitch;
 import org.misty.utils.Tracked;
 import org.misty.utils.collection.ListElement;
+import org.misty.utils.cycle.Cycle;
+import org.misty.utils.cycle.LongCycle;
+import org.misty.utils.task.TaskExecuteResult;
+import org.misty.utils.task.executor.TaskCountExecutor;
+import org.misty.utils.task.executor.TaskExecutor;
+import org.misty.utils.task.executor.TaskExecutorBuilder;
 
 import java.util.*;
 import java.util.concurrent.ExecutorService;
@@ -38,13 +43,18 @@ public abstract class Combinatorics<ElementType, SelfType extends Combinatorics<
     private final boolean shuffle;
 
     /**
-     * 執行緒切換器(用於切換使用單緒或多緒環境)
+     * 用來建造{@link #taskCountExecutor}, 可根據需求切換單緒序列執行或多緒並發執行
      */
-    private final ExecutorSwitch executorSwitch;
+    private final TaskExecutorBuilder taskExecutorBuilder;
+
+    /**
+     * 任務執行器
+     */
+    private TaskCountExecutor taskCountExecutor;
 
     /**
      * 是否強制使用單執行緒執行foreach, 主要使用在collect系列上, 由於他們都只是要將元素收集成List,
-     * 若{@link #executorSwitch}原本就設定了單緒則沒啥問題, 但若設定了使用多緒將會為了維持List的同步而造成效能損失及程式碼雜亂,
+     * 若{@link #taskCountExecutor}原本就設定了單緒則沒啥問題, 但若設定了使用多緒將會為了維持List的同步而造成效能損失及程式碼雜亂,
      * 因此收集成List沒有額外的判斷時, 則強制採用單緒執行, 提高效能與程式碼維護性.
      */
     private boolean forceSerial = false;
@@ -58,46 +68,47 @@ public abstract class Combinatorics<ElementType, SelfType extends Combinatorics<
         this.elements = ListElement.boxing(elements);
         this.shuffle = shuffle;
 
-        this.executorSwitch = ExecutorSwitch.create(tracked.link(ExecutorSwitch.class.getSimpleName()));
+        this.taskExecutorBuilder = TaskExecutorBuilder.create(tracked.link(TaskExecutor.class));
+        withSerial();
     }
 
     /**
-     * 參考 {@link ExecutorSwitch#withParallel()}
+     * 參考 {@link TaskExecutorBuilder#withParallel()}
      */
     public SelfType withParallel() {
-        this.executorSwitch.withParallel();
+        this.taskCountExecutor = this.taskExecutorBuilder.withParallel().buildCountExecutor();
         return (SelfType) this;
     }
 
     /**
-     * 參考 {@link ExecutorSwitch#withParallel(int)}
+     * 參考 {@link TaskExecutorBuilder#withParallel(int)}
      */
     public SelfType withParallel(int threadNumber) {
-        this.executorSwitch.withParallel(threadNumber);
+        this.taskCountExecutor = this.taskExecutorBuilder.withParallel(threadNumber).buildCountExecutor();
         return (SelfType) this;
     }
 
     /**
-     * 參考 {@link ExecutorSwitch#withParallel(ExecutorService)}
+     * 參考 {@link TaskExecutorBuilder#withParallel(ExecutorService)}
      */
     public SelfType withParallel(ExecutorService executorService) {
-        this.executorSwitch.withParallel(executorService);
+        this.taskCountExecutor = this.taskExecutorBuilder.withParallel(executorService).buildCountExecutor();
         return (SelfType) this;
     }
 
     /**
-     * 參考 {@link ExecutorSwitch#withSerial()}
+     * 參考 {@link TaskExecutorBuilder#withSerial()}
      */
     public SelfType withSerial() {
-        this.executorSwitch.withSerial();
+        this.taskCountExecutor = this.taskExecutorBuilder.withSerial().buildCountExecutor();
         return (SelfType) this;
     }
 
     /**
-     * 參考 {@link ExecutorSwitch#waitFinish()}
+     * 參考 {@link TaskExecutor#waitFinish()}
      */
     public SelfType waitFinish() {
-        this.executorSwitch.waitFinish();
+        this.taskCountExecutor.waitFinish();
         return (SelfType) this;
     }
 
@@ -109,11 +120,11 @@ public abstract class Combinatorics<ElementType, SelfType extends Combinatorics<
         return new CombinatoricsSorter<>(this, name);
     }
 
-    public <KeyType> CombinatoricsSorter<KeyType, ElementType> sorter(Map<KeyType, BiPredicate<Integer, List<ElementType>>> filterMap) {
+    public <KeyType> CombinatoricsSorter<KeyType, ElementType> sorter(Map<KeyType, BiPredicate<Long, List<ElementType>>> filterMap) {
         return new CombinatoricsSorter<KeyType, ElementType>(this).setFilterMap(filterMap);
     }
 
-    public <KeyType> CombinatoricsSorter<KeyType, ElementType> sorter(String name, Map<KeyType, BiPredicate<Integer, List<ElementType>>> filterMap) {
+    public <KeyType> CombinatoricsSorter<KeyType, ElementType> sorter(String name, Map<KeyType, BiPredicate<Long, List<ElementType>>> filterMap) {
         return new CombinatoricsSorter<KeyType, ElementType>(this, name).setFilterMap(filterMap);
     }
 
@@ -172,9 +183,9 @@ public abstract class Combinatorics<ElementType, SelfType extends Combinatorics<
 
     /**
      * 同{@link #foreach(int, boolean, BiPredicate, BiPredicate)}, 只是回傳第一個找到的符合filter的組合或排序.
-     * 不強制採用單緒是因為這邊的filter是由外部執行, 它的動作耗時是不可預期的, 因此維持此實例當前{@link #executorSwitch}的設定.
+     * 不強制採用單緒是因為這邊的filter是由外部執行, 它的動作耗時是不可預期的, 因此維持此實例當前{@link #taskCountExecutor}的設定.
      */
-    public Optional<List<ElementType>> collectFirst(int size, boolean repeat, BiPredicate<Integer, List<ListElement<ElementType>>> filter) {
+    public Optional<List<ElementType>> collectFirst(int size, boolean repeat, BiPredicate<Long, List<ListElement<ElementType>>> filter) {
         AtomicReference<List<ElementType>> pickRef = new AtomicReference<>();
         foreach(size, repeat, filter, (times, resultTemp) -> {
             pickRef.compareAndSet(null, resultTemp);
@@ -200,9 +211,9 @@ public abstract class Combinatorics<ElementType, SelfType extends Combinatorics<
 
     /**
      * 同{@link #foreach(int, boolean, BiPredicate, BiPredicate)}, 只是回傳最多指定數量的符合filter的組合或排序.
-     * 不強制採用單緒是因為這邊的filter是由外部執行, 它的動作耗時是不可預期的, 因此維持此實例當前{@link #executorSwitch}的設定.
+     * 不強制採用單緒是因為這邊的filter是由外部執行, 它的動作耗時是不可預期的, 因此維持此實例當前{@link #taskCountExecutor}的設定.
      */
-    public List<List<ElementType>> collectMostAmount(int size, boolean repeat, int mostAmount, BiPredicate<Integer, List<ListElement<ElementType>>> filter) {
+    public List<List<ElementType>> collectMostAmount(int size, boolean repeat, int mostAmount, BiPredicate<Long, List<ListElement<ElementType>>> filter) {
         List<List<ElementType>> result = buildCollectUsedList();
         AtomicInteger amountCounter = new AtomicInteger(0);
         foreach(size, repeat, filter, (times, resultTemp) -> {
@@ -235,7 +246,7 @@ public abstract class Combinatorics<ElementType, SelfType extends Combinatorics<
     /**
      * 同{@link #foreach(int, boolean, BiPredicate, BiConsumer)}, 只是回傳所有符合filter的組合或排序.
      */
-    public List<List<ElementType>> collect(int size, boolean repeat, BiPredicate<Integer, List<ListElement<ElementType>>> filter) {
+    public List<List<ElementType>> collect(int size, boolean repeat, BiPredicate<Long, List<ListElement<ElementType>>> filter) {
         List<List<ElementType>> result = buildCollectUsedList();
         foreach(size, repeat, filter, (times, resultTemp) -> {
             result.add(resultTemp);
@@ -247,7 +258,7 @@ public abstract class Combinatorics<ElementType, SelfType extends Combinatorics<
     /**
      * 參考 {@link #foreachMostTimes(int, int, BiPredicate)}
      */
-    public SelfType foreachMostTimes(int size, int mostTimes, BiConsumer<Integer, List<ElementType>> receiver) {
+    public SelfType foreachMostTimes(int size, int mostTimes, BiConsumer<Long, List<ElementType>> receiver) {
         foreachMostTimes(size, mostTimes, (times, result) -> {
             receiver.accept(times, result);
             return FOREACH_CONTINUE;
@@ -267,14 +278,14 @@ public abstract class Combinatorics<ElementType, SelfType extends Combinatorics<
     /**
      * 參考 {@link #foreachTimes(int, int, int, BiPredicate)}
      */
-    public boolean foreachMostTimes(int size, int mostTimes, BiPredicate<Integer, List<ElementType>> receiver) {
+    public boolean foreachMostTimes(int size, int mostTimes, BiPredicate<Long, List<ElementType>> receiver) {
         return foreachTimes(size, mostTimes, 1, receiver);
     }
 
     /**
      * 參考 {@link #foreachLeastTimes(int, int, BiPredicate)}
      */
-    public SelfType foreachLeastTimes(int size, int leastTimes, BiConsumer<Integer, List<ElementType>> receiver) {
+    public SelfType foreachLeastTimes(int size, int leastTimes, BiConsumer<Long, List<ElementType>> receiver) {
         foreachLeastTimes(size, leastTimes, (times, result) -> {
             receiver.accept(times, result);
             return FOREACH_CONTINUE;
@@ -294,14 +305,14 @@ public abstract class Combinatorics<ElementType, SelfType extends Combinatorics<
     /**
      * 參考 {@link #foreachTimes(int, int, int, BiPredicate)}
      */
-    public boolean foreachLeastTimes(int size, int leastTimes, BiPredicate<Integer, List<ElementType>> receiver) {
+    public boolean foreachLeastTimes(int size, int leastTimes, BiPredicate<Long, List<ElementType>> receiver) {
         return foreachTimes(size, size, leastTimes, receiver);
     }
 
     /**
      * 參考 {@link #foreachTimes(int, int, int, BiPredicate)}
      */
-    public SelfType foreachTimes(int size, int mostTimes, int leastTimes, BiConsumer<Integer, List<ElementType>> receiver) {
+    public SelfType foreachTimes(int size, int mostTimes, int leastTimes, BiConsumer<Long, List<ElementType>> receiver) {
         foreachTimes(size, mostTimes, leastTimes, (times, result) -> {
             receiver.accept(times, result);
             return FOREACH_CONTINUE;
@@ -325,7 +336,7 @@ public abstract class Combinatorics<ElementType, SelfType extends Combinatorics<
      * @param receiver   排列/組合接受器, 回傳值參考 {@link #FOREACH_CONTINUE} 跟 {@link #FOREACH_BREAK}
      * @return 參考 {@link #FOREACH_CONTINUE} 跟 {@link #FOREACH_BREAK}
      */
-    public boolean foreachTimes(int size, int mostTimes, int leastTimes, BiPredicate<Integer, List<ElementType>> receiver) {
+    public boolean foreachTimes(int size, int mostTimes, int leastTimes, BiPredicate<Long, List<ElementType>> receiver) {
         return foreach(size, true, (times, result) -> { // filter
             return result.stream()
                     .map(element -> element.index)
@@ -350,7 +361,7 @@ public abstract class Combinatorics<ElementType, SelfType extends Combinatorics<
     public SelfType foreach(int size,
                             boolean repeat,
                             Predicate<List<ListElement<ElementType>>> filter,
-                            BiConsumer<Integer, List<ElementType>> receiver) {
+                            BiConsumer<Long, List<ElementType>> receiver) {
         return foreach(size, repeat, (times, result) -> filter.test(result), receiver);
     }
 
@@ -359,7 +370,7 @@ public abstract class Combinatorics<ElementType, SelfType extends Combinatorics<
      */
     public SelfType foreach(int size,
                             boolean repeat,
-                            BiPredicate<Integer, List<ListElement<ElementType>>> filter,
+                            BiPredicate<Long, List<ListElement<ElementType>>> filter,
                             Consumer<List<ElementType>> receiver) {
         return foreach(size, repeat, filter, (times, result) -> {
             receiver.accept(result);
@@ -385,8 +396,8 @@ public abstract class Combinatorics<ElementType, SelfType extends Combinatorics<
      */
     public SelfType foreach(int size,
                             boolean repeat,
-                            BiPredicate<Integer, List<ListElement<ElementType>>> filter,
-                            BiConsumer<Integer, List<ElementType>> receiver) {
+                            BiPredicate<Long, List<ListElement<ElementType>>> filter,
+                            BiConsumer<Long, List<ElementType>> receiver) {
         foreach(size, repeat, filter, (times, result) -> {
             receiver.accept(times, result);
             return FOREACH_CONTINUE;
@@ -400,7 +411,7 @@ public abstract class Combinatorics<ElementType, SelfType extends Combinatorics<
     public boolean foreach(int size,
                            boolean repeat,
                            Predicate<List<ListElement<ElementType>>> filter,
-                           BiPredicate<Integer, List<ElementType>> receiver) {
+                           BiPredicate<Long, List<ElementType>> receiver) {
         return foreach(size, repeat, (times, result) -> filter.test(result), receiver);
     }
 
@@ -409,7 +420,7 @@ public abstract class Combinatorics<ElementType, SelfType extends Combinatorics<
      */
     public boolean foreach(int size,
                            boolean repeat,
-                           BiPredicate<Integer, List<ListElement<ElementType>>> filter,
+                           BiPredicate<Long, List<ListElement<ElementType>>> filter,
                            Predicate<List<ElementType>> receiver) {
         return foreach(size, repeat, filter, (times, result) -> {
             return receiver.test(result);
@@ -438,8 +449,8 @@ public abstract class Combinatorics<ElementType, SelfType extends Combinatorics<
      */
     public boolean foreach(int size,
                            boolean repeat,
-                           BiPredicate<Integer, List<ListElement<ElementType>>> filter,
-                           BiPredicate<Integer, List<ElementType>> receiver) {
+                           BiPredicate<Long, List<ListElement<ElementType>>> filter,
+                           BiPredicate<Long, List<ElementType>> receiver) {
         return preForeach((times, result) -> { // receiver
             boolean accept = filter.test(times, result);
             return accept ? receiver.test(times, ListElement.unboxing(result)) : FOREACH_CONTINUE;
@@ -458,7 +469,7 @@ public abstract class Combinatorics<ElementType, SelfType extends Combinatorics<
     /**
      * 同 {@link #foreach(int, boolean, BiPredicate)}, 只是預設全跑玩不會中斷, 參考 {@link #FOREACH_CONTINUE} 跟 {@link #FOREACH_BREAK}
      */
-    public SelfType foreach(int size, boolean repeat, BiConsumer<Integer, List<ElementType>> receiver) {
+    public SelfType foreach(int size, boolean repeat, BiConsumer<Long, List<ElementType>> receiver) {
         foreach(size, repeat, (times, result) -> { // receiver
             receiver.accept(times, result);
             return FOREACH_CONTINUE;
@@ -483,7 +494,7 @@ public abstract class Combinatorics<ElementType, SelfType extends Combinatorics<
      * @param receiver 排列/組合接受器, 回傳值參考 {@link #FOREACH_CONTINUE} 跟 {@link #FOREACH_BREAK}
      * @return 參考 {@link #FOREACH_CONTINUE} 跟 {@link #FOREACH_BREAK}
      */
-    public boolean foreach(int size, boolean repeat, BiPredicate<Integer, List<ElementType>> receiver) {
+    public boolean foreach(int size, boolean repeat, BiPredicate<Long, List<ElementType>> receiver) {
         return preForeach((times, result) -> receiver.test(times, ListElement.unboxing(result)), size, repeat);
     }
 
@@ -495,7 +506,7 @@ public abstract class Combinatorics<ElementType, SelfType extends Combinatorics<
 
     public abstract long numberOfUnique(int k);
 
-    protected boolean preForeach(BiPredicate<Integer, List<ListElement<ElementType>>> receiver, int size, boolean repeat) {
+    protected boolean preForeach(BiPredicate<Long, List<ListElement<ElementType>>> receiver, int size, boolean repeat) {
         return doForeach(buildReceiveController(receiver), size, repeat);
     }
 
@@ -507,8 +518,8 @@ public abstract class Combinatorics<ElementType, SelfType extends Combinatorics<
     /**
      * 主要用來控制是多緒還是單緒執行任務
      */
-    protected Predicate<List<ListElement<ElementType>>> buildReceiveController(BiPredicate<Integer, List<ListElement<ElementType>>> receiver) {
-        if (this.executorSwitch.isWithParallel() && !this.forceSerial) {
+    protected Predicate<List<ListElement<ElementType>>> buildReceiveController(BiPredicate<Long, List<ListElement<ElementType>>> receiver) {
+        if (this.taskCountExecutor.isParallelMode() && !this.forceSerial) {
             AtomicBoolean interruptFlag = new AtomicBoolean(false);
             Consumer<Boolean> interruptFlagUpdate = flag -> interruptFlag.compareAndSet(false, flag);
 
@@ -519,7 +530,7 @@ public abstract class Combinatorics<ElementType, SelfType extends Combinatorics<
 
                 List<ListElement<ElementType>> resultTempForParallel = Collections.unmodifiableList(new ArrayList<>(resultTemp));
 
-                boolean executed = this.executorSwitch.run(times -> { // 這邊開始是fork出去別條thread執行的部分
+                TaskExecuteResult executeResult = this.taskCountExecutor.run(times -> { // 這邊開始是fork出去別條thread執行的部分
                     if (interruptFlag.get()) {
                         return;
                     }
@@ -527,14 +538,14 @@ public abstract class Combinatorics<ElementType, SelfType extends Combinatorics<
                     boolean interrupt = receiver.test(times, resultTempForParallel);
                     interruptFlagUpdate.accept(interrupt);
                 });
-                interruptFlagUpdate.accept(!executed);
+                interruptFlagUpdate.accept(!executeResult.isExecuted());
 
                 return interruptFlag.get() ? FOREACH_BREAK : FOREACH_CONTINUE;
             };
 
         } else {
-            AtomicInteger times = new AtomicInteger(0);
-            return resultTemp -> receiver.test(times.incrementAndGet(), resultTemp);
+            LongCycle cycle = Cycle.longCycleBuilder(tracked).giveRange(0, Long.MAX_VALUE).build();
+            return resultTemp -> receiver.test(cycle.nextAndGet(), resultTemp);
         }
     }
 
@@ -553,11 +564,11 @@ public abstract class Combinatorics<ElementType, SelfType extends Combinatorics<
 
     private List<List<ElementType>> buildCollectUsedList() {
         List<List<ElementType>> list = new ArrayList<>(DEFAULT_COLLECT_LIST_SIZE);
-        return this.executorSwitch.isWithParallel() && !this.forceSerial ? Collections.synchronizedList(list) : list;
+        return this.taskCountExecutor.isParallelMode() && !this.forceSerial ? Collections.synchronizedList(list) : list;
     }
 
-    protected ExecutorSwitch getExecutorSwitch() {
-        return executorSwitch;
+    protected TaskCountExecutor getTaskCountExecutor() {
+        return taskCountExecutor;
     }
 
     public Tracked getTracked() {

@@ -25,7 +25,7 @@ class StackFetcherTest {
         AssertionsEx.assertThat(steArray[1].getClassName()).isEqualTo(currentSte1.getClassName());
         AssertionsEx.assertThat(steArray[1].getMethodName()).isEqualTo(currentSte1.getMethodName());
 
-        AssertionsEx.assertThrown(() -> StackFetcher.fetchStack(-1))
+        AssertionsEx.awareThrown(() -> StackFetcher.fetchStack(-1))
                 .hasMessageContaining("offset")
                 .isInstanceOf(IllegalArgumentException.class);
     }

@@ -10,6 +10,230 @@ public interface VerifierLogic<DefaultExceptionType extends Exception> extends V
         return Checker.isNullOrEmpty(title) ? "" : "<" + title + "> ";
     }
 
+    default void refuseNumber(String valueTerm, short value, short refuseValue) throws DefaultExceptionType {
+        VerifierThrown<Short, VerifierRefuseNumberErrorMsg<Short>, DefaultExceptionType> thrown = getThrower();
+        refuseNumber(valueTerm, value, "", refuseValue, thrown);
+    }
+
+    default <ExceptionType extends Exception> void refuseNumber(
+            String valueTerm,
+            short value,
+            short refuseValue,
+            VerifierThrown<Short, VerifierRefuseNumberErrorMsg<Short>, ExceptionType> thrown
+    ) throws ExceptionType {
+        refuseNumber(valueTerm, value, "", refuseValue, thrown);
+    }
+
+    default void refuseNumber(String valueTerm, short value, String refuseTerm, short refuseValue) throws DefaultExceptionType {
+        VerifierThrown<Short, VerifierRefuseNumberErrorMsg<Short>, DefaultExceptionType> thrown = getThrower();
+        refuseNumber(valueTerm, value, refuseTerm, refuseValue, thrown);
+    }
+
+    default <ExceptionType extends Exception> void refuseNumber(
+            String valueTerm,
+            short value,
+            String refuseTerm,
+            short refuseValue,
+            VerifierThrown<Short, VerifierRefuseNumberErrorMsg<Short>, ExceptionType> thrown
+    ) throws ExceptionType {
+        if (value == refuseValue) {
+            thrown.thrown(new VerifierRefuseNumberErrorMsg<>(valueTerm, value, refuseTerm, refuseValue,
+                    String.format(Verifier.ErrorMsgFormat.REFUSE_NULL_NUMBER, valueTerm, value, refuseTerm, refuseValue)));
+        }
+    }
+
+    default void refuseNumber(String valueTerm, int value, int refuseValue) throws DefaultExceptionType {
+        VerifierThrown<Integer, VerifierRefuseNumberErrorMsg<Integer>, DefaultExceptionType> thrown = getThrower();
+        refuseNumber(valueTerm, value, "", refuseValue, thrown);
+    }
+
+    default <ExceptionType extends Exception> void refuseNumber(
+            String valueTerm,
+            int value,
+            int refuseValue,
+            VerifierThrown<Integer, VerifierRefuseNumberErrorMsg<Integer>, ExceptionType> thrown
+    ) throws ExceptionType {
+        refuseNumber(valueTerm, value, "", refuseValue, thrown);
+    }
+
+    default void refuseNumber(String valueTerm, int value, String refuseTerm, int refuseValue) throws DefaultExceptionType {
+        VerifierThrown<Integer, VerifierRefuseNumberErrorMsg<Integer>, DefaultExceptionType> thrown = getThrower();
+        refuseNumber(valueTerm, value, refuseTerm, refuseValue, thrown);
+    }
+
+    default <ExceptionType extends Exception> void refuseNumber(
+            String valueTerm,
+            int value,
+            String refuseTerm,
+            int refuseValue,
+            VerifierThrown<Integer, VerifierRefuseNumberErrorMsg<Integer>, ExceptionType> thrown
+    ) throws ExceptionType {
+        if (value == refuseValue) {
+            thrown.thrown(new VerifierRefuseNumberErrorMsg<>(valueTerm, value, refuseTerm, refuseValue,
+                    String.format(Verifier.ErrorMsgFormat.REFUSE_NULL_NUMBER, valueTerm, value, refuseTerm, refuseValue)));
+        }
+    }
+
+    default void refuseNumber(String valueTerm, long value, long refuseValue) throws DefaultExceptionType {
+        VerifierThrown<Long, VerifierRefuseNumberErrorMsg<Long>, DefaultExceptionType> thrown = getThrower();
+        refuseNumber(valueTerm, value, "", refuseValue, thrown);
+    }
+
+    default <ExceptionType extends Exception> void refuseNumber(
+            String valueTerm,
+            long value,
+            long refuseValue,
+            VerifierThrown<Long, VerifierRefuseNumberErrorMsg<Long>, ExceptionType> thrown
+    ) throws ExceptionType {
+        refuseNumber(valueTerm, value, "", refuseValue, thrown);
+    }
+
+    default void refuseNumber(String valueTerm, long value, String refuseTerm, long refuseValue) throws DefaultExceptionType {
+        VerifierThrown<Long, VerifierRefuseNumberErrorMsg<Long>, DefaultExceptionType> thrown = getThrower();
+        refuseNumber(valueTerm, value, refuseTerm, refuseValue, thrown);
+    }
+
+    default <ExceptionType extends Exception> void refuseNumber(
+            String valueTerm,
+            long value,
+            String refuseTerm,
+            long refuseValue,
+            VerifierThrown<Long, VerifierRefuseNumberErrorMsg<Long>, ExceptionType> thrown
+    ) throws ExceptionType {
+        if (value == refuseValue) {
+            thrown.thrown(new VerifierRefuseNumberErrorMsg<>(valueTerm, value, refuseTerm, refuseValue,
+                    String.format(Verifier.ErrorMsgFormat.REFUSE_NULL_NUMBER, valueTerm, value, refuseTerm, refuseValue)));
+        }
+    }
+
+    default void refuseNumber(String valueTerm, float value, float refuseValue) throws DefaultExceptionType {
+        VerifierThrown<Float, VerifierRefuseNumberErrorMsg<Float>, DefaultExceptionType> thrown = getThrower();
+        refuseNumber(valueTerm, value, "", refuseValue, thrown);
+    }
+
+    default <ExceptionType extends Exception> void refuseNumber(
+            String valueTerm,
+            float value,
+            float refuseValue,
+            VerifierThrown<Float, VerifierRefuseNumberErrorMsg<Float>, ExceptionType> thrown
+    ) throws ExceptionType {
+        refuseNumber(valueTerm, value, "", refuseValue, thrown);
+    }
+
+    default void refuseNumber(String valueTerm, float value, String refuseTerm, float refuseValue) throws DefaultExceptionType {
+        VerifierThrown<Float, VerifierRefuseNumberErrorMsg<Float>, DefaultExceptionType> thrown = getThrower();
+        refuseNumber(valueTerm, value, refuseTerm, refuseValue, thrown);
+    }
+
+    default <ExceptionType extends Exception> void refuseNumber(
+            String valueTerm,
+            float value,
+            String refuseTerm,
+            float refuseValue,
+            VerifierThrown<Float, VerifierRefuseNumberErrorMsg<Float>, ExceptionType> thrown
+    ) throws ExceptionType {
+        if (value == refuseValue) {
+            thrown.thrown(new VerifierRefuseNumberErrorMsg<>(valueTerm, value, refuseTerm, refuseValue,
+                    String.format(Verifier.ErrorMsgFormat.REFUSE_NULL_NUMBER, valueTerm, value, refuseTerm, refuseValue)));
+        }
+    }
+
+    default void refuseNumber(String valueTerm, double value, double refuseValue) throws DefaultExceptionType {
+        VerifierThrown<Double, VerifierRefuseNumberErrorMsg<Double>, DefaultExceptionType> thrown = getThrower();
+        refuseNumber(valueTerm, value, "", refuseValue, thrown);
+    }
+
+    default <ExceptionType extends Exception> void refuseNumber(
+            String valueTerm,
+            double value,
+            double refuseValue,
+            VerifierThrown<Double, VerifierRefuseNumberErrorMsg<Double>, ExceptionType> thrown
+    ) throws ExceptionType {
+        refuseNumber(valueTerm, value, "", refuseValue, thrown);
+    }
+
+    default void refuseNumber(String valueTerm, double value, String refuseTerm, double refuseValue) throws DefaultExceptionType {
+        VerifierThrown<Double, VerifierRefuseNumberErrorMsg<Double>, DefaultExceptionType> thrown = getThrower();
+        refuseNumber(valueTerm, value, refuseTerm, refuseValue, thrown);
+    }
+
+    default <ExceptionType extends Exception> void refuseNumber(
+            String valueTerm,
+            double value,
+            String refuseTerm,
+            double refuseValue,
+            VerifierThrown<Double, VerifierRefuseNumberErrorMsg<Double>, ExceptionType> thrown
+    ) throws ExceptionType {
+        if (value == refuseValue) {
+            thrown.thrown(new VerifierRefuseNumberErrorMsg<>(valueTerm, value, refuseTerm, refuseValue,
+                    String.format(Verifier.ErrorMsgFormat.REFUSE_NULL_NUMBER, valueTerm, value, refuseTerm, refuseValue)));
+        }
+    }
+
+    default void refuseNumber(String valueTerm, BigDecimal value, BigDecimal refuseValue) throws DefaultExceptionType {
+        VerifierThrown<BigDecimal, VerifierRefuseNumberErrorMsg<BigDecimal>, DefaultExceptionType> thrown = getThrower();
+        refuseNumber(valueTerm, value, "", refuseValue, thrown);
+    }
+
+    default <ExceptionType extends Exception> void refuseNumber(
+            String valueTerm,
+            BigDecimal value,
+            BigDecimal refuseValue,
+            VerifierThrown<BigDecimal, VerifierRefuseNumberErrorMsg<BigDecimal>, ExceptionType> thrown
+    ) throws ExceptionType {
+        refuseNumber(valueTerm, value, "", refuseValue, thrown);
+    }
+
+    default void refuseNumber(String valueTerm, BigDecimal value, String refuseTerm, BigDecimal refuseValue) throws DefaultExceptionType {
+        VerifierThrown<BigDecimal, VerifierRefuseNumberErrorMsg<BigDecimal>, DefaultExceptionType> thrown = getThrower();
+        refuseNumber(valueTerm, value, refuseTerm, refuseValue, thrown);
+    }
+
+    default <ExceptionType extends Exception> void refuseNumber(
+            String valueTerm,
+            BigDecimal value,
+            String refuseTerm,
+            BigDecimal refuseValue,
+            VerifierThrown<BigDecimal, VerifierRefuseNumberErrorMsg<BigDecimal>, ExceptionType> thrown
+    ) throws ExceptionType {
+        if (value.compareTo(refuseValue) == 0) {
+            thrown.thrown(new VerifierRefuseNumberErrorMsg<>(valueTerm, value, refuseTerm, refuseValue,
+                    String.format(Verifier.ErrorMsgFormat.REFUSE_NULL_NUMBER, valueTerm, value, refuseTerm, refuseValue)));
+        }
+    }
+
+    default void refuseNumber(String valueTerm, BigInteger value, BigInteger refuseValue) throws DefaultExceptionType {
+        VerifierThrown<BigInteger, VerifierRefuseNumberErrorMsg<BigInteger>, DefaultExceptionType> thrown = getThrower();
+        refuseNumber(valueTerm, value, "", refuseValue, thrown);
+    }
+
+    default <ExceptionType extends Exception> void refuseNumber(
+            String valueTerm,
+            BigInteger value,
+            BigInteger refuseValue,
+            VerifierThrown<BigInteger, VerifierRefuseNumberErrorMsg<BigInteger>, ExceptionType> thrown
+    ) throws ExceptionType {
+        refuseNumber(valueTerm, value, "", refuseValue, thrown);
+    }
+
+    default void refuseNumber(String valueTerm, BigInteger value, String refuseTerm, BigInteger refuseValue) throws DefaultExceptionType {
+        VerifierThrown<BigInteger, VerifierRefuseNumberErrorMsg<BigInteger>, DefaultExceptionType> thrown = getThrower();
+        refuseNumber(valueTerm, value, refuseTerm, refuseValue, thrown);
+    }
+
+    default <ExceptionType extends Exception> void refuseNumber(
+            String valueTerm,
+            BigInteger value,
+            String refuseTerm,
+            BigInteger refuseValue,
+            VerifierThrown<BigInteger, VerifierRefuseNumberErrorMsg<BigInteger>, ExceptionType> thrown
+    ) throws ExceptionType {
+        if (value.compareTo(refuseValue) == 0) {
+            thrown.thrown(new VerifierRefuseNumberErrorMsg<>(valueTerm, value, refuseTerm, refuseValue,
+                    String.format(Verifier.ErrorMsgFormat.REFUSE_NULL_NUMBER, valueTerm, value, refuseTerm, refuseValue)));
+        }
+    }
+
     default void refuseNull(String term, Object arg) throws DefaultExceptionType {
         refuseNull(term, arg, getThrower());
     }

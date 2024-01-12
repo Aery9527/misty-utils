@@ -10,6 +10,11 @@ public class FloatAtomicLimiterTest extends FloatAbstractLimiterTest {
     }
 
     @Test
+    public void min_max() {
+        test_min_max(FloatAtomicLimiter::new);
+    }
+
+    @Test
     public void set() {
         test_set(FloatAtomicLimiter::new);
     }

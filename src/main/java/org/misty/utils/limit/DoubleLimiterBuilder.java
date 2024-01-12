@@ -168,17 +168,17 @@ public class DoubleLimiterBuilder extends
 
     @Override
     protected DoubleLimiter buildBaseLimiter(DoubleLimitVerifierHandler verifier, Double initValue) {
-        return new DoubleBaseLimiter(verifier, initValue);
+        return new DoubleBaseLimiter(verifier, getMin(), getMax(), initValue);
     }
 
     @Override
     protected DoubleLimiter buildVolatileLimiter(DoubleLimitVerifierHandler verifier, Double initValue) {
-        return new DoubleVolatileLimiter(verifier, initValue);
+        return new DoubleVolatileLimiter(verifier, getMin(), getMax(), initValue);
     }
 
     @Override
     protected DoubleLimiter buildAtomicLimiter(DoubleLimitVerifierHandler verifier, Double initValue) {
-        return new DoubleAtomicLimiter(verifier, initValue);
+        return new DoubleAtomicLimiter(verifier, getMin(), getMax(), initValue);
     }
 
     @Override

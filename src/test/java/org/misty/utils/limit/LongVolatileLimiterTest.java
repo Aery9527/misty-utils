@@ -10,6 +10,11 @@ public class LongVolatileLimiterTest extends LongAbstractLimiterTest {
     }
 
     @Test
+    public void min_max() {
+        test_min_max(LongBaseLimiter::new);
+    }
+
+    @Test
     public void set() {
         test_set(LongBaseLimiter::new);
     }

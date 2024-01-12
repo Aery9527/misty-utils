@@ -21,10 +21,10 @@ public class BigDecimalRangeVerifierTest {
         rangeVerifier = Verifier.ofRange(title, $1, $1);
         rangeVerifier = Verifier.ofRange(title, $1, $2);
 
-        AssertionsEx.assertThrown(() -> Verifier.ofRange($1, $0))
+        AssertionsEx.awareThrown(() -> Verifier.ofRange($1, $0))
                 .hasMessageContaining(String.format(Verifier.ErrorMsgFormat.LESS_THAN_INCLUSIVE, "min", 1, "max", 0))
                 .isInstanceOf(IllegalArgumentException.class);
-        AssertionsEx.assertThrown(() -> Verifier.ofRange(title, $1, $0))
+        AssertionsEx.awareThrown(() -> Verifier.ofRange(title, $1, $0))
                 .hasMessageContaining(String.format(Verifier.ErrorMsgFormat.LESS_THAN_INCLUSIVE, "min", 1, "max", 0))
                 .hasMessageContaining(title)
                 .isInstanceOf(IllegalArgumentException.class);
@@ -49,11 +49,11 @@ public class BigDecimalRangeVerifierTest {
             rangeVerifier.requireInclusive(targetTerm, $3);
 
             // 測試檢查不通過的情況
-            AssertionsEx.assertThrown(() -> rangeVerifier.requireInclusive(targetTerm, $0))
+            AssertionsEx.awareThrown(() -> rangeVerifier.requireInclusive(targetTerm, $0))
                     .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 0, min, max))
                     .hasMessageContaining(title)
                     .isInstanceOf(IllegalArgumentException.class);
-            AssertionsEx.assertThrown(() -> rangeVerifier.requireInclusive(targetTerm, $4))
+            AssertionsEx.awareThrown(() -> rangeVerifier.requireInclusive(targetTerm, $4))
                     .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 4, min, max))
                     .hasMessageContaining(title)
                     .isInstanceOf(IllegalArgumentException.class);
@@ -64,11 +64,11 @@ public class BigDecimalRangeVerifierTest {
             rangeVerifier.requireInclusive(targetTerm, $3, VerifierTest.throwTest1RuntimeException());
 
             // 測試檢查不通過的情況, 拋出非預設自定義錯誤
-            AssertionsEx.assertThrown(() -> rangeVerifier.requireInclusive(targetTerm, $0, VerifierTest.throwTest1RuntimeException()))
+            AssertionsEx.awareThrown(() -> rangeVerifier.requireInclusive(targetTerm, $0, VerifierTest.throwTest1RuntimeException()))
                     .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 0, min, max))
                     .hasMessageContaining(title)
                     .isInstanceOf(Test1RuntimeException.class);
-            AssertionsEx.assertThrown(() -> rangeVerifier.requireInclusive(targetTerm, $4, VerifierTest.throwTest1RuntimeException()))
+            AssertionsEx.awareThrown(() -> rangeVerifier.requireInclusive(targetTerm, $4, VerifierTest.throwTest1RuntimeException()))
                     .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 4, min, max))
                     .hasMessageContaining(title)
                     .isInstanceOf(Test1RuntimeException.class);
@@ -95,11 +95,11 @@ public class BigDecimalRangeVerifierTest {
             rangeVerifier.requireMinInclusiveMaxExclusive(targetTerm, $2);
 
             // 測試檢查不通過的情況
-            AssertionsEx.assertThrown(() -> rangeVerifier.requireMinInclusiveMaxExclusive(targetTerm, $0))
+            AssertionsEx.awareThrown(() -> rangeVerifier.requireMinInclusiveMaxExclusive(targetTerm, $0))
                     .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 0, min, max))
                     .hasMessageContaining(title)
                     .isInstanceOf(IllegalArgumentException.class);
-            AssertionsEx.assertThrown(() -> rangeVerifier.requireMinInclusiveMaxExclusive(targetTerm, $3))
+            AssertionsEx.awareThrown(() -> rangeVerifier.requireMinInclusiveMaxExclusive(targetTerm, $3))
                     .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 3, min, max))
                     .hasMessageContaining(title)
                     .isInstanceOf(IllegalArgumentException.class);
@@ -109,11 +109,11 @@ public class BigDecimalRangeVerifierTest {
             rangeVerifier.requireMinInclusiveMaxExclusive(targetTerm, $2, VerifierTest.throwTest1RuntimeException());
 
             // 測試檢查不通過的情況, 拋出非預設自定義錯誤
-            AssertionsEx.assertThrown(() -> rangeVerifier.requireMinInclusiveMaxExclusive(targetTerm, $0, VerifierTest.throwTest1RuntimeException()))
+            AssertionsEx.awareThrown(() -> rangeVerifier.requireMinInclusiveMaxExclusive(targetTerm, $0, VerifierTest.throwTest1RuntimeException()))
                     .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 0, min, max))
                     .hasMessageContaining(title)
                     .isInstanceOf(Test1RuntimeException.class);
-            AssertionsEx.assertThrown(() -> rangeVerifier.requireMinInclusiveMaxExclusive(targetTerm, $3, VerifierTest.throwTest1RuntimeException()))
+            AssertionsEx.awareThrown(() -> rangeVerifier.requireMinInclusiveMaxExclusive(targetTerm, $3, VerifierTest.throwTest1RuntimeException()))
                     .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 3, min, max))
                     .hasMessageContaining(title)
                     .isInstanceOf(Test1RuntimeException.class);
@@ -138,11 +138,11 @@ public class BigDecimalRangeVerifierTest {
             rangeVerifier.requireExclusive(targetTerm, $2);
 
             // 測試檢查不通過的情況
-            AssertionsEx.assertThrown(() -> rangeVerifier.requireExclusive(targetTerm, $1))
+            AssertionsEx.awareThrown(() -> rangeVerifier.requireExclusive(targetTerm, $1))
                     .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 1, min, max))
                     .hasMessageContaining(title)
                     .isInstanceOf(IllegalArgumentException.class);
-            AssertionsEx.assertThrown(() -> rangeVerifier.requireExclusive(targetTerm, $3))
+            AssertionsEx.awareThrown(() -> rangeVerifier.requireExclusive(targetTerm, $3))
                     .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 3, min, max))
                     .hasMessageContaining(title)
                     .isInstanceOf(IllegalArgumentException.class);
@@ -151,11 +151,11 @@ public class BigDecimalRangeVerifierTest {
             rangeVerifier.requireExclusive(targetTerm, $2, VerifierTest.throwTest1RuntimeException());
 
             // 測試檢查不通過的情況, 拋出非預設自定義錯誤
-            AssertionsEx.assertThrown(() -> rangeVerifier.requireExclusive(targetTerm, $1, VerifierTest.throwTest1RuntimeException()))
+            AssertionsEx.awareThrown(() -> rangeVerifier.requireExclusive(targetTerm, $1, VerifierTest.throwTest1RuntimeException()))
                     .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 1, min, max))
                     .hasMessageContaining(title)
                     .isInstanceOf(Test1RuntimeException.class);
-            AssertionsEx.assertThrown(() -> rangeVerifier.requireExclusive(targetTerm, $3, VerifierTest.throwTest1RuntimeException()))
+            AssertionsEx.awareThrown(() -> rangeVerifier.requireExclusive(targetTerm, $3, VerifierTest.throwTest1RuntimeException()))
                     .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 3, min, max))
                     .hasMessageContaining(title)
                     .isInstanceOf(Test1RuntimeException.class);
@@ -182,11 +182,11 @@ public class BigDecimalRangeVerifierTest {
             rangeVerifier.requireMinExclusiveMaxInclusive(targetTerm, $3);
 
             // 測試檢查不通過的情況
-            AssertionsEx.assertThrown(() -> rangeVerifier.requireMinExclusiveMaxInclusive(targetTerm, $1))
+            AssertionsEx.awareThrown(() -> rangeVerifier.requireMinExclusiveMaxInclusive(targetTerm, $1))
                     .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 1, min, max))
                     .hasMessageContaining(title)
                     .isInstanceOf(IllegalArgumentException.class);
-            AssertionsEx.assertThrown(() -> rangeVerifier.requireMinExclusiveMaxInclusive(targetTerm, $4))
+            AssertionsEx.awareThrown(() -> rangeVerifier.requireMinExclusiveMaxInclusive(targetTerm, $4))
                     .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 4, min, max))
                     .hasMessageContaining(title)
                     .isInstanceOf(IllegalArgumentException.class);
@@ -196,11 +196,11 @@ public class BigDecimalRangeVerifierTest {
             rangeVerifier.requireMinExclusiveMaxInclusive(targetTerm, $3, VerifierTest.throwTest1RuntimeException());
 
             // 測試檢查不通過的情況, 拋出非預設自定義錯誤
-            AssertionsEx.assertThrown(() -> rangeVerifier.requireMinExclusiveMaxInclusive(targetTerm, $1, VerifierTest.throwTest1RuntimeException()))
+            AssertionsEx.awareThrown(() -> rangeVerifier.requireMinExclusiveMaxInclusive(targetTerm, $1, VerifierTest.throwTest1RuntimeException()))
                     .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 1, min, max))
                     .hasMessageContaining(title)
                     .isInstanceOf(Test1RuntimeException.class);
-            AssertionsEx.assertThrown(() -> rangeVerifier.requireMinExclusiveMaxInclusive(targetTerm, $4, VerifierTest.throwTest1RuntimeException()))
+            AssertionsEx.awareThrown(() -> rangeVerifier.requireMinExclusiveMaxInclusive(targetTerm, $4, VerifierTest.throwTest1RuntimeException()))
                     .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 4, min, max))
                     .hasMessageContaining(title)
                     .isInstanceOf(Test1RuntimeException.class);
@@ -228,15 +228,15 @@ public class BigDecimalRangeVerifierTest {
             rangeVerifier.refuseInclusive(targetTerm, $4);
 
             // 測試檢查不通過的情況
-            AssertionsEx.assertThrown(() -> rangeVerifier.refuseInclusive(targetTerm, $1))
+            AssertionsEx.awareThrown(() -> rangeVerifier.refuseInclusive(targetTerm, $1))
                     .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 1, min, max))
                     .hasMessageContaining(title)
                     .isInstanceOf(IllegalArgumentException.class);
-            AssertionsEx.assertThrown(() -> rangeVerifier.refuseInclusive(targetTerm, $2))
+            AssertionsEx.awareThrown(() -> rangeVerifier.refuseInclusive(targetTerm, $2))
                     .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 2, min, max))
                     .hasMessageContaining(title)
                     .isInstanceOf(IllegalArgumentException.class);
-            AssertionsEx.assertThrown(() -> rangeVerifier.refuseInclusive(targetTerm, $3))
+            AssertionsEx.awareThrown(() -> rangeVerifier.refuseInclusive(targetTerm, $3))
                     .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 3, min, max))
                     .hasMessageContaining(title)
                     .isInstanceOf(IllegalArgumentException.class);
@@ -246,15 +246,15 @@ public class BigDecimalRangeVerifierTest {
             rangeVerifier.refuseInclusive(targetTerm, $4, VerifierTest.throwTest1RuntimeException());
 
             // 測試檢查不通過的情況, 拋出非預設自定義錯誤
-            AssertionsEx.assertThrown(() -> rangeVerifier.refuseInclusive(targetTerm, $1, VerifierTest.throwTest1RuntimeException()))
+            AssertionsEx.awareThrown(() -> rangeVerifier.refuseInclusive(targetTerm, $1, VerifierTest.throwTest1RuntimeException()))
                     .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 1, min, max))
                     .hasMessageContaining(title)
                     .isInstanceOf(Test1RuntimeException.class);
-            AssertionsEx.assertThrown(() -> rangeVerifier.refuseInclusive(targetTerm, $2, VerifierTest.throwTest1RuntimeException()))
+            AssertionsEx.awareThrown(() -> rangeVerifier.refuseInclusive(targetTerm, $2, VerifierTest.throwTest1RuntimeException()))
                     .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 2, min, max))
                     .hasMessageContaining(title)
                     .isInstanceOf(Test1RuntimeException.class);
-            AssertionsEx.assertThrown(() -> rangeVerifier.refuseInclusive(targetTerm, $3, VerifierTest.throwTest1RuntimeException()))
+            AssertionsEx.awareThrown(() -> rangeVerifier.refuseInclusive(targetTerm, $3, VerifierTest.throwTest1RuntimeException()))
                     .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 3, min, max))
                     .hasMessageContaining(title)
                     .isInstanceOf(Test1RuntimeException.class);
@@ -281,11 +281,11 @@ public class BigDecimalRangeVerifierTest {
             rangeVerifier.refuseMinInclusiveMaxExclusive(targetTerm, $3);
 
             // 測試檢查不通過的情況
-            AssertionsEx.assertThrown(() -> rangeVerifier.refuseMinInclusiveMaxExclusive(targetTerm, $1))
+            AssertionsEx.awareThrown(() -> rangeVerifier.refuseMinInclusiveMaxExclusive(targetTerm, $1))
                     .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 1, min, max))
                     .hasMessageContaining(title)
                     .isInstanceOf(IllegalArgumentException.class);
-            AssertionsEx.assertThrown(() -> rangeVerifier.refuseMinInclusiveMaxExclusive(targetTerm, $2))
+            AssertionsEx.awareThrown(() -> rangeVerifier.refuseMinInclusiveMaxExclusive(targetTerm, $2))
                     .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 2, min, max))
                     .hasMessageContaining(title)
                     .isInstanceOf(IllegalArgumentException.class);
@@ -295,11 +295,11 @@ public class BigDecimalRangeVerifierTest {
             rangeVerifier.refuseMinInclusiveMaxExclusive(targetTerm, $3, VerifierTest.throwTest1RuntimeException());
 
             // 測試檢查不通過的情況, 拋出非預設自定義錯誤
-            AssertionsEx.assertThrown(() -> rangeVerifier.refuseMinInclusiveMaxExclusive(targetTerm, $1, VerifierTest.throwTest1RuntimeException()))
+            AssertionsEx.awareThrown(() -> rangeVerifier.refuseMinInclusiveMaxExclusive(targetTerm, $1, VerifierTest.throwTest1RuntimeException()))
                     .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 1, min, max))
                     .hasMessageContaining(title)
                     .isInstanceOf(Test1RuntimeException.class);
-            AssertionsEx.assertThrown(() -> rangeVerifier.refuseMinInclusiveMaxExclusive(targetTerm, $2, VerifierTest.throwTest1RuntimeException()))
+            AssertionsEx.awareThrown(() -> rangeVerifier.refuseMinInclusiveMaxExclusive(targetTerm, $2, VerifierTest.throwTest1RuntimeException()))
                     .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 2, min, max))
                     .hasMessageContaining(title)
                     .isInstanceOf(Test1RuntimeException.class);
@@ -325,7 +325,7 @@ public class BigDecimalRangeVerifierTest {
             rangeVerifier.refuseExclusive(targetTerm, $3);
 
             // 測試檢查不通過的情況
-            AssertionsEx.assertThrown(() -> rangeVerifier.refuseExclusive(targetTerm, $2))
+            AssertionsEx.awareThrown(() -> rangeVerifier.refuseExclusive(targetTerm, $2))
                     .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 2, min, max))
                     .hasMessageContaining(title)
                     .isInstanceOf(IllegalArgumentException.class);
@@ -335,7 +335,7 @@ public class BigDecimalRangeVerifierTest {
             rangeVerifier.refuseExclusive(targetTerm, $3, VerifierTest.throwTest1RuntimeException());
 
             // 測試檢查不通過的情況, 拋出非預設自定義錯誤
-            AssertionsEx.assertThrown(() -> rangeVerifier.refuseExclusive(targetTerm, $2, VerifierTest.throwTest1RuntimeException()))
+            AssertionsEx.awareThrown(() -> rangeVerifier.refuseExclusive(targetTerm, $2, VerifierTest.throwTest1RuntimeException()))
                     .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 2, min, max))
                     .hasMessageContaining(title)
                     .isInstanceOf(Test1RuntimeException.class);
@@ -362,11 +362,11 @@ public class BigDecimalRangeVerifierTest {
             rangeVerifier.refuseMinExclusiveMaxInclusive(targetTerm, $4);
 
             // 測試檢查不通過的情況
-            AssertionsEx.assertThrown(() -> rangeVerifier.refuseMinExclusiveMaxInclusive(targetTerm, $2))
+            AssertionsEx.awareThrown(() -> rangeVerifier.refuseMinExclusiveMaxInclusive(targetTerm, $2))
                     .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 2, min, max))
                     .hasMessageContaining(title)
                     .isInstanceOf(IllegalArgumentException.class);
-            AssertionsEx.assertThrown(() -> rangeVerifier.refuseMinExclusiveMaxInclusive(targetTerm, $3))
+            AssertionsEx.awareThrown(() -> rangeVerifier.refuseMinExclusiveMaxInclusive(targetTerm, $3))
                     .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 3, min, max))
                     .hasMessageContaining(title)
                     .isInstanceOf(IllegalArgumentException.class);
@@ -376,11 +376,11 @@ public class BigDecimalRangeVerifierTest {
             rangeVerifier.refuseMinExclusiveMaxInclusive(targetTerm, $4, VerifierTest.throwTest1RuntimeException());
 
             // 測試檢查不通過的情況, 拋出非預設自定義錯誤
-            AssertionsEx.assertThrown(() -> rangeVerifier.refuseMinExclusiveMaxInclusive(targetTerm, $2, VerifierTest.throwTest1RuntimeException()))
+            AssertionsEx.awareThrown(() -> rangeVerifier.refuseMinExclusiveMaxInclusive(targetTerm, $2, VerifierTest.throwTest1RuntimeException()))
                     .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 2, min, max))
                     .hasMessageContaining(title)
                     .isInstanceOf(Test1RuntimeException.class);
-            AssertionsEx.assertThrown(() -> rangeVerifier.refuseMinExclusiveMaxInclusive(targetTerm, $3, VerifierTest.throwTest1RuntimeException()))
+            AssertionsEx.awareThrown(() -> rangeVerifier.refuseMinExclusiveMaxInclusive(targetTerm, $3, VerifierTest.throwTest1RuntimeException()))
                     .hasMessageContaining(String.format(errorMsgFormat, targetTerm, 3, min, max))
                     .hasMessageContaining(title)
                     .isInstanceOf(Test1RuntimeException.class);

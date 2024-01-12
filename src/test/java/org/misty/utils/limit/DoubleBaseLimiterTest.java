@@ -10,6 +10,11 @@ public class DoubleBaseLimiterTest extends DoubleAbstractLimiterTest {
     }
 
     @Test
+    public void min_max() {
+        test_min_max(DoubleBaseLimiter::new);
+    }
+
+    @Test
     public void set() {
         test_set(DoubleBaseLimiter::new);
     }

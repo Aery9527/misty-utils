@@ -6,8 +6,8 @@ public class BigIntegerVolatileLimiter extends BigIntegerAbstractLimiter {
 
     private volatile BigInteger value;
 
-    public BigIntegerVolatileLimiter(BigIntegerLimitVerifierHandler verifier, BigInteger initValue) {
-        super(verifier);
+    public BigIntegerVolatileLimiter(BigIntegerLimitVerifierHandler verifier, BigInteger min, BigInteger max, BigInteger initValue) {
+        super(verifier, min, max);
         set(initValue);
     }
 

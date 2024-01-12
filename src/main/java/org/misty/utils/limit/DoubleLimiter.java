@@ -10,6 +10,10 @@ public interface DoubleLimiter extends Limiter {
 
     double minus(double minus);
 
+    double getMin();
+
+    double getMax();
+
     default double increment() {
         return plus(1);
     }

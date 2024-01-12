@@ -10,6 +10,11 @@ public class BigDecimalAtomicLimiterTest extends BigDecimalAbstractLimiterTest {
     }
 
     @Test
+    public void min_max() {
+        test_min_max(BigDecimalAtomicLimiter::new);
+    }
+
+    @Test
     public void set() {
         test_set(BigDecimalAtomicLimiter::new);
     }

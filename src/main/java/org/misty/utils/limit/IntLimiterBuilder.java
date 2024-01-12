@@ -166,17 +166,17 @@ public class IntLimiterBuilder extends
 
     @Override
     protected IntLimiter buildBaseLimiter(IntLimitVerifierHandler verifier, Integer initValue) {
-        return new IntBaseLimiter(verifier, initValue);
+        return new IntBaseLimiter(verifier, getMin(), getMax(), initValue);
     }
 
     @Override
     protected IntLimiter buildVolatileLimiter(IntLimitVerifierHandler verifier, Integer initValue) {
-        return new IntVolatileLimiter(verifier, initValue);
+        return new IntVolatileLimiter(verifier, getMin(), getMax(), initValue);
     }
 
     @Override
     protected IntLimiter buildAtomicLimiter(IntLimitVerifierHandler verifier, Integer initValue) {
-        return new IntAtomicLimiter(verifier, initValue);
+        return new IntAtomicLimiter(verifier, getMin(), getMax(), initValue);
     }
 
     @Override

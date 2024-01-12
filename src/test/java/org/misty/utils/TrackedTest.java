@@ -15,7 +15,7 @@ class TrackedTest {
     public void create_with_link() {
         Tracked trackedA = Tracked.create("A");
         Tracked trackedB = trackedA.link("B");
-        Tracked trackedC = trackedB.linkWithRandom("C");
+        Tracked trackedC = trackedB.linkWithRandomId("C");
         Tracked trackedD = trackedC.link("D", "123");
         System.out.println(trackedA);
         System.out.println(trackedB);

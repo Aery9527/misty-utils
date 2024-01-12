@@ -10,6 +10,10 @@ public interface ShortLimiter extends Limiter {
 
     short minus(short minus);
 
+    short getMin();
+
+    short getMax();
+
     default short increment() {
         return plus((short) 1);
     }

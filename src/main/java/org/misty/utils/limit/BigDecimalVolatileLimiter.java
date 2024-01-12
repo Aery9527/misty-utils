@@ -6,8 +6,8 @@ public class BigDecimalVolatileLimiter extends BigDecimalAbstractLimiter {
 
     private volatile BigDecimal value;
 
-    public BigDecimalVolatileLimiter(BigDecimalLimitVerifierHandler verifier, BigDecimal initValue) {
-        super(verifier);
+    public BigDecimalVolatileLimiter(BigDecimalLimitVerifierHandler verifier, BigDecimal min, BigDecimal max, BigDecimal initValue) {
+        super(verifier, min, max);
         set(initValue);
     }
 

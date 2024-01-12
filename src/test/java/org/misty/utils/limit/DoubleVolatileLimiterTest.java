@@ -10,6 +10,11 @@ public class DoubleVolatileLimiterTest extends DoubleAbstractLimiterTest {
     }
 
     @Test
+    public void min_max() {
+        test_min_max(DoubleVolatileLimiter::new);
+    }
+
+    @Test
     public void set() {
         test_set(DoubleVolatileLimiter::new);
     }

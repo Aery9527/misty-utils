@@ -15,16 +15,16 @@ class FloatRangeBuilderTest {
 
             rangeBuilder.build(-1, Float.MAX_VALUE);
             rangeBuilder.build(1, Float.MAX_VALUE);
-            AssertionsEx.assertThrown(() -> rangeBuilder.build(-2, 5))
+            AssertionsEx.awareThrown(() -> rangeBuilder.build(-2, 5))
                     .hasMessageContaining("lower")
                     .hasMessageContaining(title)
                     .isInstanceOf(IllegalArgumentException.class);
-            AssertionsEx.assertThrown(() -> rangeBuilder.build(2, 5))
+            AssertionsEx.awareThrown(() -> rangeBuilder.build(2, 5))
                     .hasMessageContaining("lower")
                     .hasMessageContaining(title)
                     .isInstanceOf(IllegalArgumentException.class);
 
-            AssertionsEx.assertThrown(() -> rangeBuilder.giveLowerBound(1, 0))
+            AssertionsEx.awareThrown(() -> rangeBuilder.giveLowerBound(1, 0))
                     .hasMessageContaining("lowerMin")
                     .hasMessageContaining("lowerMax")
                     .hasMessageContaining(title)
@@ -32,11 +32,11 @@ class FloatRangeBuilderTest {
 
             Stream.of(Float.NaN, Float.POSITIVE_INFINITY, Float.NEGATIVE_INFINITY)
                     .forEach(value -> {
-                        AssertionsEx.assertThrown(() -> rangeBuilder.giveLowerBound(value, 0))
+                        AssertionsEx.awareThrown(() -> rangeBuilder.giveLowerBound(value, 0))
                                 .hasMessageContaining("lowerMin")
                                 .hasMessageContaining(title)
                                 .isInstanceOf(IllegalArgumentException.class);
-                        AssertionsEx.assertThrown(() -> rangeBuilder.giveLowerBound(0, value))
+                        AssertionsEx.awareThrown(() -> rangeBuilder.giveLowerBound(0, value))
                                 .hasMessageContaining("lowerMax")
                                 .hasMessageContaining(title)
                                 .isInstanceOf(IllegalArgumentException.class);
@@ -54,16 +54,16 @@ class FloatRangeBuilderTest {
 
             rangeBuilder.build(-Float.MAX_VALUE, -1);
             rangeBuilder.build(-Float.MAX_VALUE, 1);
-            AssertionsEx.assertThrown(() -> rangeBuilder.build(-5, -2))
+            AssertionsEx.awareThrown(() -> rangeBuilder.build(-5, -2))
                     .hasMessageContaining("upper")
                     .hasMessageContaining(title)
                     .isInstanceOf(IllegalArgumentException.class);
-            AssertionsEx.assertThrown(() -> rangeBuilder.build(-5, 2))
+            AssertionsEx.awareThrown(() -> rangeBuilder.build(-5, 2))
                     .hasMessageContaining("upper")
                     .hasMessageContaining(title)
                     .isInstanceOf(IllegalArgumentException.class);
 
-            AssertionsEx.assertThrown(() -> rangeBuilder.giveUpperBound(1, 0))
+            AssertionsEx.awareThrown(() -> rangeBuilder.giveUpperBound(1, 0))
                     .hasMessageContaining("upperMin")
                     .hasMessageContaining("upperMax")
                     .hasMessageContaining(title)
@@ -71,11 +71,11 @@ class FloatRangeBuilderTest {
 
             Stream.of(Float.NaN, Float.POSITIVE_INFINITY, Float.NEGATIVE_INFINITY)
                     .forEach(value -> {
-                        AssertionsEx.assertThrown(() -> rangeBuilder.giveUpperBound(value, 0))
+                        AssertionsEx.awareThrown(() -> rangeBuilder.giveUpperBound(value, 0))
                                 .hasMessageContaining("upperMin")
                                 .hasMessageContaining(title)
                                 .isInstanceOf(IllegalArgumentException.class);
-                        AssertionsEx.assertThrown(() -> rangeBuilder.giveUpperBound(0, value))
+                        AssertionsEx.awareThrown(() -> rangeBuilder.giveUpperBound(0, value))
                                 .hasMessageContaining("upperMax")
                                 .hasMessageContaining(title)
                                 .isInstanceOf(IllegalArgumentException.class);
@@ -99,11 +99,11 @@ class FloatRangeBuilderTest {
         BiConsumer<String, FloatRangeBuilder> test = (title, rangeBuilder) -> {
             Stream.of(Float.NaN, Float.POSITIVE_INFINITY, Float.NEGATIVE_INFINITY)
                     .forEach(value -> {
-                        AssertionsEx.assertThrown(() -> rangeBuilder.build(value, 0))
+                        AssertionsEx.awareThrown(() -> rangeBuilder.build(value, 0))
                                 .hasMessageContaining("lower")
                                 .hasMessageContaining(title)
                                 .isInstanceOf(IllegalArgumentException.class);
-                        AssertionsEx.assertThrown(() -> rangeBuilder.build(0, value))
+                        AssertionsEx.awareThrown(() -> rangeBuilder.build(0, value))
                                 .hasMessageContaining("upper")
                                 .hasMessageContaining(title)
                                 .isInstanceOf(IllegalArgumentException.class);

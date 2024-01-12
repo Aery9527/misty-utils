@@ -3,12 +3,22 @@ package org.misty.utils.limit;
 import org.misty._utils.AssertionsEx;
 import org.misty._utils.TestRuntimeException;
 import org.misty.utils.verify.Verifier;
+import org.mockito.Mockito;
 
 import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.function.BiFunction;
 import java.util.function.Consumer;
 
 public class LongAbstractLimiterTest {
+
+    public interface TestInterface {
+        LongLimiter setting(LongLimitVerifierHandler verifierHandler, long min, long max, long initValue);
+    }
+
+    private final LongLimitVerifierHandler mockVerifierHandler = Mockito.mock(LongLimitVerifierHandler.class);
+
+    private final long min = 2266;
+
+    private final long max = 9527;
 
     public void teset_build(Consumer<LongLimiterBuilder> setting) {
         long min = 1;
@@ -24,12 +34,18 @@ public class LongAbstractLimiterTest {
         LongLimiter limiter = limiterBuilder.build(initValue);
         AssertionsEx.assertThat(limiter.get()).isEqualTo(initValue);
 
-        AssertionsEx.assertThrown(() -> limiterBuilder.build(0l))
+        AssertionsEx.awareThrown(() -> limiterBuilder.build(0l))
                 .hasMessage(term + " " + String.format(Verifier.ErrorMsgFormat.REQUIRE_RANGE_INCLUSIVE, Limiter.ErrorMsgFormat.SET_TERM, 0, min, max))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    public void test_set(BiFunction<LongLimitVerifierHandler, Long, LongLimiter> setting) {
+    public void test_min_max(TestInterface setting) {
+        LongLimiter limiter = setting.setting(this.mockVerifierHandler, this.min, this.max, 5566);
+        AssertionsEx.assertThat(limiter.getMin()).isEqualTo(this.min);
+        AssertionsEx.assertThat(limiter.getMax()).isEqualTo(this.max);
+    }
+
+    public void test_set(TestInterface setting) {
         LongLimitVerifierHandler limitVerifierHandler = new LongLimitVerifierHandler("kerker", null, new LongLimitVerifier() {
             @Override
             public void verifySet(long target) throws RuntimeException {
@@ -50,7 +66,7 @@ public class LongAbstractLimiterTest {
         });
 
         long initValue = 2;
-        LongLimiter limiter = setting.apply(limitVerifierHandler, initValue);
+        LongLimiter limiter = setting.setting(limitVerifierHandler, this.min, this.max, initValue);
 
         long setValue = 1;
         limiter.set(setValue);
@@ -61,7 +77,7 @@ public class LongAbstractLimiterTest {
         AssertionsEx.assertThat(limiter.get()).isEqualTo(setValue);
     }
 
-    public void test_plus(BiFunction<LongLimitVerifierHandler, Long, LongLimiter> setting) {
+    public void test_plus(TestInterface setting) {
         LongLimitVerifierHandler limitVerifierHandler = new LongLimitVerifierHandler("kerker", null, new LongLimitVerifier() {
             @Override
             public void verifySet(long target) throws RuntimeException {
@@ -81,7 +97,7 @@ public class LongAbstractLimiterTest {
         });
 
         long initValue = 0;
-        LongLimiter limiter = setting.apply(limitVerifierHandler, initValue);
+        LongLimiter limiter = setting.setting(limitVerifierHandler, this.min, this.max, initValue);
 
         long plusValue = 1;
         long result = limiter.plus(plusValue);
@@ -93,7 +109,7 @@ public class LongAbstractLimiterTest {
         AssertionsEx.assertThat(limiter.get()).isEqualTo(initValue + plusValue);
     }
 
-    public void test_minus(BiFunction<LongLimitVerifierHandler, Long, LongLimiter> setting) {
+    public void test_minus(TestInterface setting) {
         LongLimitVerifierHandler limitVerifierHandler = new LongLimitVerifierHandler("kerker", null, new LongLimitVerifier() {
             @Override
             public void verifySet(long target) throws RuntimeException {
@@ -113,7 +129,7 @@ public class LongAbstractLimiterTest {
         });
 
         long initValue = 0;
-        LongLimiter limiter = setting.apply(limitVerifierHandler, initValue);
+        LongLimiter limiter = setting.setting(limitVerifierHandler, this.min, this.max, initValue);
 
         long minusValue = 1;
         limiter.minus(minusValue);
@@ -124,7 +140,7 @@ public class LongAbstractLimiterTest {
         AssertionsEx.assertThat(limiter.get()).isEqualTo(initValue - minusValue);
     }
 
-    public void test_increment(BiFunction<LongLimitVerifierHandler, Long, LongLimiter> setting) {
+    public void test_increment(TestInterface setting) {
         AtomicBoolean checkPoint = new AtomicBoolean(false);
 
         LongLimitVerifierHandler limitVerifierHandler = new LongLimitVerifierHandler("kerker", null, new LongLimitVerifier() {
@@ -145,12 +161,12 @@ public class LongAbstractLimiterTest {
         });
 
         long initValue = 0;
-        LongLimiter limiter = setting.apply(limitVerifierHandler, initValue);
+        LongLimiter limiter = setting.setting(limitVerifierHandler, this.min, this.max, initValue);
         limiter.increment();
         AssertionsEx.assertThat(checkPoint.get()).isTrue();
     }
 
-    public void test_decrement(BiFunction<LongLimitVerifierHandler, Long, LongLimiter> setting) {
+    public void test_decrement(TestInterface setting) {
         AtomicBoolean checkPoint = new AtomicBoolean(false);
 
         LongLimitVerifierHandler limitVerifierHandler = new LongLimitVerifierHandler("kerker", null, new LongLimitVerifier() {
@@ -171,7 +187,7 @@ public class LongAbstractLimiterTest {
         });
 
         long initValue = 0;
-        LongLimiter limiter = setting.apply(limitVerifierHandler, initValue);
+        LongLimiter limiter = setting.setting(limitVerifierHandler, this.min, this.max, initValue);
         limiter.decrement();
         AssertionsEx.assertThat(checkPoint.get()).isTrue();
     }

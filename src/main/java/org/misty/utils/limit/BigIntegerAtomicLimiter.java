@@ -7,8 +7,8 @@ public class BigIntegerAtomicLimiter extends BigIntegerAbstractLimiter {
 
     private final AtomicReference<BigInteger> value = new AtomicReference<>();
 
-    public BigIntegerAtomicLimiter(BigIntegerLimitVerifierHandler verifier, BigInteger initValue) {
-        super(verifier);
+    public BigIntegerAtomicLimiter(BigIntegerLimitVerifierHandler verifier, BigInteger min, BigInteger max, BigInteger initValue) {
+        super(verifier, min, max);
         set(initValue);
     }
 

@@ -14,16 +14,16 @@ class ShortRangeBuilderTest {
 
             rangeBuilder.build((short) -1, Short.MAX_VALUE);
             rangeBuilder.build((short) 1, Short.MAX_VALUE);
-            AssertionsEx.assertThrown(() -> rangeBuilder.build((short) -2, (short) 5))
+            AssertionsEx.awareThrown(() -> rangeBuilder.build((short) -2, (short) 5))
                     .hasMessageContaining("lower")
                     .hasMessageContaining(title)
                     .isInstanceOf(IllegalArgumentException.class);
-            AssertionsEx.assertThrown(() -> rangeBuilder.build((short) 2, (short) 5))
+            AssertionsEx.awareThrown(() -> rangeBuilder.build((short) 2, (short) 5))
                     .hasMessageContaining("lower")
                     .hasMessageContaining(title)
                     .isInstanceOf(IllegalArgumentException.class);
 
-            AssertionsEx.assertThrown(() -> rangeBuilder.giveLowerBound((short) 1, (short) 0))
+            AssertionsEx.awareThrown(() -> rangeBuilder.giveLowerBound((short) 1, (short) 0))
                     .hasMessageContaining("lowerMin")
                     .hasMessageContaining("lowerMax")
                     .hasMessageContaining(title)
@@ -41,16 +41,16 @@ class ShortRangeBuilderTest {
 
             rangeBuilder.build(Short.MIN_VALUE, (short) -1);
             rangeBuilder.build(Short.MIN_VALUE, (short) 1);
-            AssertionsEx.assertThrown(() -> rangeBuilder.build((short) -5, (short) -2))
+            AssertionsEx.awareThrown(() -> rangeBuilder.build((short) -5, (short) -2))
                     .hasMessageContaining("upper")
                     .hasMessageContaining(title)
                     .isInstanceOf(IllegalArgumentException.class);
-            AssertionsEx.assertThrown(() -> rangeBuilder.build((short) -5, (short) 2))
+            AssertionsEx.awareThrown(() -> rangeBuilder.build((short) -5, (short) 2))
                     .hasMessageContaining("upper")
                     .hasMessageContaining(title)
                     .isInstanceOf(IllegalArgumentException.class);
 
-            AssertionsEx.assertThrown(() -> rangeBuilder.giveUpperBound((short) 1, (short) 0))
+            AssertionsEx.awareThrown(() -> rangeBuilder.giveUpperBound((short) 1, (short) 0))
                     .hasMessageContaining("upperMin")
                     .hasMessageContaining("upperMax")
                     .hasMessageContaining(title)

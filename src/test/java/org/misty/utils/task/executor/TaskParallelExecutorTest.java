@@ -22,7 +22,7 @@ public class TaskParallelExecutorTest extends TaskBaseExecutorTest {
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
     public static TaskParallelExecutor build() {
-        return (TaskParallelExecutor) TaskExecutorBuilder.create().withParallel().build();
+        return (TaskParallelExecutor) TaskExecutor.builder().withParallel().build();
     }
 
     @Test

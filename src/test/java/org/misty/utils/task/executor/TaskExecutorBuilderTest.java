@@ -12,14 +12,14 @@ public class TaskExecutorBuilderTest {
 
     @Test
     public void withSerial() {
-        Assertions.assertThat(TaskExecutorBuilder.create().withSerial().build()).isInstanceOf(TaskSerialExecutor.class);
+        Assertions.assertThat(TaskExecutor.builder().withSerial().build()).isInstanceOf(TaskSerialExecutor.class);
     }
 
     @Test
     public void withParallel() {
-        Assertions.assertThat(TaskExecutorBuilder.create().withParallel().build()).isInstanceOf(TaskParallelExecutor.class);
-        Assertions.assertThat(TaskExecutorBuilder.create().withParallel(3).build()).isInstanceOf(TaskParallelExecutor.class);
-        Assertions.assertThat(TaskExecutorBuilder.create().withParallel(Executors.newSingleThreadExecutor()).build()).isInstanceOf(TaskParallelExecutor.class);
+        Assertions.assertThat(TaskExecutor.builder().withParallel().build()).isInstanceOf(TaskParallelExecutor.class);
+        Assertions.assertThat(TaskExecutor.builder().withParallel(3).build()).isInstanceOf(TaskParallelExecutor.class);
+        Assertions.assertThat(TaskExecutor.builder().withParallel(Executors.newSingleThreadExecutor()).build()).isInstanceOf(TaskParallelExecutor.class);
     }
 
     @Test
@@ -32,10 +32,10 @@ public class TaskExecutorBuilderTest {
             Assertions.assertThat(baseExecutor.getDefaultErrorHandler() == defaultErrorHandler).isTrue();
         };
 
-        consumer.accept(TaskExecutorBuilder.create().withSerial());
-        consumer.accept(TaskExecutorBuilder.create().withParallel());
-        consumer.accept(TaskExecutorBuilder.create().withParallel(3));
-        consumer.accept(TaskExecutorBuilder.create().withParallel(Executors.newSingleThreadExecutor()));
+        consumer.accept(TaskExecutor.builder().withSerial());
+        consumer.accept(TaskExecutor.builder().withParallel());
+        consumer.accept(TaskExecutor.builder().withParallel(3));
+        consumer.accept(TaskExecutor.builder().withParallel(Executors.newSingleThreadExecutor()));
     }
 
 }

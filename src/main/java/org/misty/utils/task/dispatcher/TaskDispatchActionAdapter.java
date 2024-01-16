@@ -11,19 +11,19 @@ public class TaskDispatchActionAdapter<Task> implements TaskDispatchAction<Task>
 
     private final Tracked tracked;
 
-    private final Predicate<Task> checker;
+    private final Predicate<Task> accept;
 
-    private final ConsumerEx<Task> executor;
+    private final ConsumerEx<Task> receiver;
 
     private final BiFunction<Task, Exception, TaskErrorPolicy> errorHandler;
 
     public TaskDispatchActionAdapter(Tracked tracked,
-                                     Predicate<Task> checker,
-                                     ConsumerEx<Task> executor,
+                                     Predicate<Task> accept,
+                                     ConsumerEx<Task> receiver,
                                      BiFunction<Task, Exception, TaskErrorPolicy> errorHandler) {
         this.tracked = tracked;
-        this.checker = checker;
-        this.executor = executor;
+        this.accept = accept;
+        this.receiver = receiver;
         this.errorHandler = errorHandler;
     }
 
@@ -33,13 +33,13 @@ public class TaskDispatchActionAdapter<Task> implements TaskDispatchAction<Task>
     }
 
     @Override
-    public boolean check(Task task) {
-        return this.checker.test(task);
+    public boolean accept(Task task) {
+        return this.accept.test(task);
     }
 
     @Override
-    public void execute(Task task) throws Exception {
-        this.executor.execute(task);
+    public void receive(Task task) throws Exception {
+        this.receiver.execute(task);
     }
 
     @Override

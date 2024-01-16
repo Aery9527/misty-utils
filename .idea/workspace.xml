@@ -4,217 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="85a0b3b9-499c-4427-8178-fde3848053e3" name="Changes" comment="enhance Checker">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/cycle/AbstractCycle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/cycle/AbstractCycleBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/cycle/BigDecimalAbstractCycle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/cycle/BigDecimalAtomicCycle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/cycle/BigDecimalBaseCycle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/cycle/BigDecimalCycle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/cycle/BigDecimalCycleBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/cycle/BigDecimalVolatileCycle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/cycle/BigIntegerAbstractCycle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/cycle/BigIntegerAtomicCycle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/cycle/BigIntegerBaseCycle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/cycle/BigIntegerCycle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/cycle/BigIntegerCycleBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/cycle/BigIntegerVolatileCycle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/cycle/Cycle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/cycle/IntAbstractCycle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/cycle/IntAtomicCycle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/cycle/IntBaseCycle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/cycle/IntCycle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/cycle/IntCycleBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/cycle/IntVolatileCycle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/cycle/LongAbstractCycle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/cycle/LongAtomicCycle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/cycle/LongBaseCycle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/cycle/LongCycle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/cycle/LongCycleBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/cycle/LongVolatileCycle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/cycle/ShortAbstractCycle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/cycle/ShortAtomicCycle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/cycle/ShortBaseCycle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/cycle/ShortCycle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/cycle/ShortCycleBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/cycle/ShortVolatileCycle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/ex/CountDownLatchEx.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/lock/GroupWakeupLock.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/lock/WakeupBaseLock.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/lock/WakeupLock.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/lock/WakeupReuseLock.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/lock/WakeupSingleLock.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/task/TaskErrorPolicy.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/task/TaskExecuteResult.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/task/TaskGiveResult.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/task/TaskWaitResult.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/task/dispatcher/TaskDispatchAction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/task/dispatcher/TaskDispatchActionAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/task/dispatcher/TaskDispatcher.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/task/dispatcher/TaskDispatcherBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/task/dispatcher/TaskDispatcherPreset.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/task/executor/TaskBaseExecutor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/task/executor/TaskBaseExecutorBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/task/executor/TaskCountExecuteAction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/task/executor/TaskCountExecutor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/task/executor/TaskExecuteAction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/task/executor/TaskExecutor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/task/executor/TaskExecutorBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/task/executor/TaskParallelExecutor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/task/executor/TaskParallelExecutorBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/task/executor/TaskSerialExecutor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/task/executor/TaskSerialExecutorBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/verify/VerifierRefuseNumberErrorMsg.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/cycle/BigDecimalAbstractCycleTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/cycle/BigDecimalAtomicCycleTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/cycle/BigDecimalBaseCycleTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/cycle/BigDecimalCycleBuilderTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/cycle/BigDecimalVolatileCycleTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/cycle/BigIntegerAbstractCycleTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/cycle/BigIntegerAtomicCycleTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/cycle/BigIntegerBaseCycleTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/cycle/BigIntegerCycleBuilderTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/cycle/BigIntegerVolatileCycleTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/cycle/IntAbstractCycleTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/cycle/IntAtomicCycleTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/cycle/IntBaseCycleTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/cycle/IntCycleBuilderTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/cycle/IntVolatileCycleTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/cycle/LongAbstractCycleTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/cycle/LongAtomicCycleTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/cycle/LongBaseCycleTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/cycle/LongCycleBuilderTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/cycle/LongVolatileCycleTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/cycle/ShortAbstractCycleTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/cycle/ShortAtomicCycleTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/cycle/ShortBaseCycleTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/cycle/ShortCycleBuilderTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/cycle/ShortVolatileCycleTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/lock/GroupWakeupLockTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/lock/WakeupLockTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/lock/WakeupReuseLockTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/lock/WakeupSingleLockTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/task/executor/TaskBaseExecutorTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/task/executor/TaskCountExecutorTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/task/executor/TaskExecutorBuilderTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/task/executor/TaskParallelExecutorBuilderTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/task/executor/TaskParallelExecutorTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/task/executor/TaskSerialExecutorTest.java" afterDir="false" />
+    <list default="true" id="85a0b3b9-499c-4427-8178-fde3848053e3" name="Changes" comment="Big tidying up temporary storage">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/task/TaskGiveResultTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/task/dispatcher/TaskDispatchActionAdapterTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/task/dispatcher/TaskDispatcherBuilderTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/task/dispatcher/TaskDispatcherPresetTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/ExecutorSwitch.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/Tracked.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/Tracked.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/combinatorics/Combinatorics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/combinatorics/Combinatorics.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/combinatorics/CombinatoricsSorter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/combinatorics/CombinatoricsSorter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/ex/ThreadEx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/ex/ThreadEx.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/BigDecimalAbstractLimiter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/BigDecimalAbstractLimiter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/BigDecimalAtomicLimiter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/BigDecimalAtomicLimiter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/BigDecimalBaseLimiter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/BigDecimalBaseLimiter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/BigDecimalLimiter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/BigDecimalLimiter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/BigDecimalLimiterBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/BigDecimalLimiterBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/BigDecimalVolatileLimiter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/BigDecimalVolatileLimiter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/BigIntegerAbstractLimiter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/BigIntegerAbstractLimiter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/BigIntegerAtomicLimiter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/BigIntegerAtomicLimiter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/BigIntegerBaseLimiter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/BigIntegerBaseLimiter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/BigIntegerLimiter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/BigIntegerLimiter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/BigIntegerLimiterBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/BigIntegerLimiterBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/BigIntegerVolatileLimiter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/BigIntegerVolatileLimiter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/DoubleAbstractLimiter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/DoubleAbstractLimiter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/DoubleAtomicLimiter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/DoubleAtomicLimiter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/DoubleBaseLimiter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/DoubleBaseLimiter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/DoubleLimiter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/DoubleLimiter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/DoubleLimiterBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/DoubleLimiterBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/DoubleVolatileLimiter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/DoubleVolatileLimiter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/FloatAbstractLimiter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/FloatAbstractLimiter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/FloatAtomicLimiter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/FloatAtomicLimiter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/FloatBaseLimiter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/FloatBaseLimiter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/FloatLimiter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/FloatLimiter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/FloatLimiterBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/FloatLimiterBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/FloatVolatileLimiter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/FloatVolatileLimiter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/IntAbstractLimiter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/IntAbstractLimiter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/IntAtomicLimiter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/IntAtomicLimiter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/IntBaseLimiter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/IntBaseLimiter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/IntLimiter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/IntLimiter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/IntLimiterBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/IntLimiterBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/IntVolatileLimiter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/IntVolatileLimiter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/LongAbstractLimiter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/LongAbstractLimiter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/LongAtomicLimiter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/LongAtomicLimiter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/LongBaseLimiter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/LongBaseLimiter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/LongLimiter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/LongLimiter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/LongLimiterBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/LongLimiterBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/LongVolatileLimiter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/LongVolatileLimiter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/ShortAbstractLimiter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/ShortAbstractLimiter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/ShortAtomicLimiter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/ShortAtomicLimiter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/ShortBaseLimiter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/ShortBaseLimiter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/ShortLimiter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/ShortLimiter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/ShortLimiterBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/ShortLimiterBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/ShortVolatileLimiter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/limit/ShortVolatileLimiter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/verify/Verifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/verify/Verifier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/verify/VerifierLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/verify/VerifierLogic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/_utils/AssertionsEx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/_utils/AssertionsEx.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/ExecutorSwitchTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/StackFetcherTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/StackFetcherTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/TrackedTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/TrackedTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/combinatorics/CombinatoricsSorterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/combinatorics/CombinatoricsSorterTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/ex/ThreadExTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/ex/ThreadExTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/flag/IntFlagTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/flag/IntFlagTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/flag/LongFlagTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/flag/LongFlagTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/AbstractLimiterBuilderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/AbstractLimiterBuilderTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/BigDecimalAbstractLimiterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/BigDecimalAbstractLimiterTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/BigDecimalAtomicLimiterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/BigDecimalAtomicLimiterTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/BigDecimalBaseLimiterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/BigDecimalBaseLimiterTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/BigDecimalLimiterBuilderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/BigDecimalLimiterBuilderTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/BigDecimalMildLimiterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/BigDecimalMildLimiterTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/BigDecimalVolatileLimiterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/BigDecimalVolatileLimiterTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/BigIntegerAbstractLimiterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/BigIntegerAbstractLimiterTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/BigIntegerAtomicLimiterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/BigIntegerAtomicLimiterTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/BigIntegerBaseLimiterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/BigIntegerBaseLimiterTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/BigIntegerLimiterBuilderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/BigIntegerLimiterBuilderTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/BigIntegerVolatileLimiterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/BigIntegerVolatileLimiterTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/DoubleAbstractLimiterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/DoubleAbstractLimiterTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/DoubleAtomicLimiterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/DoubleAtomicLimiterTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/DoubleBaseLimiterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/DoubleBaseLimiterTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/DoubleLimitVerifierHandlerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/DoubleLimitVerifierHandlerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/DoubleLimiterBuilderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/DoubleLimiterBuilderTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/DoubleVolatileLimiterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/DoubleVolatileLimiterTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/FloatAbstractLimiterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/FloatAbstractLimiterTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/FloatAtomicLimiterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/FloatAtomicLimiterTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/FloatBaseLimiterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/FloatBaseLimiterTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/FloatLimitVerifierHandlerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/FloatLimitVerifierHandlerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/FloatLimiterBuilderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/FloatLimiterBuilderTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/FloatVolatileLimiterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/FloatVolatileLimiterTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/IntAbstractLimiterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/IntAbstractLimiterTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/IntAtomicLimiterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/IntAtomicLimiterTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/IntBaseLimiterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/IntBaseLimiterTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/IntLimitVerifierHandlerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/IntLimitVerifierHandlerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/IntLimiterBuilderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/IntLimiterBuilderTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/IntVolatileLimiterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/IntVolatileLimiterTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/LongAbstractLimiterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/LongAbstractLimiterTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/LongAtomicLimiterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/LongAtomicLimiterTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/LongBaseLimiterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/LongBaseLimiterTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/LongLimitVerifierHandlerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/LongLimitVerifierHandlerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/LongLimiterBuilderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/LongLimiterBuilderTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/LongVolatileLimiterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/LongVolatileLimiterTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/ShortAbstractLimiterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/ShortAbstractLimiterTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/ShortAtomicLimiterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/ShortAtomicLimiterTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/ShortBaseLimiterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/ShortBaseLimiterTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/ShortLimitVerifierHandlerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/ShortLimitVerifierHandlerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/ShortLimiterBuilderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/ShortLimiterBuilderTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/ShortVolatileLimiterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/limit/ShortVolatileLimiterTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/range/BigDecimalRangeBuilderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/range/BigDecimalRangeBuilderTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/range/BigIntegerRangeBuilderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/range/BigIntegerRangeBuilderTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/range/DoubleRangeBuilderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/range/DoubleRangeBuilderTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/range/FloatRangeBuilderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/range/FloatRangeBuilderTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/range/IntRangeBuilderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/range/IntRangeBuilderTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/range/LongRangeBuilderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/range/LongRangeBuilderTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/range/ShortRangeBuilderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/range/ShortRangeBuilderTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/verify/BigDecimalRangeVerifierTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/verify/BigDecimalRangeVerifierTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/verify/BigIntegerRangeVerifierTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/verify/BigIntegerRangeVerifierTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/verify/DoubleRangeVerifierTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/verify/DoubleRangeVerifierTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/verify/FloatRangeVerifierTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/verify/FloatRangeVerifierTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/verify/IntRangeVerifierTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/verify/IntRangeVerifierTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/verify/LongRangeVerifierTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/verify/LongRangeVerifierTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/verify/ShortRangeVerifierTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/verify/ShortRangeVerifierTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/verify/VerifierTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/verify/VerifierTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/task/TaskGiveResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/task/TaskGiveResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/task/dispatcher/TaskDispatchAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/task/dispatcher/TaskDispatchAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/task/dispatcher/TaskDispatchActionAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/task/dispatcher/TaskDispatchActionAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/task/dispatcher/TaskDispatcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/task/dispatcher/TaskDispatcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/task/dispatcher/TaskDispatcherBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/task/dispatcher/TaskDispatcherBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/task/dispatcher/TaskDispatcherPreset.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/task/dispatcher/TaskDispatcherPreset.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/task/executor/TaskExecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/task/executor/TaskExecutor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/task/executor/TaskExecutorBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/task/executor/TaskExecutorBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/task/executor/TaskExecutorBuilderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/task/executor/TaskExecutorBuilderTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/task/executor/TaskParallelExecutorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/task/executor/TaskParallelExecutorTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/task/executor/TaskSerialExecutorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/task/executor/TaskSerialExecutorTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -248,10 +55,10 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="JUnit5 Test Class" />
         <option value="package-info" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -453,9 +260,35 @@
     "JUnit.TaskCountExecutorTest.run_TaskExecuteAction.executor": "Run",
     "JUnit.TaskCountExecutorTest.waitFinish.executor": "Run",
     "JUnit.TaskCountExecutorTest.waitFinish_waitTime.executor": "Run",
+    "JUnit.TaskDispatchActionAdapterTest.accept.executor": "Run",
+    "JUnit.TaskDispatchActionAdapterTest.getTracked.executor": "Run",
+    "JUnit.TaskDispatchActionAdapterTest.name.executor": "Run",
+    "JUnit.TaskDispatchActionAdapterTest.receive.executor": "Run",
+    "JUnit.TaskDispatcherBuilderTest.build.executor": "Run",
+    "JUnit.TaskDispatcherBuilderTest.checkBuildFlag.executor": "Run",
+    "JUnit.TaskDispatcherBuilderTest.constructor.executor": "Run",
+    "JUnit.TaskDispatcherBuilderTest.giveAction_Class_ConsumerEx.executor": "Run",
+    "JUnit.TaskDispatcherBuilderTest.giveAction_ConsumerEx.executor": "Run",
+    "JUnit.TaskDispatcherBuilderTest.giveAction_Predicate_ConsumerEx.executor": "Run",
+    "JUnit.TaskDispatcherBuilderTest.giveAction_acceptClass_taskReceiver_errorHandler.executor": "Run",
+    "JUnit.TaskDispatcherBuilderTest.giveAction_accept_taskReceiver_errorHandler.executor": "Run",
+    "JUnit.TaskDispatcherBuilderTest.giveAction_taskDispatchAction.executor": "Run",
+    "JUnit.TaskDispatcherBuilderTest.giveAction_taskReceiver_errorHandler.executor": "Run",
+    "JUnit.TaskDispatcherBuilderTest.giveDefaultErrorHandler.executor": "Run",
+    "JUnit.TaskDispatcherBuilderTest.giveNoMatchedAction.executor": "Run",
+    "JUnit.TaskDispatcherBuilderTest.withSerial_withParallel.executor": "Run",
+    "JUnit.TaskDispatcherPresetTest.giveResult.executor": "Run",
+    "JUnit.TaskDispatcherPresetTest.multi_action.executor": "Run",
+    "JUnit.TaskDispatcherPresetTest.waitAllTaskFinish_close___about_taskExecutor_series.executor": "Run",
     "JUnit.TaskExecutorBuilderTest.executor": "Run",
     "JUnit.TaskExecutorBuilderTest.giveDefaultErrorHandler.executor": "Run",
     "JUnit.TaskExecutorBuilderTest.withSerial.executor": "Run",
+    "JUnit.TaskGiveResultTest.executor": "Run",
+    "JUnit.TaskGiveResultTest.getAllActionCount.executor": "Run",
+    "JUnit.TaskGiveResultTest.getMatchedCount.executor": "Run",
+    "JUnit.TaskGiveResultTest.getResultCount.executor": "Run",
+    "JUnit.TaskGiveResultTest.getTask.executor": "Run",
+    "JUnit.TaskGiveResultTest.isAllMatchedExecuted.executor": "Run",
     "JUnit.TaskParallelExecutorBuilderTest.build.executor": "Run",
     "JUnit.TaskParallelExecutorBuilderTest.executor": "Run",
     "JUnit.TaskParallelExecutorBuilderTest.giveWaitRestUnitMs.executor": "Run",
@@ -536,8 +369,9 @@
     "JUnit.WakeupSingleLockTest.waiting_for_timeout_aware_action_in_synchronized.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "com.google.cloudcode.ide_session_index": "20240112_0001",
+    "com.google.cloudcode.ide_session_index": "20240116_0000",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "git-widget-placeholder": "develop",
@@ -571,11 +405,11 @@
       <recent name="org.misty.utils.limit.BigDecimalLimiter" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="org.misty.utils.task" />
+      <recent name="org.misty.utils.task.dispatcher" />
       <recent name="org.misty.utils.cycle" />
       <recent name="org.misty.utils.task.executor" />
       <recent name="org.misty.utils.lock" />
-      <recent name="org.misty.utils" />
-      <recent name="org.misty.utils.range" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="org.misty.utils.cycle" />
@@ -594,64 +428,65 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TaskCountExecutorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TaskDispatcherPresetTest.giveResult" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="misty-utils.test" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.misty.utils.task.executor.*" />
+          <option name="PATTERN" value="org.misty.utils.task.dispatcher.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="org.misty.utils.task.executor" />
-      <option name="MAIN_CLASS_NAME" value="org.misty.utils.task.executor.TaskCountExecutorTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TaskCountExecutorTest.run_LongConsumerEx_BiFunction" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="misty-utils.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.misty.utils.task.executor.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.misty.utils.task.executor" />
-      <option name="MAIN_CLASS_NAME" value="org.misty.utils.task.executor.TaskCountExecutorTest" />
-      <option name="METHOD_NAME" value="run_LongConsumerEx_BiFunction" />
+      <option name="PACKAGE_NAME" value="org.misty.utils.task.dispatcher" />
+      <option name="MAIN_CLASS_NAME" value="org.misty.utils.task.dispatcher.TaskDispatcherPresetTest" />
+      <option name="METHOD_NAME" value="giveResult" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TaskCountExecutorTest.waitFinish" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TaskDispatcherPresetTest.waitAllTaskFinish_close___about_taskExecutor_series" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="misty-utils.test" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.misty.utils.task.executor.*" />
+          <option name="PATTERN" value="org.misty.utils.task.dispatcher.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="org.misty.utils.task.executor" />
-      <option name="MAIN_CLASS_NAME" value="org.misty.utils.task.executor.TaskCountExecutorTest" />
-      <option name="METHOD_NAME" value="waitFinish" />
+      <option name="PACKAGE_NAME" value="org.misty.utils.task.dispatcher" />
+      <option name="MAIN_CLASS_NAME" value="org.misty.utils.task.dispatcher.TaskDispatcherPresetTest" />
+      <option name="METHOD_NAME" value="waitAllTaskFinish_close___about_taskExecutor_series" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TaskCountExecutorTest.waitFinish_waitTime" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TaskGiveResultTest.getMatchedCount" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="misty-utils.test" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.misty.utils.task.executor.*" />
+          <option name="PATTERN" value="org.misty.utils.task.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="org.misty.utils.task.executor" />
-      <option name="MAIN_CLASS_NAME" value="org.misty.utils.task.executor.TaskCountExecutorTest" />
-      <option name="METHOD_NAME" value="waitFinish_waitTime" />
+      <option name="PACKAGE_NAME" value="org.misty.utils.task" />
+      <option name="MAIN_CLASS_NAME" value="org.misty.utils.task.TaskGiveResultTest" />
+      <option name="METHOD_NAME" value="getMatchedCount" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TaskGiveResultTest.getResultCount" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="misty-utils.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.misty.utils.task.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.misty.utils.task" />
+      <option name="MAIN_CLASS_NAME" value="org.misty.utils.task.TaskGiveResultTest" />
+      <option name="METHOD_NAME" value="getResultCount" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -660,10 +495,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.All in misty-utils.test" />
-        <item itemvalue="JUnit.TaskCountExecutorTest" />
-        <item itemvalue="JUnit.TaskCountExecutorTest.waitFinish_waitTime" />
-        <item itemvalue="JUnit.TaskCountExecutorTest.waitFinish" />
-        <item itemvalue="JUnit.TaskCountExecutorTest.run_LongConsumerEx_BiFunction" />
+        <item itemvalue="JUnit.TaskDispatcherPresetTest.waitAllTaskFinish_close___about_taskExecutor_series" />
+        <item itemvalue="JUnit.TaskDispatcherPresetTest.giveResult" />
+        <item itemvalue="JUnit.TaskGiveResultTest.getResultCount" />
+        <item itemvalue="JUnit.TaskGiveResultTest.getMatchedCount" />
       </list>
     </recent_temporary>
   </component>
@@ -731,7 +566,8 @@
       <workItem from="1704963490013" duration="137000" />
       <workItem from="1704963644424" duration="16457000" />
       <workItem from="1705046127865" duration="979000" />
-      <workItem from="1705047125575" duration="5666000" />
+      <workItem from="1705047125575" duration="7235000" />
+      <workItem from="1705280579398" duration="35398000" />
     </task>
     <task id="LOCAL-00001" summary="Combinatorics add collect series">
       <option name="closed" value="true" />
@@ -949,11 +785,30 @@
       <option name="project" value="LOCAL" />
       <updated>1703756395906</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Big tidying up temporary storage">
+      <option name="closed" value="true" />
+      <created>1705053383224</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1705053383224</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Combinatorics add collect series" />
@@ -979,7 +834,24 @@
     <MESSAGE value="add Range series" />
     <MESSAGE value="add title feature of range/verify series" />
     <MESSAGE value="enhance Checker" />
-    <option name="LAST_COMMIT_MESSAGE" value="enhance Checker" />
+    <MESSAGE value="Big tidying up temporary storage" />
+    <option name="LAST_COMMIT_MESSAGE" value="Big tidying up temporary storage" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/misty/utils/task/dispatcher/TaskDispatcherBuilder.java</url>
+          <line>120</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/misty/utils/task/dispatcher/TaskDispatcherBuilder.java</url>
+          <line>198</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/misty_utils$CheckerTest.ic" NAME="CheckerTest Coverage Results" MODIFIED="1703756370131" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

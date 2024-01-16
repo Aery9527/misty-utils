@@ -8,12 +8,20 @@ import java.time.Duration;
 
 public interface TaskDispatcher<Task> extends AutoCloseable {
 
+    static <Task> TaskDispatcherBuilder<Task> builder() {
+        return TaskDispatcherBuilder.create(Tracked.create());
+    }
+
+    static <Task> TaskDispatcherBuilder<Task> builder(Tracked tracked) {
+        return TaskDispatcherBuilder.create(tracked);
+    }
+
     Tracked getTracked();
 
-    TaskGiveResult give(Task task);
+    TaskGiveResult<Task> give(Task task);
 
-    TaskWaitResult waitFinish();
+    TaskWaitResult waitAllTaskFinish();
 
-    TaskWaitResult waitFinish(Duration waitTime);
+    TaskWaitResult waitAllTaskFinish(Duration waitTime);
 
 }

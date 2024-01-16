@@ -10,10 +10,6 @@ import java.util.function.Function;
 
 public class TaskExecutorBuilder {
 
-    public static TaskExecutorBuilder create() {
-        return new TaskExecutorBuilder(Tracked.create());
-    }
-
     public static TaskExecutorBuilder create(Tracked tracked) {
         return new TaskExecutorBuilder(tracked);
     }

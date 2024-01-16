@@ -11,6 +11,14 @@ import java.util.function.Function;
 
 public interface TaskExecutor extends AutoCloseable {
 
+    static TaskExecutorBuilder builder() {
+        return TaskExecutorBuilder.create(Tracked.create());
+    }
+
+    static TaskExecutorBuilder builder(Tracked tracked) {
+        return TaskExecutorBuilder.create(tracked);
+    }
+
     Tracked getTracked();
 
     default TaskExecuteResult run(TaskExecuteAction action) {

@@ -20,7 +20,7 @@ public class TaskSerialExecutorTest extends TaskBaseExecutorTest {
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
     public TaskSerialExecutor build() {
-        return (TaskSerialExecutor) TaskExecutorBuilder.create().withSerial().build();
+        return (TaskSerialExecutor) TaskExecutor.builder().withSerial().build();
     }
 
     @Test

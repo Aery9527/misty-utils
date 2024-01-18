@@ -2,7 +2,7 @@ package org.misty.utils.cycle;
 
 import org.junit.jupiter.api.Test;
 
-class BigDecimalBaseCycleTest extends BigDecimalAbstractCycleTest {
+public class BigDecimalBaseCycleTest extends BigDecimalAbstractCycleTest {
 
     @Test
     public void range() {

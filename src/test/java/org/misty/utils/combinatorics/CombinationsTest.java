@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
-class CombinationsTest {
+public class CombinationsTest {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 

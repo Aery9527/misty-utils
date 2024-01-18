@@ -71,11 +71,11 @@ public class LongCycleBuilder extends AbstractCycleBuilder<LongCycle, LongCycleB
     }
 
     public long getMin() {
-        return this.handle.getMin();
+        return this.handle.getMin().get();
     }
 
     public long getMax() {
-        return this.handle.getMax();
+        return this.handle.getMax().get();
     }
 
 }

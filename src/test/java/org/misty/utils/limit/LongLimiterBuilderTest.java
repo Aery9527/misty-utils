@@ -19,8 +19,8 @@ public class LongLimiterBuilderTest {
         Consumer<UnaryOperator<LongLimiterBuilder>> test = setting -> {
             LongLimiterBuilder builder = Limiter.longLimiterBuilder("AAA").giveMinLimit(min).giveMaxLimit(max);
             LongLimiter limiter = setting.apply(builder).build(2L);
-            AssertionsEx.assertThat(limiter.getMin()).isEqualTo(min);
-            AssertionsEx.assertThat(limiter.getMax()).isEqualTo(max);
+            AssertionsEx.assertThat(limiter.getMin().get()).isEqualTo(min);
+            AssertionsEx.assertThat(limiter.getMax().get()).isEqualTo(max);
         };
 
         test.accept(LongLimiterBuilder::withBase);

@@ -1,5 +1,7 @@
 package org.misty.utils.limit;
 
+import java.util.Optional;
+
 public interface FloatLimiter extends Limiter {
 
     float get();
@@ -10,9 +12,9 @@ public interface FloatLimiter extends Limiter {
 
     float minus(float minus);
 
-    float getMin();
+    Optional<Float> getMin();
 
-    float getMax();
+    Optional<Float> getMax();
 
     default float increment() {
         return plus(1);

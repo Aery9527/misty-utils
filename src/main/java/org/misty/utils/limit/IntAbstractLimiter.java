@@ -1,14 +1,16 @@
 package org.misty.utils.limit;
 
+import java.util.Optional;
+
 public abstract class IntAbstractLimiter implements IntLimiter {
 
     private final IntLimitVerifierHandler verifier;
 
-    private final int min;
+    private final Integer min;
 
-    private final int max;
+    private final Integer max;
 
-    protected IntAbstractLimiter(IntLimitVerifierHandler verifier, int min, int max) {
+    protected IntAbstractLimiter(IntLimitVerifierHandler verifier, Integer min, Integer max) {
         this.verifier = verifier;
         this.min = min;
         this.max = max;
@@ -19,13 +21,13 @@ public abstract class IntAbstractLimiter implements IntLimiter {
     }
 
     @Override
-    public int getMin() {
-        return this.min;
+    public Optional<Integer> getMin() {
+        return Optional.ofNullable(this.min);
     }
 
     @Override
-    public int getMax() {
-        return this.max;
+    public Optional<Integer> getMax() {
+        return Optional.ofNullable(this.max);
     }
 
 }

@@ -6,7 +6,7 @@ public class LongAtomicLimiter extends LongAbstractLimiter {
 
     private final AtomicLong value = new AtomicLong();
 
-    public LongAtomicLimiter(LongLimitVerifierHandler verifier, long min, long max, long initValue) {
+    public LongAtomicLimiter(LongLimitVerifierHandler verifier, Long min, Long max, long initValue) {
         super(verifier, min, max);
         set(initValue);
     }

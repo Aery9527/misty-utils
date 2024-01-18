@@ -4,7 +4,7 @@ public class ShortBaseLimiter extends ShortAbstractLimiter {
 
     private short value;
 
-    public ShortBaseLimiter(ShortLimitVerifierHandler verifier, short min, short max, short initValue) {
+    public ShortBaseLimiter(ShortLimitVerifierHandler verifier, Short min, Short max, short initValue) {
         super(verifier, min, max);
         set(initValue);
     }

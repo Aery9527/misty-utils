@@ -19,8 +19,8 @@ public class ShortLimiterBuilderTest {
         Consumer<UnaryOperator<ShortLimiterBuilder>> test = setting -> {
             ShortLimiterBuilder builder = Limiter.shortLimiterBuilder("AAA").giveMinLimit(min).giveMaxLimit(max);
             ShortLimiter limiter = setting.apply(builder).build((short) 2);
-            AssertionsEx.assertThat(limiter.getMin()).isEqualTo(min);
-            AssertionsEx.assertThat(limiter.getMax()).isEqualTo(max);
+            AssertionsEx.assertThat(limiter.getMin().get()).isEqualTo(min);
+            AssertionsEx.assertThat(limiter.getMax().get()).isEqualTo(max);
         };
 
         test.accept(ShortLimiterBuilder::withBase);

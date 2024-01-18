@@ -6,7 +6,7 @@ public class IntAtomicLimiter extends IntAbstractLimiter {
 
     private final AtomicInteger value = new AtomicInteger();
 
-    public IntAtomicLimiter(IntLimitVerifierHandler verifier, int min, int max, int initValue) {
+    public IntAtomicLimiter(IntLimitVerifierHandler verifier, Integer min, Integer max, int initValue) {
         super(verifier, min, max);
         set(initValue);
     }

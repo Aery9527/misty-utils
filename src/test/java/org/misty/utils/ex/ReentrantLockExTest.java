@@ -6,32 +6,32 @@ import org.junit.jupiter.api.Test;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-class ReentrantLockExTest {
+public class ReentrantLockExTest {
 
     @Test
-    void use_fair() {
+    public void lock_fair() {
         Assertions.assertThat(new ReentrantLockEx().isFair()).isTrue();
         Assertions.assertThat(new ReentrantLockEx(false).isFair()).isFalse();
     }
 
     @Test
-    void use_runnable() {
+    public void lock_runnable() {
         ReentrantLockEx reentrantLockEx = new ReentrantLockEx();
 
         AtomicBoolean lockState = new AtomicBoolean();
-        reentrantLockEx.use(() -> lockState.set(reentrantLockEx.isLocked()));
+        reentrantLockEx.lock(() -> lockState.set(reentrantLockEx.isLocked()));
 
         Assertions.assertThat(lockState.get()).isTrue();
     }
 
     @Test
-    void use_supplier() {
+    public void lock_supplier() {
         ReentrantLockEx reentrantLockEx = new ReentrantLockEx();
 
         String returnTarget = UUID.randomUUID().toString();
 
         AtomicBoolean lockState = new AtomicBoolean();
-        String returned = reentrantLockEx.use(() -> {
+        String returned = reentrantLockEx.lock(() -> {
             lockState.set(reentrantLockEx.isLocked());
             return returnTarget;
         });

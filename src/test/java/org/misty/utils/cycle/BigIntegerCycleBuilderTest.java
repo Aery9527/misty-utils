@@ -5,7 +5,7 @@ import org.misty._utils.AssertionsEx;
 
 import java.math.BigInteger;
 
-class BigIntegerCycleBuilderTest {
+public class BigIntegerCycleBuilderTest {
 
     private final BigInteger $_2 = BigInteger.valueOf(-2);
 

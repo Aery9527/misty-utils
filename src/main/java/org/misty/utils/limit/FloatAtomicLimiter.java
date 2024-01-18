@@ -6,7 +6,7 @@ public class FloatAtomicLimiter extends FloatAbstractLimiter {
 
     private final AtomicReference<Float> value = new AtomicReference<>();
 
-    public FloatAtomicLimiter(FloatLimitVerifierHandler verifier, float min, float max, float initValue) {
+    public FloatAtomicLimiter(FloatLimitVerifierHandler verifier, Float min, Float max, float initValue) {
         super(verifier, min, max);
         set(initValue);
     }

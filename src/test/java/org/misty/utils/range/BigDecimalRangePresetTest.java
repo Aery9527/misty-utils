@@ -5,7 +5,7 @@ import org.misty._utils.AssertionsEx;
 
 import java.math.BigDecimal;
 
-class BigDecimalRangePresetTest {
+public class BigDecimalRangePresetTest {
 
     @Test
     public void random_inRange_outRange() {

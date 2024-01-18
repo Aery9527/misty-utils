@@ -74,11 +74,11 @@ public class BigIntegerCycleBuilder extends AbstractCycleBuilder<BigIntegerCycle
     }
 
     public BigInteger getMin() {
-        return this.handle.getMin();
+        return this.handle.getMin().get();
     }
 
     public BigInteger getMax() {
-        return this.handle.getMax();
+        return this.handle.getMax().get();
     }
 
 }

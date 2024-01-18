@@ -71,11 +71,11 @@ public class ShortCycleBuilder extends AbstractCycleBuilder<ShortCycle, ShortCyc
     }
 
     public short getMin() {
-        return this.handle.getMin();
+        return this.handle.getMin().get();
     }
 
     public short getMax() {
-        return this.handle.getMax();
+        return this.handle.getMax().get();
     }
 
 }

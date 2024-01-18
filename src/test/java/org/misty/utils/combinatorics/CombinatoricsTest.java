@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Supplier;
 
-class CombinatoricsTest {
+public class CombinatoricsTest {
 
     public static void print(String title, int size, List<List<String>> list) {
         System.out.println(title + "(" + list.size() + ")");

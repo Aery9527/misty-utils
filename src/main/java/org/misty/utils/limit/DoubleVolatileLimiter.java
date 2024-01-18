@@ -4,7 +4,7 @@ public class DoubleVolatileLimiter extends DoubleAbstractLimiter {
 
     private volatile double value;
 
-    public DoubleVolatileLimiter(DoubleLimitVerifierHandler verifier, double min, double max, double initValue) {
+    public DoubleVolatileLimiter(DoubleLimitVerifierHandler verifier, Double min, Double max, double initValue) {
         super(verifier, min, max);
         set(initValue);
     }

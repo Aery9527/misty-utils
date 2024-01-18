@@ -97,11 +97,11 @@ public class BigDecimalCycleBuilder extends AbstractCycleBuilder<BigDecimalCycle
     }
 
     public BigDecimal getMin() {
-        return this.handle.getMin();
+        return this.handle.getMin().get();
     }
 
     public BigDecimal getMax() {
-        return this.handle.getMax();
+        return this.handle.getMax().get();
     }
 
 }

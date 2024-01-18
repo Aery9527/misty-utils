@@ -50,8 +50,8 @@ public class BigIntegerAbstractLimiterTest {
 
     public void test_min_max(TestInterface setting) {
         BigIntegerLimiter limiter = setting.setting(this.mockVerifierHandler, this.min, this.max, BigInteger.valueOf(5566));
-        AssertionsEx.assertThat(limiter.getMin()).isEqualTo(this.min);
-        AssertionsEx.assertThat(limiter.getMax()).isEqualTo(this.max);
+        AssertionsEx.assertThat(limiter.getMin().get()).isEqualTo(this.min);
+        AssertionsEx.assertThat(limiter.getMax().get()).isEqualTo(this.max);
     }
 
     public void test_set(TestInterface setting) {

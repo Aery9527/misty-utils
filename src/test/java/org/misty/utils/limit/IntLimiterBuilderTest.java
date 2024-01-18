@@ -17,10 +17,12 @@ public class IntLimiterBuilderTest {
         int max = 3;
 
         Consumer<UnaryOperator<IntLimiterBuilder>> test = setting -> {
-            IntLimiterBuilder builder = Limiter.intLimiterBuilder("AAA").giveMinLimit(min).giveMaxLimit(max);
+            IntLimiterBuilder builder = Limiter.intLimiterBuilder("AAA")
+                    .giveMinLimit(min)
+                    .giveMaxLimit(max);
             IntLimiter limiter = setting.apply(builder).build(2);
-            AssertionsEx.assertThat(limiter.getMin()).isEqualTo(min);
-            AssertionsEx.assertThat(limiter.getMax()).isEqualTo(max);
+            AssertionsEx.assertThat(limiter.getMin().get()).isEqualTo(min);
+            AssertionsEx.assertThat(limiter.getMax().get()).isEqualTo(max);
         };
 
         test.accept(IntLimiterBuilder::withBase);

@@ -2,6 +2,7 @@ package org.misty.utils.limit;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.Optional;
 
 public interface BigDecimalLimiter extends Limiter {
 
@@ -17,9 +18,9 @@ public interface BigDecimalLimiter extends Limiter {
 
     BigDecimal minus(BigDecimal minus);
 
-    BigDecimal getMin();
+    Optional<BigDecimal> getMin();
 
-    BigDecimal getMax();
+    Optional<BigDecimal> getMax();
 
     default BigDecimal increment() {
         return plus(BigDecimal.ONE);

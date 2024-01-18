@@ -1,14 +1,16 @@
 package org.misty.utils.limit;
 
+import java.util.Optional;
+
 public abstract class DoubleAbstractLimiter implements DoubleLimiter {
 
     private final DoubleLimitVerifierHandler verifier;
 
-    private final double min;
+    private final Double min;
 
-    private final double max;
+    private final Double max;
 
-    protected DoubleAbstractLimiter(DoubleLimitVerifierHandler verifier, double min, double max) {
+    protected DoubleAbstractLimiter(DoubleLimitVerifierHandler verifier, Double min, Double max) {
         this.verifier = verifier;
         this.min = min;
         this.max = max;
@@ -19,13 +21,13 @@ public abstract class DoubleAbstractLimiter implements DoubleLimiter {
     }
 
     @Override
-    public double getMin() {
-        return this.min;
+    public Optional<Double> getMin() {
+        return Optional.ofNullable(this.min);
     }
 
     @Override
-    public double getMax() {
-        return this.max;
+    public Optional<Double> getMax() {
+        return Optional.ofNullable(this.max);
     }
 
 }

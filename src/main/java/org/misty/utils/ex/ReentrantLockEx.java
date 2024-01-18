@@ -15,7 +15,7 @@ public class ReentrantLockEx extends ReentrantLock {
         super(fair);
     }
 
-    public void use(RunnableEx action) {
+    public void lock(RunnableEx action) {
         try {
             super.lock();
             action.execute();
@@ -24,7 +24,7 @@ public class ReentrantLockEx extends ReentrantLock {
         }
     }
 
-    public <ReturnType> ReturnType use(SupplierEx<ReturnType> action) {
+    public <ReturnType> ReturnType lock(SupplierEx<ReturnType> action) {
         try {
             super.lock();
             return action.execute();

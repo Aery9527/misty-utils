@@ -1,5 +1,7 @@
 package org.misty.utils.limit;
 
+import java.util.Optional;
+
 public interface IntLimiter extends Limiter {
 
     int get();
@@ -10,9 +12,9 @@ public interface IntLimiter extends Limiter {
 
     int minus(int minus);
 
-    int getMin();
+    Optional<Integer> getMin();
 
-    int getMax();
+    Optional<Integer> getMax();
 
     default int increment() {
         return plus(1);

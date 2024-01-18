@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.BiConsumer;
 
-class BigIntegerRangePresetTest {
+public class BigIntegerRangePresetTest {
 
     @Test
     public void random_inRange_outRange() {

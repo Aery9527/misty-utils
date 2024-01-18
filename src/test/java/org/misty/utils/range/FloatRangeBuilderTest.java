@@ -6,7 +6,7 @@ import org.misty._utils.AssertionsEx;
 import java.util.function.BiConsumer;
 import java.util.stream.Stream;
 
-class FloatRangeBuilderTest {
+public class FloatRangeBuilderTest {
 
     @Test
     public void giveLowerBound() {

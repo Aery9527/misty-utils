@@ -3,7 +3,7 @@ package org.misty.utils.flag;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-class DecimalFlagTest {
+public class DecimalFlagTest {
 
     @Test
     public void getGroupLevel() {

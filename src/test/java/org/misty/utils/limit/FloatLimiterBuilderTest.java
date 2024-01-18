@@ -19,8 +19,8 @@ public class FloatLimiterBuilderTest {
         Consumer<UnaryOperator<FloatLimiterBuilder>> test = setting -> {
             FloatLimiterBuilder builder = Limiter.floatLimiterBuilder("AAA").giveMinLimit(min).giveMaxLimit(max);
             FloatLimiter limiter = setting.apply(builder).build(2f);
-            AssertionsEx.assertThat(limiter.getMin()).isEqualTo(min);
-            AssertionsEx.assertThat(limiter.getMax()).isEqualTo(max);
+            AssertionsEx.assertThat(limiter.getMin().get()).isEqualTo(min);
+            AssertionsEx.assertThat(limiter.getMax().get()).isEqualTo(max);
         };
 
         test.accept(FloatLimiterBuilder::withBase);

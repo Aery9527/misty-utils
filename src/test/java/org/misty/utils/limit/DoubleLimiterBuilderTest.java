@@ -19,8 +19,8 @@ public class DoubleLimiterBuilderTest {
         Consumer<UnaryOperator<DoubleLimiterBuilder>> test = setting -> {
             DoubleLimiterBuilder builder = Limiter.doubleLimiterBuilder("AAA").giveMinLimit(min).giveMaxLimit(max);
             DoubleLimiter limiter = setting.apply(builder).build(2d);
-            AssertionsEx.assertThat(limiter.getMin()).isEqualTo(min);
-            AssertionsEx.assertThat(limiter.getMax()).isEqualTo(max);
+            AssertionsEx.assertThat(limiter.getMin().get()).isEqualTo(min);
+            AssertionsEx.assertThat(limiter.getMax().get()).isEqualTo(max);
         };
 
         test.accept(DoubleLimiterBuilder::withBase);

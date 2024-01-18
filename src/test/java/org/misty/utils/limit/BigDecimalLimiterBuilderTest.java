@@ -25,8 +25,8 @@ public class BigDecimalLimiterBuilderTest {
         Consumer<UnaryOperator<BigDecimalLimiterBuilder>> test = setting -> {
             BigDecimalLimiterBuilder builder = Limiter.bigDecimalBuilder("AAA").giveMinLimit($1).giveMaxLimit($3);
             BigDecimalLimiter limiter = setting.apply(builder).build($2);
-            AssertionsEx.assertThat(limiter.getMin()).isEqualTo($1);
-            AssertionsEx.assertThat(limiter.getMax()).isEqualTo($3);
+            AssertionsEx.assertThat(limiter.getMin().get()).isEqualTo($1);
+            AssertionsEx.assertThat(limiter.getMax().get()).isEqualTo($3);
         };
 
         test.accept(BigDecimalLimiterBuilder::withBase);

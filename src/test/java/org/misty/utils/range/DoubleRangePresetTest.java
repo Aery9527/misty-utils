@@ -3,7 +3,7 @@ package org.misty.utils.range;
 import org.junit.jupiter.api.Test;
 import org.misty._utils.AssertionsEx;
 
-class DoubleRangePresetTest {
+public class DoubleRangePresetTest {
 
     @Test
     public void random_inRange_outRange() {

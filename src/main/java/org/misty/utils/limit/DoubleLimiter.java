@@ -1,5 +1,7 @@
 package org.misty.utils.limit;
 
+import java.util.Optional;
+
 public interface DoubleLimiter extends Limiter {
 
     double get();
@@ -10,9 +12,9 @@ public interface DoubleLimiter extends Limiter {
 
     double minus(double minus);
 
-    double getMin();
+    Optional<Double> getMin();
 
-    double getMax();
+    Optional<Double> getMax();
 
     default double increment() {
         return plus(1);

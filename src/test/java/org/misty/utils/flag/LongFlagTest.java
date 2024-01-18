@@ -4,7 +4,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.misty._utils.AssertionsEx;
 
-class LongFlagTest {
+public class LongFlagTest {
 
     @Test
     public void add() {

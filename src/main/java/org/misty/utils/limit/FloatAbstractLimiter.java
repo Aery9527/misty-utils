@@ -1,14 +1,16 @@
 package org.misty.utils.limit;
 
+import java.util.Optional;
+
 public abstract class FloatAbstractLimiter implements FloatLimiter {
 
     private final FloatLimitVerifierHandler verifier;
 
-    private final float min;
+    private final Float min;
 
-    private final float max;
+    private final Float max;
 
-    protected FloatAbstractLimiter(FloatLimitVerifierHandler verifier, float min, float max) {
+    protected FloatAbstractLimiter(FloatLimitVerifierHandler verifier, Float min, Float max) {
         this.verifier = verifier;
         this.min = min;
         this.max = max;
@@ -19,13 +21,13 @@ public abstract class FloatAbstractLimiter implements FloatLimiter {
     }
 
     @Override
-    public float getMin() {
-        return this.min;
+    public Optional<Float> getMin() {
+        return Optional.ofNullable(this.min);
     }
 
     @Override
-    public float getMax() {
-        return this.max;
+    public Optional<Float> getMax() {
+        return Optional.ofNullable(this.max);
     }
 
 }

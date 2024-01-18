@@ -5,7 +5,7 @@ import org.misty._utils.AssertionsEx;
 
 import java.util.function.BiConsumer;
 
-class ShortRangeBuilderTest {
+public class ShortRangeBuilderTest {
 
     @Test
     public void giveLowerBound() {

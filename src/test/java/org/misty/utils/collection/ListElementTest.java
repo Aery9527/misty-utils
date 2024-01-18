@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
 
-class ListElementTest {
+public class ListElementTest {
 
     @Test
     public void boxing() {

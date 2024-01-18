@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.function.BiConsumer;
 
-class BigDecimalRangeBuilderTest {
+public class BigDecimalRangeBuilderTest {
 
     @Test
     public void giveLowerBound() {

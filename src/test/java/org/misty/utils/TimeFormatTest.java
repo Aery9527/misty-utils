@@ -3,7 +3,7 @@ package org.misty.utils;
 import org.junit.jupiter.api.Test;
 import org.misty.utils.combinatorics.Combinations;
 
-class TimeFormatTest {
+public class TimeFormatTest {
 
     @Test
     public void auto() {

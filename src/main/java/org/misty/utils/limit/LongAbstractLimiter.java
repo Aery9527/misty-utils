@@ -1,14 +1,16 @@
 package org.misty.utils.limit;
 
+import java.util.Optional;
+
 public abstract class LongAbstractLimiter implements LongLimiter {
 
     private final LongLimitVerifierHandler verifier;
 
-    private final long min;
+    private final Long min;
 
-    private final long max;
+    private final Long max;
 
-    protected LongAbstractLimiter(LongLimitVerifierHandler verifier, long min, long max) {
+    protected LongAbstractLimiter(LongLimitVerifierHandler verifier, Long min, Long max) {
         this.verifier = verifier;
         this.min = min;
         this.max = max;
@@ -19,13 +21,13 @@ public abstract class LongAbstractLimiter implements LongLimiter {
     }
 
     @Override
-    public long getMin() {
-        return this.min;
+    public Optional<Long> getMin() {
+        return Optional.ofNullable(this.min);
     }
 
     @Override
-    public long getMax() {
-        return this.max;
+    public Optional<Long> getMax() {
+        return Optional.ofNullable(this.max);
     }
 
 }

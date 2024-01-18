@@ -4,7 +4,7 @@ public class DoubleBaseLimiter extends DoubleAbstractLimiter {
 
     private double value;
 
-    public DoubleBaseLimiter(DoubleLimitVerifierHandler verifier, double min, double max, double initValue) {
+    public DoubleBaseLimiter(DoubleLimitVerifierHandler verifier, Double min, Double max, double initValue) {
         super(verifier, min, max);
         set(initValue);
     }

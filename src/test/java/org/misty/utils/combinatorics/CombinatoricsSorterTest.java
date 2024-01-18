@@ -9,7 +9,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.BiPredicate;
 import java.util.function.Consumer;
 
-class CombinatoricsSorterTest {
+public class CombinatoricsSorterTest {
 
     interface SortCollectAction {
         boolean collect(long times, List<String> result, Map<String, BiPredicate<Long, List<String>>> sortMap, Map<String, List<List<String>>> expectedMap);

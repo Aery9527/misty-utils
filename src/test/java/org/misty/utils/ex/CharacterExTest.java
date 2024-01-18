@@ -3,7 +3,7 @@ package org.misty.utils.ex;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-class CharacterExTest {
+public class CharacterExTest {
 
     @Test
     public void countChinese() {

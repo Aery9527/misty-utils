@@ -4,7 +4,7 @@ import org.assertj.core.api.Assertions;
 import org.assertj.core.data.Percentage;
 import org.junit.jupiter.api.Test;
 
-class WatcherTest {
+public class WatcherTest {
 
     private final Percentage deviation = Percentage.withPercentage(5);
 

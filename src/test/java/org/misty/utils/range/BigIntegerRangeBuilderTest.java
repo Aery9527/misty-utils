@@ -6,7 +6,7 @@ import org.misty._utils.AssertionsEx;
 import java.math.BigInteger;
 import java.util.function.BiConsumer;
 
-class BigIntegerRangeBuilderTest {
+public class BigIntegerRangeBuilderTest {
 
     @Test
     public void giveLowerBound() {

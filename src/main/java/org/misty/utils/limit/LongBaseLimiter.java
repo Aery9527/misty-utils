@@ -4,7 +4,7 @@ public class LongBaseLimiter extends LongAbstractLimiter {
 
     private long value;
 
-    public LongBaseLimiter(LongLimitVerifierHandler verifier, long min, long max, long initValue) {
+    public LongBaseLimiter(LongLimitVerifierHandler verifier, Long min, Long max, long initValue) {
         super(verifier, min, max);
         set(initValue);
     }

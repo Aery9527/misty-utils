@@ -3,7 +3,7 @@ package org.misty.utils;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-class TrackedTest {
+public class TrackedTest {
 
     @Test
     public void create_with_id() {

@@ -382,7 +382,7 @@ public class GroupWakeupLockTest {
         groupWakeupLock.waiting(waitingKey2);
 
         Assertions.assertThat(orderList).containsExactly("2", "1");
-        Assertions.assertThat(groupWakeupLock.getKeys()).containsExactlyInAnyOrderElementsOf(List.of(waitingKey1, waitingKey2));
+        Assertions.assertThat(groupWakeupLock.getKeys()).containsExactlyInAnyOrder(waitingKey1, waitingKey2);
     }
 
     @Test
@@ -411,7 +411,7 @@ public class GroupWakeupLockTest {
 
             String[] expectedOrderList = wakeupOverTimeout ? new String[]{"1", "2"} : new String[]{"2", "1"};
             Assertions.assertThat(orderList).containsExactly(expectedOrderList);
-            Assertions.assertThat(groupWakeupLock.getKeys()).containsExactlyInAnyOrderElementsOf(List.of(waitingKey1, waitingKey2));
+            Assertions.assertThat(groupWakeupLock.getKeys()).containsExactlyInAnyOrder(waitingKey1, waitingKey2);
         }
     }
 

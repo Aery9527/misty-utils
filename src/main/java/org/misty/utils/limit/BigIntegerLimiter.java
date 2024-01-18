@@ -1,6 +1,7 @@
 package org.misty.utils.limit;
 
 import java.math.BigInteger;
+import java.util.Optional;
 
 public interface BigIntegerLimiter extends Limiter {
 
@@ -12,9 +13,9 @@ public interface BigIntegerLimiter extends Limiter {
 
     BigInteger minus(BigInteger minus);
 
-    BigInteger getMin();
+    Optional<BigInteger> getMin();
 
-    BigInteger getMax();
+    Optional<BigInteger> getMax();
 
     default BigInteger increment() {
         return plus(BigInteger.ONE);

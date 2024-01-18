@@ -1,6 +1,7 @@
 package org.misty.utils.limit;
 
 import java.math.BigDecimal;
+import java.util.Optional;
 
 public abstract class BigDecimalAbstractLimiter implements BigDecimalLimiter {
 
@@ -21,13 +22,13 @@ public abstract class BigDecimalAbstractLimiter implements BigDecimalLimiter {
     }
 
     @Override
-    public BigDecimal getMin() {
-        return this.min;
+    public Optional<BigDecimal> getMin() {
+        return Optional.ofNullable(this.min);
     }
 
     @Override
-    public BigDecimal getMax() {
-        return this.max;
+    public Optional<BigDecimal> getMax() {
+        return Optional.ofNullable(this.max);
     }
 
 }

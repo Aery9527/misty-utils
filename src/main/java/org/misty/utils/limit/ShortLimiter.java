@@ -1,5 +1,7 @@
 package org.misty.utils.limit;
 
+import java.util.Optional;
+
 public interface ShortLimiter extends Limiter {
 
     short get();
@@ -10,9 +12,9 @@ public interface ShortLimiter extends Limiter {
 
     short minus(short minus);
 
-    short getMin();
+    Optional<Short> getMin();
 
-    short getMax();
+    Optional<Short> getMax();
 
     default short increment() {
         return plus((short) 1);

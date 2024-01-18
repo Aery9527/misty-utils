@@ -3,10 +3,10 @@ package org.misty.utils;
 import org.junit.jupiter.api.Test;
 import org.misty._utils.AssertionsEx;
 
-class StackFetcherTest {
+public class StackFetcherTest {
 
     @Test
-    void fetchCurrentStack() {
+    public void fetchCurrentStack() {
         StackTraceElement currentSte1 = StackFetcher.fetchCurrentStack(); // same to fetchStack(0)
         StackTraceElement currentSte2 = StackFetcher.fetchStack(0); // 0 is offset
         System.out.println(currentSte1);
@@ -31,7 +31,7 @@ class StackFetcherTest {
     }
 
     @Test
-    void fetchPreviousStack() {
+    public void fetchPreviousStack() {
         StackTraceElement ste = testStackPrevious();
         System.out.println(ste);
 
@@ -40,7 +40,7 @@ class StackFetcherTest {
     }
 
     @Test
-    void fetchStacksPretty() {
+    public void fetchStacksPretty() {
         printStack1(() -> {
             StringBuilder sb = StackFetcher.fetchStacksPretty();
             System.out.println(sb);
@@ -48,7 +48,7 @@ class StackFetcherTest {
     }
 
     @Test
-    void fetchStacksPretty_prefix() {
+    public void fetchStacksPretty_prefix() {
         printStack1(() -> {
             StringBuilder sb = StackFetcher.fetchStacksPretty(">> ");
             System.out.println(sb);
@@ -56,7 +56,7 @@ class StackFetcherTest {
     }
 
     @Test
-    void fetchStacksPretty_prefix_suffix() {
+    public void fetchStacksPretty_prefix_suffix() {
         printStack1(() -> {
             StringBuilder sb = StackFetcher.fetchStacksPretty("- ", " |" + System.lineSeparator());
             System.out.println(sb);
@@ -64,7 +64,7 @@ class StackFetcherTest {
     }
 
     @Test
-    void fetchStacksPretty_offset_prefix_suffix() {
+    public void fetchStacksPretty_offset_prefix_suffix() {
         printStack1(() -> {
             StringBuilder sb = StackFetcher.fetchStacksPretty(1, "- ", " |" + System.lineSeparator());
             System.out.println(sb);

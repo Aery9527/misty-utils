@@ -82,8 +82,8 @@ public abstract class TaskBaseExecutor implements TaskExecutor {
 
     @Override
     public final void close() {
-        boolean update = this.stateFlag.compareAndSet(TaskExecuteResult.EXECUTED, TaskExecuteResult.CLOSED);
-        if (update) {
+        this.stateFlag.compareAndSet(TaskExecuteResult.EXECUTED, TaskExecuteResult.CLOSED);
+        if (!this.stateFlag.get().isClosed()) {
             doClose();
         }
     }

@@ -57,7 +57,11 @@ public class TaskExecutorBuilder {
      * 同{@link #withParallel(ExecutorService)}, 只是指定執行緒數量
      */
     public TaskExecutorBuilder withParallel(int threadNumber) {
-        return withParallel(Executors.newFixedThreadPool(threadNumber));
+        return withParallel(Executors.newFixedThreadPool(threadNumber, r -> {
+            Thread thread = new Thread(r);
+            thread.setDaemon(true);
+            return thread;
+        }));
     }
 
     /**

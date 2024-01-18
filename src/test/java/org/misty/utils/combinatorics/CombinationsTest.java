@@ -438,25 +438,25 @@ public class CombinationsTest {
     }
 
     @Test
-    public void collectMostAmount() {
+    public void collectMostNumber() {
         int combinationSize = 3;
-        int collectAmount = 3;
+        int collectNumber = 3;
         boolean repeat = false;
 
         Combinations<String> combinations = Combinations.shuffle("A", "B", "C", "D", "E", "F", "G", "H").withParallel();
 
         for (int testTimes = 0; testTimes < 20; testTimes++) {
-            List<List<String>> result = combinations.collectMostAmount(combinationSize, repeat, collectAmount, (times, combination) -> { // filter
+            List<List<String>> result = combinations.collectMostNumber(combinationSize, repeat, collectNumber, (times, combination) -> { // filter
                 return combination.stream().map(element -> element.content).anyMatch("A"::equals);
             });
 
             CombinatoricsTest.print("result[" + testTimes + "]", 5, result);
 
-            Assertions.assertThat(result.size()).isLessThanOrEqualTo(collectAmount);
+            Assertions.assertThat(result.size()).isLessThanOrEqualTo(collectNumber);
         }
 
         for (int testTimes = 0; testTimes < 20; testTimes++) {
-            List<List<String>> result = combinations.collectMostAmount(combinationSize, repeat, collectAmount, (times, combination) -> { // filter
+            List<List<String>> result = combinations.collectMostNumber(combinationSize, repeat, collectNumber, (times, combination) -> { // filter
                 return combination.stream().map(element -> element.content).anyMatch(""::equals);
             });
 

@@ -4,7 +4,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.misty._utils.AssertionsEx;
 
-class IntFlagTest {
+public class IntFlagTest {
 
     @Test
     public void add() {
@@ -83,62 +83,62 @@ class IntFlagTest {
     }
 
     @Test
-    public void hasAmount() {
+    public void hasNumber() {
         IntFlag intFlag = BitFlag.useInt(2 | 4 | 8 | 16);
 
-        Assertions.assertThat(intFlag.hasAmount(2, 1)).isFalse();
-        Assertions.assertThat(intFlag.hasAmount(2, 1 | 2)).isFalse();
-        Assertions.assertThat(intFlag.hasAmount(2, 2 | 4)).isTrue();
-        Assertions.assertThat(intFlag.hasAmount(2, 2 | 4 | 8)).isFalse();
+        Assertions.assertThat(intFlag.hasNumber(2, 1)).isFalse();
+        Assertions.assertThat(intFlag.hasNumber(2, 1 | 2)).isFalse();
+        Assertions.assertThat(intFlag.hasNumber(2, 2 | 4)).isTrue();
+        Assertions.assertThat(intFlag.hasNumber(2, 2 | 4 | 8)).isFalse();
 
-        Assertions.assertThat(intFlag.hasAmount(3, 1)).isFalse();
-        Assertions.assertThat(intFlag.hasAmount(3, 1 | 2)).isFalse();
-        Assertions.assertThat(intFlag.hasAmount(3, 1 | 2 | 4)).isFalse();
-        Assertions.assertThat(intFlag.hasAmount(3, 1 | 2 | 4 | 8)).isTrue();
-        Assertions.assertThat(intFlag.hasAmount(3, 1 | 2 | 4 | 8 | 16)).isFalse();
+        Assertions.assertThat(intFlag.hasNumber(3, 1)).isFalse();
+        Assertions.assertThat(intFlag.hasNumber(3, 1 | 2)).isFalse();
+        Assertions.assertThat(intFlag.hasNumber(3, 1 | 2 | 4)).isFalse();
+        Assertions.assertThat(intFlag.hasNumber(3, 1 | 2 | 4 | 8)).isTrue();
+        Assertions.assertThat(intFlag.hasNumber(3, 1 | 2 | 4 | 8 | 16)).isFalse();
     }
 
     @Test
-    public void hasAmountLeast() {
+    public void hasNumberLeast() {
         IntFlag intFlag = BitFlag.useInt(2 | 4 | 8 | 16);
 
-        Assertions.assertThat(intFlag.hasAmountLeast(2, 1)).isFalse();
-        Assertions.assertThat(intFlag.hasAmountLeast(2, 1 | 2)).isFalse();
-        Assertions.assertThat(intFlag.hasAmountLeast(2, 2 | 4)).isTrue();
-        Assertions.assertThat(intFlag.hasAmountLeast(2, 2 | 4 | 8)).isTrue();
+        Assertions.assertThat(intFlag.hasNumberLeast(2, 1)).isFalse();
+        Assertions.assertThat(intFlag.hasNumberLeast(2, 1 | 2)).isFalse();
+        Assertions.assertThat(intFlag.hasNumberLeast(2, 2 | 4)).isTrue();
+        Assertions.assertThat(intFlag.hasNumberLeast(2, 2 | 4 | 8)).isTrue();
 
-        Assertions.assertThat(intFlag.hasAmountLeast(3, 1)).isFalse();
-        Assertions.assertThat(intFlag.hasAmountLeast(3, 1 | 2)).isFalse();
-        Assertions.assertThat(intFlag.hasAmountLeast(3, 1 | 2 | 4)).isFalse();
-        Assertions.assertThat(intFlag.hasAmountLeast(3, 1 | 2 | 4 | 8)).isTrue();
-        Assertions.assertThat(intFlag.hasAmountLeast(3, 1 | 2 | 4 | 8 | 16)).isTrue();
+        Assertions.assertThat(intFlag.hasNumberLeast(3, 1)).isFalse();
+        Assertions.assertThat(intFlag.hasNumberLeast(3, 1 | 2)).isFalse();
+        Assertions.assertThat(intFlag.hasNumberLeast(3, 1 | 2 | 4)).isFalse();
+        Assertions.assertThat(intFlag.hasNumberLeast(3, 1 | 2 | 4 | 8)).isTrue();
+        Assertions.assertThat(intFlag.hasNumberLeast(3, 1 | 2 | 4 | 8 | 16)).isTrue();
     }
 
     @Test
-    public void hasAmountMost() {
+    public void hasNumberMost() {
         IntFlag intFlag = BitFlag.useInt(2 | 4 | 8 | 16);
 
-        Assertions.assertThat(intFlag.hasAmountMost(2, 1)).isTrue();
-        Assertions.assertThat(intFlag.hasAmountMost(2, 1 | 2)).isTrue();
-        Assertions.assertThat(intFlag.hasAmountMost(2, 2 | 4)).isTrue();
-        Assertions.assertThat(intFlag.hasAmountMost(2, 2 | 4 | 8)).isFalse();
+        Assertions.assertThat(intFlag.hasNumberMost(2, 1)).isTrue();
+        Assertions.assertThat(intFlag.hasNumberMost(2, 1 | 2)).isTrue();
+        Assertions.assertThat(intFlag.hasNumberMost(2, 2 | 4)).isTrue();
+        Assertions.assertThat(intFlag.hasNumberMost(2, 2 | 4 | 8)).isFalse();
 
-        Assertions.assertThat(intFlag.hasAmountMost(3, 1)).isTrue();
-        Assertions.assertThat(intFlag.hasAmountMost(3, 1 | 2)).isTrue();
-        Assertions.assertThat(intFlag.hasAmountMost(3, 1 | 2 | 4)).isTrue();
-        Assertions.assertThat(intFlag.hasAmountMost(3, 1 | 2 | 4 | 8)).isTrue();
-        Assertions.assertThat(intFlag.hasAmountMost(3, 1 | 2 | 4 | 8 | 16)).isFalse();
+        Assertions.assertThat(intFlag.hasNumberMost(3, 1)).isTrue();
+        Assertions.assertThat(intFlag.hasNumberMost(3, 1 | 2)).isTrue();
+        Assertions.assertThat(intFlag.hasNumberMost(3, 1 | 2 | 4)).isTrue();
+        Assertions.assertThat(intFlag.hasNumberMost(3, 1 | 2 | 4 | 8)).isTrue();
+        Assertions.assertThat(intFlag.hasNumberMost(3, 1 | 2 | 4 | 8 | 16)).isFalse();
     }
 
     @Test
-    public void hasAmountRange() {
+    public void hasNumberRange() {
         IntFlag intFlag = BitFlag.useInt(2 | 4 | 8 | 16);
 
-        Assertions.assertThat(intFlag.hasAmountRange(2, 3, 1)).isFalse();
-        Assertions.assertThat(intFlag.hasAmountRange(2, 3, 1 | 2)).isFalse();
-        Assertions.assertThat(intFlag.hasAmountRange(2, 3, 2 | 4)).isTrue();
-        Assertions.assertThat(intFlag.hasAmountRange(2, 3, 2 | 4 | 8)).isTrue();
-        Assertions.assertThat(intFlag.hasAmountRange(2, 3, 2 | 4 | 8 | 16)).isFalse();
+        Assertions.assertThat(intFlag.hasNumberRange(2, 3, 1)).isFalse();
+        Assertions.assertThat(intFlag.hasNumberRange(2, 3, 1 | 2)).isFalse();
+        Assertions.assertThat(intFlag.hasNumberRange(2, 3, 2 | 4)).isTrue();
+        Assertions.assertThat(intFlag.hasNumberRange(2, 3, 2 | 4 | 8)).isTrue();
+        Assertions.assertThat(intFlag.hasNumberRange(2, 3, 2 | 4 | 8 | 16)).isFalse();
     }
 
     @Test

@@ -77,12 +77,12 @@ public class LongFlag implements BitFlag {
     /**
      * 是否有指定數量的bit
      *
-     * @param amount 要符合幾個bit
+     * @param number 要符合幾個bit
      * @param flags  要檢查的bit
      * @return 是否符合區間
      */
-    public boolean hasAmount(int amount, long flags) {
-        return hasAmountRange(amount, amount, flags);
+    public boolean hasNumber(int number, long flags) {
+        return hasNumberRange(number, number, flags);
     }
 
     /**
@@ -92,8 +92,8 @@ public class LongFlag implements BitFlag {
      * @param flags 要檢查的bit
      * @return 是否符合區間
      */
-    public boolean hasAmountLeast(int least, long flags) {
-        return hasAmountRange(least, Integer.MAX_VALUE, flags);
+    public boolean hasNumberLeast(int least, long flags) {
+        return hasNumberRange(least, Integer.MAX_VALUE, flags);
     }
 
     /**
@@ -103,8 +103,8 @@ public class LongFlag implements BitFlag {
      * @param flags 要檢查的bit
      * @return 是否符合區間
      */
-    public boolean hasAmountMost(int most, long flags) {
-        return hasAmountRange(0, most, flags);
+    public boolean hasNumberMost(int most, long flags) {
+        return hasNumberRange(0, most, flags);
     }
 
     /**
@@ -115,7 +115,7 @@ public class LongFlag implements BitFlag {
      * @param flags 要檢查的bit
      * @return 是否符合區間
      */
-    public boolean hasAmountRange(int least, int most, long flags) {
+    public boolean hasNumberRange(int least, int most, long flags) {
         long and = this.flags & flags;
         long count = IntStream.rangeClosed(0, MAX_BIT)
                 .filter(i -> (and & (1L << i)) > 0)

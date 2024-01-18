@@ -4,14 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="85a0b3b9-499c-4427-8178-fde3848053e3" name="Changes" comment="fix Limiter series bug">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/OnceRunnable.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/OnceSupplier.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/OnceRunnableTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/OnceSupplierTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/task/executor/TaskBaseExecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/task/executor/TaskBaseExecutor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/task/executor/TaskExecutorBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/task/executor/TaskExecutorBuilder.java" afterDir="false" />
+    <list default="true" id="85a0b3b9-499c-4427-8178-fde3848053e3" name="Changes" comment="add OnceSupplier and OnceRunnable">
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/combinatorics/Combinatorics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/combinatorics/Combinatorics.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/flag/DecimalFlag.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/flag/DecimalFlag.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/flag/IntFlag.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/flag/IntFlag.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/flag/LongFlag.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/flag/LongFlag.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/combinatorics/CombinationsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/combinatorics/CombinationsTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/combinatorics/PermutationsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/combinatorics/PermutationsTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/flag/DecimalFlagTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/flag/DecimalFlagTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/flag/IntFlagTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/flag/IntFlagTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/flag/LongFlagTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/flag/LongFlagTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -415,7 +417,7 @@
       <recent name="org.misty.utils.fi" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.OnceSupplierTest.once_execute">
+  <component name="RunManager" selected="JUnit.All in misty-utils.test (1)">
     <configuration name="All in misty-utils.test (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="misty-utils.test" />
       <option name="PACKAGE_NAME" value="" />
@@ -482,10 +484,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.All in misty-utils.test (1)" />
         <item itemvalue="JUnit.OnceSupplierTest.once_execute" />
         <item itemvalue="JUnit.OnceRunnableTest.once_execute" />
         <item itemvalue="JUnit.All in misty-utils.test (2)" />
-        <item itemvalue="JUnit.All in misty-utils.test (1)" />
         <item itemvalue="JUnit.IntLimiterBuilderTest.min_max" />
       </list>
     </recent_temporary>
@@ -559,7 +561,7 @@
       <workItem from="1705399374645" duration="6345000" />
       <workItem from="1705477195095" duration="133000" />
       <workItem from="1705548886406" duration="3375000" />
-      <workItem from="1705561351633" duration="2931000" />
+      <workItem from="1705561351633" duration="4492000" />
     </task>
     <task id="LOCAL-00001" summary="Combinatorics add collect series">
       <option name="closed" value="true" />
@@ -801,7 +803,15 @@
       <option name="project" value="LOCAL" />
       <updated>1705554877487</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="add OnceSupplier and OnceRunnable">
+      <option name="closed" value="true" />
+      <created>1705566479372</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1705566479372</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -819,7 +829,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="adjust Combinatorics naming" />
     <MESSAGE value="Combinatorics add collectFirst and collectMostAmount" />
     <MESSAGE value="Combinatorics針對collect系列增加強制單緒的操作" />
     <MESSAGE value="Combinatorics add sortInAll and sortInFirst" />
@@ -844,7 +853,8 @@
     <MESSAGE value="Big tidying up temporary storage" />
     <MESSAGE value="join TaskDispatcher series" />
     <MESSAGE value="fix Limiter series bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix Limiter series bug" />
+    <MESSAGE value="add OnceSupplier and OnceRunnable" />
+    <option name="LAST_COMMIT_MESSAGE" value="add OnceSupplier and OnceRunnable" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -195,59 +195,59 @@ public class DecimalFlagTest {
     }
 
     @Test
-    public void hasAmount() {
+    public void hasNumber() {
         DecimalFlag decimalFlag = BitFlag.useDecimal(1, 2, 3, 4);
 
-        Assertions.assertThat(decimalFlag.hasAmount(2, 0)).isFalse();
-        Assertions.assertThat(decimalFlag.hasAmount(2, 0, 1)).isFalse();
-        Assertions.assertThat(decimalFlag.hasAmount(2, 1, 2)).isTrue();
-        Assertions.assertThat(decimalFlag.hasAmount(2, 1, 2, 3)).isFalse();
+        Assertions.assertThat(decimalFlag.hasNumber(2, 0)).isFalse();
+        Assertions.assertThat(decimalFlag.hasNumber(2, 0, 1)).isFalse();
+        Assertions.assertThat(decimalFlag.hasNumber(2, 1, 2)).isTrue();
+        Assertions.assertThat(decimalFlag.hasNumber(2, 1, 2, 3)).isFalse();
 
-        Assertions.assertThat(decimalFlag.hasAmount(3, 0, 1)).isFalse();
-        Assertions.assertThat(decimalFlag.hasAmount(3, 1, 2)).isFalse();
-        Assertions.assertThat(decimalFlag.hasAmount(3, 1, 2, 3)).isTrue();
-        Assertions.assertThat(decimalFlag.hasAmount(3, 1, 2, 3, 4)).isFalse();
+        Assertions.assertThat(decimalFlag.hasNumber(3, 0, 1)).isFalse();
+        Assertions.assertThat(decimalFlag.hasNumber(3, 1, 2)).isFalse();
+        Assertions.assertThat(decimalFlag.hasNumber(3, 1, 2, 3)).isTrue();
+        Assertions.assertThat(decimalFlag.hasNumber(3, 1, 2, 3, 4)).isFalse();
     }
 
     @Test
-    public void hasAmountLeast() {
+    public void hasNumberLeast() {
         DecimalFlag decimalFlag = BitFlag.useDecimal(1, 2, 3, 4);
 
-        Assertions.assertThat(decimalFlag.hasAmountLeast(2, 0)).isFalse();
-        Assertions.assertThat(decimalFlag.hasAmountLeast(2, 0, 1)).isFalse();
-        Assertions.assertThat(decimalFlag.hasAmountLeast(2, 1, 2)).isTrue();
-        Assertions.assertThat(decimalFlag.hasAmountLeast(2, 1, 2, 3)).isTrue();
+        Assertions.assertThat(decimalFlag.hasNumberLeast(2, 0)).isFalse();
+        Assertions.assertThat(decimalFlag.hasNumberLeast(2, 0, 1)).isFalse();
+        Assertions.assertThat(decimalFlag.hasNumberLeast(2, 1, 2)).isTrue();
+        Assertions.assertThat(decimalFlag.hasNumberLeast(2, 1, 2, 3)).isTrue();
 
-        Assertions.assertThat(decimalFlag.hasAmountLeast(3, 0, 1)).isFalse();
-        Assertions.assertThat(decimalFlag.hasAmountLeast(3, 1, 2)).isFalse();
-        Assertions.assertThat(decimalFlag.hasAmountLeast(3, 1, 2, 3)).isTrue();
-        Assertions.assertThat(decimalFlag.hasAmountLeast(3, 1, 2, 3, 4)).isTrue();
+        Assertions.assertThat(decimalFlag.hasNumberLeast(3, 0, 1)).isFalse();
+        Assertions.assertThat(decimalFlag.hasNumberLeast(3, 1, 2)).isFalse();
+        Assertions.assertThat(decimalFlag.hasNumberLeast(3, 1, 2, 3)).isTrue();
+        Assertions.assertThat(decimalFlag.hasNumberLeast(3, 1, 2, 3, 4)).isTrue();
     }
 
     @Test
-    public void hasAmountMost() {
+    public void hasNumberMost() {
         DecimalFlag decimalFlag = BitFlag.useDecimal(1, 2, 3, 4);
 
-        Assertions.assertThat(decimalFlag.hasAmountMost(2, 0)).isTrue();
-        Assertions.assertThat(decimalFlag.hasAmountMost(2, 0, 1)).isTrue();
-        Assertions.assertThat(decimalFlag.hasAmountMost(2, 1, 2)).isTrue();
-        Assertions.assertThat(decimalFlag.hasAmountMost(2, 1, 2, 3)).isFalse();
+        Assertions.assertThat(decimalFlag.hasNumberMost(2, 0)).isTrue();
+        Assertions.assertThat(decimalFlag.hasNumberMost(2, 0, 1)).isTrue();
+        Assertions.assertThat(decimalFlag.hasNumberMost(2, 1, 2)).isTrue();
+        Assertions.assertThat(decimalFlag.hasNumberMost(2, 1, 2, 3)).isFalse();
 
-        Assertions.assertThat(decimalFlag.hasAmountMost(3, 0, 1)).isTrue();
-        Assertions.assertThat(decimalFlag.hasAmountMost(3, 1, 2)).isTrue();
-        Assertions.assertThat(decimalFlag.hasAmountMost(3, 1, 2, 3)).isTrue();
-        Assertions.assertThat(decimalFlag.hasAmountMost(3, 1, 2, 3, 4)).isFalse();
+        Assertions.assertThat(decimalFlag.hasNumberMost(3, 0, 1)).isTrue();
+        Assertions.assertThat(decimalFlag.hasNumberMost(3, 1, 2)).isTrue();
+        Assertions.assertThat(decimalFlag.hasNumberMost(3, 1, 2, 3)).isTrue();
+        Assertions.assertThat(decimalFlag.hasNumberMost(3, 1, 2, 3, 4)).isFalse();
     }
 
     @Test
-    public void hasAmountRange() {
+    public void hasNumberRange() {
         DecimalFlag decimalFlag = BitFlag.useDecimal(1, 2, 3, 4);
 
-        Assertions.assertThat(decimalFlag.hasAmountRange(2, 3, 0)).isFalse();
-        Assertions.assertThat(decimalFlag.hasAmountRange(2, 3, 0, 1)).isFalse();
-        Assertions.assertThat(decimalFlag.hasAmountRange(2, 3, 1, 2)).isTrue();
-        Assertions.assertThat(decimalFlag.hasAmountRange(2, 3, 1, 2, 3)).isTrue();
-        Assertions.assertThat(decimalFlag.hasAmountRange(2, 3, 1, 2, 3, 4)).isFalse();
+        Assertions.assertThat(decimalFlag.hasNumberRange(2, 3, 0)).isFalse();
+        Assertions.assertThat(decimalFlag.hasNumberRange(2, 3, 0, 1)).isFalse();
+        Assertions.assertThat(decimalFlag.hasNumberRange(2, 3, 1, 2)).isTrue();
+        Assertions.assertThat(decimalFlag.hasNumberRange(2, 3, 1, 2, 3)).isTrue();
+        Assertions.assertThat(decimalFlag.hasNumberRange(2, 3, 1, 2, 3, 4)).isFalse();
     }
 
 }

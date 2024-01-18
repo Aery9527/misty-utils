@@ -439,25 +439,25 @@ public class PermutationsTest {
     }
 
     @Test
-    public void collectMostAmount() {
+    public void collectMostNumber() {
         int permutationSize = 3;
-        int collectAmount = 3;
+        int collectNumber = 3;
         boolean repeat = false;
 
         Permutations<String> permutations = Permutations.shuffle("A", "B", "C", "D", "E", "F", "G", "H").withParallel();
 
         for (int testTimes = 0; testTimes < 20; testTimes++) {
-            List<List<String>> result = permutations.collectMostAmount(permutationSize, repeat, collectAmount, (times, permutation) -> { // filter
+            List<List<String>> result = permutations.collectMostNumber(permutationSize, repeat, collectNumber, (times, permutation) -> { // filter
                 return permutation.get(0).content.equals("A");
             });
 
             CombinatoricsTest.print("result[" + testTimes + "]", 5, result);
 
-            Assertions.assertThat(result.size()).isLessThanOrEqualTo(collectAmount);
+            Assertions.assertThat(result.size()).isLessThanOrEqualTo(collectNumber);
         }
 
         for (int testTimes = 0; testTimes < 20; testTimes++) {
-            List<List<String>> result = permutations.collectMostAmount(permutationSize, repeat, collectAmount, (times, permutation) -> { // filter
+            List<List<String>> result = permutations.collectMostNumber(permutationSize, repeat, collectNumber, (times, permutation) -> { // filter
                 return permutation.stream().map(element -> element.content).anyMatch(""::equals);
             });
 

@@ -196,29 +196,29 @@ public abstract class Combinatorics<ElementType, SelfType extends Combinatorics<
     }
 
     /**
-     * 同{@link #collectMostAmount(int, boolean, int, BiPredicate)}, 只是filter永遠回傳true(表示全收集), 因此沒有任何判斷邏輯(不耗時)所以強制採用單執行緒
+     * 同{@link #collectMostNumber(int, boolean, int, BiPredicate)}, 只是filter永遠回傳true(表示全收集), 因此沒有任何判斷邏輯(不耗時)所以強制採用單執行緒
      */
-    public List<List<ElementType>> collectMostAmount(int size, boolean repeat, int mostAmount) {
-        return forceSerial(() -> collectMostAmount(size, repeat, mostAmount, (times, result) -> true));
+    public List<List<ElementType>> collectMostNumber(int size, boolean repeat, int mostNumber) {
+        return forceSerial(() -> collectMostNumber(size, repeat, mostNumber, (times, result) -> true));
     }
 
     /**
-     * 同 {@link #collectMostAmount(int, boolean, int, BiPredicate)}
+     * 同 {@link #collectMostNumber(int, boolean, int, BiPredicate)}
      */
-    public List<List<ElementType>> collectMostAmount(int size, boolean repeat, int mostAmount, Predicate<List<ListElement<ElementType>>> filter) {
-        return collectMostAmount(size, repeat, mostAmount, (times, result) -> filter.test(result));
+    public List<List<ElementType>> collectMostNumber(int size, boolean repeat, int mostNumber, Predicate<List<ListElement<ElementType>>> filter) {
+        return collectMostNumber(size, repeat, mostNumber, (times, result) -> filter.test(result));
     }
 
     /**
      * 同{@link #foreach(int, boolean, BiPredicate, BiPredicate)}, 只是回傳最多指定數量的符合filter的組合或排序.
      * 不強制採用單緒是因為這邊的filter是由外部執行, 它的動作耗時是不可預期的, 因此維持此實例當前{@link #taskCountExecutor}的設定.
      */
-    public List<List<ElementType>> collectMostAmount(int size, boolean repeat, int mostAmount, BiPredicate<Long, List<ListElement<ElementType>>> filter) {
+    public List<List<ElementType>> collectMostNumber(int size, boolean repeat, int mostNumber, BiPredicate<Long, List<ListElement<ElementType>>> filter) {
         List<List<ElementType>> result = buildCollectUsedList();
-        AtomicInteger amountCounter = new AtomicInteger(0);
+        AtomicInteger numberCounter = new AtomicInteger(0);
         foreach(size, repeat, filter, (times, resultTemp) -> {
-            int count = amountCounter.incrementAndGet();
-            if (count <= mostAmount) {
+            int count = numberCounter.incrementAndGet();
+            if (count <= mostNumber) {
                 result.add(resultTemp);
                 return Combinatorics.FOREACH_CONTINUE;
             } else {

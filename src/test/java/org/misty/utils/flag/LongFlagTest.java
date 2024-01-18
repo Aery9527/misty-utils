@@ -83,62 +83,62 @@ public class LongFlagTest {
     }
 
     @Test
-    public void hasAmount() {
+    public void hasNumber() {
         LongFlag longFlag = BitFlag.useLong(2 | 4 | 8 | 16);
 
-        Assertions.assertThat(longFlag.hasAmount(2, 1)).isFalse();
-        Assertions.assertThat(longFlag.hasAmount(2, 1 | 2)).isFalse();
-        Assertions.assertThat(longFlag.hasAmount(2, 2 | 4)).isTrue();
-        Assertions.assertThat(longFlag.hasAmount(2, 2 | 4 | 8)).isFalse();
+        Assertions.assertThat(longFlag.hasNumber(2, 1)).isFalse();
+        Assertions.assertThat(longFlag.hasNumber(2, 1 | 2)).isFalse();
+        Assertions.assertThat(longFlag.hasNumber(2, 2 | 4)).isTrue();
+        Assertions.assertThat(longFlag.hasNumber(2, 2 | 4 | 8)).isFalse();
 
-        Assertions.assertThat(longFlag.hasAmount(3, 1)).isFalse();
-        Assertions.assertThat(longFlag.hasAmount(3, 1 | 2)).isFalse();
-        Assertions.assertThat(longFlag.hasAmount(3, 1 | 2 | 4)).isFalse();
-        Assertions.assertThat(longFlag.hasAmount(3, 1 | 2 | 4 | 8)).isTrue();
-        Assertions.assertThat(longFlag.hasAmount(3, 1 | 2 | 4 | 8 | 16)).isFalse();
+        Assertions.assertThat(longFlag.hasNumber(3, 1)).isFalse();
+        Assertions.assertThat(longFlag.hasNumber(3, 1 | 2)).isFalse();
+        Assertions.assertThat(longFlag.hasNumber(3, 1 | 2 | 4)).isFalse();
+        Assertions.assertThat(longFlag.hasNumber(3, 1 | 2 | 4 | 8)).isTrue();
+        Assertions.assertThat(longFlag.hasNumber(3, 1 | 2 | 4 | 8 | 16)).isFalse();
     }
 
     @Test
-    public void hasAmountLeast() {
+    public void hasNumberLeast() {
         LongFlag longFlag = BitFlag.useLong(2 | 4 | 8 | 16);
 
-        Assertions.assertThat(longFlag.hasAmountLeast(2, 1)).isFalse();
-        Assertions.assertThat(longFlag.hasAmountLeast(2, 1 | 2)).isFalse();
-        Assertions.assertThat(longFlag.hasAmountLeast(2, 2 | 4)).isTrue();
-        Assertions.assertThat(longFlag.hasAmountLeast(2, 2 | 4 | 8)).isTrue();
+        Assertions.assertThat(longFlag.hasNumberLeast(2, 1)).isFalse();
+        Assertions.assertThat(longFlag.hasNumberLeast(2, 1 | 2)).isFalse();
+        Assertions.assertThat(longFlag.hasNumberLeast(2, 2 | 4)).isTrue();
+        Assertions.assertThat(longFlag.hasNumberLeast(2, 2 | 4 | 8)).isTrue();
 
-        Assertions.assertThat(longFlag.hasAmountLeast(3, 1)).isFalse();
-        Assertions.assertThat(longFlag.hasAmountLeast(3, 1 | 2)).isFalse();
-        Assertions.assertThat(longFlag.hasAmountLeast(3, 1 | 2 | 4)).isFalse();
-        Assertions.assertThat(longFlag.hasAmountLeast(3, 1 | 2 | 4 | 8)).isTrue();
-        Assertions.assertThat(longFlag.hasAmountLeast(3, 1 | 2 | 4 | 8 | 16)).isTrue();
+        Assertions.assertThat(longFlag.hasNumberLeast(3, 1)).isFalse();
+        Assertions.assertThat(longFlag.hasNumberLeast(3, 1 | 2)).isFalse();
+        Assertions.assertThat(longFlag.hasNumberLeast(3, 1 | 2 | 4)).isFalse();
+        Assertions.assertThat(longFlag.hasNumberLeast(3, 1 | 2 | 4 | 8)).isTrue();
+        Assertions.assertThat(longFlag.hasNumberLeast(3, 1 | 2 | 4 | 8 | 16)).isTrue();
     }
 
     @Test
-    public void hasAmountMost() {
+    public void hasNumberMost() {
         LongFlag longFlag = BitFlag.useLong(2 | 4 | 8 | 16);
 
-        Assertions.assertThat(longFlag.hasAmountMost(2, 1)).isTrue();
-        Assertions.assertThat(longFlag.hasAmountMost(2, 1 | 2)).isTrue();
-        Assertions.assertThat(longFlag.hasAmountMost(2, 2 | 4)).isTrue();
-        Assertions.assertThat(longFlag.hasAmountMost(2, 2 | 4 | 8)).isFalse();
+        Assertions.assertThat(longFlag.hasNumberMost(2, 1)).isTrue();
+        Assertions.assertThat(longFlag.hasNumberMost(2, 1 | 2)).isTrue();
+        Assertions.assertThat(longFlag.hasNumberMost(2, 2 | 4)).isTrue();
+        Assertions.assertThat(longFlag.hasNumberMost(2, 2 | 4 | 8)).isFalse();
 
-        Assertions.assertThat(longFlag.hasAmountMost(3, 1)).isTrue();
-        Assertions.assertThat(longFlag.hasAmountMost(3, 1 | 2)).isTrue();
-        Assertions.assertThat(longFlag.hasAmountMost(3, 1 | 2 | 4)).isTrue();
-        Assertions.assertThat(longFlag.hasAmountMost(3, 1 | 2 | 4 | 8)).isTrue();
-        Assertions.assertThat(longFlag.hasAmountMost(3, 1 | 2 | 4 | 8 | 16)).isFalse();
+        Assertions.assertThat(longFlag.hasNumberMost(3, 1)).isTrue();
+        Assertions.assertThat(longFlag.hasNumberMost(3, 1 | 2)).isTrue();
+        Assertions.assertThat(longFlag.hasNumberMost(3, 1 | 2 | 4)).isTrue();
+        Assertions.assertThat(longFlag.hasNumberMost(3, 1 | 2 | 4 | 8)).isTrue();
+        Assertions.assertThat(longFlag.hasNumberMost(3, 1 | 2 | 4 | 8 | 16)).isFalse();
     }
 
     @Test
-    public void hasAmountRange() {
+    public void hasNumberRange() {
         LongFlag longFlag = BitFlag.useLong(2 | 4 | 8 | 16);
 
-        Assertions.assertThat(longFlag.hasAmountRange(2, 3, 1)).isFalse();
-        Assertions.assertThat(longFlag.hasAmountRange(2, 3, 1 | 2)).isFalse();
-        Assertions.assertThat(longFlag.hasAmountRange(2, 3, 2 | 4)).isTrue();
-        Assertions.assertThat(longFlag.hasAmountRange(2, 3, 2 | 4 | 8)).isTrue();
-        Assertions.assertThat(longFlag.hasAmountRange(2, 3, 2 | 4 | 8 | 16)).isFalse();
+        Assertions.assertThat(longFlag.hasNumberRange(2, 3, 1)).isFalse();
+        Assertions.assertThat(longFlag.hasNumberRange(2, 3, 1 | 2)).isFalse();
+        Assertions.assertThat(longFlag.hasNumberRange(2, 3, 2 | 4)).isTrue();
+        Assertions.assertThat(longFlag.hasNumberRange(2, 3, 2 | 4 | 8)).isTrue();
+        Assertions.assertThat(longFlag.hasNumberRange(2, 3, 2 | 4 | 8 | 16)).isFalse();
     }
 
     @Test

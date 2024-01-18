@@ -76,12 +76,12 @@ public class IntFlag implements BitFlag {
     /**
      * 是否有指定數量的bit
      *
-     * @param amount 要符合幾個bit
+     * @param number 要符合幾個bit
      * @param flags  要檢查的bit
      * @return 是否符合區間
      */
-    public boolean hasAmount(int amount, int flags) {
-        return hasAmountRange(amount, amount, flags);
+    public boolean hasNumber(int number, int flags) {
+        return hasNumberRange(number, number, flags);
     }
 
     /**
@@ -91,8 +91,8 @@ public class IntFlag implements BitFlag {
      * @param flags 要檢查的bit
      * @return 是否符合區間
      */
-    public boolean hasAmountLeast(int least, int flags) {
-        return hasAmountRange(least, Integer.MAX_VALUE, flags);
+    public boolean hasNumberLeast(int least, int flags) {
+        return hasNumberRange(least, Integer.MAX_VALUE, flags);
     }
 
     /**
@@ -102,8 +102,8 @@ public class IntFlag implements BitFlag {
      * @param flags 要檢查的bit
      * @return 是否符合區間
      */
-    public boolean hasAmountMost(int most, int flags) {
-        return hasAmountRange(0, most, flags);
+    public boolean hasNumberMost(int most, int flags) {
+        return hasNumberRange(0, most, flags);
     }
 
     /**
@@ -114,7 +114,7 @@ public class IntFlag implements BitFlag {
      * @param flags 要檢查的bit
      * @return 是否符合區間
      */
-    public boolean hasAmountRange(int least, int most, int flags) {
+    public boolean hasNumberRange(int least, int most, int flags) {
         int and = this.flags & flags;
         int count = (int) IntStream.rangeClosed(0, MAX_BIT)
                 .filter(i -> (and & (1L << i)) > 0)

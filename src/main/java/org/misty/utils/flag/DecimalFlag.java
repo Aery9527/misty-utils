@@ -96,12 +96,12 @@ public class DecimalFlag implements BitFlag {
     /**
      * 是否有指定數量的bit
      *
-     * @param amount  要符合幾個bit
+     * @param number  要符合幾個bit
      * @param numbers 要檢查的bit
      * @return 是否符合區間
      */
-    public boolean hasAmount(int amount, int... numbers) {
-        return hasAmountRange(amount, amount, numbers);
+    public boolean hasNumber(int number, int... numbers) {
+        return hasNumberRange(number, number, numbers);
     }
 
     /**
@@ -111,8 +111,8 @@ public class DecimalFlag implements BitFlag {
      * @param numbers 要檢查的bit
      * @return 是否符合區間
      */
-    public boolean hasAmountLeast(int least, int... numbers) {
-        return hasAmountRange(least, Integer.MAX_VALUE, numbers);
+    public boolean hasNumberLeast(int least, int... numbers) {
+        return hasNumberRange(least, Integer.MAX_VALUE, numbers);
     }
 
     /**
@@ -122,8 +122,8 @@ public class DecimalFlag implements BitFlag {
      * @param numbers 要檢查的bit
      * @return 是否符合區間
      */
-    public boolean hasAmountMost(int most, int... numbers) {
-        return hasAmountRange(0, most, numbers);
+    public boolean hasNumberMost(int most, int... numbers) {
+        return hasNumberRange(0, most, numbers);
     }
 
     /**
@@ -134,7 +134,7 @@ public class DecimalFlag implements BitFlag {
      * @param number 要檢查的bit
      * @return 是否符合區間
      */
-    public boolean hasAmountRange(int least, int most, int... number) {
+    public boolean hasNumberRange(int least, int most, int... number) {
         int count = (int) IntStream.of(number).filter(this::has).count();
         return count >= least && count <= most;
     }

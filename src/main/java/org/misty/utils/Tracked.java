@@ -15,6 +15,10 @@ public class Tracked {
         return new Tracked(null, clazz.getSimpleName(), random());
     }
 
+    public static Tracked create(Class<?> clazz, String id) {
+        return new Tracked(null, clazz.getSimpleName(), id);
+    }
+
     public static Tracked create(String title) {
         return new Tracked(null, title, random());
     }

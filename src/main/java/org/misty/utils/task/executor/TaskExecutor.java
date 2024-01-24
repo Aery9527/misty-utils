@@ -48,4 +48,7 @@ public interface TaskExecutor extends AutoCloseable {
 
     boolean isParallelMode();
 
+    @Override
+    void close();
+
 }

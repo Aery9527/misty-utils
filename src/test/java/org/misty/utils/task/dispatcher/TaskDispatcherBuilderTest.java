@@ -3,26 +3,20 @@ package org.misty.utils.task.dispatcher;
 import org.junit.jupiter.api.Test;
 import org.misty._utils.AssertionsEx;
 import org.misty.utils.Tracked;
-import org.misty.utils.fi.ConsumerEx;
-import org.misty.utils.task.TaskErrorPolicy;
-import org.misty.utils.task.TaskGiveResult;
-import org.misty.utils.task.executor.TaskExecutorBuilder;
+import org.misty.utils.task.executor.TaskExecutor;
 import org.misty.utils.task.executor.TaskParallelExecutor;
 import org.misty.utils.task.executor.TaskSerialExecutor;
 import org.mockito.Mockito;
 
-import java.util.Collections;
-import java.util.concurrent.Executors;
-import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 public class TaskDispatcherBuilderTest {
 
     private static <Type> TaskDispatcherBuilder<Type> getBuilder() {
-        TaskDispatcherBuilder<Type> builder = TaskDispatcher.builder();
+        TaskDispatcherBuilder<Type> builder = TaskDispatcher.builder("kereker");
         return builder.withSerial(); // 採用同步操作, 避免非同步造成順序錯誤問題
     }
 
@@ -32,188 +26,115 @@ public class TaskDispatcherBuilderTest {
 
         TaskDispatcherBuilder<String> builder = TaskDispatcherBuilder.create(Tracked.create());
 
-        TaskExecutorBuilder taskExecutorBuilder = builder.getTaskExecutorBuilder();
-        AssertionsEx.assertThat(taskExecutorBuilder.build() instanceof TaskParallelExecutor).isTrue();
-
-        ConsumerEx<TaskGiveResult<String>> noMatchedAction = builder.getNoMatchedAction();
-        noMatchedAction.execute(new TaskGiveResult<>("kerker", 0, Collections.emptyMap()));
+        Supplier<TaskExecutor> taskExecutorBuilder = builder.getTaskExecutorBuilder();
+        AssertionsEx.assertThat(taskExecutorBuilder.get() instanceof TaskParallelExecutor).isTrue();
     }
 
     @Test
-    public void giveAction_taskReceiver() {
-        TaskDispatcherBuilder<String> builder = getBuilder();
-
-        AtomicInteger check = new AtomicInteger(0);
-        builder.giveAction(take -> check.incrementAndGet());
-
-        TaskDispatcher<String> taskDispatcher = builder.build();
-        taskDispatcher.give("kerker");
-
-        AssertionsEx.assertThat(check.get()).isEqualTo(1);
-    }
-
-    @Test
-    public void giveAction_acceptClass_taskReceiver() {
+    public void giveAction() throws Exception {
         TaskDispatcherBuilder<Number> builder = getBuilder();
 
-        AtomicInteger check = new AtomicInteger(0);
-        builder.giveAction(Integer.class, take -> check.incrementAndGet());
+        int index = 0;
 
-        TaskDispatcher<Number> taskDispatcher = builder.build();
+        { // taskReceiver
+            AtomicBoolean check = new AtomicBoolean();
+            builder.giveAction(take -> check.set(true));
 
-        taskDispatcher.give(0L);
-        AssertionsEx.assertThat(check.get()).isEqualTo(0);
+            TaskDispatchAction<Number> action = builder.getTaskDispatchActionList().get(index++);
+            action.receive(1);
 
-        taskDispatcher.give(0);
-        AssertionsEx.assertThat(check.get()).isEqualTo(1);
+            AssertionsEx.assertThat(action).isInstanceOf(TaskDispatchActionAdapter.class);
+            AssertionsEx.assertThat(action.accept(null)).isTrue();
+            AssertionsEx.assertThat(check).isTrue();
+        }
+
+        { // acceptClass + taskReceiver
+            AtomicBoolean check = new AtomicBoolean();
+            builder.giveAction(Integer.class, take -> check.set(true));
+
+            TaskDispatchAction<Number> action = builder.getTaskDispatchActionList().get(index++);
+            action.receive(1);
+
+            AssertionsEx.assertThat(action).isInstanceOf(TaskDispatchActionAdapter.class);
+            AssertionsEx.assertThat(action.accept(1)).isTrue();
+            AssertionsEx.assertThat(action.accept(1L)).isFalse();
+            AssertionsEx.assertThat(check).isTrue();
+        }
+
+        { // accept + taskReceiver
+            AtomicBoolean check = new AtomicBoolean();
+            builder.giveAction(task -> task.equals(1), take -> check.set(true));
+
+            TaskDispatchAction<Number> action = builder.getTaskDispatchActionList().get(index++);
+            action.receive(1);
+
+            AssertionsEx.assertThat(action).isInstanceOf(TaskDispatchActionAdapter.class);
+            AssertionsEx.assertThat(action.accept(1)).isTrue();
+            AssertionsEx.assertThat(action.accept(1L)).isFalse();
+            AssertionsEx.assertThat(check).isTrue();
+        }
+
+        { // taskReceiver + errorHandler
+            AtomicBoolean check1 = new AtomicBoolean();
+            AtomicBoolean check2 = new AtomicBoolean();
+            builder.giveAction(take -> check1.set(true), (actionTracked, task, e) -> check2.set(true));
+
+            TaskDispatchAction<Number> action = builder.getTaskDispatchActionList().get(index++);
+            action.receive(1);
+            action.handleError(action.getTracked(), 1, new RuntimeException());
+
+            AssertionsEx.assertThat(action).isInstanceOf(TaskDispatchActionAdapter.class);
+            AssertionsEx.assertThat(action.accept(null)).isTrue();
+            AssertionsEx.assertThat(check1).isTrue();
+            AssertionsEx.assertThat(check2).isTrue();
+        }
+
+        { // acceptClass + taskReceiver + errorHandler
+            AtomicBoolean check1 = new AtomicBoolean();
+            AtomicBoolean check2 = new AtomicBoolean();
+            builder.giveAction(Long.class, take -> check1.set(true), (actionTracked, task, e) -> check2.set(true));
+
+            TaskDispatchAction<Number> action = builder.getTaskDispatchActionList().get(index++);
+            action.receive(1);
+            action.handleError(action.getTracked(), 1, new RuntimeException());
+
+            AssertionsEx.assertThat(action).isInstanceOf(TaskDispatchActionAdapter.class);
+            AssertionsEx.assertThat(action.accept(1)).isFalse();
+            AssertionsEx.assertThat(action.accept(1L)).isTrue();
+            AssertionsEx.assertThat(check1).isTrue();
+            AssertionsEx.assertThat(check2).isTrue();
+        }
+
+        { // accept + taskReceiver + errorHandler
+            AtomicBoolean check1 = new AtomicBoolean();
+            AtomicBoolean check2 = new AtomicBoolean();
+            builder.giveAction(task -> task.equals(2L), take -> check1.set(true), (actionTracked, task, e) -> check2.set(true));
+
+            TaskDispatchAction<Number> action = builder.getTaskDispatchActionList().get(index++);
+            action.receive(1);
+            action.handleError(action.getTracked(), 1, new RuntimeException());
+
+            AssertionsEx.assertThat(action).isInstanceOf(TaskDispatchActionAdapter.class);
+            AssertionsEx.assertThat(action.accept(2)).isFalse();
+            AssertionsEx.assertThat(action.accept(2L)).isTrue();
+            AssertionsEx.assertThat(check1).isTrue();
+            AssertionsEx.assertThat(check2).isTrue();
+        }
     }
 
     @Test
-    public void giveAction_accept_taskReceiver() {
-        TaskDispatcherBuilder<Object> builder = getBuilder();
-
-        Object object = new Object();
-
-        AtomicInteger check = new AtomicInteger(0);
-        builder.giveAction(task -> task == object, take -> check.incrementAndGet());
-
-        TaskDispatcher<Object> taskDispatcher = builder.build();
-
-        taskDispatcher.give("");
-        AssertionsEx.assertThat(check.get()).isEqualTo(0);
-
-        taskDispatcher.give(object);
-        AssertionsEx.assertThat(check.get()).isEqualTo(1);
-    }
-
-    @Test
-    public void giveAction_taskReceiver_errorHandler() {
+    public void withSerial_withOrdered_withDisordered() {
         TaskDispatcherBuilder<String> builder = getBuilder();
 
-        AtomicBoolean check = new AtomicBoolean(false);
-        builder.giveAction(take -> {
-            throw new RuntimeException();
-        }, (task, e) -> {
-            check.set(true);
-            return TaskErrorPolicy.CONTINUE;
-        });
+        Supplier<TaskExecutor> taskExecutorBuilder = builder.withSerial().getTaskExecutorBuilder();
+        AssertionsEx.assertThat(taskExecutorBuilder.get()).isInstanceOf(TaskSerialExecutor.class);
 
-        TaskDispatcher<String> taskDispatcher = builder.build();
-        taskDispatcher.give("kerker");
+        taskExecutorBuilder = builder.giveAction(task -> { // ordered會採用action數量作為Executor的thread number, 所以至少要給一個action
+        }).withOrdered().getTaskExecutorBuilder();
+        AssertionsEx.assertThat(taskExecutorBuilder.get()).isInstanceOf(TaskParallelExecutor.class);
 
-        AssertionsEx.assertThat(check).isTrue();
-    }
-
-    @Test
-    public void giveAction_acceptClass_taskReceiver_errorHandler() {
-        TaskDispatcherBuilder<Number> builder = getBuilder();
-
-        AtomicBoolean check = new AtomicBoolean(false);
-        builder.giveAction(Integer.class, take -> {
-            throw new RuntimeException();
-        }, (task, e) -> {
-            check.set(true);
-            return TaskErrorPolicy.CONTINUE;
-        });
-
-        TaskDispatcher<Number> taskDispatcher = builder.build();
-
-        taskDispatcher.give(0L);
-        AssertionsEx.assertThat(check).isFalse();
-
-        taskDispatcher.give(0);
-        AssertionsEx.assertThat(check).isTrue();
-    }
-
-    @Test
-    public void giveAction_accept_taskReceiver_errorHandler() {
-        TaskDispatcherBuilder<Object> builder = getBuilder();
-
-        Object object = new Object();
-
-        AtomicBoolean check = new AtomicBoolean(false);
-        builder.giveAction(task -> task == object, take -> {
-            throw new RuntimeException();
-        }, (task, e) -> {
-            check.set(true);
-            return TaskErrorPolicy.CONTINUE;
-        });
-
-        TaskDispatcher<Object> taskDispatcher = builder.build();
-
-        taskDispatcher.give("");
-        AssertionsEx.assertThat(check).isFalse();
-
-        taskDispatcher.give(object);
-        AssertionsEx.assertThat(check).isTrue();
-    }
-
-    @Test
-    public void giveAction_taskDispatchAction() throws Exception {
-        TaskDispatchAction<String> taskDispatchAction = Mockito.mock(TaskDispatchAction.class);
-
-        AtomicReference<String> check1 = new AtomicReference<>();
-        AtomicReference<String> check2 = new AtomicReference<>();
-        AtomicReference<String> check3 = new AtomicReference<>();
-        AtomicReference<Exception> check4 = new AtomicReference<>();
-        Mockito.doAnswer(invocation -> {
-            check1.set(invocation.getArgument(0));
-            return true;
-        }).when(taskDispatchAction).accept(Mockito.any());
-        Mockito.doAnswer(invocation -> {
-            check2.set(invocation.getArgument(0));
-            throw new RuntimeException();
-        }).when(taskDispatchAction).receive(Mockito.any());
-        Mockito.doAnswer(invocation -> {
-            check3.set(invocation.getArgument(0));
-            check4.set(invocation.getArgument(1));
-            return TaskErrorPolicy.CONTINUE;
-        }).when(taskDispatchAction).handleError(Mockito.any(), Mockito.any());
-
-        TaskDispatcherBuilder<String> builder = getBuilder();
-        TaskDispatcher<String> taskDispatcher = builder.giveAction(taskDispatchAction).build();
-
-        taskDispatcher.give("kerker");
-
-        AssertionsEx.assertThat(check1.get()).isEqualTo("kerker");
-        AssertionsEx.assertThat(check2.get()).isEqualTo("kerker");
-        AssertionsEx.assertThat(check3.get()).isEqualTo("kerker");
-        AssertionsEx.assertThat(check4.get()).isInstanceOf(RuntimeException.class);
-    }
-
-    @Test
-    public void withSerial_withParallel() {
-        TaskDispatcherBuilder<String> builder = getBuilder();
-
-        TaskExecutorBuilder taskExecutorBuilder = builder.getTaskExecutorBuilder();
-        AssertionsEx.assertThat(taskExecutorBuilder.build()).isInstanceOf(TaskSerialExecutor.class);
-
-        taskExecutorBuilder = builder.withParallel().getTaskExecutorBuilder();
-        AssertionsEx.assertThat(taskExecutorBuilder.build()).isInstanceOf(TaskParallelExecutor.class);
-
-        taskExecutorBuilder = builder.withParallel(123).getTaskExecutorBuilder();
-        AssertionsEx.assertThat(taskExecutorBuilder.build()).isInstanceOf(TaskParallelExecutor.class);
-
-        taskExecutorBuilder = builder.withParallel(new LinkedBlockingDeque<>()).getTaskExecutorBuilder();
-        AssertionsEx.assertThat(taskExecutorBuilder.build()).isInstanceOf(TaskParallelExecutor.class);
-
-        taskExecutorBuilder = builder.withParallel(Executors.newFixedThreadPool(321)).getTaskExecutorBuilder();
-        AssertionsEx.assertThat(taskExecutorBuilder.build()).isInstanceOf(TaskParallelExecutor.class);
-    }
-
-    @Test
-    public void giveNoMatchedAction() {
-        TaskDispatcherBuilder<String> builder = getBuilder();
-
-        builder.giveAction("9527"::equals, take -> {
-        });
-
-        AtomicReference<TaskGiveResult<String>> check = new AtomicReference<>();
-        TaskDispatcher<String> taskDispatcher = builder.giveNoMatchedAction(check::set).build();
-
-        taskDispatcher.give("5566");
-
-        AssertionsEx.assertThat(check.get()).isNotNull();
+        taskExecutorBuilder = builder.withDisordered(123).getTaskExecutorBuilder();
+        AssertionsEx.assertThat(taskExecutorBuilder.get()).isInstanceOf(TaskParallelExecutor.class);
     }
 
     @Test
@@ -225,9 +146,8 @@ public class TaskDispatcherBuilderTest {
         });
 
         AtomicInteger check = new AtomicInteger(0);
-        builder.giveDefaultErrorHandler((task, e) -> {
+        builder.giveDefaultErrorHandler((actionTracked, task, e) -> {
             check.incrementAndGet();
-            return TaskErrorPolicy.CONTINUE;
         });
 
         builder.giveAction(take -> {
@@ -250,6 +170,13 @@ public class TaskDispatcherBuilderTest {
         });
 
         AssertionsEx.assertThat(builder.build()).isNotNull();
+
+        Supplier<TaskDispatcherBuilder> builderSupplier = () -> TaskDispatcher.builder().giveAction(take -> {
+        });
+        AssertionsEx.assertThat(builderSupplier.get().withSerial().build()).isInstanceOf(TaskSerialDispatcher.class);
+        AssertionsEx.assertThat(builderSupplier.get().withOrdered().build()).isInstanceOf(TaskOrderedDispatcher.class);
+        AssertionsEx.assertThat(builderSupplier.get().withDisordered().build()).isInstanceOf(TaskDisorderedDispatcher.class);
+        AssertionsEx.assertThat(builderSupplier.get().withDisordered(123).build()).isInstanceOf(TaskDisorderedDispatcher.class);
     }
 
     @Test
@@ -274,20 +201,21 @@ public class TaskDispatcherBuilderTest {
         test.accept(() -> builder.giveAction(task -> true, task -> {
         }));
         test.accept(() -> builder.giveAction(task -> {
-        }, (task, e) -> TaskErrorPolicy.CONTINUE));
+        }, (actionTracked, task, e) -> {
+        }));
         test.accept(() -> builder.giveAction(String.class, task -> {
-        }, (task, e) -> TaskErrorPolicy.CONTINUE));
+        }, (actionTracked, task, e) -> {
+        }));
         test.accept(() -> builder.giveAction(task -> true, task -> {
-        }, (task, e) -> TaskErrorPolicy.CONTINUE));
+        }, (actionTracked, task, e) -> {
+        }));
         test.accept(() -> builder.giveAction(taskDispatchAction));
         test.accept(builder::withSerial);
-        test.accept(builder::withParallel);
-        test.accept(() -> builder.withParallel(123));
-        test.accept(() -> builder.withParallel(new LinkedBlockingDeque<>()));
-        test.accept(() -> builder.withParallel(Executors.newFixedThreadPool(321)));
-        test.accept(() -> builder.giveNoMatchedAction(taskGiveResult -> {
+        test.accept(builder::withOrdered);
+        test.accept(builder::withDisordered);
+        test.accept(() -> builder.withDisordered(123));
+        test.accept(() -> builder.giveDefaultErrorHandler((actionTracked, task, e) -> {
         }));
-        test.accept(() -> builder.giveDefaultErrorHandler((task, e) -> TaskErrorPolicy.CONTINUE));
     }
 
 }

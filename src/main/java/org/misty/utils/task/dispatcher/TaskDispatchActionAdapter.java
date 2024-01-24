@@ -2,9 +2,7 @@ package org.misty.utils.task.dispatcher;
 
 import org.misty.utils.Tracked;
 import org.misty.utils.fi.ConsumerEx;
-import org.misty.utils.task.TaskErrorPolicy;
 
-import java.util.function.BiFunction;
 import java.util.function.Predicate;
 
 public class TaskDispatchActionAdapter<Task> implements TaskDispatchAction<Task> {
@@ -15,12 +13,12 @@ public class TaskDispatchActionAdapter<Task> implements TaskDispatchAction<Task>
 
     private final ConsumerEx<Task> receiver;
 
-    private final BiFunction<Task, Exception, TaskErrorPolicy> errorHandler;
+    private final TaskDispatchErrorHandler<Task> errorHandler;
 
     public TaskDispatchActionAdapter(Tracked tracked,
                                      Predicate<Task> accept,
                                      ConsumerEx<Task> receiver,
-                                     BiFunction<Task, Exception, TaskErrorPolicy> errorHandler) {
+                                     TaskDispatchErrorHandler<Task> errorHandler) {
         this.tracked = tracked;
         this.accept = accept;
         this.receiver = receiver;
@@ -43,8 +41,8 @@ public class TaskDispatchActionAdapter<Task> implements TaskDispatchAction<Task>
     }
 
     @Override
-    public TaskErrorPolicy handleError(Task task, Exception e) {
-        return this.errorHandler.apply(task, e);
+    public void handleError(Tracked actionTracked, Task task, Exception e) {
+        this.errorHandler.handleError(actionTracked, task, e);
     }
 
 }

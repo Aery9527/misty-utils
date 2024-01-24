@@ -2,8 +2,7 @@ package org.misty.utils.task.dispatcher;
 
 import org.misty.utils.Tracked;
 import org.misty.utils.fi.ConsumerEx;
-import org.misty.utils.task.TaskErrorPolicy;
-import org.misty.utils.task.TaskGiveResult;
+import org.misty.utils.task.executor.TaskExecutor;
 import org.misty.utils.task.executor.TaskExecutorBuilder;
 import org.misty.utils.verify.Verifier;
 import org.slf4j.Logger;
@@ -12,15 +11,29 @@ import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
-import java.util.function.BiFunction;
 import java.util.function.Function;
+import java.util.function.IntSupplier;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 public class TaskDispatcherBuilder<Task> {
+
+    public enum Type {
+        /**
+         * 串行模式, 也就是不會fork thread執行任務
+         */
+        SERIAL,
+
+        /**
+         * 有序模式, 會fork thread執行任務, 但每個action同一時間只會有一個thread在執行, 所以可以確保任務的執行順序 (也可以理解為以action為單位的串行模式)
+         */
+        ORDERED,
+
+        /**
+         * 無序模式, 會fork thread執行任務, 但每個action同一時間可能有多個thread在執行, 所以不能確保任務的執行順序
+         */
+        DISORDERED;
+    }
 
     public static <Task> TaskDispatcherBuilder<Task> create(Tracked tracked) {
         return new TaskDispatcherBuilder<>(tracked);
@@ -32,68 +45,60 @@ public class TaskDispatcherBuilder<Task> {
 
     private final Tracked tracked;
 
-    private final TaskExecutorBuilder taskExecutorBuilder;
+    private TaskDispatchErrorHandler<Task> defaultErrorHandler;
 
-    private ConsumerEx<TaskGiveResult<Task>> noMatchedAction;
+    private Supplier<TaskExecutor> taskExecutorBuilder;
 
-    private BiFunction<Task, Exception, TaskErrorPolicy> defaultErrorHandler;
+    private Type type;
 
     private boolean buildFlag = false;
 
     public TaskDispatcherBuilder(Tracked tracked) {
         Verifier.refuseNull("tracked", tracked);
         this.tracked = tracked;
-        this.taskExecutorBuilder = TaskExecutorBuilder.create(tracked);
 
-        withParallel();
+        withDisordered();
 
         Function<Task, String> errorWithClassInfo = task -> " " + task.getClass() + " : " + task;
 
-        giveNoMatchedAction(result -> {
-            this.logger.error(this.tracked.say("no match any action with" + errorWithClassInfo.apply(result.getTask())));
-        });
-
-        giveDefaultErrorHandler((task, e) -> {
-            this.logger.error(this.tracked.say("execute error with" + errorWithClassInfo.apply(task)), e);
-            return TaskErrorPolicy.CONTINUE;
-        });
+        giveDefaultErrorHandler((actionTracked, task, e) -> this.logger.error(actionTracked.say("execute error with" + errorWithClassInfo.apply(task)), e));
     }
 
     /**
-     * 同{@link #giveAction(Predicate, ConsumerEx, BiFunction)}, 只是accept固定為true(表示接收所有任務)跟採用{@link #defaultErrorHandler}
+     * 同{@link #giveAction(Predicate, ConsumerEx, TaskDispatchErrorHandler)}, 只是accept固定為true(表示接收所有任務)跟採用{@link #defaultErrorHandler}
      */
     public TaskDispatcherBuilder<Task> giveAction(ConsumerEx<Task> taskReceiver) {
-        return giveAction(buildAlwaysReceive(), taskReceiver, (task, e) -> this.defaultErrorHandler.apply(task, e));
+        return giveAction(buildAlwaysReceive(), taskReceiver, (actionTracked, task, e) -> this.defaultErrorHandler.handleError(actionTracked, task, e));
     }
 
     /**
-     * 同{@link #giveAction(Predicate, ConsumerEx, BiFunction)}, 只是accept使用Class來判斷跟採用{@link #defaultErrorHandler}
+     * 同{@link #giveAction(Predicate, ConsumerEx, TaskDispatchErrorHandler)}, 只是accept使用Class來判斷跟採用{@link #defaultErrorHandler}
      */
-    public TaskDispatcherBuilder<Task> giveAction(Class<? extends Task> acceptClass, ConsumerEx<Task> dispatchAction) {
-        return giveAction(buildClassAccept(acceptClass), dispatchAction, (task, e) -> this.defaultErrorHandler.apply(task, e));
+    public TaskDispatcherBuilder<Task> giveAction(Class<? extends Task> acceptClass, ConsumerEx<Task> taskReceiver) {
+        return giveAction(buildClassAccept(acceptClass), taskReceiver, (actionTracked, task, e) -> this.defaultErrorHandler.handleError(actionTracked, task, e));
     }
 
     /**
-     * 同{@link #giveAction(Predicate, ConsumerEx, BiFunction)}, 只是errorHandler採用{@link #defaultErrorHandler}
+     * 同{@link #giveAction(Predicate, ConsumerEx, TaskDispatchErrorHandler)}, 只是errorHandler採用{@link #defaultErrorHandler}
      */
     public TaskDispatcherBuilder<Task> giveAction(Predicate<Task> accept, ConsumerEx<Task> taskReceiver) {
-        return giveAction(accept, taskReceiver, (task, e) -> this.defaultErrorHandler.apply(task, e));
+        return giveAction(accept, taskReceiver, (actionTracked, task, e) -> this.defaultErrorHandler.handleError(actionTracked, task, e));
     }
 
     /**
-     * 同{@link #giveAction(Predicate, ConsumerEx, BiFunction)}, 只是accept固定為true(表示接收所有任務)
+     * 同{@link #giveAction(Predicate, ConsumerEx, TaskDispatchErrorHandler)}, 只是accept固定為true(表示接收所有任務)
      */
     public TaskDispatcherBuilder<Task> giveAction(ConsumerEx<Task> taskReceiver,
-                                                  BiFunction<Task, Exception, TaskErrorPolicy> errorHandler) {
+                                                  TaskDispatchErrorHandler<Task> errorHandler) {
         return giveAction(buildAlwaysReceive(), taskReceiver, errorHandler);
     }
 
     /**
-     * 同{@link #giveAction(Predicate, ConsumerEx, BiFunction)}, 只是accept使用Class來判斷
+     * 同{@link #giveAction(Predicate, ConsumerEx, TaskDispatchErrorHandler)}, 只是accept使用Class來判斷
      */
     public TaskDispatcherBuilder<Task> giveAction(Class<? extends Task> acceptClass,
                                                   ConsumerEx<Task> taskReceiver,
-                                                  BiFunction<Task, Exception, TaskErrorPolicy> errorHandler) {
+                                                  TaskDispatchErrorHandler<Task> errorHandler) {
         return giveAction(buildClassAccept(acceptClass), taskReceiver, errorHandler);
     }
 
@@ -102,13 +107,14 @@ public class TaskDispatcherBuilder<Task> {
      */
     public TaskDispatcherBuilder<Task> giveAction(Predicate<Task> accept,
                                                   ConsumerEx<Task> taskReceiver,
-                                                  BiFunction<Task, Exception, TaskErrorPolicy> errorHandler) {
+                                                  TaskDispatchErrorHandler<Task> errorHandler) {
         Verifier.refuseNull("accept", accept);
         Verifier.refuseNull("taskReceiver", taskReceiver);
         Verifier.refuseNull("errorHandler", errorHandler);
         checkBuildFlag();
 
-        return giveAction(new TaskDispatchActionAdapter<>(this.tracked, accept, taskReceiver, errorHandler));
+        String trackedTitle = "[" + this.taskDispatchActionList.size() + "]";
+        return giveAction(new TaskDispatchActionAdapter<>(this.tracked.link(trackedTitle), accept, taskReceiver, errorHandler));
     }
 
     /**
@@ -123,76 +129,84 @@ public class TaskDispatcherBuilder<Task> {
     }
 
     /**
-     * 同{@link TaskExecutorBuilder#withSerial()}, 意即該任務調度器使用串行模式(單執行緒)
-     */
-    public TaskDispatcherBuilder<Task> withSerial() {
-        checkBuildFlag();
-
-        this.taskExecutorBuilder.withSerial();
-        return this;
-    }
-
-    /**
-     * 同{@link TaskExecutorBuilder#withParallel()}, 意即該任務調度器使用平行模式(多執行緒)
-     */
-    public TaskDispatcherBuilder<Task> withParallel() {
-        checkBuildFlag();
-
-        this.taskExecutorBuilder.withParallel();
-        return this;
-    }
-
-    /**
-     * 同{@link TaskExecutorBuilder#withParallel(int)}, 意即該任務調度器使用平行模式(多執行緒)
-     */
-    public TaskDispatcherBuilder<Task> withParallel(int threadNumber) {
-        checkBuildFlag();
-
-        this.taskExecutorBuilder.withParallel(threadNumber);
-        return this;
-    }
-
-    /**
-     * 同{@link TaskExecutorBuilder#withParallel(ExecutorService)}, 意即該任務調度器使用平行模式(多執行緒), 只是提供queue實作, threadNumber自動使用CPU核心數
-     */
-    public TaskDispatcherBuilder<Task> withParallel(BlockingQueue<Runnable> queue) {
-        Verifier.refuseNull("queue", queue);
-        checkBuildFlag();
-
-        int threadNumber = Runtime.getRuntime().availableProcessors();
-        ExecutorService executorService = new ThreadPoolExecutor(threadNumber, threadNumber, 0L, TimeUnit.MILLISECONDS, queue);
-        this.taskExecutorBuilder.withParallel(executorService);
-        return this;
-    }
-
-    /**
-     * 同{@link TaskExecutorBuilder#withParallel(ExecutorService)}, 意即該任務調度器使用平行模式(多執行緒)
-     */
-    public TaskDispatcherBuilder<Task> withParallel(ExecutorService executorService) {
-        Verifier.refuseNull("executorService", executorService);
-        checkBuildFlag();
-
-        this.taskExecutorBuilder.withParallel(executorService);
-        return this;
-    }
-
-    public TaskDispatcherBuilder<Task> giveNoMatchedAction(ConsumerEx<TaskGiveResult<Task>> noMatchedAction) {
-        Verifier.refuseNull("noMatchedAction", noMatchedAction);
-        checkBuildFlag();
-
-        this.noMatchedAction = noMatchedAction;
-        return this;
-    }
-
-    /**
      * 給定預設的錯誤處理器, 當任務接收動作發生錯誤時, 會使用此錯誤處理器來處理
      */
-    public TaskDispatcherBuilder<Task> giveDefaultErrorHandler(BiFunction<Task, Exception, TaskErrorPolicy> defaultErrorHandler) {
+    public TaskDispatcherBuilder<Task> giveDefaultErrorHandler(TaskDispatchErrorHandler<Task> defaultErrorHandler) {
         Verifier.refuseNull("defaultErrorHandler", defaultErrorHandler);
         checkBuildFlag();
 
         this.defaultErrorHandler = defaultErrorHandler;
         return this;
+    }
+
+    /**
+     * @see Type#SERIAL
+     */
+    public TaskDispatcherBuilder<Task> withSerial() {
+        checkBuildFlag();
+
+        this.taskExecutorBuilder = withSerialBuilder();
+        this.type = Type.SERIAL;
+
+        return this;
+    }
+
+    /**
+     * @see Type#ORDERED
+     */
+    public TaskDispatcherBuilder<Task> withOrdered() {
+        checkBuildFlag();
+
+        this.taskExecutorBuilder = withParallelBuilder(this.taskDispatchActionList::size);
+        this.type = Type.ORDERED;
+
+        return this;
+    }
+
+    /**
+     * @see Type#DISORDERED
+     */
+    public TaskDispatcherBuilder<Task> withDisordered() {
+        checkBuildFlag();
+
+        this.taskExecutorBuilder = withParallelBuilder();
+        this.type = Type.DISORDERED;
+
+        return this;
+    }
+
+    /**
+     * @see Type#DISORDERED
+     */
+    public TaskDispatcherBuilder<Task> withDisordered(int threadNumber) {
+        checkBuildFlag();
+        Verifier.requireIntMoreThanExclusive("threadNumber", threadNumber, 0);
+
+        this.taskExecutorBuilder = withParallelBuilder(() -> threadNumber);
+        this.type = Type.DISORDERED;
+
+        return this;
+    }
+
+    /**
+     * @see TaskExecutorBuilder#withSerial()
+     */
+    private Supplier<TaskExecutor> withSerialBuilder() {
+        return () -> TaskExecutor.builder().withSerial().build();
+    }
+
+    /**
+     * @see TaskExecutorBuilder#withParallel()
+     */
+    private Supplier<TaskExecutor> withParallelBuilder() {
+        return () -> TaskExecutor.builder().withParallel().build();
+    }
+
+    /**
+     * @see TaskExecutorBuilder#withParallel(int)
+     */
+    private Supplier<TaskExecutor> withParallelBuilder(IntSupplier threadNumber) {
+        return () -> TaskExecutor.builder().withParallel(threadNumber.getAsInt()).build();
     }
 
     public TaskDispatcher<Task> build() {
@@ -205,7 +219,13 @@ public class TaskDispatcherBuilder<Task> {
             this.buildFlag = true;
         }
 
-        return new TaskDispatcherPreset<>(this);
+        if (this.type.equals(Type.SERIAL)) {
+            return new TaskSerialDispatcher<>(this);
+        } else if (this.type.equals(Type.ORDERED)) {
+            return new TaskOrderedDispatcher<>(this);
+        } else { // Type.DISORDERED
+            return new TaskDisorderedDispatcher<>(this);
+        }
     }
 
     private void checkBuildFlag() {
@@ -230,12 +250,12 @@ public class TaskDispatcherBuilder<Task> {
         return Collections.unmodifiableList(taskDispatchActionList);
     }
 
-    public TaskExecutorBuilder getTaskExecutorBuilder() {
+    public Supplier<TaskExecutor> getTaskExecutorBuilder() {
         return taskExecutorBuilder;
     }
 
-    public ConsumerEx<TaskGiveResult<Task>> getNoMatchedAction() {
-        return noMatchedAction;
+    public Type getType() {
+        return type;
     }
 
 }

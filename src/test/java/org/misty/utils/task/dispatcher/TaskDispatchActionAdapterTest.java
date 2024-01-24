@@ -3,7 +3,6 @@ package org.misty.utils.task.dispatcher;
 import org.junit.jupiter.api.Test;
 import org.misty._utils.AssertionsEx;
 import org.misty.utils.Tracked;
-import org.misty.utils.task.TaskErrorPolicy;
 
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -15,8 +14,7 @@ public class TaskDispatchActionAdapterTest {
         TaskDispatchActionAdapter<String> adapter = new TaskDispatchActionAdapter<>(tracked, task -> {
             return true;
         }, task -> {
-        }, (task, e) -> {
-            return TaskErrorPolicy.CONTINUE;
+        }, (actionTracked, task, e) -> {
         });
 
         AssertionsEx.assertThat(adapter.getTracked() == tracked).isTrue();
@@ -29,8 +27,7 @@ public class TaskDispatchActionAdapterTest {
             check.set(task);
             return true;
         }, task -> {
-        }, (task, e) -> {
-            return TaskErrorPolicy.CONTINUE;
+        }, (actionTracked, task, e) -> {
         });
 
         adapter.accept("kerker");
@@ -44,8 +41,7 @@ public class TaskDispatchActionAdapterTest {
             return true;
         }, task -> {
             check.set(task);
-        }, (task, e) -> {
-            return TaskErrorPolicy.CONTINUE;
+        }, (actionTracked, task, e) -> {
         });
 
         adapter.receive("kerker");
@@ -58,12 +54,11 @@ public class TaskDispatchActionAdapterTest {
         TaskDispatchActionAdapter<String> adapter = new TaskDispatchActionAdapter<>(Tracked.create(), task -> {
             return true;
         }, task -> {
-        }, (task, e) -> {
+        }, (actionTracked, task, e) -> {
             check.set(task);
-            return TaskErrorPolicy.CONTINUE;
         });
 
-        adapter.handleError("kerker", null);
+        adapter.handleError(adapter.getTracked(), "kerker", null);
         AssertionsEx.assertThat(check.get()).isEqualTo("kerker");
     }
 

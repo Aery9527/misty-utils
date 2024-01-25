@@ -1,5 +1,6 @@
 package org.misty.utils.cycle;
 
+import org.misty.utils.fi.ConsumerEx;
 import org.misty.utils.fi.SupplierEx;
 import org.misty.utils.range.BigDecimalRange;
 import org.misty.utils.range.Range;
@@ -23,6 +24,8 @@ public abstract class BigDecimalAbstractCycle extends AbstractCycle implements B
 
     private final SupplierEx<BigDecimal> start;
 
+    private final ConsumerEx<BigDecimal> cyclePrinter;
+
     public BigDecimalAbstractCycle(BigDecimalCycleBuilder builder) {
         super(builder.getTracked());
         this.scale = builder.getScale();
@@ -30,6 +33,10 @@ public abstract class BigDecimalAbstractCycle extends AbstractCycle implements B
         this.step = builder.getStep();
         this.range = Range.bigDecimalRangeBuilder().build(builder.getMin(), builder.getMax());
         this.start = step.compareTo(BigDecimal.ZERO) > 0 ? range::getLower : range::getUpper;
+        this.cyclePrinter = builder.isPrintCycle() ? start -> {
+            this.logger.info(this + String.format(CYCLE_MSG_FORMAT, start));
+        } : start -> {
+        };
     }
 
     public BigDecimalRange getRange() {
@@ -46,7 +53,7 @@ public abstract class BigDecimalAbstractCycle extends AbstractCycle implements B
             return newValue;
         } else {
             BigDecimal start = this.start.execute();
-            this.logger.info(this + String.format(CYCLE_MSG_FORMAT, start));
+            this.cyclePrinter.execute(start);
             return start;
         }
     }

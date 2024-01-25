@@ -1,5 +1,6 @@
 package org.misty.utils.cycle;
 
+import org.misty.utils.fi.ShortConsumerEx;
 import org.misty.utils.fi.ShortSupplierEx;
 import org.misty.utils.range.Range;
 import org.misty.utils.range.ShortRange;
@@ -16,11 +17,17 @@ public abstract class ShortAbstractCycle extends AbstractCycle implements ShortC
 
     private final ShortSupplierEx start;
 
+    private final ShortConsumerEx cyclePrinter;
+
     public ShortAbstractCycle(ShortCycleBuilder builder) {
         super(builder.getTracked());
         this.step = builder.getStep();
         this.range = Range.shortRangeBuilder().build(builder.getMin(), builder.getMax());
         this.start = step > 0 ? range::getLower : range::getUpper;
+        this.cyclePrinter = builder.isPrintCycle() ? start -> {
+            this.logger.info(this + String.format(CYCLE_MSG_FORMAT, start));
+        } : start -> {
+        };
     }
 
     public ShortRange getRange() {
@@ -37,7 +44,7 @@ public abstract class ShortAbstractCycle extends AbstractCycle implements ShortC
             return newValue;
         } else {
             short start = this.start.execute();
-            this.logger.info(this + String.format(CYCLE_MSG_FORMAT, start));
+            this.cyclePrinter.execute(start);
             return start;
         }
     }

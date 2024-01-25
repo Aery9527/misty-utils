@@ -1,5 +1,6 @@
 package org.misty.utils.cycle;
 
+import org.misty.utils.fi.IntConsumerEx;
 import org.misty.utils.fi.IntSupplierEx;
 import org.misty.utils.range.IntRange;
 import org.misty.utils.range.Range;
@@ -16,11 +17,17 @@ public abstract class IntAbstractCycle extends AbstractCycle implements IntCycle
 
     private final IntSupplierEx start;
 
+    private final IntConsumerEx cyclePrinter;
+
     public IntAbstractCycle(IntCycleBuilder builder) {
         super(builder.getTracked());
         this.step = builder.getStep();
         this.range = Range.intRangeBuilder().build(builder.getMin(), builder.getMax());
         this.start = step > 0 ? range::getLower : range::getUpper;
+        this.cyclePrinter = builder.isPrintCycle() ? start -> {
+            this.logger.info(this + String.format(CYCLE_MSG_FORMAT, start));
+        } : start -> {
+        };
     }
 
     public IntRange getRange() {
@@ -37,7 +44,7 @@ public abstract class IntAbstractCycle extends AbstractCycle implements IntCycle
             return newValue;
         } else {
             int start = this.start.execute();
-            this.logger.info(this + String.format(CYCLE_MSG_FORMAT, start));
+            this.cyclePrinter.execute(start);
             return start;
         }
     }

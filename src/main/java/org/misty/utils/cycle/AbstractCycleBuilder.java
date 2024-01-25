@@ -13,6 +13,8 @@ public abstract class AbstractCycleBuilder<CycleType extends Cycle, Self extends
 
     private DeclareType declareType = DeclareType.BASE;
 
+    private boolean printCycle = false;
+
     public AbstractCycleBuilder(Tracked tracked) {
         giveTracked(tracked);
     }
@@ -35,6 +37,11 @@ public abstract class AbstractCycleBuilder<CycleType extends Cycle, Self extends
 
     public Self withAtomic() {
         this.declareType = DeclareType.ATOMIC;
+        return (Self) this;
+    }
+
+    public Self printCycle() {
+        this.printCycle = true;
         return (Self) this;
     }
 
@@ -63,6 +70,10 @@ public abstract class AbstractCycleBuilder<CycleType extends Cycle, Self extends
 
     public DeclareType getDeclareType() {
         return declareType;
+    }
+
+    public boolean isPrintCycle() {
+        return printCycle;
     }
 
 }

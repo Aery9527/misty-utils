@@ -1,5 +1,6 @@
 package org.misty.utils.cycle;
 
+import org.misty.utils.fi.LongConsumerEx;
 import org.misty.utils.fi.LongSupplierEx;
 import org.misty.utils.range.LongRange;
 import org.misty.utils.range.Range;
@@ -16,11 +17,17 @@ public abstract class LongAbstractCycle extends AbstractCycle implements LongCyc
 
     private final LongSupplierEx start;
 
+    private final LongConsumerEx cyclePrinter;
+
     public LongAbstractCycle(LongCycleBuilder builder) {
         super(builder.getTracked());
         this.step = builder.getStep();
         this.range = Range.longRangeBuilder().build(builder.getMin(), builder.getMax());
         this.start = step > 0 ? range::getLower : range::getUpper;
+        this.cyclePrinter = builder.isPrintCycle() ? start -> {
+            this.logger.info(this + String.format(CYCLE_MSG_FORMAT, start));
+        } : start -> {
+        };
     }
 
     public LongRange getRange() {
@@ -37,7 +44,7 @@ public abstract class LongAbstractCycle extends AbstractCycle implements LongCyc
             return newValue;
         } else {
             long start = this.start.execute();
-            this.logger.info(this + String.format(CYCLE_MSG_FORMAT, start));
+            this.cyclePrinter.execute(start);
             return start;
         }
     }

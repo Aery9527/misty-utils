@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="85a0b3b9-499c-4427-8178-fde3848053e3" name="Changes" comment="enhance Cycle series of add printCycle feature">
+    <list default="true" id="85a0b3b9-499c-4427-8178-fde3848053e3" name="Changes" comment="enhance Checker">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/IdentityGenerator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/IdentityGeneratorTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/_utils/MockitoEx.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,8 +43,8 @@
         <option value="Enum" />
         <option value="package-info" />
         <option value="Interface" />
-        <option value="JUnit5 Test Class" />
         <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -172,6 +173,9 @@
     "JUnit.FloatUnaryOperatorExTest.execute.executor": "Run",
     "JUnit.GroupWakeupLockTest.executor": "Run",
     "JUnit.GroupWakeupLockTest.waiting_timeout_wakeup.executor": "Run",
+    "JUnit.IdentityGeneratorTest.executor": "Run",
+    "JUnit.IdentityGeneratorTest.genWithTimestamp.executor": "Run",
+    "JUnit.IdentityGeneratorTest.genWithTimestamp_suffixAppendNumber.executor": "Run",
     "JUnit.IntAbstractCycleTest.range.executor": "Run",
     "JUnit.IntAtomicCycleTest.executor": "Run",
     "JUnit.IntAtomicLimiterTest.executor": "Run",
@@ -378,7 +382,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "com.google.cloudcode.ide_session_index": "20240129_0000",
+    "com.google.cloudcode.ide_session_index": "20240201_0003",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "git-widget-placeholder": "develop",
@@ -412,8 +416,8 @@
       <recent name="org.misty.utils.limit.BigDecimalLimiter" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
-      <recent name="org.misty.utils.task.dispatcher" />
       <recent name="org.misty.utils" />
+      <recent name="org.misty.utils.task.dispatcher" />
       <recent name="org.misty.utils.task" />
       <recent name="org.misty.utils.cycle" />
       <recent name="org.misty.utils.task.executor" />
@@ -426,7 +430,7 @@
       <recent name="org.misty.utils.fi" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.All in misty-utils.test">
+  <component name="RunManager" selected="JUnit.IdentityGeneratorTest">
     <configuration name="All in misty-utils.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="misty-utils.test" />
       <option name="PACKAGE_NAME" value="" />
@@ -435,64 +439,49 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TaskDisorderedDispatcherTest and 2 more" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="IdentityGeneratorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="misty-utils.test" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.misty.utils.task.dispatcher.*" />
+          <option name="PATTERN" value="org.misty.utils.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="org.misty.utils.task.dispatcher" />
-      <option name="MAIN_CLASS_NAME" value="org.misty.utils.task.dispatcher.TaskBaseDispatcherTest" />
-      <option name="TEST_OBJECT" value="pattern" />
-      <patterns>
-        <pattern testClass="org.misty.utils.task.dispatcher.TaskDisorderedDispatcherTest" />
-        <pattern testClass="org.misty.utils.task.dispatcher.TaskOrderedDispatcherTest" />
-        <pattern testClass="org.misty.utils.task.dispatcher.TaskSerialDispatcherTest" />
-      </patterns>
+      <option name="PACKAGE_NAME" value="org.misty.utils" />
+      <option name="MAIN_CLASS_NAME" value="org.misty.utils.IdentityGeneratorTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TaskDisorderedDispatcherTest,giveAction_taskDispatchAction and 2 more" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="IdentityGeneratorTest.genWithTimestamp" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="misty-utils.test" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.misty.utils.task.dispatcher.*" />
+          <option name="PATTERN" value="org.misty.utils.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="org.misty.utils.task.dispatcher" />
-      <option name="MAIN_CLASS_NAME" value="org.misty.utils.task.dispatcher.TaskBaseDispatcherTest" />
-      <option name="METHOD_NAME" value="giveAction_taskDispatchAction" />
-      <option name="TEST_OBJECT" value="pattern" />
-      <patterns>
-        <pattern testClass="org.misty.utils.task.dispatcher.TaskDisorderedDispatcherTest,giveAction_taskDispatchAction" />
-        <pattern testClass="org.misty.utils.task.dispatcher.TaskOrderedDispatcherTest,giveAction_taskDispatchAction" />
-        <pattern testClass="org.misty.utils.task.dispatcher.TaskSerialDispatcherTest,giveAction_taskDispatchAction" />
-      </patterns>
+      <option name="PACKAGE_NAME" value="org.misty.utils" />
+      <option name="MAIN_CLASS_NAME" value="org.misty.utils.IdentityGeneratorTest" />
+      <option name="METHOD_NAME" value="genWithTimestamp" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TaskDisorderedDispatcherTest,giveAction_taskReceiver_errorHandler and 2 more" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="IdentityGeneratorTest.genWithTimestamp_suffixAppendNumber" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="misty-utils.test" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.misty.utils.task.dispatcher.*" />
+          <option name="PATTERN" value="org.misty.utils.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="org.misty.utils.task.dispatcher" />
-      <option name="MAIN_CLASS_NAME" value="org.misty.utils.task.dispatcher.TaskBaseDispatcherTest" />
-      <option name="METHOD_NAME" value="giveAction_taskReceiver_errorHandler" />
-      <option name="TEST_OBJECT" value="pattern" />
-      <patterns>
-        <pattern testClass="org.misty.utils.task.dispatcher.TaskDisorderedDispatcherTest,giveAction_taskReceiver_errorHandler" />
-        <pattern testClass="org.misty.utils.task.dispatcher.TaskOrderedDispatcherTest,giveAction_taskReceiver_errorHandler" />
-        <pattern testClass="org.misty.utils.task.dispatcher.TaskSerialDispatcherTest,giveAction_taskReceiver_errorHandler" />
-      </patterns>
+      <option name="PACKAGE_NAME" value="org.misty.utils" />
+      <option name="MAIN_CLASS_NAME" value="org.misty.utils.IdentityGeneratorTest" />
+      <option name="METHOD_NAME" value="genWithTimestamp_suffixAppendNumber" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -515,11 +504,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.IdentityGeneratorTest" />
+        <item itemvalue="JUnit.IdentityGeneratorTest.genWithTimestamp_suffixAppendNumber" />
+        <item itemvalue="JUnit.IdentityGeneratorTest.genWithTimestamp" />
         <item itemvalue="JUnit.All in misty-utils.test" />
         <item itemvalue="JUnit.TaskOrderedDispatcherTest.sequentiality" />
-        <item itemvalue="JUnit.TaskDisorderedDispatcherTest and 2 more" />
-        <item itemvalue="JUnit.TaskDisorderedDispatcherTest,giveAction_taskReceiver_errorHandler and 2 more" />
-        <item itemvalue="JUnit.TaskDisorderedDispatcherTest and 2 more" />
       </list>
     </recent_temporary>
   </component>
@@ -601,6 +590,8 @@
       <workItem from="1706086127726" duration="1515000" />
       <workItem from="1706162420620" duration="3805000" />
       <workItem from="1706493759120" duration="40000" />
+      <workItem from="1706759540043" duration="335000" />
+      <workItem from="1706773638099" duration="1523000" />
     </task>
     <task id="LOCAL-00001" summary="Combinatorics add collect series">
       <option name="closed" value="true" />
@@ -874,7 +865,15 @@
       <option name="project" value="LOCAL" />
       <updated>1706176043857</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="enhance Checker">
+      <option name="closed" value="true" />
+      <created>1706759835533</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1706759835533</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -909,7 +908,6 @@
     <MESSAGE value="enhance FI join short series" />
     <MESSAGE value="add Range series" />
     <MESSAGE value="add title feature of range/verify series" />
-    <MESSAGE value="enhance Checker" />
     <MESSAGE value="Big tidying up temporary storage" />
     <MESSAGE value="join TaskDispatcher series" />
     <MESSAGE value="fix Limiter series bug" />
@@ -917,7 +915,8 @@
     <MESSAGE value="modify wording" />
     <MESSAGE value="enhance TaskDispatcher series" />
     <MESSAGE value="enhance Cycle series of add printCycle feature" />
-    <option name="LAST_COMMIT_MESSAGE" value="enhance Cycle series of add printCycle feature" />
+    <MESSAGE value="enhance Checker" />
+    <option name="LAST_COMMIT_MESSAGE" value="enhance Checker" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/misty_utils$CheckerTest.ic" NAME="CheckerTest Coverage Results" MODIFIED="1703756370131" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

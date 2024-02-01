@@ -1,5 +1,7 @@
 package org.misty.utils.verify;
 
+import org.misty.utils.fi.RunnableEx;
+
 import java.util.Collection;
 import java.util.Map;
 import java.util.Optional;
@@ -50,9 +52,9 @@ public class Checker {
         }
     }
 
-    public static void isNullOrEmpty(Object o, Runnable action) {
+    public static void isNullOrEmpty(Object o, RunnableEx action) {
         if (isNullOrEmpty(o)) {
-            action.run();
+            action.execute();
         }
     }
 
@@ -60,9 +62,9 @@ public class Checker {
         return s == null || s.isEmpty();
     }
 
-    public static void isNullOrEmpty(String s, Runnable action) {
+    public static void isNullOrEmpty(String s, RunnableEx action) {
         if (isNullOrEmpty(s)) {
-            action.run();
+            action.execute();
         }
     }
 
@@ -70,9 +72,9 @@ public class Checker {
         return c == null || c.isEmpty();
     }
 
-    public static void isNullOrEmpty(Collection<?> c, Runnable action) {
+    public static void isNullOrEmpty(Collection<?> c, RunnableEx action) {
         if (isNullOrEmpty(c)) {
-            action.run();
+            action.execute();
         }
     }
 
@@ -80,9 +82,9 @@ public class Checker {
         return m == null || m.isEmpty();
     }
 
-    public static void isNullOrEmpty(Map<?, ?> m, Runnable action) {
+    public static void isNullOrEmpty(Map<?, ?> m, RunnableEx action) {
         if (isNullOrEmpty(m)) {
-            action.run();
+            action.execute();
         }
     }
 
@@ -90,9 +92,9 @@ public class Checker {
         return a == null || a.length == 0;
     }
 
-    public static void isNullOrEmpty(short[] a, Runnable action) {
+    public static void isNullOrEmpty(short[] a, RunnableEx action) {
         if (isNullOrEmpty(a)) {
-            action.run();
+            action.execute();
         }
     }
 
@@ -100,9 +102,9 @@ public class Checker {
         return a == null || a.length == 0;
     }
 
-    public static void isNullOrEmpty(int[] a, Runnable action) {
+    public static void isNullOrEmpty(int[] a, RunnableEx action) {
         if (isNullOrEmpty(a)) {
-            action.run();
+            action.execute();
         }
     }
 
@@ -110,9 +112,9 @@ public class Checker {
         return a == null || a.length == 0;
     }
 
-    public static void isNullOrEmpty(long[] a, Runnable action) {
+    public static void isNullOrEmpty(long[] a, RunnableEx action) {
         if (isNullOrEmpty(a)) {
-            action.run();
+            action.execute();
         }
     }
 
@@ -120,9 +122,9 @@ public class Checker {
         return a == null || a.length == 0;
     }
 
-    public static void isNullOrEmpty(float[] a, Runnable action) {
+    public static void isNullOrEmpty(float[] a, RunnableEx action) {
         if (isNullOrEmpty(a)) {
-            action.run();
+            action.execute();
         }
     }
 
@@ -130,9 +132,9 @@ public class Checker {
         return a == null || a.length == 0;
     }
 
-    public static void isNullOrEmpty(double[] a, Runnable action) {
+    public static void isNullOrEmpty(double[] a, RunnableEx action) {
         if (isNullOrEmpty(a)) {
-            action.run();
+            action.execute();
         }
     }
 
@@ -140,9 +142,9 @@ public class Checker {
         return a == null || a.length == 0;
     }
 
-    public static void isNullOrEmpty(boolean[] a, Runnable action) {
+    public static void isNullOrEmpty(boolean[] a, RunnableEx action) {
         if (isNullOrEmpty(a)) {
-            action.run();
+            action.execute();
         }
     }
 
@@ -150,9 +152,9 @@ public class Checker {
         return a == null || a.length == 0;
     }
 
-    public static void isNullOrEmpty(char[] a, Runnable action) {
+    public static void isNullOrEmpty(char[] a, RunnableEx action) {
         if (isNullOrEmpty(a)) {
-            action.run();
+            action.execute();
         }
     }
 
@@ -160,9 +162,9 @@ public class Checker {
         return a == null || a.length == 0;
     }
 
-    public static void isNullOrEmpty(byte[] a, Runnable action) {
+    public static void isNullOrEmpty(byte[] a, RunnableEx action) {
         if (isNullOrEmpty(a)) {
-            action.run();
+            action.execute();
         }
     }
 
@@ -170,9 +172,9 @@ public class Checker {
         return a == null || a.length == 0;
     }
 
-    public static void isNullOrEmpty(Object[] a, Runnable action) {
+    public static void isNullOrEmpty(Object[] a, RunnableEx action) {
         if (isNullOrEmpty(a)) {
-            action.run();
+            action.execute();
         }
     }
 
@@ -191,9 +193,9 @@ public class Checker {
     }
 
     @SuppressWarnings("OptionalUsedAsFieldOrParameterType")
-    public static void isNullOrEmpty(Optional<?> o, Runnable action) {
+    public static void isNullOrEmpty(Optional<?> o, RunnableEx action) {
         if (isNullOrEmpty(o)) {
-            action.run();
+            action.execute();
         }
     }
 
@@ -201,9 +203,9 @@ public class Checker {
         return !isNullOrEmpty(o);
     }
 
-    public static void notNullAndEmpty(Object o, Runnable action) {
+    public static void notNullAndEmpty(Object o, RunnableEx action) {
         if (notNullAndEmpty(o)) {
-            action.run();
+            action.execute();
         }
     }
 
@@ -211,9 +213,9 @@ public class Checker {
         return !isNullOrEmpty(s);
     }
 
-    public static void notNullAndEmpty(String s, Runnable action) {
+    public static void notNullAndEmpty(String s, RunnableEx action) {
         if (notNullAndEmpty(s)) {
-            action.run();
+            action.execute();
         }
     }
 
@@ -221,9 +223,9 @@ public class Checker {
         return !isNullOrEmpty(c);
     }
 
-    public static void notNullAndEmpty(Collection<?> c, Runnable action) {
+    public static void notNullAndEmpty(Collection<?> c, RunnableEx action) {
         if (notNullAndEmpty(c)) {
-            action.run();
+            action.execute();
         }
     }
 
@@ -231,9 +233,9 @@ public class Checker {
         return !isNullOrEmpty(m);
     }
 
-    public static void notNullAndEmpty(Map<?, ?> m, Runnable action) {
+    public static void notNullAndEmpty(Map<?, ?> m, RunnableEx action) {
         if (notNullAndEmpty(m)) {
-            action.run();
+            action.execute();
         }
     }
 
@@ -241,9 +243,9 @@ public class Checker {
         return !isNullOrEmpty(a);
     }
 
-    public static void notNullAndEmpty(short[] a, Runnable action) {
+    public static void notNullAndEmpty(short[] a, RunnableEx action) {
         if (notNullAndEmpty(a)) {
-            action.run();
+            action.execute();
         }
     }
 
@@ -251,9 +253,9 @@ public class Checker {
         return !isNullOrEmpty(a);
     }
 
-    public static void notNullAndEmpty(int[] a, Runnable action) {
+    public static void notNullAndEmpty(int[] a, RunnableEx action) {
         if (notNullAndEmpty(a)) {
-            action.run();
+            action.execute();
         }
     }
 
@@ -261,9 +263,9 @@ public class Checker {
         return !isNullOrEmpty(a);
     }
 
-    public static void notNullAndEmpty(long[] a, Runnable action) {
+    public static void notNullAndEmpty(long[] a, RunnableEx action) {
         if (notNullAndEmpty(a)) {
-            action.run();
+            action.execute();
         }
     }
 
@@ -271,9 +273,9 @@ public class Checker {
         return !isNullOrEmpty(a);
     }
 
-    public static void notNullAndEmpty(float[] a, Runnable action) {
+    public static void notNullAndEmpty(float[] a, RunnableEx action) {
         if (notNullAndEmpty(a)) {
-            action.run();
+            action.execute();
         }
     }
 
@@ -281,9 +283,9 @@ public class Checker {
         return !isNullOrEmpty(a);
     }
 
-    public static void notNullAndEmpty(double[] a, Runnable action) {
+    public static void notNullAndEmpty(double[] a, RunnableEx action) {
         if (notNullAndEmpty(a)) {
-            action.run();
+            action.execute();
         }
     }
 
@@ -291,9 +293,9 @@ public class Checker {
         return !isNullOrEmpty(a);
     }
 
-    public static void notNullAndEmpty(boolean[] a, Runnable action) {
+    public static void notNullAndEmpty(boolean[] a, RunnableEx action) {
         if (notNullAndEmpty(a)) {
-            action.run();
+            action.execute();
         }
     }
 
@@ -301,9 +303,9 @@ public class Checker {
         return !isNullOrEmpty(a);
     }
 
-    public static void notNullAndEmpty(char[] a, Runnable action) {
+    public static void notNullAndEmpty(char[] a, RunnableEx action) {
         if (notNullAndEmpty(a)) {
-            action.run();
+            action.execute();
         }
     }
 
@@ -311,9 +313,9 @@ public class Checker {
         return !isNullOrEmpty(a);
     }
 
-    public static void notNullAndEmpty(byte[] a, Runnable action) {
+    public static void notNullAndEmpty(byte[] a, RunnableEx action) {
         if (notNullAndEmpty(a)) {
-            action.run();
+            action.execute();
         }
     }
 
@@ -321,9 +323,9 @@ public class Checker {
         return !isNullOrEmpty(a);
     }
 
-    public static void notNullAndEmpty(Object[] a, Runnable action) {
+    public static void notNullAndEmpty(Object[] a, RunnableEx action) {
         if (notNullAndEmpty(a)) {
-            action.run();
+            action.execute();
         }
     }
 
@@ -332,9 +334,9 @@ public class Checker {
         return !isNullOrEmpty(o);
     }
 
-    public static void notNullAndEmpty(Optional<?> o, Runnable action) {
+    public static void notNullAndEmpty(Optional<?> o, RunnableEx action) {
         if (notNullAndEmpty(o)) {
-            action.run();
+            action.execute();
         }
     }
 

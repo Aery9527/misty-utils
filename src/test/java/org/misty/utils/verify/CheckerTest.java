@@ -2,6 +2,7 @@ package org.misty.utils.verify;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.misty.utils.fi.RunnableEx;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -229,7 +230,7 @@ public class CheckerTest {
         test_byteArray.accept(Optional.of(new Object[]{1}), false);
     }
 
-    private <TargetType> void check(TargetType target, Predicate<TargetType> test, BiConsumer<TargetType, Runnable> testWithAction, boolean expected) {
+    private <TargetType> void check(TargetType target, Predicate<TargetType> test, BiConsumer<TargetType, RunnableEx> testWithAction, boolean expected) {
         Assertions.assertThat(test.test(target)).isEqualTo(expected);
 
         AtomicBoolean checkPoint = new AtomicBoolean(false);

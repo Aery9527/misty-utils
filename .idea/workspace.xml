@@ -4,27 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="85a0b3b9-499c-4427-8178-fde3848053e3" name="Changes" comment="modify wording">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/task/dispatcher/TaskBaseDispatcher.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/task/dispatcher/TaskDispatchErrorHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/task/dispatcher/TaskOrderedDispatcher.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/task/dispatcher/TaskSerialDispatcher.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/task/dispatcher/TaskBaseDispatcherTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/task/dispatcher/TaskOrderedDispatcherTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/task/dispatcher/TaskSerialDispatcherTest.java" afterDir="false" />
+    <list default="true" id="85a0b3b9-499c-4427-8178-fde3848053e3" name="Changes" comment="enhance Cycle series of add printCycle feature">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/Tracked.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/Tracked.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/task/TaskGiveResult.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/task/dispatcher/TaskDispatchAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/task/dispatcher/TaskDispatchAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/task/dispatcher/TaskDispatchActionAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/task/dispatcher/TaskDispatchActionAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/task/dispatcher/TaskDispatcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/task/dispatcher/TaskDispatcher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/task/dispatcher/TaskDispatcherBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/task/dispatcher/TaskDispatcherBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/task/dispatcher/TaskDispatcherPreset.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/task/dispatcher/TaskDisorderedDispatcher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/task/executor/TaskExecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/task/executor/TaskExecutor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/task/TaskGiveResultTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/task/dispatcher/TaskDispatchActionAdapterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/task/dispatcher/TaskDispatchActionAdapterTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/task/dispatcher/TaskDispatcherBuilderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/task/dispatcher/TaskDispatcherBuilderTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/task/dispatcher/TaskDispatcherPresetTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/task/dispatcher/TaskDisorderedDispatcherTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/_utils/MockitoEx.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -396,7 +378,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "com.google.cloudcode.ide_session_index": "20240124_0000",
+    "com.google.cloudcode.ide_session_index": "20240129_0000",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "git-widget-placeholder": "develop",
@@ -616,7 +598,9 @@
       <workItem from="1705634408937" duration="976000" />
       <workItem from="1705893395543" duration="19577000" />
       <workItem from="1705977540653" duration="37762000" />
-      <workItem from="1706086127726" duration="764000" />
+      <workItem from="1706086127726" duration="1515000" />
+      <workItem from="1706162420620" duration="3805000" />
+      <workItem from="1706493759120" duration="40000" />
     </task>
     <task id="LOCAL-00001" summary="Combinatorics add collect series">
       <option name="closed" value="true" />
@@ -874,7 +858,23 @@
       <option name="project" value="LOCAL" />
       <updated>1705569490774</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="enhance TaskDispatcher series">
+      <option name="closed" value="true" />
+      <created>1706087037045</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1706087037045</updated>
+    </task>
+    <task id="LOCAL-00034" summary="enhance Cycle series of add printCycle feature">
+      <option name="closed" value="true" />
+      <created>1706176043857</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1706176043857</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -892,8 +892,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Combinatorics針對collect系列增加強制單緒的操作" />
-    <MESSAGE value="Combinatorics add sortInAll and sortInFirst" />
     <MESSAGE value="Combinatorics add sortInAll and sortInFirst with unsort feature" />
     <MESSAGE value="add TimeFormat" />
     <MESSAGE value="Watcher add format method" />
@@ -917,7 +915,9 @@
     <MESSAGE value="fix Limiter series bug" />
     <MESSAGE value="add OnceSupplier and OnceRunnable" />
     <MESSAGE value="modify wording" />
-    <option name="LAST_COMMIT_MESSAGE" value="modify wording" />
+    <MESSAGE value="enhance TaskDispatcher series" />
+    <MESSAGE value="enhance Cycle series of add printCycle feature" />
+    <option name="LAST_COMMIT_MESSAGE" value="enhance Cycle series of add printCycle feature" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/misty_utils$CheckerTest.ic" NAME="CheckerTest Coverage Results" MODIFIED="1703756370131" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

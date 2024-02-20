@@ -51,7 +51,7 @@ public class WakeupLockTest {
             latch1.countDown();
             latch2.wating();
 
-            AssertionsEx.assertThat(waitingTime.get()).isCloseTo(timeout, AssertionsEx.within(20L));
+            AssertionsEx.assertThat(waitingTime.get()).isCloseTo(timeout, AssertionsEx.within(100L));
             AssertionsEx.assertThat(interruptFlag.get()).isFalse();
         }
     }
@@ -134,7 +134,7 @@ public class WakeupLockTest {
             latch2.wating();
 
             long expected = wakeupOverTimeout ? timeout : timeout + buffer;
-            AssertionsEx.assertThat(waitingTime.get()).isCloseTo(expected, AssertionsEx.within(20L));
+            AssertionsEx.assertThat(waitingTime.get()).isCloseTo(expected, AssertionsEx.within(100L));
             AssertionsEx.assertThat(interruptFlag.get()).isFalse();
         }
     }

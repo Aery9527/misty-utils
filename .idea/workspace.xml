@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="85a0b3b9-499c-4427-8178-fde3848053e3" name="Changes" comment="enhance Checker">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/IdentityGenerator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/IdentityGeneratorTest.java" afterDir="false" />
+    <list default="true" id="85a0b3b9-499c-4427-8178-fde3848053e3" name="Changes" comment="add IdentityGenerator">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -382,7 +380,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "com.google.cloudcode.ide_session_index": "20240201_0003",
+    "com.google.cloudcode.ide_session_index": "20240220_0000",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "git-widget-placeholder": "develop",
@@ -591,7 +589,8 @@
       <workItem from="1706162420620" duration="3805000" />
       <workItem from="1706493759120" duration="40000" />
       <workItem from="1706759540043" duration="335000" />
-      <workItem from="1706773638099" duration="1523000" />
+      <workItem from="1706773638099" duration="1796000" />
+      <workItem from="1708417147324" duration="585000" />
     </task>
     <task id="LOCAL-00001" summary="Combinatorics add collect series">
       <option name="closed" value="true" />
@@ -873,7 +872,15 @@
       <option name="project" value="LOCAL" />
       <updated>1706759835533</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="add IdentityGenerator">
+      <option name="closed" value="true" />
+      <created>1706775573757</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1706775573757</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -891,7 +898,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Combinatorics add sortInAll and sortInFirst with unsort feature" />
     <MESSAGE value="add TimeFormat" />
     <MESSAGE value="Watcher add format method" />
     <MESSAGE value="add CombinatoricsSorter" />
@@ -916,7 +922,8 @@
     <MESSAGE value="enhance TaskDispatcher series" />
     <MESSAGE value="enhance Cycle series of add printCycle feature" />
     <MESSAGE value="enhance Checker" />
-    <option name="LAST_COMMIT_MESSAGE" value="enhance Checker" />
+    <MESSAGE value="add IdentityGenerator" />
+    <option name="LAST_COMMIT_MESSAGE" value="add IdentityGenerator" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/misty_utils$CheckerTest.ic" NAME="CheckerTest Coverage Results" MODIFIED="1703756370131" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

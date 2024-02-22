@@ -435,7 +435,7 @@
       <recent name="org.misty.utils.fi" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.MathExTest">
+  <component name="RunManager" selected="JUnit.DoubleTupleStatsTest">
     <configuration name="All in misty-utils.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="misty-utils.test" />
       <option name="PACKAGE_NAME" value="" />
@@ -444,48 +444,47 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="IdentityGeneratorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="DoubleTupleStatsTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="misty-utils.test" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.misty.utils.*" />
+          <option name="PATTERN" value="org.misty.utils.tuple.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="org.misty.utils" />
-      <option name="MAIN_CLASS_NAME" value="org.misty.utils.IdentityGeneratorTest" />
+      <option name="PACKAGE_NAME" value="org.misty.utils.tuple" />
+      <option name="MAIN_CLASS_NAME" value="org.misty.utils.tuple.DoubleTupleStatsTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="IdentityGeneratorTest.genWithTimestamp" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="IntTupleStatsTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="misty-utils.test" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.misty.utils.*" />
+          <option name="PATTERN" value="org.misty.utils.tuple.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="org.misty.utils" />
-      <option name="MAIN_CLASS_NAME" value="org.misty.utils.IdentityGeneratorTest" />
-      <option name="METHOD_NAME" value="genWithTimestamp" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="PACKAGE_NAME" value="org.misty.utils.tuple" />
+      <option name="MAIN_CLASS_NAME" value="org.misty.utils.tuple.IntTupleStatsTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="IdentityGeneratorTest.genWithTimestamp_suffixAppendNumber" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="LongTupleStatsTest.avg_max_min_median" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="misty-utils.test" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.misty.utils.*" />
+          <option name="PATTERN" value="org.misty.utils.tuple.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="org.misty.utils" />
-      <option name="MAIN_CLASS_NAME" value="org.misty.utils.IdentityGeneratorTest" />
-      <option name="METHOD_NAME" value="genWithTimestamp_suffixAppendNumber" />
+      <option name="PACKAGE_NAME" value="org.misty.utils.tuple" />
+      <option name="MAIN_CLASS_NAME" value="org.misty.utils.tuple.LongTupleStatsTest" />
+      <option name="METHOD_NAME" value="avg_max_min_median" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -508,11 +507,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.DoubleTupleStatsTest" />
+        <item itemvalue="JUnit.LongTupleStatsTest.avg_max_min_median" />
+        <item itemvalue="JUnit.IntTupleStatsTest" />
         <item itemvalue="JUnit.MathExTest" />
         <item itemvalue="JUnit.All in misty-utils.test" />
-        <item itemvalue="JUnit.IdentityGeneratorTest" />
-        <item itemvalue="JUnit.IdentityGeneratorTest.genWithTimestamp_suffixAppendNumber" />
-        <item itemvalue="JUnit.IdentityGeneratorTest.genWithTimestamp" />
       </list>
     </recent_temporary>
   </component>

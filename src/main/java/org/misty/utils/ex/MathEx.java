@@ -36,4 +36,28 @@ public class MathEx {
         return new BigDecimal(value).setScale(scale, BigDecimal.ROUND_HALF_UP).floatValue();
     }
 
+    public static double random(double ceiling) {
+        return random(0, ceiling);
+    }
+
+    public static double random(double floor, double ceiling) {
+        return Math.random() * (ceiling - floor) + floor;
+    }
+
+    public static int randomToInt(int ceiling) {
+        return randomToInt(0, ceiling);
+    }
+
+    public static int randomToInt(int floor, int ceiling) {
+        return (int) (Math.random() * (ceiling - floor + 1) + floor);
+    }
+
+    public static long randomToLong(long ceiling) {
+        return randomToLong(0, ceiling);
+    }
+
+    public static long randomToLong(long floor, long ceiling) {
+        return (long) (Math.random() * (ceiling - floor + 1) + floor);
+    }
+
 }

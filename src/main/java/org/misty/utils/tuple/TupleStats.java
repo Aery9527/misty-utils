@@ -42,13 +42,20 @@ public abstract class TupleStats {
         return new DoubleTupleStats(tuple);
     }
 
+    private final int size;
+
     private final double avg;
 
     private final double median;
 
-    protected TupleStats(double avg, double median) {
+    protected TupleStats(int size, double avg, double median) {
+        this.size = size;
         this.avg = avg;
         this.median = median;
+    }
+
+    public int getSize() {
+        return size;
     }
 
     public double getAvg() {

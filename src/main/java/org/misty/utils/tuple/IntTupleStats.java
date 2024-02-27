@@ -1,6 +1,8 @@
 package org.misty.utils.tuple;
 
 import java.util.Arrays;
+import java.util.function.IntSupplier;
+import java.util.function.ToIntFunction;
 
 public class IntTupleStats extends TupleStats {
 
@@ -10,7 +12,9 @@ public class IntTupleStats extends TupleStats {
 
     public static double median(int[] tuple) {
         int len = tuple.length;
-        if (len % 2 == 0) {
+        if (len == 0) {
+            return 0;
+        } else if (len % 2 == 0) {
             int middle = len / 2;
             double a = tuple[middle - 1];
             double b = tuple[middle];
@@ -20,15 +24,24 @@ public class IntTupleStats extends TupleStats {
         }
     }
 
+    private final int sum;
+
     private final int max;
 
     private final int min;
 
     public IntTupleStats(int[] tuple) {
-        super(avg(tuple), median(tuple));
+        super(tuple.length, avg(tuple), median(tuple));
 
-        this.max = tuple[tuple.length - 1];
-        this.min = tuple[0];
+        ToIntFunction<IntSupplier> emptyArrayProcessor = supplier -> tuple.length == 0 ? 0 : supplier.getAsInt();
+
+        this.sum = emptyArrayProcessor.applyAsInt(() -> Arrays.stream(tuple).sum());
+        this.max = emptyArrayProcessor.applyAsInt(() -> tuple[tuple.length - 1]);
+        this.min = emptyArrayProcessor.applyAsInt(() -> tuple[0]);
+    }
+
+    public int getSum() {
+        return sum;
     }
 
     public int getMax() {

@@ -22,15 +22,15 @@ public class MathExTest {
     @Test
     public void normalization() {
         double value = 123.456789;
-        Assertions.assertThat(MathEx.normalization(value)).isEqualTo(123.46f);
-        Assertions.assertThat(MathEx.normalization(value, 3)).isEqualTo(123.457f);
+        Assertions.assertThat(MathEx.normalization(value)).isEqualTo(123.46);
+        Assertions.assertThat(MathEx.normalization(value, 3)).isEqualTo(123.457);
     }
 
     @Test
     public void normalizationPercentage() {
         double value = 123.456789;
-        Assertions.assertThat(MathEx.normalizationPercentage(value)).isEqualTo(12345.68f);
-        Assertions.assertThat(MathEx.normalizationPercentage(value, 3)).isEqualTo(12345.679f);
+        Assertions.assertThat(MathEx.normalizationPercentage(value)).isEqualTo(12345.68);
+        Assertions.assertThat(MathEx.normalizationPercentage(value, 3)).isEqualTo(12345.679);
     }
 
     @Test

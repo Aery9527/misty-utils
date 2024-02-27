@@ -1,6 +1,7 @@
 package org.misty.utils.ex;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.stream.LongStream;
 
 public class MathEx {
@@ -20,20 +21,20 @@ public class MathEx {
         return (int) Math.log10(value) + 1;
     }
 
-    public static float normalizationPercentage(double value) {
+    public static double normalizationPercentage(double value) {
         return normalization(value * 100, 2);
     }
 
-    public static float normalizationPercentage(double value, int scale) {
+    public static double normalizationPercentage(double value, int scale) {
         return normalization(value * 100, scale);
     }
 
-    public static float normalization(double value) {
+    public static double normalization(double value) {
         return normalization(value, 2);
     }
 
-    public static float normalization(double value, int scale) {
-        return new BigDecimal(value).setScale(scale, BigDecimal.ROUND_HALF_UP).floatValue();
+    public static double normalization(double value, int scale) {
+        return new BigDecimal(value).setScale(scale, RoundingMode.HALF_UP).doubleValue();
     }
 
     public static double random(double ceiling) {

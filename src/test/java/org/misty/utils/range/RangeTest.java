@@ -22,11 +22,16 @@ public class RangeTest {
         Assertions.assertThat(Range.divide(-5, 3)).isEqualTo("[-6, -4]");
         Assertions.assertThat(Range.divide(-6, 3)).isEqualTo("[-6, -4]");
 
+        Assertions.assertThat(Range.divide(5_000, 5)).isEqualTo("[4996, 5000]");
+        Assertions.assertThat(Range.divide(5_000, 5, "%,d")).isEqualTo("[4,996, 5,000]");
+        Assertions.assertThat(Range.divide(5_000, 5, "%,d", "", "~", "")).isEqualTo("4,996~5,000");
+        Assertions.assertThat(Range.divide(5_000, 5, "", "~", "")).isEqualTo("4996~5000");
+
         AssertionsEx.awareThrown(() -> Range.divide(0, 0)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
-    public void divide_float() {
+    public void divide_double() {
         Assertions.assertThat(Range.divide(5.00, 2.5, 2)).isEqualTo("[5.00, 7.50)");
         Assertions.assertThat(Range.divide(3.75, 2.5, 2)).isEqualTo("[2.50, 5.00)");
         Assertions.assertThat(Range.divide(2.50, 2.5, 2)).isEqualTo("[2.50, 5.00)");
@@ -38,11 +43,6 @@ public class RangeTest {
         Assertions.assertThat(Range.divide(-5.00, 2.5, 2)).isEqualTo("[-5.00, -2.50)");
 
         AssertionsEx.awareThrown(() -> Range.divide(0, 0, 2)).isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
-    public void divide_double() {
-
     }
 
 }

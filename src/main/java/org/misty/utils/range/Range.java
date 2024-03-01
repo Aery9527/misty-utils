@@ -4,26 +4,30 @@ import org.misty.utils.verify.Verifier;
 
 public interface Range {
 
-    static String divide(int target, int interval) {
+    static String divide(long target, long interval) {
         return divide(target, interval, "%d");
     }
 
-    static String divide(int target, int interval, String format) {
+    static String divide(long target, long interval, String format) {
         return divide(target, interval, format, "[", ", ", "]");
     }
 
-    static String divide(int target, int interval, String format, String prefix, String arrive, String suffix) {
-        Verifier.requireIntMoreThanInclusive("interval", interval, 1);
+    static String divide(long target, long interval, String prefix, String arrive, String suffix) {
+        return divide(target, interval, "%d", prefix, arrive, suffix);
+    }
+
+    static String divide(long target, long interval, String format, String prefix, String arrive, String suffix) {
+        Verifier.requireLongMoreThanInclusive("interval", interval, 1);
 
         if (target == 0) {
             return prefix + "0" + suffix;
         }
 
-        int quotient = target / interval;
-        int remainder = target % interval;
+        long quotient = target / interval;
+        long remainder = target % interval;
 
-        int start;
-        int end;
+        long start;
+        long end;
         if (target > 0) {
             start = ((remainder == 0 ? quotient - 1 : quotient) * interval) + 1;
             end = start + interval - 1;

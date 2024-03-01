@@ -1,6 +1,62 @@
 package org.misty.utils.range;
 
+import org.misty.utils.verify.Verifier;
+
 public interface Range {
+
+    static String divide(int target, int interval) {
+        return divide(target, interval, "%d");
+    }
+
+    static String divide(int target, int interval, String format) {
+        return divide(target, interval, format, "[", ", ", "]");
+    }
+
+    static String divide(int target, int interval, String format, String prefix, String arrive, String suffix) {
+        Verifier.requireIntMoreThanInclusive("interval", interval, 1);
+
+        if (target == 0) {
+            return prefix + "0" + suffix;
+        }
+
+        int quotient = target / interval;
+        int remainder = target % interval;
+
+        int start;
+        int end;
+        if (target > 0) {
+            start = ((remainder == 0 ? quotient - 1 : quotient) * interval) + 1;
+            end = start + interval - 1;
+        } else {
+            end = ((remainder == 0 ? quotient + 1 : quotient) * interval) - 1;
+            start = end - interval + 1;
+        }
+
+        return prefix + String.format(format, start) + arrive + String.format(format, end) + suffix;
+    }
+
+    static String divide(double target, double interval, int scale) {
+        return divide(target, interval, "%." + scale + "f");
+    }
+
+    static String divide(double target, double interval, String format) {
+        Verifier.requireDoubleMoreThanInclusive("interval", interval, 1);
+
+        int quotient = (int) (target / interval);
+
+        double start;
+        double end;
+        if (target >= 0) {
+            start = quotient * interval;
+        } else {
+            double remainder = target % interval;
+            start = (remainder == 0 ? quotient : quotient - 1) * interval;
+        }
+
+        end = start + interval;
+
+        return "[" + String.format(format, start) + ", " + String.format(format, end) + ")";
+    }
 
     static String message(Number lower, Number upper) {
         return "[" + lower + ", " + upper + "]";

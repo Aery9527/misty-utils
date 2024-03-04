@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="85a0b3b9-499c-4427-8178-fde3848053e3" name="Changes" comment="enhance Range for divide">
+    <list default="true" id="85a0b3b9-499c-4427-8178-fde3848053e3" name="Changes" comment="enhance Range#divide">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/misty/utils/range/Range.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/misty/utils/range/Range.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/misty/utils/range/RangeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/misty/utils/range/RangeTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -393,7 +392,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "com.google.cloudcode.ide_session_index": "20240301_0001",
+    "com.google.cloudcode.ide_session_index": "20240304_0000",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "git-widget-placeholder": "develop",
@@ -605,7 +604,8 @@
       <workItem from="1709001123420" duration="330000" />
       <workItem from="1709003009800" duration="1182000" />
       <workItem from="1709278171671" duration="178000" />
-      <workItem from="1709278444224" duration="969000" />
+      <workItem from="1709278444224" duration="1301000" />
+      <workItem from="1709524214354" duration="908000" />
     </task>
     <task id="LOCAL-00001" summary="Combinatorics add collect series">
       <option name="closed" value="true" />
@@ -927,14 +927,21 @@
       <option name="project" value="LOCAL" />
       <updated>1709278325577</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="enhance Range#divide">
+      <option name="closed" value="true" />
+      <created>1709280416375</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1709280416375</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="adjust Tracked" />
     <MESSAGE value="add Verifier series" />
     <MESSAGE value="Verifier add refuseNull method" />
     <MESSAGE value="adjust verify series" />
@@ -959,7 +966,8 @@
     <MESSAGE value="enhance TupleStats series" />
     <MESSAGE value="adjust MathEx" />
     <MESSAGE value="enhance Range for divide" />
-    <option name="LAST_COMMIT_MESSAGE" value="enhance Range for divide" />
+    <MESSAGE value="enhance Range#divide" />
+    <option name="LAST_COMMIT_MESSAGE" value="enhance Range#divide" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/misty_utils$JudgeTest.ic" NAME="JudgeTest Coverage Results" MODIFIED="1698051751125" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

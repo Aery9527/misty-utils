@@ -44,7 +44,7 @@ public interface Range {
     }
 
     static String divide(double target, double interval, String format) {
-        Verifier.requireDoubleMoreThanInclusive("interval", interval, 1);
+        Verifier.requireDoubleMoreThanExclusive("interval", interval, 0);
 
         int quotient = (int) (target / interval);
 

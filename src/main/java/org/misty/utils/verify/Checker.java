@@ -346,4 +346,16 @@ public class Checker {
         }
     }
 
+    public static void isTrue(boolean flag, RunnableEx action) {
+        if (flag) {
+            action.execute();
+        }
+    }
+
+    public static void isFalse(boolean flag, RunnableEx action) {
+        if (!flag) {
+            action.execute();
+        }
+    }
+
 }

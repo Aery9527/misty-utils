@@ -3,6 +3,7 @@ package org.misty.utils.verify;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.misty.utils.fi.RunnableEx;
+import org.mockito.Mockito;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -228,6 +229,28 @@ public class CheckerTest {
 
         test_byteArray.accept(Optional.of(new Object[]{}), true);
         test_byteArray.accept(Optional.of(new Object[]{1}), false);
+    }
+
+    @Test
+    public void isTrue() {
+        RunnableEx action1 = Mockito.mock(RunnableEx.class);
+        Checker.isTrue(true, action1);
+        Mockito.verify(action1, Mockito.atLeastOnce()).execute();
+
+        RunnableEx action2 = Mockito.mock(RunnableEx.class);
+        Checker.isTrue(false, action2);
+        Mockito.verify(action2, Mockito.never()).execute();
+    }
+
+    @Test
+    public void isFalse() {
+        RunnableEx action1 = Mockito.mock(RunnableEx.class);
+        Checker.isFalse(true, action1);
+        Mockito.verify(action1, Mockito.never()).execute();
+
+        RunnableEx action2 = Mockito.mock(RunnableEx.class);
+        Checker.isFalse(false, action2);
+        Mockito.verify(action2, Mockito.atLeastOnce()).execute();
     }
 
     private <TargetType> void check(TargetType target, Predicate<TargetType> test, BiConsumer<TargetType, RunnableEx> testWithAction, boolean expected) {

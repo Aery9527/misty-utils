@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="85a0b3b9-499c-4427-8178-fde3848053e3" name="Changes" comment="fix Range divide verify">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="85a0b3b9-499c-4427-8178-fde3848053e3" name="Changes" comment="Checker add isTrue/isFalse function" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -143,7 +141,7 @@
     &quot;JUnit.BigIntegerRangePresetTest.random_inRange_outRange.executor&quot;: &quot;Run&quot;,
     &quot;JUnit.BigIntegerRangeVerifierTest.executor&quot;: &quot;Run&quot;,
     &quot;JUnit.BigIntegerVolatileCycleTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.CheckerTest.executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.CheckerTest.executor&quot;: &quot;Run&quot;,
     &quot;JUnit.DoubleLimiterBuilderTest.min_max.executor&quot;: &quot;Run&quot;,
     &quot;JUnit.DoubleLimiterBuilderTest.verifyMinLessThanMax.executor&quot;: &quot;Run&quot;,
     &quot;JUnit.DoubleRangeBuilderTest.executor&quot;: &quot;Run&quot;,
@@ -392,7 +390,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;com.google.cloudcode.ide_session_index&quot;: &quot;20240306_0000&quot;,
+    &quot;com.google.cloudcode.ide_session_index&quot;: &quot;20240308_0000&quot;,
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
     &quot;git-widget-placeholder&quot;: &quot;develop&quot;,
@@ -439,7 +437,7 @@
       <recent name="org.misty.utils.fi" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.CheckerTest">
+  <component name="RunManager" selected="JUnit.All in misty-utils.test">
     <configuration name="Range" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.misty.utils.range.Range" />
       <module name="misty-utils.main" />
@@ -509,9 +507,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.All in misty-utils.test" />
         <item itemvalue="JUnit.CheckerTest" />
         <item itemvalue="Application.Range" />
-        <item itemvalue="JUnit.All in misty-utils.test" />
         <item itemvalue="JUnit.RangeTest.divide_int" />
         <item itemvalue="JUnit.RangeTest" />
       </list>
@@ -605,6 +603,7 @@
       <workItem from="1709278444224" duration="1301000" />
       <workItem from="1709524214354" duration="923000" />
       <workItem from="1709706481468" duration="1271000" />
+      <workItem from="1709886307806" duration="206000" />
     </task>
     <task id="LOCAL-00001" summary="Combinatorics add collect series">
       <option name="closed" value="true" />
@@ -942,14 +941,21 @@
       <option name="project" value="LOCAL" />
       <updated>1709538411845</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="Checker add isTrue/isFalse function">
+      <option name="closed" value="true" />
+      <created>1709886503354</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1709886503354</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Verifier add refuseNull method" />
     <MESSAGE value="adjust verify series" />
     <MESSAGE value="add limit series" />
     <MESSAGE value="fix FloatLimitVerifierHandler and DoubleLimitVerifierHandler verify Nan/Infinity/-Infinity" />
@@ -974,7 +980,8 @@
     <MESSAGE value="enhance Range for divide" />
     <MESSAGE value="enhance Range#divide" />
     <MESSAGE value="fix Range divide verify" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix Range divide verify" />
+    <MESSAGE value="Checker add isTrue/isFalse function" />
+    <option name="LAST_COMMIT_MESSAGE" value="Checker add isTrue/isFalse function" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/misty_utils$JudgeTest.ic" NAME="JudgeTest Coverage Results" MODIFIED="1698051751125" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
